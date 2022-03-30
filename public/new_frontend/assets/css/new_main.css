@@ -1,0 +1,282 @@
+:root {
+    --bg-primary-red: #af3039;
+    --bg-primary-red-fainted: #af303848;
+    --bg-primary-red-hover: #942a31;
+    --border-radius-normal: 15px;  
+    --boder-radius-small: 5px;
+
+    /* fonts */
+    --font-red: #af3039; 
+    --font-black: #000;
+    --font-white: #fff; 
+
+    /* buttons */
+    --btn-primary-red: #af3039;
+    --btn-primary-red-hover: #942a31;
+
+}
+
+/* Changes */
+
+/* body */
+
+.btn, .button {
+  background-color: var(--bg-primary-red);
+}
+
+.btn, .button:hover {
+  background-color: var(--bg-primary-red-hover);
+}
+
+/* Product cards */
+.product-cart-wrap {
+  border: 1px solid var(--bg-primary-red-fainted);
+}
+
+.product-cart-wrap:hover {
+  border: 1px solid var(--bg-primary-red);
+}
+
+/* image */
+.default-img {
+  height: 200px;
+}
+
+.hover-img {
+  height: 200px;
+}
+
+/* Go Up Button */
+#scrollUp {
+  color: var(--bg-primary-red);
+ }
+
+
+/* Pop Up Section */
+
+/* button */
+.deal .btn {
+  background: var(--btn-primary-red) !important;
+}
+
+/* border */
+.countdown-section {
+    border: 2px solid var(--bg-primary-red) !important;
+}
+
+/* text */
+.countdown-section span {
+    color: var(--font-red) !important;
+}
+
+/* End Pop Up Section*/
+
+/* Header */
+
+/* browse category */
+.header-style-1 .main-categori-wrap > a {
+    background: #af3039;
+}
+
+/* browse category:hover  */
+.header-style-1 .main-categori-wrap > a:hover {
+  background-color: var(--bg-primary-red-hover);
+}
+
+/* item number popup listing */
+.header-action-2 .header-action-icon-2 > a span.pro-count.blue {
+    background-color: var(--bg-primary-red);
+}
+
+
+.header-style-1 .hotline p {
+  color: var(--font-red) !important;
+}
+
+
+
+/* ////Texts//// */
+/* text hover */
+.main-menu > nav > ul > li:hover > a {
+  color: var(--font-red);
+}
+
+/* text-active */
+.main-menu > nav > ul > li > a.active {
+  color: var(--font-red);
+}
+
+/* text-number */
+.text-brand {
+  color: var(--font-red) !important;
+}
+
+
+
+/* ////End Texts//// */
+
+
+
+/* Location */
+
+/* location text */
+.header-style-1 .search-location .select2-container--default .select2-selection--single .select2-selection__rendered {
+  color: var(--font-red);
+}
+
+
+.select2-dropdown .select2-search--dropdown .select2-search__field {
+  border: 1px solid var(--bg-primary-red);
+}
+
+/* selected location */
+.select2-container--default .select2-results__option--highlighted[aria-selected] {
+  background-color: var(--bg-primary-red-fainted);
+}
+
+
+/* End Location */
+
+
+
+/* Cart */
+
+/* cart text */
+.cart-dropdown-wrap ul li .shopping-cart-title h4 a {
+  color: var(--font-red);
+}
+
+/* cart Button */
+.cart-dropdown-wrap .shopping-cart-footer .shopping-cart-button a {
+  background-color: var(--btn-primary-red);
+  border: 2px solid var(--btn-primary-red);
+}
+
+.cart-dropdown-wrap .shopping-cart-footer .shopping-cart-button a:hover {
+  background-color: var(--btn-primary-red-hover);
+
+}
+
+/* button outline */
+.cart-dropdown-wrap .shopping-cart-footer .shopping-cart-button a.outline {
+  border: 2px solid var(--btn-primary-red);
+  color: var(--btn-primary-red);
+}
+
+/* End Cart */
+
+
+
+/* Account */
+/* menu hover */
+.cart-dropdown-wrap.account-dropdown a:hover {
+  color: var(--font-red);
+}
+/* End Account */
+
+
+/* Menu Dropdown */
+
+/* item list:hover */
+.categories-dropdown-wrap ul li a:hover {
+  color: var(--font-red);
+  background-color: transparent;
+}
+
+/* menu dropdown border */
+.categories-dropdown-wrap ul li:hover {
+  border: 1px solid var(--bg-primary-red-fainted);
+}
+
+
+/* End Menu Dropdown */
+
+
+
+
+/* Search Input */
+.header-style-1 .search-style-2 form {
+  border: 2px solid var(--bg-primary-red);
+}
+
+
+/* Slider */
+.dot-style-1 ul li.slick-active button {
+  background: var(--bg-primary-red);
+  border-color: var(--bg-primary-red-hover);
+}
+
+/* slider hover */
+.slider-arrow .slider-btn:hover {
+  background-color: var(--bg-primary-red);
+  color: #fff;
+  border-color: #FFF;
+}
+
+/* End Slider */
+
+/* End Header */
+
+
+
+
+/* Featured Categories */
+/* active text color */
+.nav-tabs.links .nav-link:hover, .nav-tabs.links .nav-link.active {
+  color: var(--font-red);
+}
+
+/* card background */
+.bg-9 {
+  background-color: var(--bg-primary-red-fainted) !important;
+}
+
+/* card background hover */
+.card-2:hover {
+  border: 1px solid var(--bg-primary-red);
+  
+}
+
+/* text-hover */
+.card-2:hover a {
+  color: #FCFCFC;
+}
+
+/* End Featured Categories */
+
+
+
+
+/* Advertisement */
+
+
+
+
+/* End Advertisement */
+
+
+
+/* Featured Products */
+::selection {
+  background: var(--bg-primary-red);
+}
+
+.featured-products_a {
+  color: var(--font-red) !important; 
+}
+
+
+
+
+/* End Featured Products */
+
+
+/* Deal of the Day */
+
+
+.product-img a img {
+  height: 250px;
+}
+
+
+/* End Deal of the Day */

@@ -1,0 +1,36 @@
+:root {
+    --secondary-font-color: #af3039; 
+    --secondary-btn-color: #af3039;
+    --secondary-btn-hover-color: #942a31; 
+    --secondary-bg-color: #af3039;
+}
+
+body { 
+    background: #fffdf9 !important;
+}
+
+.bg-soft {
+    background-color: var(--secondary-bg-color) !important;
+}
+
+.register-btn {
+    background: var(--secondary-bg-color);
+    color: #fff;
+}
+.register-btn:hover {
+    background: var(--secondary-btn-hover-color);
+    color: #fff !important;
+}
+
+.text-secondary {
+    color: var(--secondary-font-color) !important;
+}
+
+
+
+
+
+
+
+
+

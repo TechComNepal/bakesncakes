@@ -1,0 +1,16 @@
+/******/ (() => { // webpackBootstrap
+var __webpack_exports__ = {};
+/*!*********************************************************!*\
+  !*** ./resources/assets/js/pages/invoices-list.init.js ***!
+  \*********************************************************/
+$(document).ready(function () {
+  $(".datatable").DataTable({
+    responsive: !1
+  }), $(".dataTables_length select").addClass("form-select form-select-sm");
+}), flatpickr(".datepicker-range", {
+  mode: "range",
+  altInput: !0,
+  wrap: !0
+});
+/******/ })()
+;

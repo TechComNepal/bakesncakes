@@ -1,0 +1,114 @@
+<?php
+
+namespace App\Models;
+
+use App\Traits\Rateable;
+
+use Illuminate\Database\Eloquent\Factories\HasFactory;
+use App\Models\Model;
+use Spatie\Image\Manipulations;
+use Spatie\MediaLibrary\HasMedia;
+use Spatie\MediaLibrary\InteractsWithMedia;
+use Spatie\MediaLibrary\MediaCollections\Models\Media;
+use Spatie\Searchable\Searchable;
+use Spatie\Searchable\SearchResult;
+use Spatie\Sluggable\HasSlug;
+use Spatie\Sluggable\SlugOptions;
+
+class Product extends Model implements HasMedia, Searchable
+{
+    use HasFactory, HasSlug, InteractsWithMedia;
+    use Rateable;
+
+    protected $guarded = ['id'];
+   
+    protected static $defaultImage = '/common/default-image/defaultCategoryImage.jpg';
+
+    public function getSearchResult(): SearchResult
+    {
+//        $url = route('site.product.show', $this->slug);
+
+        $url = '';
+        return new SearchResult(
+            $this,
+            $this->name,
+            $url
+        );
+    }
+
+    public function getSlugOptions(): SlugOptions
+    {
+        return SlugOptions::create()
+            ->generateSlugsFrom('name')
+            ->saveSlugsTo('slug');
+    }
+
+    public function registerMediaCollections(): void
+    {
+        $this->addMediaCollection('image')
+            ->singleFile();
+
+        $this->addMediaCollection('gallery_image');
+    }
+
+    public function registerMediaConversions(Media $media = null): void
+    {
+        $this->addMediaConversion('original')
+            ->fit(Manipulations::FIT_CROP, 1100, 640)
+            ->performOnCollections('image', 'gallery_image');
+
+        $this->addMediaConversion('square-md-thumb')
+            ->fit(Manipulations::FIT_CROP, 370, 300)
+            ->performOnCollections('image', 'gallery_image');
+
+        $this->addMediaConversion('square-sm-thumb')
+            ->fit(Manipulations::FIT_CROP, 170, 100)
+            ->performOnCollections('image', 'gallery_image');
+    }
+
+    public function getFirstOrDefaultMediaUrl(string $collectionName = 'default', string $conversionName = ''): string
+    {
+        $url = $this->getFirstMediaUrl($collectionName, $conversionName);
+
+        return $url ?: $this::$defaultImage ?? '';
+    }
+
+    public function promocodes()
+    {
+        return $this->morphToMany(Promocode::class, 'promocodeable')->withTimestamps();
+    }
+
+    public function carts()
+    {
+        return $this->hasMany(Cart::class, 'product_id');
+    }
+
+    public function brand()
+    {
+        return $this->belongsTo(Brand::class, 'brand_id');
+    }
+
+    public function category()
+    {
+        return $this->belongsTo(Category::class, 'category_id');
+    }
+
+    
+    public function scopeHasStock($query)
+    {
+        return $query->where('quantity', '>', 0);
+    }
+
+
+    public function orders()
+    {
+        return $this->belongToMany(Order::class, 'order_product', 'product_id', 'order_id')
+                      ->withPivot('user_id', 'price', 'quantity', 'total', 'status', 'tax', 'delivery_date', 'user_note')
+                     ->withTimestamps();
+    }
+
+    public function ratings()
+    {
+        return $this->morphMany(Rating::class, 'rateable');
+    }
+}
