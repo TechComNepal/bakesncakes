@@ -54,6 +54,7 @@ Route::post('/cart/updateQuantity', [CartController::class, 'updateQuantity'])->
 
 Route::group(['middleware' => ['auth']], function () {
     Route::get('/checkout', [PagesController::class, 'checkout'])->name('checkout');
+    Route::post('/order-checkout', [PagesController::class, 'newCheckout'])->name('new.checkout');
     Route::post('order/cashondelivery', [SiteOrderController::class, 'cashOnDelivery'])->name('order.cashOnDelivery');
     Route::post('shipping/address', [SiteOrderController::class, 'shippingAddress'])->name('user.shipping.address');
     Route::get('shipping/address/edit/{id}', [SiteOrderController::class, 'editShippingAddress'])->name('user.shipping.address.edit');
@@ -61,6 +62,11 @@ Route::group(['middleware' => ['auth']], function () {
     Route::delete('shipping/address/delete/{id}', [SiteOrderController::class, 'deleteShippingAddress'])->name('user.shipping.address.delete');
     Route::post('/price/after/apply/coupon', [SiteOrderController::class, 'priceAfterApplyCoupon'])->name('user.price.after.apply.coupon');
     Route::get('shipping/address/set_default/{id}', [SiteOrderController::class, 'setDefaultShippingAddress'])->name('user.shipping.address.set_default');
+    Route::get('shipping-info', [SiteOrderController::class, 'get_shipping_info'])->name('user.shipping.info');
+    Route::post('delivery-info', [SiteOrderController::class, 'store_shipping_info'])->name('user.shipping.info.store');
+    Route::any('payment-select', [SiteOrderController::class, 'store_delivery_info'])->name('user.store.delivery.info');
+
+    
 
 
     Route::group(['as' => 'user.', 'prefix' => 'user'], function () {
@@ -74,7 +80,7 @@ Route::group(['middleware' => ['auth']], function () {
         Route::get('/orders/status/change', [UserDashboardController::class, 'statusChange'])->name('orders.status.change');
         Route::get('/orders/details/view/{id}', [UserDashboardController::class, 'viewOrderDetail'])->name('orders.details.view');
     });
- 
+
     Route::post('/reviews', ReviewController::class)->name('review.store');
     Route::delete('/user/reviews/delete/{id}', [ReviewController::class, 'deleteReview'])->name('user.reviews.delete');
     Route::post('/user/comments', [ReviewController::class, 'showReview'])->name('user.comments');

@@ -6,6 +6,8 @@ use App\Models\Blog;
 use App\Models\Cart;
 use App\Models\Brand;
 use App\Models\Qrcode;
+use App\Models\Order;
+use App\Models\OrderProduct;
 use App\Models\Slider;
 use App\Models\AboutUs;
 use App\Models\Product;
@@ -21,6 +23,7 @@ use Illuminate\Contracts\View\View;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
 use App\Models\CustomerShippingAddress;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Session;
 use Spatie\Searchable\ModelSearchAspect;
 
@@ -33,10 +36,10 @@ class PagesController extends Controller
         'categories'=> Category::where('featured', 1)->orderBy('id', 'desc')->paginate(16),
         'productCategories'=> $productCategories,
         'products'=>Product::orderBy('id', 'asc')->simplepaginate(72),
-        'featured_products'=>Product::where('is_featured', 1)->orderBy('id', 'desc')->limit(3)->get(),
-        'trending_products'=>Product::where('is_trending', 1)->orderBy('created_at', 'desc')->limit(8)->get(),
+        'featured_products'=>Product::where('is_featured', 1)->orderBy('id', 'desc')->limit(5)->get(),
+        'trending_products'=>Product::where('is_trending', 1)->orderBy('created_at', 'desc')->limit(3)->get(),
         //'top_selling_products'=>Product::where('top_selling', 1)->orderBy('id', 'desc')->limit(3)->get(),
-        'best_selling_products'=>Product::where('best_selling', 1)->orderBy('id', 'desc')->limit(5)->get(),
+        'best_selling_products'=>Product::where('best_selling', 1)->orderBy('id', 'desc')->limit(8)->get(),
         'recent_products'=>Product::orderBy('created_at', 'desc')->limit(3)->get(),
       'top_selling_products'=> Product::has('orders')
                ->withSum('orders', 'order_product.quantity')->OrderByDesc('orders_sum_order_productquantity')->limit(3)->get(),
@@ -149,6 +152,125 @@ class PagesController extends Controller
         }
         return redirect(route('auth.login.show'));
     }
+
+    
+    public function newCheckout(Request $request)
+    {
+//        dd($request->all());
+        DB::beginTransaction();
+        if ($request->payment != null) {
+            $carts = Cart::where('user_id', Auth::user()->id)->get();
+
+            if ($carts->isEmpty()) {
+                DB::rollback();
+                return redirect()->route('site.page')->with(['error' => 'Your Cart is empty']);
+            }
+
+            $address = CustomerShippingAddress::where('id', $carts[0]['address_id'])->first();
+
+            $seller_products = array();
+            $shipping = 0;
+            $total = 0;
+            $couponDiscount = 0;
+
+            foreach ($carts as $cartItem) {
+                $product_ids = array();
+                $product = Product::find($cartItem['product_id']);
+                if (isset($seller_products[$product->user_id])) {
+                    $product_ids = $seller_products[$product->user_id];
+                }
+                array_push($product_ids, $cartItem);
+                $seller_products[$product->user_id] = $product_ids;
+
+                $product_shipping_cost = $cartItem->shipping_cost;
+                $shipping += $product_shipping_cost;
+                $total = $total + ($cartItem->price + $cartItem->tax) * $cartItem->quantity;
+            }
+
+            foreach ($seller_products as $seller_product) {
+                $order = new Order();
+                $order->order_code = 'ORD'.date('Ymd-His') . rand(10, 99);
+                $order->user_id = Auth::user()->id;
+                $order->billing_email = Auth::user()->email;
+                $order->delivery_charge = $shipping;
+                $order->payment_method = $request->payment;
+                $order->billing_total = $total;
+                $order->shipping_address = json_encode($address);
+                $order->coupon_discount = $couponDiscount;
+                $order->save();
+
+                $subtotal = 0;
+                $tax = 0;
+                $shipping = 0;
+                $coupon_discount = 0;
+
+                //Order Product Storing
+                foreach ($seller_product as $cartItem) {
+                    $product = Product::find($cartItem['product_id']);
+
+                    $subtotal += $cartItem['price'] * $cartItem['quantity'];
+                    $tax += $cartItem['tax'] * $cartItem['quantity'];
+                    $coupon_discount += $cartItem['coupon_discount'];
+
+
+                    $product_stock = $product->where('id', $product->id)->where('quantity', '>', 0)->first();
+                    if ($cartItem['quantity'] > $product_stock->quantity) {
+                        $order->delete();
+                        return redirect()->route('cart.index')->withErrors('The requested quantity is not available for' . $product->name);
+                    } else {
+                        $product_stock->quantity -= $cartItem['quantity'];
+                        $product_stock->save();
+                    }
+
+                    $order_detail = new OrderProduct();
+                    $order_detail->order_id = $order->id;
+                    $order_detail->product_id = $product->id;
+                    $order_detail->user_id = Auth::user()->id;
+                    $order_detail->price = $cartItem['price'] * $cartItem['quantity'];
+                    $order_detail->quantity = $cartItem['quantity'];
+                    $order_detail->tax = $cartItem['tax'] * $cartItem['quantity'];
+                    $order_detail->total = ($cartItem->price + $cartItem->tax) * $cartItem->quantity;
+                    $order_detail->status = true;
+                    $order_detail->user_note = $cartItem->user_note;
+                    $order_detail->delivery_date = $cartItem->delivery_date;
+
+//                    $order_detail->seller_id = $product->user_id;
+
+//                    $order_detail->shipping_cost = $cartItem['shipping_cost'];
+
+//                    $shipping += $order_detail->shipping_cost;
+                    $shipping += $cartItem['shipping_cost'];
+                    //End of storing shipping cost
+
+                    $order_detail->save();
+
+                    $product->save();
+
+                    $order->seller_id = $product->user_id;
+                }
+
+
+
+                $order->billing_total = $subtotal + $tax + $shipping;
+
+                $order->coupon_discount = $coupon_discount;
+                $order->billing_total -= $coupon_discount;
+                $order->delivery_charge = $shipping;
+                $order->save();
+            }
+
+            foreach ($carts as $cart) {
+                Cart::destroy($cart->id);
+            }
+
+            DB::commit();
+            return redirect()->route('site.page')->with(['success' => 'Your order has been placed successfully.']);
+        } else {
+            DB::rollBack();
+            return redirect()->back()->with(['error' => 'Select Payment Options']);
+        }
+    }
+
 
     public function search(Request $request): View
     {

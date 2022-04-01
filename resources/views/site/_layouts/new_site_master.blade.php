@@ -3,6 +3,8 @@
 
 <head>
     <meta charset="utf-8">
+    <meta content="width=device-width, initial-scale=1.0" name="viewport">
+    <meta name="csrf-token" content="{{ csrf_token() }}" />
     <title>Bakes n Cakes</title>
     <meta http-equiv="x-ua-compatible" content="ie=edge">
     <meta name="description" content="">
@@ -16,6 +18,9 @@
     <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.25/css/jquery.dataTables.css">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet">
     <link href="{{ mix('site/css/bootstrap.min.css') }}" rel="stylesheet">
+    <!-- alertifyjs Css -->
+
+    <link href="{{ asset('cms/libs/css/alertify.min.css') }}" rel="stylesheet" type="text/css" />
 
     <!-- Favicon -->
     <link rel="shortcut icon" type="image/x-icon" href="{{ asset('new_frontend\assets\imgs\theme\favicon.svg') }}">
@@ -379,6 +384,11 @@
     <script src="{{ asset('site/js/popper.min.js') }}"></script>
     <script src="{{ asset('site/js/bootstrap.min.js') }}"></script>
 
+    <!-- datepicker js -->
+    <script src="{{ asset('cms/libs/js/flatpickr.min.js') }}"></script>
+
+    <!-- alertifyjs js -->
+    <script src="{{ asset('cms/libs/js/alertify.min.js') }}"></script>
 
     <!-- Vendor JS-->
     <script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script>
@@ -404,6 +414,78 @@
     <!-- Template  JS -->
     <script src="{{ asset('new_frontend\assets\js\main.js?v=4.1') }}"></script>
     <script src="{{ asset('new_frontend\assets\js\shop.js?v=4.1') }}"></script>
+
+    <script>
+        $(document).ready(function() {
+
+            $.ajaxSetup({
+                headers: {
+                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                }
+            });
+
+
+        });
+    </script>
+
+    <script>
+        //store newsletter and send email to admin
+        $('body').on('click', '#news-btn', function(e) {
+            e.preventDefault();
+
+            var email = $("#email").val();
+            $.ajax({
+                url: "{{ route('newsletters.subscribe') }}",
+                type: "POST",
+                data: {
+                    email: email,
+                },
+                dataType: 'json',
+                beforeSend: function() {
+                    $(document).find('span.error-text').text('');
+                },
+
+                success: function(data) {
+
+                    if (data.status == 0) {
+                        $.each(data.error, function(prefix, val) {
+                            $('span.' + prefix + '_error').text(val[0]);
+                        });
+
+                    } else {
+                        alertify.success(data.message);
+                        $('#news-form')[0].reset();
+                    }
+
+                },
+                error: function(data) {
+                    console.log(data.error);
+                }
+            });
+        });
+    </script>
+    <!-- Alertify -->
+    @if (Session::has('info'))
+        <script>
+            alertify.message("{{ Session::get('info') }}");
+        </script>
+    @endif
+    @if (Session::has('success'))
+        <script>
+            alertify.success("{{ Session::get('success') }}");
+        </script>
+    @endif
+    @if (Session::has('error'))
+        <script>
+            alertify.error("{{ Session::get('error') }}");
+        </script>
+    @endif
+    @if (Session::has('warning'))
+        <script>
+            alertify.warning("{{ Session::get('warning') }}");
+        </script>
+    @endif
+    @stack('scripts')
 </body>
 
 </html>
