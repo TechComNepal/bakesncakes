@@ -10,11 +10,11 @@
                         <h4 class="card-title">List of {{ $pageTitle }}</h4>
                         <div class="ms-auto">
                             <div>
-                                @if(auth()->user()->can('add category'))
-                                <a href="{{ route('employee.categories.create') }}" type="button"
-                                    class="btn btn-primary btn-md">
-                                    <i class="bx bx-plus"></i> New {{ $pageTitle }}
-                                </a>
+                                @if (auth()->user()->can('add category'))
+                                    <a href="{{ route('employee.categories.create') }}" type="button"
+                                        class="btn btn-primary btn-md">
+                                        <i class="bx bx-plus"></i> New {{ $pageTitle }}
+                                    </a>
                                 @endif
                             </div>
                         </div>
@@ -189,7 +189,6 @@
                 });
             });
         </script>
-
     @endpush
 
 </x-cms-employee-master-layout>

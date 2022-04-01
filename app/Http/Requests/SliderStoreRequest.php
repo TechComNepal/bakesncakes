@@ -25,10 +25,9 @@ class SliderStoreRequest extends FormRequest
     {
         return [
             'brand_id'=>'sometimes|exists:brands,id',
-            'status'=>'required',
-            'is_popup'=>'required',
+            'status'=>'sometimes',
+            'is_popup'=>'sometimes',
             'image'=>'required',
-
         ];
     }
 }

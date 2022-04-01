@@ -207,7 +207,7 @@
 
 <body>
 
-    <div class="loader">
+    <div class="loader" style="background: #fff; !important;">
         <div class="d-table">
             <div class="d-table-cell">
                 <div class="spinner"></div>
@@ -235,16 +235,11 @@
                                 <a class="nav-link dropdown-toggle active" href="{{ route('site.page') }}">Home </a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link " href="{{ route('site.page.aboutus') }}">About</a>
-                            </li>
-
-
-
-                            <li class="nav-item">
                                 <a class="nav-link" href="{{ route('site.category') }}">Shop</a>
                             </li>
-
-
+                            <li class="nav-item">
+                                <a class="nav-link " href="{{ route('site.page.aboutus') }}">About</a>
+                            </li>
                             <li class="nav-item">
                                 <a class="nav-link" href="{{ route('site.page.service') }}">Services</a>
                             </li>
@@ -257,6 +252,21 @@
                             <li class="nav-item">
                                 <a class="nav-link" href="{{ route('site.page.contact') }}">Contact Us</a>
                             </li>
+
+                            @if (session('impersonated_by'))
+                                <li class="nav-item">
+                                    <a class="nav-link" href="javascript:void(0)">
+                                        <span class="impersonate">Impersonated as {{ auth()->user()->name }}</span>
+                                    </a>
+                                </li>
+
+                                <li class="nav-item">
+                                    <a class="nav-link" href="{{ route('users.impersonate.leave') }}">
+                                        <span class="impersonate">
+                                            {{ \Illuminate\Support\Str::upper('Finish Impersonated Session') }}</span>
+                                    </a>
+                                </li>
+                            @endif
                         </ul>
                         <div class="side-nav">
                             <ul class="navbar-nav">
@@ -302,7 +312,7 @@
             </div>
         </div>
     </div>
-    <div class="pt-100">
+    <div class="pt-100 slot">
 
         {{ $slot }}
 
@@ -322,7 +332,7 @@
                             <div class="social-link">
                                 <ul>
                                     <li>
-                                        <a href="#" target="_blank">
+                                        <a href="" target="_blank">
                                             <i class='bx bxl-facebook'></i>
                                         </a>
                                     </li>
@@ -411,12 +421,7 @@
                                         Shop
                                     </a>
                                 </li>
-                                <li>
-                                    <a href="online-order.html">
-                                        <i class='bx bx-chevron-right'></i>
-                                        Online Order
-                                    </a>
-                                </li>
+
                                 <li>
                                     <a href="{{ route('site.page.blog') }}">
                                         <i class='bx bx-chevron-right'></i>
@@ -594,11 +599,11 @@
             if (delivery_date == '') {
                 $('#add_delivery_date').html(
                     '<div class="alert alert-warning alert-dismissible fade show" role="alert"> Delivery Date is required<button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button></div>'
-                    );
+                );
             } else {
                 $.ajax({
                     type: "POST",
-                    url: "{{ route('cart.addToCart')}}",
+                    url: '{{ route('cart.addToCart') }}',
                     data: ser,
                     success: function(data) {
                         $('#addToCart-modal-body').html(null);
@@ -626,7 +631,7 @@
         function removeFromCart(key) {
             $.ajax({
                 type: "POST",
-                url: "{{ route('cart.removeFromCart')}}",
+                url: '{{ route('cart.removeFromCart') }}',
                 data: {
                     id: key
                 },

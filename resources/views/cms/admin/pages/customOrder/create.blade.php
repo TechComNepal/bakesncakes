@@ -46,8 +46,9 @@
             :autofocus="TRUE" :col="'6'" />
 
         <!-- Custom image -->
-        {{-- <x-file-gallery-image :label="'Custom Image'" :name="'image'" /> --}}
-        <x-file-gallery-image :label="'Gallery Image'" :name="'gallery_image_url'" :required="FALSE" />
+        
+        <!-- add only gallery image not [] add this one-->
+        <x-file-gallery-image :label="'Gallery Image'" :name="'gallery_image'" :required="FALSE" />
 
         <!-- Description -->
         <x-text-area-field :label="'Blog Description'" :name="'description'" :required="true" />

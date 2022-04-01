@@ -68,6 +68,16 @@ class Category extends Model implements HasMedia, Searchable
         return $query->where('parent_id', null);
     }
 
+    public function setStatusAttribute($value)
+    {
+        $this->attributes['status'] = $value==='on' ? 1 : 0 ;
+    }
+  
+    public function setFeaturedAttribute($value)
+    {
+        $this->attributes['featured'] = $value==='on' ? 1 : 0 ;
+    }
+
     public function setInMenuAttribute($value)
     {
         $this->attributes['in_menu'] = $value === 'on' ? 1 : 0;

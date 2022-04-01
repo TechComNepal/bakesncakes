@@ -171,7 +171,8 @@
         <div class="h4"> {{ $customOrder->created_at->isoFormat('LL') }}</span></div>
 
         <div class="pt-1">
-            <p>#orderId{{ " "}} {{ $customOrder->id}}<b class="text-dark"> processing</b></p>
+            <p>#orderId{{ " "}} {{ $customOrder->id}}<b class="text-dark"> {{ Str::upper($customOrder->status) }}</b>
+            </p>
         </div>
         <div class="btn close text-white"> &times; </div>
     </div>
@@ -196,55 +197,54 @@
                     </div>
                     <p class="text-justify pt-2"><b>Time to Deliver: {{ $customOrder->dtime}}</b>
                         {{ \Carbon\Carbon::parse($customOrder->date)->isoFormat('LLL') }}
-
-                        <br>
-
-
+                    </p>
+                    <br>
 
 
-                        <x-form-base :route="'admin.customOrders.update'" :requiredParam="$customOrder"
-                            :title="$pageTitle" :method="'PUT'">
-                            <!-- Status-->
 
-                            <div class="form-group col-4 mb-4">
 
-                                @if ($customOrder->status == 'cancel' || $customOrder->status == 'completed')
-                                <div class="text-danger mb-2">
-                                    This order has been {{ $customOrder->status }}
-                                </div>
-                                @endif
+                    <x-form-base :route="'admin.customOrders.update'" :requiredParam="$customOrder" :title="$pageTitle"
+                        :method="'PUT'">
+                        <!-- Status-->
 
-                                @if ($customOrder->status != 'cancel' && $customOrder->status != 'completed')
-                                <select name="status"
-                                    class="form-control js-choice @error('type') is-invalid @enderror">
-                                    <option value="">Select Status </option>
+                        <div class="form-group col-4 mb-4">
 
-                                    <option value="cancel" {{ $customOrder->status == 'cancel' ? 'selected' : ''
-                                        }}>CANCEL
-                                    </option>
-
-                                    <option value="pending" {{ $customOrder->status == 'pending' ? 'selected' : ''
-                                        }}>PENDING </option>
-                                    <option value="inprocess" {{ $customOrder->status == 'inprocess' ? 'selected' : ''
-                                        }}>INPROCESS
-                                    </option>
-                                    <option value="accepted" {{ $customOrder->status == 'accepted' ? 'selected' : ''
-                                        }}>ACCEPTED </option>
-                                    <option value="completed" {{ $customOrder->status == 'completed' ? 'selected' : ''
-                                        }}>COMPLETED
-                                    </option>
-                                </select>
-                                @error('type')
-                                <div class="invalid-feedback">{{ $message }}</div>
-                                @enderror
-                                @endif
+                            @if ($customOrder->status == 'cancel' || $customOrder->status == 'completed')
+                            <div class="text-danger mb-2">
+                                This order has been {{ $customOrder->status }}
                             </div>
-                            <div class="form-group col-3 mb-3">
+                            @endif
 
-                                <x-button />
-                            </div>
+                            @if ($customOrder->status != 'cancel' && $customOrder->status != 'completed')
+                            <select name="status" class="form-control js-choice @error('type') is-invalid @enderror">
+                                <option value="">Select Status </option>
 
-                        </x-form-base>
+                                <option value="cancel" {{ $customOrder->status == 'cancel' ? 'selected' : ''
+                                    }}>CANCEL
+                                </option>
+
+                                <option value="pending" {{ $customOrder->status == 'pending' ? 'selected' : ''
+                                    }}>PENDING </option>
+                                <option value="inprocess" {{ $customOrder->status == 'inprocess' ? 'selected' : ''
+                                    }}>INPROCESS
+                                </option>
+                                <option value="accepted" {{ $customOrder->status == 'accepted' ? 'selected' : ''
+                                    }}>ACCEPTED </option>
+                                <option value="completed" {{ $customOrder->status == 'completed' ? 'selected' : ''
+                                    }}>COMPLETED
+                                </option>
+                            </select>
+                            @error('type')
+                            <div class="invalid-feedback">{{ $message }}</div>
+                            @enderror
+                            @endif
+                        </div>
+                        <div class="form-group col-3 mb-3">
+
+                            <x-button />
+                        </div>
+
+                    </x-form-base>
 
                 </div>
             </div>
@@ -254,24 +254,28 @@
                 <p> <b> Custom Cake:</b></p>
 
                 <div class="mx-3" className="flex-center">
-                    
-                    {{-- <img
-                    src="{{ $customOrder->getFirstOrDefaultMediaUrl('image', 'thumb') }}" alt="apple" 
-                    width="150" height="150"> --}}
+
+                    {{-- <img src="{{ $customOrder->getFirstOrDefaultMediaUrl('image', 'thumb') }}" alt="apple"
+                        width="150" height="150"> --}}
                     @foreach ($gallerys as $gallery)
-                    
-                    <img src="{{ $gallery->getUrl('thumb') }}" alt="Gallery Image"  style="margin-top: 10px; margin-left: 7px; ">
-                       @endforeach
-                    </div>
+
+                    <img src="{{ $gallery->getUrl('thumb') }}" alt="Gallery Image"
+                        style="margin-top: 10px; margin-left: 7px; ">
+                    @endforeach
                 </div>
-        
-        <div class="row border rounded p-1 my-3">
-            <p class="text-justify pt-2">
-            <h4> <b> <u>Description: </u> </b> </h4>{!! $customOrder->description !!} </p>
+            </div>
+
+
+            <div class="row px-3">
+                
+            <!-- new change made here is this line
+                -- <h4> <b> <u>Description: </u> </b> </h4> <p class="text-justify">{ !! $customOrder->description !!} </p> 
+            -->
+                <h4> <b> <u>Description: </u> </b> </h4> <p class="text-justify">{!! $customOrder->description !!} </p>
+
+            </div>
 
         </div>
-
-
     </div>
 
 

@@ -25,10 +25,9 @@ class CreateModulesTable extends Migration
             ['module_name' => 'category', 'description' => ''],
             ['module_name' => 'brands', 'description' => ''],
             ['module_name' => 'products', 'description' => ''],
-            ['module_name' => 'newsletter', 'description' => ''],
             ['module_name' => 'blogs', 'description' => ''],
+             ['module_name' => 'orders', 'description' => ''],
         ]);
-
     }
 
     /**

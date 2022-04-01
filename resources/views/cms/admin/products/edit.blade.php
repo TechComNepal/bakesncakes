@@ -59,8 +59,10 @@
                                             @if ($category->id == $product->category->id) selected @endif>{{ $category->name }}
                                         </option>
                                         @foreach ($category->children as $childCategory)
-                                            @include('cms.admin.categories.child_category', ['child_category' =>
-                                            $childCategory])
+                                            @include(
+                                                'cms.admin.categories.child_category',
+                                                ['child_category' => $childCategory]
+                                            )
                                         @endforeach
                                     @endforeach
                                 </x-select-field-name>
@@ -91,41 +93,18 @@
                             <div class="card-header">
                                 <h4>Product Status</h4>
                             </div>
-                            <div class="card-body">
-                                <!-- Is Refundable -->
-                                <x-switch :label="'Is Refundable'" :name="'is_refundable'" :id="'switch2'"
-                                    :checked="$product->is_refundable ?? FALSE" />
-
-                                <!-- In Featured -->
-                                <x-switch :label="'Is Featured'" :name="'is_featured'" :id="'switch1'"
-                                    :checked="$product->is_featured ?? FALSE" />
-
-                                <!-- Is Trending -->
-                                <x-switch :label="'Is Trending'" :name="'is_trending'" :id="'switch5'"
-                                    :checked="$product->is_trending ?? FALSE" />
-
-                                <!-- In Sellable -->
-                                <x-switch :label="'Is Sellable'" :name="'is_sellable'" :id="'switch4'"
-                                    :checked="$product->is_sellable ?? FALSE" />
-
-                                            <!-- Is Best Selling -->
-                                    <x-switch :label="'Is Best Selling'" :name="'best_selling'" :id="'switch7'" :checked="$product->best_selling ?? FALSE" />
-
-                                    <!-- Is Top Selling -->
-                                    <x-switch :label="'Is Top Selling'" :name="'top_selling'" :id="'switch8'" :checked="$product->top_selling ?? FALSE"  />
-
+                            <div class="card">
+                                <div class="card-header">
+                                    <h4>Enabling Customer Message on Order</h4>
+                                </div>
+                                <div class="card-body">
+                                    <!-- Enable Custom Message -->
+                                    <x-switch :label="'Enable Custom Message'" :name="'order_custom_msg'"
+                                        :id="'switch6'" :checked="true" />
+                                </div>
                             </div>
                         </div>
-                        <div class="card">
-                            <div class="card-header">
-                                <h4>Enabling Customer Message on Order</h4>
-                            </div>
-                            <div class="card-body">
-                                <!-- Enable Custom Message -->
-                                <x-switch :label="'Enable Custom Message'" :name="'order_custom_msg'" :id="'switch6'"
-                                    :checked="true" />
-                            </div>
-                        </div>
+
                     </div>
                 </div>
 
@@ -164,7 +143,7 @@
                                                     for="formrow-tax-input">Tax</label>
                                                 <input type="number" class="form-control" id="formrow-tax-input"
                                                     name="tax_amount" step="0.01" min="0"
-                                                    value="{{ old('tax_amount',$product->tax_amount) }}">
+                                                    value="{{ $product->tax_amount ?? '' }}">
                                             </div>
                                         </div>
                                         <div class="col-md-6">

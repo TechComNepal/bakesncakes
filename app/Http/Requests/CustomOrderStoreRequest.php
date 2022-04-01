@@ -25,11 +25,10 @@ class CustomOrderStoreRequest extends FormRequest
             'quantity'=> 'required',
             'date'=> 'required',
             'description'=> 'required',
-            'gallery_image_url' => 'required',
-            
-            
+            'gallery_image' => 'required', // new changes gallery_image
 
             
+                      
 
         ];
 

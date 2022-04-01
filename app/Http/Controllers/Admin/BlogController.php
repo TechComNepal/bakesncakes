@@ -159,22 +159,18 @@ class BlogController extends Controller
 
             ->editColumn('description', function ($data) {
                 return '
-                <div class="d-flex flex-column">
-                                     
-                            <h5
-                                class="text-body font-size-12 mb-1"
-                                data-bs-toggle="tooltip"
-                                data-bs-placement="top"
-                                >'. Str::limit($data->description, 112) .'
-                                </h5>
-
-                        </div>
-
+                    <div class="d-flex flex-column">
+                        <h5
+                        class="text-body font-size-12 mb-1"
+                            data-bs-toggle="tooltip"
+                            data-bs-placement="top"
+                            title="' . $data->description . '"
+                            data-bs-original-title="' . $data->description . '"
+                        >' . Str::limit($data->description, 67) . '</h5>
                         
-
+                    </div>
                 ';
             })
-
             ->editColumn('created_at', function ($data) {
                 return '
                     <p

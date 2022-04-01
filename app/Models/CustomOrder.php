@@ -30,7 +30,7 @@ class CustomOrder extends Model implements HasMedia
         $this->addMediaCollection('gallery_image');
     }
 
-
+// use gallery_image 
     public function registerMediaConversions(Media $media = null): void
     {
 
@@ -56,7 +56,7 @@ class CustomOrder extends Model implements HasMedia
     public function getRouteKeyName(): string
     {
         return 'slug';
-    }   
-  
+    }
+
 
 }

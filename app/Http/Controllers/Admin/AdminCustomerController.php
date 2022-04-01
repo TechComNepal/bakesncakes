@@ -30,19 +30,58 @@ class AdminCustomerController extends Controller
         $this->userRepository = $userRepository;
     }
 
-    public function index()
+    public function index(Request $request)
     {
         $this->setPagetitle('User', '');
         return (request()->ajax())
-            ? $this->datatable()
+            ? $this->datatable($request)
             : view('cms.admin.customers.index');
     }
 
 
-    protected function datatable()
+    protected function datatable($request)
     {
         //  $users= $this->userRepository->listUsers('created_at', 'desc');
-        $users = User::role(['user','employee'])->get();
+        $query=User::query();
+        if ($request['name']) {
+            $query->where('name', 'LIKE', '%' . $request['name'] . '%');
+        }
+        if ($request['username']) {
+            $query->where('username', 'LIKE', '%' . $request['username'] . '%');
+        }
+        if ($request['email']) {
+            $query->where('email', 'LIKE', '%' . $request['email'] . '%');
+        }
+        if ($request['phone']) {
+            $query->where('phone', 'LIKE', '%' . $request['phone'] . '%');
+        }
+        if ($request['name'] && $request['username']) {
+            $query->where('name', 'LIKE', '%' . $request['name'] . '%')
+                ->where('username', 'LIKE', '%' . $request['username'] . '%');
+        }
+        if ($request['name'] && $request['email']) {
+            $query->where('name', 'LIKE', '%' . $request['name'] . '%')
+                ->where('email', 'LIKE', '%' . $request['email'] . '%');
+        }
+        if ($request['name'] && $request['phone']) {
+            $query->where('name', 'LIKE', '%' . $request['name'] . '%')
+                ->where('phone', 'LIKE', '%' . $request['phone'] . '%');
+        }
+        if ($request['username'] && $request['email']) {
+            $query->where('username', 'LIKE', '%' . $request['username'] . '%')
+                ->where('email', 'LIKE', '%' . $request['email'] . '%');
+        }
+        if ($request['username'] && $request['phone']) {
+            $query->where('username', 'LIKE', '%' . $request['username'] . '%')
+                ->where('phone', 'LIKE', '%' . $request['phone'] . '%');
+        }
+
+        if ($request['email'] && $request['phone']) {
+            $query->where('email', 'LIKE', '%' . $request['email'] . '%')
+                ->where('phone', 'LIKE', '%' . $request['phone'] . '%');
+        }
+
+        $users=$query->role(['user','employee'])->get();
 
         return DataTables::of($users)
             ->editColumn('role_id', function ($data) {
@@ -51,6 +90,7 @@ class AdminCustomerController extends Controller
              ->editColumn('username', function ($data) {
                  return $data->username;
              })
+          
             ->addColumn('actions', function ($data) {
                 return '
                     <div class="d-flex flex-wrap gap-2">
@@ -90,7 +130,7 @@ class AdminCustomerController extends Controller
                 ';
             })
             ->addIndexColumn()
-            ->rawColumns(['actions'])
+            ->rawColumns(['actions','address'])
             ->make(true);
     }
 
@@ -246,7 +286,8 @@ class AdminCustomerController extends Controller
     }
 
 
-    public function updateUserShippingAddress(ShippingRequest $request, $id){
+    public function updateUserShippingAddress(ShippingRequest $request, $id)
+    {
         $collection = collect($request->validated());
         $user_id = $request->user_id;
         $merge = $collection->merge(compact('user_id'));
@@ -257,14 +298,15 @@ class AdminCustomerController extends Controller
             : $this->responseRedirectBack('There was problem with server. Please try again later.', 'error', true, true);
     }
 
-    public function setDefaultShippingAddress($id){
+    public function setDefaultShippingAddress($id)
+    {
         $shippingAddress = CustomerShippingAddress::findOrFail($id);
         $user = User::findOrFail($shippingAddress->user_id);
         foreach ($user->shipping_address as $key => $address) {
             $address->set_default = 0;
             $address->save();
         }
-        $shippingAddress->set_default = TRUE;
+        $shippingAddress->set_default = true;
         return $shippingAddress->save()
             ? $this->responseRedirectBack('Default Shipping Address has been updated successfully.', 'success', false, false)
             : $this->responseRedirectBack('There was problem with server. Please try again later.', 'error', true, true);
@@ -344,7 +386,6 @@ class AdminCustomerController extends Controller
         $file=$request->file('import_file');
         $import=new UsersImport;
         $import->import($file);
-
         return $this->responseRedirect('admin.users.index', 'Users Imported Successfully', 'success');
     }
 }

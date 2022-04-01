@@ -25,7 +25,6 @@
                             <th>SN</th>
                             <th>Name</th>
                             <th>Email</th>
-                            <th>Image</th>
                             <th>Description</th>
                             <th>Quantity</th>
                             <th>Date</th>
@@ -86,13 +85,6 @@
                     {
                         data: 'email',
                         name: 'email'
-                    },
-
-                    {
-                        data: 'image',
-                        name: 'image',
-                        orderable: false,
-                        searchable: false
                     },
 
                     {

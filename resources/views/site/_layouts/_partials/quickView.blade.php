@@ -121,9 +121,7 @@
                                     </li>
                                 @endif
 
-                                <li> <span class="ps-list__title">SKU: </span><a class="ps-list__text"
-                                        href="#">{{$product->sku }}</a>
-                                </li>
+                                <li> <span class="ps-list__title">SKU: </span><a class="ps-list__text" href="#">{{ $product->sku }}</a></li>
                             </ul>
                         </div>
                     </div>

@@ -44,6 +44,15 @@ class UserSeeder extends Seeder
                 'updated_at' => now(),
             ],
             [
+                'name'=>'Vendor',
+                'username'=>'Vendor',
+                'email'=>'vendor@example.com',
+                'password'=>Hash::make('vendor'),
+                'email_verified_at' => now(),
+                'created_at' => now(),
+                'updated_at' => now(),
+            ],
+            [
                 'name' => 'User',
                 'username' => 'User',
                 'email' => 'user@example.com',
@@ -62,6 +71,9 @@ class UserSeeder extends Seeder
 
         $employee=User::where('name', 'Employee')->first();
         $employee->assignRole('employee');
+
+        $vendor=User::where('name', 'Vendor')->first();
+        $vendor->assignRole('vendor');
 
         $user=User::where('name', 'User')->first();
         $user->assignRole('user');

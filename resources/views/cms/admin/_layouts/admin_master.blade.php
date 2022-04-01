@@ -90,7 +90,6 @@
                             <p>Copyright ©
                                 <script>
                                     document.write(new Date().getFullYear())
-
                                 </script>
                                 All Rights Reserved.
                                 Designed by
@@ -110,10 +109,13 @@
     <!-- JAVASCRIPT -->
 
     <script type="text/javascript" src="{{ asset('cms/libs/js/jquery.min.js') }}"></script>
-    <!-- 1 -->
-    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.0/jquery.min.js"></script>
-    <script src="{{ asset('cms/libs/js/bootstrap.bundle.min.js') }}"></script>
 
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.0/jquery.min.js"></script>
+
+ 
+    <script src="{{ asset('cms/libs/js/popper.min.js') }}"></script>
+    <script src="{{ asset('cms/libs/js/bootstrap.bundle.min.js') }}"></script>
+    <script src="{{ asset('site/js/bootstrap.min.js') }}"></script>
 
     <script src="{{ asset('cms/libs/js/metisMenu.min.js') }}"></script>
     <script src="{{ asset('cms/libs/js/simplebar.min.js') }}"></script>
@@ -205,7 +207,7 @@
             allowClear: true
         });
 
-        $('body').on('click', '#mark-read', function (e) {
+        $('body').on('click', '#mark-read', function(e) {
             e.preventDefault();
             e.stopPropagation();
             var url = "{{ route('admin.newsletters.markRead') }}"
@@ -217,7 +219,7 @@
                     '_token': '{{ @csrf_token() }}'
 
                 },
-                success: function (data) {
+                success: function(data) {
                     $('#notify').load(location.href + (' #notify'));
                     $('#unread').html(
                         '<a href="#!" class="small text-reset text-decoration-underline"> Unread 0 </a>'
@@ -239,7 +241,7 @@
                     '_token': '{{ @csrf_token() }}'
 
                 },
-                success: function (data) {
+                success: function(data) {
 
                     $('#notify').load(location.href + (' #notify'));
                     $('#unread').html(
@@ -253,7 +255,7 @@
             });
         }
 
-        $('body').on('click', '#delete-read', function (e) {
+        $('body').on('click', '#delete-read', function(e) {
             e.preventDefault();
             e.stopPropagation();
             var url = "{{ route('admin.newsletters.deleteAllRead') }}";
@@ -264,7 +266,7 @@
                     '_token': '{{ @csrf_token() }}'
 
                 },
-                success: function (data) {
+                success: function(data) {
                     $('#notify').load(location.href + (' #notify'));
                 }
 
@@ -289,7 +291,7 @@
                         data: {
                             '_token': '{{ @csrf_token() }}'
                         },
-                        success: function (result) {
+                        success: function(result) {
                             Swal.fire(
                                 'Deleted!',
                                 'Your record has been deleted.',
@@ -298,7 +300,7 @@
                                 DTable.ajax.reload();
                             })
                         },
-                        error: function (result) {
+                        error: function(result) {
                             console.log(result.success)
                             Swal.fire(
                                 'Error!',
@@ -319,58 +321,53 @@
             if (document.querySelectorAll('.js-switch').length) {
                 let switcheryEl = Array.prototype.slice.call(document.querySelectorAll('.js-switch'));
 
-                switcheryEl.forEach(function (html) {
+                switcheryEl.forEach(function(html) {
                     new Switchery(html, {
                         size: 'small'
                     });
                 });
             }
         }
-
     </script>
 
     <!-- Alertify -->
     @php
-    $errors = Session::get('error');
-    $messages = Session::get('success');
-    $info = Session::get('info');
-    $warnings = Session::get('warning');
+        $errors = Session::get('error');
+        $messages = Session::get('success');
+        $info = Session::get('info');
+        $warnings = Session::get('warning');
     @endphp
 
     @if (is_array($errors))
-    @foreach ($errors as $key => $value)
-    <script>
-        alertify.error("{{ $value }}")
-
-    </script>
-    @endforeach
+        @foreach ($errors as $key => $value)
+            <script>
+                alertify.error("{{ $value }}")
+            </script>
+        @endforeach
     @endif
 
     @if ($messages)
-    @foreach ($messages as $key => $value)
-    <script>
-        alertify.success("{{ $value }}")
-
-    </script>
-    @endforeach
+        @foreach ($messages as $key => $value)
+            <script>
+                alertify.success("{{ $value }}")
+            </script>
+        @endforeach
     @endif
 
     @if ($info)
-    @foreach ($info as $key => $value)
-    <script>
-        alertify.info("{{ $value }}")
-
-    </script>
-    @endforeach
+        @foreach ($info as $key => $value)
+            <script>
+                alertify.info("{{ $value }}")
+            </script>
+        @endforeach
     @endif
 
     @if ($warnings)
-    @foreach ($warnings as $key => $value)
-    <script>
-        alertify.warning("{{ $value }}")
-
-    </script>
-    @endforeach
+        @foreach ($warnings as $key => $value)
+            <script>
+                alertify.warning("{{ $value }}")
+            </script>
+        @endforeach
     @endif
 
     @stack('scripts')

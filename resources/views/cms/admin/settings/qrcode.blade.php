@@ -19,7 +19,7 @@
                             <x-file-browser-image :label="'QR Code Image'" :name="'qr_image'"
                                 :defaultFile="$qrcode->getFirstOrDefaultMediaUrl('qrimage')" />
                         @else
-                            <h3>Upload your QRCode Image in Admin Setting !!! </h3>
+                            <x-file-browser-image :label="'QR Code Image'" :name="'qr_image'" />
                         @endif
 
                     </div>

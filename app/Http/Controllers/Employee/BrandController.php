@@ -11,14 +11,15 @@ use App\Models\Brand;
 use App\Services\ImageUploadService;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
+use Illuminate\Support\Str;
 use Yajra\DataTables\DataTables;
 
 class BrandController extends Controller
 {
     public function __construct(CategoryContract $categoryRepository, BrandContract $brandRepository, ImageUploadService $imageUploadService)
     {
-        $this->categoryRepository=$categoryRepository;
-        $this->brandRepository=$brandRepository;
+        $this->categoryRepository = $categoryRepository;
+        $this->brandRepository = $brandRepository;
         $this->imageUploadService = $imageUploadService;
     }
 
@@ -32,24 +33,24 @@ class BrandController extends Controller
 
     public function create()
     {
-        if(!auth()->user()->can('add brand')){
+        if (!auth()->user()->can('add brand')) {
             abort(403);
         }
         $this->setPageTitle('Brand', 'Fill in the required fields to create a new brand.');
-        $categories= $this->categoryRepository->listCategories('created_at', 'desc');
+        $categories = $this->categoryRepository->listCategories('created_at', 'desc');
         return view('cms.employees.brands.create', compact('categories'));
     }
 
     public function store(BrandStoreRequest $request)
     {
-        if(!auth()->user()->can('add brand')){
+        if (!auth()->user()->can('add brand')) {
             abort(403);
         }
 
         try {
             $brand = $this->brandRepository->storeBrand($request->validated());
             if ($brand) {
-                $this->imageUploadService->uploadImageFromRequest($request, $brand, 'image', 'brands') ;
+                $this->imageUploadService->uploadImageFromRequest($request, $brand, 'image', 'brands');
             }
             return $brand
                 ? $this->responseRedirect('employee.brands.index', 'Brand Created Successfully', 'success')
@@ -61,11 +62,11 @@ class BrandController extends Controller
 
     public function edit(Brand $brand)
     {
-        if(!auth()->user()->can('edit brand')){
+        if (!auth()->user()->can('edit brand')) {
             abort(403);
         }
         $this->setPageTitle('Brand', '');
-        $categories= $this->categoryRepository->listCategories('created_at', 'desc');
+        $categories = $this->categoryRepository->listCategories('created_at', 'desc');
 
         return view('cms.employees.brands.edit', [
             'categories' => $categories,
@@ -75,11 +76,11 @@ class BrandController extends Controller
 
     public function update(Brand $brand, BrandUpdateRequest $request)
     {
-        if(!auth()->user()->can('edit brand')){
+        if (!auth()->user()->can('edit brand')) {
             abort(403);
         }
         try {
-            $brand=$this->brandRepository->updateBrand($brand->id, $request->validated());
+            $brand = $this->brandRepository->updateBrand($brand->id, $request->validated());
             if ($brand) {
                 $this->imageUploadService->uploadImageFromRequest($request, $brand, 'image', 'brands');
             }
@@ -93,7 +94,7 @@ class BrandController extends Controller
 
     public function destroy(Brand $brand)
     {
-        if(!auth()->user()->can('delete brand')){
+        if (!auth()->user()->can('delete brand')) {
             abort(403);
         }
         return $brand->delete()
@@ -103,7 +104,7 @@ class BrandController extends Controller
 
     protected function datatable()
     {
-        $brands= $this->brandRepository->listBrands('created_at', 'desc');
+        $brands = $this->brandRepository->listBrands('created_at', 'desc');
 
         return DataTables::of($brands)
             ->editColumn('status', function ($data) {
@@ -123,7 +124,7 @@ class BrandController extends Controller
             ';
             })
             ->editColumn('category', function (Brand $brand) {
-                return $brand->getcategory() ;
+                return $brand->getcategory();
             })
             ->editColumn('user_id', function ($data) {
                 return $data->user->name;
@@ -131,9 +132,9 @@ class BrandController extends Controller
 
             ->addColumn('actions', function ($data) {
                 $button = '';
-                if(auth()->user()->can('edit brand')){
+                if (auth()->user()->can('edit brand')) {
                     $button .= '<a
-                        href="' .route('admin.brands.edit', $data). '"
+                        href="' . route('admin.brands.edit', $data) . '"
                             type="button"
                             class="btn btn-success waves-effect waves-light btn-md"
                             data-bs-toggle="tooltip"
@@ -142,8 +143,8 @@ class BrandController extends Controller
                             data-bs-original-title="Edit"
                         ><i class="bx bx-pencil font-size-16 align-middle"></i></a>';
                 }
-                if(auth()->user()->can('delete brand')){
-                    $button .='<a
+                if (auth()->user()->can('delete brand')) {
+                    $button .= '<a
                             href="#"
                             id="delete-btn"
                             data-id="' . $data->id . '"
@@ -158,15 +159,29 @@ class BrandController extends Controller
 
                 return '
                     <div class="d-flex flex-wrap gap-2">
-                    '. $button .'
+                    ' . $button . '
+                    </div>
+                ';
+            })
+            ->editColumn('short_description', function ($data) {
+                return '
+                    <div class="d-flex flex-column">
+                        <h5
+                        class="text-body font-size-12 mb-1"
+                            data-bs-toggle="tooltip"
+                            data-bs-placement="top"
+                            title="' . $data->short_description . '"
+                            data-bs-original-title="' . $data->short_description . '"
+                        >' . Str::limit($data->short_description, 67) . '</h5>
+                        
                     </div>
                 ';
             })
             ->addIndexColumn()
-            ->rawColumns(['status','actions'])
-
+            ->rawColumns(['status', 'actions', 'short_description'])
             ->make(true);
     }
+
 
     public function toggleIsStatus(Request $request): JsonResponse
     {
