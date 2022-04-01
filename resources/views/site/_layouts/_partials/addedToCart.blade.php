@@ -27,6 +27,6 @@
     </div>
     <div class="text-center">
         <button class="btn ps-btn--address" data-bs-dismiss="modal">Back to shopping</button>
-        <a href="{{ route('checkout') }}" class="btn ps-btn--address pt-3">Proceed to Checkout</a>
+        <a href="{{ route('user.shipping.info') }}" class="btn ps-btn--address pt-3">Proceed to Checkout</a>
     </div>
 </div>

@@ -30,7 +30,7 @@
 
         <!-- Company favicon -->
         <div class="col-lg-12 mb-3">
-            <label for="favicon" class="form-label">Favicon Image <small><code>[Required]</code></small></label>
+            <label for="favicon" class="form-label">Favicon Image </label>
             <div class="dropify-wrapper" id="lfm2" data-path="path" data-preview-wrapper-favicon="preview-favicon"
                 data-preview-favicon="holder2" style="@error('image_url') border: 2px solid #febfbe @enderror">
                 <div class="dropify-message has-preview">

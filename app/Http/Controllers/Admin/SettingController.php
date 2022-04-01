@@ -33,6 +33,15 @@ class SettingController extends Controller
 
     public function store(Request $request): \Illuminate\Http\RedirectResponse
     {
+        $request->validate([
+            'company_name'=>'required',
+            'company_email'=>'required',
+            'company_phone'=>'required',
+            'website'=>'required',
+            'logo'=>'required',
+            'favicon'=>'sometimes',
+            'company_address'=>'nullable',
+        ]);
         $setting = $this->settingRepository->updateSetting($request->all());
 
         if ($setting) {

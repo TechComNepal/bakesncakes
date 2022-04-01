@@ -35,9 +35,16 @@ class PagesController extends Controller
         'products'=>Product::orderBy('id', 'asc')->simplepaginate(72),
         'featured_products'=>Product::where('is_featured', 1)->orderBy('id', 'desc')->limit(3)->get(),
         'trending_products'=>Product::where('is_trending', 1)->orderBy('created_at', 'desc')->limit(8)->get(),
-        'top_selling_products'=>Product::where('top_selling', 1)->orderBy('id', 'desc')->limit(3)->get(),
+        //'top_selling_products'=>Product::where('top_selling', 1)->orderBy('id', 'desc')->limit(3)->get(),
         'best_selling_products'=>Product::where('best_selling', 1)->orderBy('id', 'desc')->limit(5)->get(),
         'recent_products'=>Product::orderBy('created_at', 'desc')->limit(3)->get(),
+      'top_selling_products'=> Product::has('orders')
+               ->withSum('orders', 'order_product.quantity')->OrderByDesc('orders_sum_order_productquantity')->limit(3)->get(),
+       'rated_products'=> Product::has('ratings')
+                 ->withAvg('ratings', 'rating')
+                 ->OrderByDesc('ratings_avg_rating')
+                 ->limit(3)
+                 ->get(),
         'services'=> Service::all(),
         'testimonials'=>Testimonial::all(),
         'blogs'=> Blog::limit(3)->orderBy('id', 'desc')->get(),

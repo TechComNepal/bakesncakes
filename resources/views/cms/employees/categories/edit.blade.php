@@ -4,8 +4,8 @@
 
     <x-error />
 
-    <x-form-base :route="'employee.categories.update'" :requiredParam="$category" :title="$pageTitle" :subTitle="$subTitle"
-        :method="'PUT'">
+    <x-form-base :route="'employee.categories.update'" :requiredParam="$category" :title="$pageTitle"
+        :subTitle="$subTitle" :method="'PUT'">
 
         <!-- Name -->
         <x-input-field :label="'Name'" :name="'name'" :placeholder="'Please enter category name here.'" :col="12"

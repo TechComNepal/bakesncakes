@@ -35,8 +35,6 @@ class ProductStoreRequest extends FormRequest
             'is_featured' => 'sometimes',
             'is_trending' => 'sometimes',
             'is_sellable' => 'sometimes',
-            'top_selling' => 'sometimes',
-            'best_selling' => 'sometimes',
             'order_custom_msg' => 'sometimes',
             'image' => 'required',
             'gallery_image_url' => 'required',

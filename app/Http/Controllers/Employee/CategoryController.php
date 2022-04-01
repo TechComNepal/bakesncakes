@@ -33,8 +33,7 @@ class CategoryController extends Controller
 
     public function create()
     {
-
-        if(!auth()->user()->can('add category')){
+        if (!auth()->user()->can('add category')) {
             abort(403);
         }
 
@@ -46,7 +45,7 @@ class CategoryController extends Controller
 
     public function store(CategoryStoreRequest $request)
     {
-        if(!auth()->user()->can('add category')){
+        if (!auth()->user()->can('add category')) {
             abort(403);
         }
         try {
@@ -67,7 +66,7 @@ class CategoryController extends Controller
 
     public function edit(Category $category)
     {
-        if(!auth()->user()->can('edit category')){
+        if (!auth()->user()->can('edit category')) {
             abort(403);
         }
         $categories =$this->categoryRepository->listCategories('created_at', 'desc');
@@ -77,7 +76,7 @@ class CategoryController extends Controller
 
     public function update(Category $category, CategoryUpdateRequest $request)
     {
-        if(!auth()->user()->can('edit category')){
+        if (!auth()->user()->can('edit category')) {
             abort(403);
         }
         try {
@@ -97,7 +96,7 @@ class CategoryController extends Controller
 
     public function destroy(Category $category)
     {
-        if(!auth()->user()->can('delete category')){
+        if (!auth()->user()->can('delete category')) {
             abort(403);
         }
         return $this->categoryRepository->deleteCategory($category->id)
@@ -111,9 +110,9 @@ class CategoryController extends Controller
         return DataTables::of($categories)
             ->addColumn('actions', function ($data) {
                 $button = '';
-                if(auth()->user()->can('edit category')){
+                if (auth()->user()->can('edit category')) {
                     $button .= '<a
-                        href="' . route('admin.categories.edit', $data) . '"
+                        href="' . route('employee.categories.edit', $data) . '"
                             type="button"
                             class="btn btn-success waves-effect waves-light btn-md"
                             data-bs-toggle="tooltip"
@@ -122,7 +121,7 @@ class CategoryController extends Controller
                             data-bs-original-title="Edit"
                         ><i class="bx bx-pencil font-size-16 align-middle"></i></a>';
                 }
-                if(auth()->user()->can('delete category')){
+                if (auth()->user()->can('delete category')) {
                     $button .= '<a
                             href="#"
                             id="delete-btn"

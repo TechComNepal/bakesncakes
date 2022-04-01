@@ -31,7 +31,7 @@ class LoginController extends Controller
             return $this->authenticated($request, $user)
                 ?: redirect()->intended();
         }
-        return redirect()->to('login')->withErrors(['email' => 'Authentication Failed.']);
+        return redirect()->to('login')->with(['email' => 'Authentication Failed.']);
     }
 
     private function authenticated(Request $request, $user)
@@ -42,6 +42,10 @@ class LoginController extends Controller
 
         if ($user->hasRole('user')) {
             return redirect()->intended(route('user.dashboard'));
+        }
+
+        if ($user->hasRole('vendor')) {
+            return redirect()->intended(route('vendor.dashboard'));
         }
 
         return redirect()->intended(route('employee.dashboard'));

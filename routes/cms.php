@@ -68,6 +68,11 @@ Route::group(['middleware' => 'auth'], function () {
         //Notifications
         Route::get('/notifications/lists', [NotificationController::class, 'index'])->name('notifications.index');
         Route::get('/notifications/orders', [NotificationController::class, 'orderList'])->name('notifications.orders');
+        Route::get('/notifications/newsletters', [NotificationController::class, 'newsletterList'])->name('notifications.newsletter');
+        Route::delete('/notifications/{id}', [NotificationController::class, 'destroyNotification'])->name('notifications.destroy');
+        // Route::delete('/notifications/order/{id}', [NotificationController::class, 'destroyOrderNotification'])->name('notifications.order.destroy');
+
+
 
 
         //Promocode
@@ -128,6 +133,12 @@ Route::group(['middleware' => 'auth'], function () {
 
 
         //Products
+        Route::get('/products/taxable/toggle', [ProductController::class, 'toggleIsTaxable'])->name('products.toggle.taxable');
+        Route::get('/products/featured/toggle', [ProductController::class, 'toggleIsFeatured'])->name('products.toggle.featured');
+        Route::get('/products/refundable/toggle', [ProductController::class, 'toggleIsRefundable'])->name('products.toggle.refundable');
+        Route::get('/products/trending/toggle', [ProductController::class, 'toggleIsTrending'])->name('products.toggle.trending');
+        Route::get('/products/sellable/toggle', [ProductController::class, 'toggleIsSellable'])->name('products.toggle.sellable');
+
         Route::delete('/products-gallery/{gallery}', [ProductController::class, 'galleryDestroy'])->name('products.gallery.destroy');
         Route::put('/products-gallery/{product}', [ProductController::class, 'galleryUpdate'])->name('products.gallery.update');
         Route::resource('/products', ProductController::class)->names('products')->except('show');

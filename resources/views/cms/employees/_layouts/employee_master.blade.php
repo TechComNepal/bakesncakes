@@ -67,234 +67,234 @@
 
 <body>
 
-<!-- <body data-layout="horizontal"> -->
+    <!-- <body data-layout="horizontal"> -->
 
-<!-- Begin page -->
-<div id="layout-wrapper">
+    <!-- Begin page -->
+    <div id="layout-wrapper">
 
-    <x-cms-employee-top-bar />
-    <x-cms-employee-side-bar />
+        <x-cms-employee-top-bar />
+        <x-cms-employee-side-bar />
 
-    <div class="main-content">
+        <div class="main-content">
 
-        <div class="page-content">
-            <div class="container-fluid">
-                {{ $slot }}
-            </div>
-        </div>
-
-        <footer class="footer">
-            <div class="container-fluid">
-                <div class="row">
-                    <div class="col-12 col-md-8">
-                        <p>Copyright ©
-                            <script>
-                                document.write(new Date().getFullYear())
-                            </script>
-                            All Rights Reserved.
-                            Designed by
-                            <a href="https://www.stylustechnepal.com/" style="margin-left: 1px;color: goldenrod"
-                               target="_blank"> Stylus Technology</a>
-                        </p>
-                    </div>
+            <div class="page-content">
+                <div class="container-fluid">
+                    {{ $slot }}
                 </div>
             </div>
-        </footer>
+
+            <footer class="footer">
+                <div class="container-fluid">
+                    <div class="row">
+                        <div class="col-12 col-md-8">
+                            <p>Copyright ©
+                                <script>
+                                    document.write(new Date().getFullYear())
+                                </script>
+                                All Rights Reserved.
+                                Designed by
+                                <a href="https://www.stylustechnepal.com/" style="margin-left: 1px;color: goldenrod"
+                                    target="_blank"> Stylus Technology</a>
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </footer>
+
+        </div>
 
     </div>
+    <x-cms-employee-right-bar />
 
-</div>
-<x-cms-employee-right-bar />
+    <!-- JAVASCRIPT -->
 
-<!-- JAVASCRIPT -->
+    <script type="text/javascript" src="{{ asset('cms/libs/js/jquery.min.js') }}"></script>
 
-<script type="text/javascript" src="{{ asset('cms/libs/js/jquery.min.js') }}"></script>
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.0/jquery.min.js"></script>
+    <script src="{{ asset('cms/libs/js/bootstrap.bundle.min.js') }}">
+    </script>
+    <script src="{{ asset('cms/libs/js/metisMenu.min.js') }}"></script>
+    <script src="{{ asset('cms/libs/js/simplebar.min.js') }}"></script>
+    <script src="{{ asset('cms/libs/js/waves.min.js') }}"></script>
+    <script src="{{ asset('cms/libs/js/feather.min.js') }}"></script>
+    <!-- pace js -->
+    <script src="{{ asset('cms/libs/js/pace.min.js') }}"></script>
 
-<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.0/jquery.min.js"></script>
-<script src="{{ asset('cms/libs/js/bootstrap.bundle.min.js') }}">
-</script>
-<script src="{{ asset('cms/libs/js/metisMenu.min.js') }}"></script>
-<script src="{{ asset('cms/libs/js/simplebar.min.js') }}"></script>
-<script src="{{ asset('cms/libs/js/waves.min.js') }}"></script>
-<script src="{{ asset('cms/libs/js/feather.min.js') }}"></script>
-<!-- pace js -->
-<script src="{{ asset('cms/libs/js/pace.min.js') }}"></script>
-
-<!-- Required datatable js -->
-<script src="{{ asset('cms/libs/js/jquery.dataTables.min.js') }}"></script>
-<script src="{{ asset('cms/libs/js/dataTables.bootstrap4.min.js') }}"></script>
-<!-- Buttons examples -->
-<script src="{{ asset('cms/libs/js/dataTables.buttons.min.js') }}"></script>
-<script src="{{ asset('cms/libs/js/buttons.bootstrap4.min.js') }}"></script>
-<script src="{{ asset('cms/libs/js/jszip.min.js') }}"></script>
-<script src="{{ asset('cms/libs/js/pdfmake.min.js') }}"></script>
-<script src="{{ asset('cms/libs/js/vfs_fonts.js') }}"></script>
-<script src="{{ asset('cms/libs/js/buttons.html5.min.js') }}"></script>
-<script src="{{ asset('cms/libs/js/buttons.print.min.js') }}"></script>
-<script src="{{ asset('cms/libs/js/buttons.colVis.min.js') }}"></script>
-<script src="{{ asset('cms/libs/js/fixedColumns.bootstrap4.min.js') }}">
-</script>
+    <!-- Required datatable js -->
+    <script src="{{ asset('cms/libs/js/jquery.dataTables.min.js') }}"></script>
+    <script src="{{ asset('cms/libs/js/dataTables.bootstrap4.min.js') }}"></script>
+    <!-- Buttons examples -->
+    <script src="{{ asset('cms/libs/js/dataTables.buttons.min.js') }}"></script>
+    <script src="{{ asset('cms/libs/js/buttons.bootstrap4.min.js') }}"></script>
+    <script src="{{ asset('cms/libs/js/jszip.min.js') }}"></script>
+    <script src="{{ asset('cms/libs/js/pdfmake.min.js') }}"></script>
+    <script src="{{ asset('cms/libs/js/vfs_fonts.js') }}"></script>
+    <script src="{{ asset('cms/libs/js/buttons.html5.min.js') }}"></script>
+    <script src="{{ asset('cms/libs/js/buttons.print.min.js') }}"></script>
+    <script src="{{ asset('cms/libs/js/buttons.colVis.min.js') }}"></script>
+    <script src="{{ asset('cms/libs/js/fixedColumns.bootstrap4.min.js') }}">
+    </script>
 
 
-<!-- Responsive examples -->
-<script src="{{ asset('cms/libs/js/dataTables.responsive.min.js') }}"></script>
-<script src="{{ asset('cms/libs/js/responsive.bootstrap4.min.js') }}"></script>
+    <!-- Responsive examples -->
+    <script src="{{ asset('cms/libs/js/dataTables.responsive.min.js') }}"></script>
+    <script src="{{ asset('cms/libs/js/responsive.bootstrap4.min.js') }}"></script>
 
-<!-- choices js -->
-<script src="{{ asset('cms/libs/js/choices.min.js') }}"></script>
+    <!-- choices js -->
+    <script src="{{ asset('cms/libs/js/choices.min.js') }}"></script>
 
-<!-- color picker js -->
-<script src="{{ asset('cms/libs/js/@simonwep/pickr/pickr.min.js') }}"></script>
-<script src="{{ asset('cms/libs/js/@simonwep/pickr/pickr.es5.min.js') }}"></script>
+    <!-- color picker js -->
+    <script src="{{ asset('cms/libs/js/@simonwep/pickr/pickr.min.js') }}"></script>
+    <script src="{{ asset('cms/libs/js/@simonwep/pickr/pickr.es5.min.js') }}"></script>
 
-<!-- datepicker js -->
-<script src="{{ asset('cms/libs/js/flatpickr.min.js') }}"></script>
+    <!-- datepicker js -->
+    <script src="{{ asset('cms/libs/js/flatpickr.min.js') }}"></script>
 
-<!-- apexcharts -->
-<script src="{{ asset('cms/libs/js/apexcharts.min.js') }}"></script>
+    <!-- apexcharts -->
+    <script src="{{ asset('cms/libs/js/apexcharts.min.js') }}"></script>
 
-<!-- Plugins js-->
-<script src="{{ asset('cms/libs/js/jquery-jvectormap-1.2.2.min.js') }}">
-</script>
-<script src="{{ asset('cms/libs/js/jquery-jvectormap-world-mill-en.js') }}">
-</script>
-
-
-<script src="{{ asset('cms/libs/js/form-editor.init.js') }}"></script>
-<!-- alertifyjs js -->
-<script src="{{ asset('cms/libs/js/alertify.min.js') }}"></script>
-
-<!-- Summer Note -->
-<script src="{{ asset('cms/libs/summer-note/summernote-lite.min.js') }}"></script>
+    <!-- Plugins js-->
+    <script src="{{ asset('cms/libs/js/jquery-jvectormap-1.2.2.min.js') }}">
+    </script>
+    <script src="{{ asset('cms/libs/js/jquery-jvectormap-world-mill-en.js') }}">
+    </script>
 
 
-<!-- Sweet Alerts js -->
-<script src="{{ asset('cms/libs/js/sweetalert2.min.js') }}"></script>
+    <script src="{{ asset('cms/libs/js/form-editor.init.js') }}"></script>
+    <!-- alertifyjs js -->
+    <script src="{{ asset('cms/libs/js/alertify.min.js') }}"></script>
 
-<!-- Dropify -->
-<script src="{{ asset('cms/libs/js/dropify.min.js') }}"></script>
+    <!-- Summer Note -->
+    <script src="{{ asset('cms/libs/summer-note/summernote-lite.min.js') }}"></script>
 
 
-<!-- Select2 -->
-<script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
+    <!-- Sweet Alerts js -->
+    <script src="{{ asset('cms/libs/js/sweetalert2.min.js') }}"></script>
 
-<!-- Switchery -->
-<script src="{{ asset('cms/libs/js/switchery.min.js') }}"></script>
+    <!-- Dropify -->
+    <script src="{{ asset('cms/libs/js/dropify.min.js') }}"></script>
 
-<!-- bootstrap tags input-->
-<script src="{{ asset('cms/js/bootstrap-tagsinput-1.min.js') }}"> </script>
 
-<!-- Typeahead Js-->
-<script src="{{ asset('cms/js/typeahead.bundle.js') }}"> </script>
-<script src="{{ mix('cms/js/app.js') }}"></script>
+    <!-- Select2 -->
+    <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
 
-<script>
-    //select2 box
+    <!-- Switchery -->
+    <script src="{{ asset('cms/libs/js/switchery.min.js') }}"></script>
 
-    $('#myselect').select2({
-        width: '100%',
-        placeholder: "Select an Option",
-        allowClear: true
-    });
+    <!-- bootstrap tags input-->
+    <script src="{{ asset('cms/js/bootstrap-tagsinput-1.min.js') }}"> </script>
 
-    function showConfirmationDialog(url, DTable) {
+    <!-- Typeahead Js-->
+    <script src="{{ asset('cms/js/typeahead.bundle.js') }}"> </script>
+    <script src="{{ mix('cms/js/app.js') }}"></script>
 
-        Swal.fire({
-            title: 'Are you sure?',
-            text: "You won't be able to revert this!",
-            type: 'warning',
-            showCancelButton: true,
-            confirmButtonColor: '#3d4144',
-            cancelButtonColor: '#d33',
-            confirmButtonText: 'Yes, delete it!'
-        }).then((result) => {
-            if (result.isConfirmed) {
-                $.ajax({
-                    url: url,
-                    type: 'delete',
-                    data: {
-                        '_token': '{{ @csrf_token() }}'
-                    },
-                    success: function(result) {
-                        Swal.fire(
-                            'Deleted!',
-                            'Your record has been deleted.',
-                            'success'
-                        ).then(() => {
-                            DTable.ajax.reload();
-                        })
-                    },
-                    error: function(result) {
-                        console.log(result.success)
-                        Swal.fire(
-                            'Error!',
-                            'Some Problem Occured. Please Try again later.',
-                            'error'
-                        ).then(() => {
-                            location.reload();
-                        })
-                    }
-                })
-            } else {
-                Swal.fire("Cancelled", "Deletion Cancelled", "error");
-            }
-        })
-    }
+    <script>
+        //select2 box
 
-    const initSwitchToggler = () => {
-        if (document.querySelectorAll('.js-switch').length) {
-            let switcheryEl = Array.prototype.slice.call(document.querySelectorAll('.js-switch'));
+        $('#myselect').select2({
+            width: '100%',
+            placeholder: "Select an Option",
+            allowClear: true
+        });
 
-            switcheryEl.forEach(function(html) {
-                new Switchery(html, {
-                    size: 'small'
-                });
-            });
+        function showConfirmationDialog(url, DTable) {
+
+            Swal.fire({
+                title: 'Are you sure?',
+                text: "You won't be able to revert this!",
+                type: 'warning',
+                showCancelButton: true,
+                confirmButtonColor: '#3d4144',
+                cancelButtonColor: '#d33',
+                confirmButtonText: 'Yes, delete it!'
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    $.ajax({
+                        url: url,
+                        type: 'delete',
+                        data: {
+                            '_token': '{{ @csrf_token() }}'
+                        },
+                        success: function(result) {
+                            Swal.fire(
+                                'Deleted!',
+                                'Your record has been deleted.',
+                                'success'
+                            ).then(() => {
+                                DTable.ajax.reload();
+                            })
+                        },
+                        error: function(result) {
+                            console.log(result.success)
+                            Swal.fire(
+                                'Error!',
+                                'Some Problem Occured. Please Try again later.',
+                                'error'
+                            ).then(() => {
+                                location.reload();
+                            })
+                        }
+                    })
+                } else {
+                    Swal.fire("Cancelled", "Deletion Cancelled", "error");
+                }
+            })
         }
-    }
-</script>
 
-<!-- Alertify -->
-@php
-    $errors = Session::get('error');
-    $messages = Session::get('success');
-    $info = Session::get('info');
-    $warnings = Session::get('warning');
-@endphp
+        const initSwitchToggler = () => {
+            if (document.querySelectorAll('.js-switch').length) {
+                let switcheryEl = Array.prototype.slice.call(document.querySelectorAll('.js-switch'));
 
-@if (is_array($errors))
-    @foreach ($errors as $key => $value)
-        <script>
-            alertify.error("{{ $value }}")
-        </script>
-    @endforeach
-@endif
+                switcheryEl.forEach(function(html) {
+                    new Switchery(html, {
+                        size: 'small'
+                    });
+                });
+            }
+        }
+    </script>
 
-@if ($messages)
-    @foreach ($messages as $key => $value)
-        <script>
-            alertify.success("{{ $value }}")
-        </script>
-    @endforeach
-@endif
+    <!-- Alertify -->
+    @php
+        $errors = Session::get('error');
+        $messages = Session::get('success');
+        $info = Session::get('info');
+        $warnings = Session::get('warning');
+    @endphp
 
-@if ($info)
-    @foreach ($info as $key => $value)
-        <script>
-            alertify.info("{{ $value }}")
-        </script>
-    @endforeach
-@endif
+    @if (is_array($errors))
+        @foreach ($errors as $key => $value)
+            <script>
+                alertify.error("{{ $value }}")
+            </script>
+        @endforeach
+    @endif
 
-@if ($warnings)
-    @foreach ($warnings as $key => $value)
-        <script>
-            alertify.warning("{{ $value }}")
-        </script>
-    @endforeach
-@endif
+    @if ($messages)
+        @foreach ($messages as $key => $value)
+            <script>
+                alertify.success("{{ $value }}")
+            </script>
+        @endforeach
+    @endif
 
-@stack('scripts')
+    @if ($info)
+        @foreach ($info as $key => $value)
+            <script>
+                alertify.info("{{ $value }}")
+            </script>
+        @endforeach
+    @endif
+
+    @if ($warnings)
+        @foreach ($warnings as $key => $value)
+            <script>
+                alertify.warning("{{ $value }}")
+            </script>
+        @endforeach
+    @endif
+
+    @stack('scripts')
 
 </body>
 

@@ -38,8 +38,8 @@
         <x-file-browser-image :label="'Image size'" :name="'image_url'" :required="TRUE" />
 
         <!-- Link -->
-        <x-input-field :label="'Link'" :name="'Links'" :placeholder="'Please enter site link here.'" :col="12" :required="true"
-            :autofocus="true" />
+        <x-input-field :label="'Link'" :name="'Links'" :placeholder="'Please enter site link here.'" :col="12"
+            :required="true" :autofocus="true" />
         <x-button />
 
     </x-form-base>
@@ -49,16 +49,16 @@
     @push('scripts')
         <script>
             $(document).ready(() => {
-                $('body').on('change', '#columns')
+
                 $('#columns').on('change', function() {
 
                     if (this.value == '12') {
-                        $('#size').html('Image Size should be 1920x600')
+                        $('#size').html('Image Size should be 1920x600');
                     } else {
-                        $('#size').html('Image Size should be 600x400')
+                        $('#size').html('Image Size should be 600x400');
                     }
-                })
-            })
+                });
+            });
         </script>
     @endpush
 

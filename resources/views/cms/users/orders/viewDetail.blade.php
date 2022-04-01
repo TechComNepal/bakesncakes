@@ -40,7 +40,7 @@
                                             @endphp
                                             @foreach ($order->products as $product)
                                                 @php
-                                                    $total_tax = $total_tax + $product->pivot->tax * $product->pivot->quantity;
+                                                    $total_tax = $total_tax + $product->pivot->tax;
                                                 @endphp
 
 
@@ -66,7 +66,7 @@
                                                         </div>
                                                     </div>
                                                     <div class="product-price">
-                                                        <h5>{{ $product->pivot->price * $product->pivot->quantity }}
+                                                        <h5> Rs. {{ $product->pivot->price }}
                                                         </h5>
                                                     </div>
                                                 </div>
@@ -80,8 +80,8 @@
                                                 <div class="col-md-6">
                                                     <div class="billing">
                                                         <div class="d-flex justify-content-between">
-                                                            <span>Subtotal</span><span class="font-weight-bold">Rs.
-                                                                {{ $order->billing_total - $order->delivery_charge - $total_tax + $order->coupon_discount }}</span>
+                                                            <span>Subtotal</span><span class="font-weight-bold">Rs. {{ $order->orderProducts->sum('price') }}
+                                                            </span>
                                                         </div>
 
                                                         <div class="d-flex justify-content-between mt-2"><span>Discount

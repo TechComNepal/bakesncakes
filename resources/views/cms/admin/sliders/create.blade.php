@@ -10,10 +10,10 @@
         <x-select-field-name :label="'Brands'" :name="'brand_id'" :placeholder="'Select a Brand'" :col="12"
             :values="$brands" />
         <!-- Status -->
-        <x-switch :label="'Status'" :name="'status'" :checked="true" :col="2" />
+        <x-switch :label="'Status'" :name="'status'" :id="'switch1'" :checked="true" :col="2" />
 
         <!-- Popups -->
-        <x-switch :label="'Is Popup'" :name="'is_popup'" :checked="true" :col="2" />
+        <x-switch :label="'Is Popup'" :name="'is_popup'" :id="'switch2'" :checked="true" :col="2" />
 
         <!-- Slider Image -->
         <x-file-browser-image :label="'Slider Image'" :name="'image'" />

@@ -21,6 +21,14 @@ class Product extends Model implements HasMedia, Searchable
     use Rateable;
 
     protected $guarded = ['id'];
+    protected $casts=[
+        'is_featured'=>'boolean',
+        'is_taxable'=>'boolean',
+        'is_refundable'=>'boolean',
+        'is_trending'=>'boolean',
+         'is_sellable'=>'boolean',
+
+    ];
    
     protected static $defaultImage = '/common/default-image/defaultCategoryImage.jpg';
 
@@ -41,6 +49,28 @@ class Product extends Model implements HasMedia, Searchable
         return SlugOptions::create()
             ->generateSlugsFrom('name')
             ->saveSlugsTo('slug');
+    }
+
+    public function setIsFeaturedAttribute($value)
+    {
+        $this->attributes['is_featured'] = $value==='on' ? 1 : 0 ;
+    }
+
+    public function setIsTaxableAttribute($value)
+    {
+        $this->attributes['is_taxable'] = $value==='on' ? 1 : 0 ;
+    }
+    public function setIsRefundableAttribute($value)
+    {
+        $this->attributes['is_refundable'] = $value==='on' ? 1 : 0 ;
+    }
+    public function setIsTrendingAttribute($value)
+    {
+        $this->attributes['is_trending'] = $value==='on' ? 1 : 0 ;
+    }
+    public function setIsSellableAttribute($value)
+    {
+        $this->attributes['is_sellable'] = $value==='on' ? 1 : 0 ;
     }
 
     public function registerMediaCollections(): void
@@ -102,7 +132,7 @@ class Product extends Model implements HasMedia, Searchable
 
     public function orders()
     {
-        return $this->belongToMany(Order::class, 'order_product', 'product_id', 'order_id')
+        return $this->belongsToMany(Order::class, 'order_product', 'product_id', 'order_id')
                       ->withPivot('user_id', 'price', 'quantity', 'total', 'status', 'tax', 'delivery_date', 'user_note')
                      ->withTimestamps();
     }
@@ -110,5 +140,10 @@ class Product extends Model implements HasMedia, Searchable
     public function ratings()
     {
         return $this->morphMany(Rating::class, 'rateable');
+    }
+
+    public function user()
+    {
+        return $this->belongsTo(User::class, 'user_id');
     }
 }

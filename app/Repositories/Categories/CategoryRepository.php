@@ -38,11 +38,11 @@ class CategoryRepository extends BaseRepository implements CategoryContract
         try {
             $collection = collect($params)->except('_token', 'image');
 
-            if (!is_null($collection['parent_id'])){
+            if (!is_null($collection['parent_id'])) {
                 $category = Category::find($collection['parent_id']);
                 $level = $category->level + 1;
-            }else{
-                $level = NULL;
+            } else {
+                $level = null;
             }
             $user_id = Auth::user()->id;
             $merge = $collection->merge(compact('level', 'user_id'));
@@ -58,11 +58,11 @@ class CategoryRepository extends BaseRepository implements CategoryContract
         $category = $this->findCategoryById($id);
         $collection = collect($params)->except('_token');
 
-        if (!is_null($collection['parent_id'])){
+        if (!is_null($collection['parent_id'])) {
             $category = Category::find($collection['parent_id']);
             $level = $category->level + 1;
-        }else{
-            $level = NULL;
+        } else {
+            $level = null;
         }
         $user_id = Auth::user()->id;
         $merge = $collection->merge(compact('level', 'user_id'));
@@ -73,7 +73,7 @@ class CategoryRepository extends BaseRepository implements CategoryContract
     public function deleteCategory(int $id)
     {
         $category = $this->findCategoryById($id);
-        $category->deactivate()->notFeatured()->save();
+        $category->delete();
         return $category;
     }
 
@@ -90,7 +90,6 @@ class CategoryRepository extends BaseRepository implements CategoryContract
         $category = $this->findCategoryById($params['category_id']);
         $boolean = ($params['is_featured'] == 'on' ?  true  : false);
         return ($boolean ? $category->featured()->save() : $category->notFeatured()->save());
-
     }
 
     public function updateCategoryMenu(array $params)

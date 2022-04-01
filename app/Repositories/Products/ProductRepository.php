@@ -37,17 +37,9 @@ class ProductRepository extends BaseRepository implements ProductContract
     {
         try {
             $collection = collect($params)->except('_token');
-            $is_refundable = $collection->has('is_refundable') ? 1 : 0;
-            $is_featured = $collection->has('is_featured') ? 1 : 0;
-            $is_trending = $collection->has('is_trending') ? 1 : 0;
-            $is_sellable = $collection->has('is_sellable') ? 1 : 0;
-            $top_selling = $collection->has('top_selling') ? 1 : 0;
-            $best_selling = $collection->has('best_selling') ? 1 : 0;
             $order_custom_msg = $collection->has('order_custom_msg') ? 1 : 0;
-            $is_taxable = $collection->has('is_taxable') ? 1 : 0;
             $user_id = Auth::user()->id;
-
-            $merge = $collection->merge(compact('is_refundable', 'is_featured', 'is_trending', 'is_sellable', 'order_custom_msg', 'is_taxable', 'user_id', 'top_selling', 'best_selling'));
+            $merge = $collection->merge(compact('order_custom_msg', 'user_id'));
 
             $product = new Product($merge->all());
             $product->save();
@@ -62,19 +54,10 @@ class ProductRepository extends BaseRepository implements ProductContract
     {
         $product = $this->findProductById($id);
         $collection = collect($params)->except('_token');
-
-        $is_refundable = $collection->has('is_refundable') ? 1 : 0;
-        $is_featured = $collection->has('is_featured') ? 1 : 0;
-        $is_trending = $collection->has('is_trending') ? 1 : 0;
-        $is_sellable = $collection->has('is_sellable') ? 1 : 0;
-        $top_selling = $collection->has('top_selling') ? 1 : 0;
-        $best_selling = $collection->has('best_selling') ? 1 : 0;
         $order_custom_msg = $collection->has('order_custom_msg') ? 1 : 0;
-        $is_taxable = $collection->has('is_taxable') ? 1 : 0;
         $user_id = Auth::user()->id;
 
-
-        $merge = $collection->merge(compact('is_refundable', 'is_featured', 'is_trending', 'is_sellable', 'order_custom_msg', 'is_taxable', 'user_id', 'top_selling', 'best_selling'));
+        $merge = $collection->merge(compact('order_custom_msg', 'user_id'));
         return $product->update($merge->all());
     }
 
@@ -90,5 +73,40 @@ class ProductRepository extends BaseRepository implements ProductContract
         $media = Media::find($id);
         $media->delete();
         return $media;
+    }
+
+    public function updateProductTaxable(array $params)
+    {
+        $product = $this->findProductById($params['product_id']);
+        $product->is_taxable=$params['is_taxable'];
+        return $product->update();
+    }
+
+    public function updateProductFeature(array $params)
+    {
+        $product = $this->findProductById($params['product_id']);
+        $product->is_featured=$params['is_featured'];
+        return $product->update();
+    }
+
+    public function updateProductRefundable(array $params)
+    {
+        $product = $this->findProductById($params['product_id']);
+        $product->is_refundable=$params['is_refundable'];
+        return $product->update();
+    }
+
+    public function updateProductTrending(array $params)
+    {
+        $product = $this->findProductById($params['product_id']);
+        $product->is_trending=$params['is_trending'];
+        return $product->update();
+    }
+
+    public function updateProductSellable(array $params)
+    {
+        $product = $this->findProductById($params['product_id']);
+        $product->is_sellable=$params['is_sellable'];
+        return $product->update();
     }
 }

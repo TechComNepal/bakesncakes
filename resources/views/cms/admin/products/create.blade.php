@@ -70,12 +70,6 @@
                         <!-- In Sellable -->
                         <x-switch :label="'Is Sellable'" :name="'is_sellable'" :id="'switch4'" :checked="true"  />
 
-                        <!-- Is Best Selling -->
-                        <x-switch :label="'Is Best Selling'" :name="'best_selling'" :id="'switch7'" :checked="true" />
-
-                        <!-- Is Top Selling -->
-                        <x-switch :label="'Is Top Selling'" :name="'top_selling'" :id="'switch8'" :checked="true"  />
-
                     </div>
                 </div>
                 <div class="card">

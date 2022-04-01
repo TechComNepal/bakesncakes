@@ -53,7 +53,7 @@ if (auth()->user() != null) {
         <div class="ps-cart__total"><span>Subtotal </span><span>Rs. {{ $total }}</span></div>
         <div class="ps-cart__footer">
             <a class="ps-btn ps-btn--outline" href="{{ route('cart.index') }}">View Cart</a>
-            <a class="ps-btn ps-btn--warning" href="{{ route('checkout') }}">Checkout</a>
+            <a class="ps-btn ps-btn--warning" href="{{ route('user.shipping.info') }}">Checkout</a>
         </div>
     @else
         <div class="ps-cart__total"><span>Your Cart is empty </span></div>

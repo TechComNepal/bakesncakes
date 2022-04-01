@@ -29,6 +29,9 @@ class ModuleSeeder extends Seeder
         $module_blog = Module::where('module_name', 'blogs')->first();
         $module_blog->givePermissionTo(['add blog', 'view blog', 'edit blog', 'delete blog']);
 
+        $module_order = Module::where('module_name', 'orders')->first();
+        $module_order->givePermissionTo([ 'view order', 'edit order']);
+
         //        $modules = Module::all();
 //        foreach ($modules as $module){
 //            $module->givePermissionTo(Permission::all());

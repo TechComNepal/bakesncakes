@@ -13,7 +13,7 @@
         <!-- Delivery Charge -->
 
         <x-input-field :type="'number'" :label="'Delivery Charge'" :name="'delivery_charge'" :placeholder="''" :col="6"
-            :required="true" :min="0" :value="0" />
+            :min="0" :value="0" />
 
 
         <div>

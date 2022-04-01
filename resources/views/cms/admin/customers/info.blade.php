@@ -1,10 +1,13 @@
 <x-cms-master-layout>
     @push('styles')
+
         <style>
             .mr-10{
                 margin-right: 10px;
             }
         </style>
+    <script src="{{ asset('cms/libs/js/bootstrap.min.js') }}"></script>
+
     @endpush
 
     <x-breadcrumb :title="$pageTitle" :item="3" :method="'Edit Details Of'" />

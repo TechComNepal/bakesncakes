@@ -2,14 +2,15 @@
 
 namespace App\Http\Controllers\Admin;
 
-use App\Http\Controllers\Controller;
+use PDF;
+use App\Models\Product;
 use App\Models\CustomOrder;
-use App\Repositories\Products\ProductRepository;
-use App\Services\ImageUploadService;
 use Illuminate\Http\Request;
 use Illuminate\Support\Carbon;
-use PDF;
+use App\Http\Controllers\Controller;
+use App\Services\ImageUploadService;
 use Yajra\DataTables\Facades\DataTables;
+use App\Repositories\Products\ProductRepository;
 
 class ReportManagementController extends Controller
 {
@@ -23,10 +24,10 @@ class ReportManagementController extends Controller
         $this->imageUploadService = $imageUploadService;
     }
 
-    public function viewStock()
+    public function viewStock(Request $request)
     {
         return (\request()->ajax())
-        ? $this->datatable()
+        ? $this->datatable($request)
         : view('cms.admin.reportManagements.stockView');
     }
 
@@ -40,31 +41,25 @@ class ReportManagementController extends Controller
     }
 
 
-    
-
-
-    public function viewStockPdf()
-    {
-        return (\request()->ajax())
-        ? $this->datatable()
-        : view('cms.admin.reportManagements.stockView');
-
-        // $pdf=PDF::loadView('cms.admin.reportManagements.stockProduct.stockReportPdf',$data);
-        // $pdf->SetProctection(['copy', 'print'], '','pass');
-        // return $pdf->stream('document.pdf');
-    }
-
-
-
     // dataTable for Stock view
 
-    public function datatable()
+    public function datatable($request)
     {
-        $products = $this->productRepository->listProducts('created_at', 'desc');
+        $query = Product::query();
+
+        $query->when($request['name'], function ($q) {
+            return $q->where('name', 'like', '%' . request('name') . '%');
+        });
+
+        $query->when($request['sku'], function ($q) {
+            return $q->where('sku', 'like', '%' . request('sku') . '%');
+        });
+
+        $products=$query->latest()->get();
         return DataTables::of($products)
          
         ->editColumn('name', function ($data) {
-             return '<div class="col-auto" style="display: inline-block">
+            return '<div class="col-auto" style="display: inline-block">
                     <img src="'.$data->getFirstOrDefaultMediaUrl('image', 'square-sm-thumb').'" alt="Product Image" height="50" width="50"/>
                 </div>
                 <div class="col-auto" style="display: inline-block">
@@ -77,7 +72,7 @@ class ReportManagementController extends Controller
             return '<div class="col-auto" style="display: inline-block">
             <span class="text-muted text-truncate">'. $data->selling_price.'</span>' .'<br />'.'<br />
             </div>';
-             })
+        })
       
         ->editColumn('discount', function ($data) {
             $type = ($data->discount_type==='flat') ? 'Rs.' : '%';
@@ -90,24 +85,6 @@ class ReportManagementController extends Controller
             </div>';
         })
         
-
-        ->editColumn('is_taxable', function ($data) {
-                $checked = $data->is_taxable == 1 ? 'checked' : '';
-
-                return '
-                    <label for="is-taxable-switch-' . $data->id . '"></label>
-                    <input
-                        type="checkbox"
-                        id="is-taxable-switch-' . $data->id . '"
-                        data-id="' . $data->id . '"
-                        name="is_taxable"
-                        class="js-switch"
-                        ' . $checked . '
-                        autocomplete="off"
-                        onchange="toggleIsTaxable(' . $data->id . ')"
-                    />
-                ';
-            })
           
             ->addIndexColumn()
             ->rawColumns(['name', 'selling_price', 'discount'])
@@ -154,7 +131,7 @@ class ReportManagementController extends Controller
                             >' .$data->description . '
                      </p>
                      </div>
-                    ';  
+                    ';
             })
 
           
@@ -179,7 +156,7 @@ class ReportManagementController extends Controller
 
            
                  ->editColumn('address', function ($data) {
-                return '
+                     return '
                 <div class="d-flex flex-column">
 
                             <h5
@@ -191,7 +168,7 @@ class ReportManagementController extends Controller
 
                         </div>
                 ';
-            })
+                 })
 
             ->editColumn('date', function ($data) {
                 return '
@@ -212,15 +189,13 @@ class ReportManagementController extends Controller
     }
 
 
-        //  toggle status
-        public function toggleIsStatus(Request $request): JsonResponse
-        {
-            $customOrder = CustomOrder::findOrFail($request['id']);
-            $customOrder->status = !$customOrder->status;
-                    return $customOrder->update()
+    //  toggle status
+    public function toggleIsStatus(Request $request): JsonResponse
+    {
+        $customOrder = CustomOrder::findOrFail($request['id']);
+        $customOrder->status = !$customOrder->status;
+        return $customOrder->update()
                 ? response()->json(['message' => 'Custom Order Updated Successfully.',  'status' => 'success'])
                 : response()->json(['message' => 'Error occurred while updating category status.', 'status' => 'error']);
-        }
-    
-    
+    }
 }
