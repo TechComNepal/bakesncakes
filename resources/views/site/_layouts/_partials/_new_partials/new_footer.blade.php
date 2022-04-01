@@ -26,6 +26,7 @@
             </div>
         </div>
     </section>
+
     <section class="featured section-padding">
         <div class="container">
             <div class="row">
@@ -33,7 +34,7 @@
                     <div class="banner-left-icon d-flex align-items-center wow animate__animated animate__fadeInUp"
                         data-wow-delay="0">
                         <div class="banner-icon">
-                            <img src="{{ asset('new_frontend\assets\imgs\theme\icons\icon-1.svg" alt="') }}">
+                            <img src="{{ asset('new_frontend\assets\imgs\theme\icons\icon-1.svg' ) }}" alt=''>
                         </div>
                         <div class="banner-text">
                             <h3 class="icon-box-title">Best prices & offers</h3>
@@ -45,7 +46,7 @@
                     <div class="banner-left-icon d-flex align-items-center wow animate__animated animate__fadeInUp"
                         data-wow-delay=".1s">
                         <div class="banner-icon">
-                            <img src="{{ asset('new_frontend\assets\imgs\theme\icons\icon-2.svg" alt="') }}">
+                            <img src="{{ asset('new_frontend\assets\imgs\theme\icons\icon-2.svg' ) }}" alt=''>
                         </div>
                         <div class="banner-text">
                             <h3 class="icon-box-title">Free delivery</h3>
@@ -57,7 +58,7 @@
                     <div class="banner-left-icon d-flex align-items-center wow animate__animated animate__fadeInUp"
                         data-wow-delay=".2s">
                         <div class="banner-icon">
-                            <img src="{{ asset('new_frontend\assets\imgs\theme\icons\icon-3.svg" alt="') }}">
+                            <img src="{{ asset('new_frontend\assets\imgs\theme\icons\icon-3.svg' ) }}" alt=''>
                         </div>
                         <div class="banner-text">
                             <h3 class="icon-box-title">Great daily deal</h3>
@@ -69,7 +70,7 @@
                     <div class="banner-left-icon d-flex align-items-center wow animate__animated animate__fadeInUp"
                         data-wow-delay=".3s">
                         <div class="banner-icon">
-                            <img src="{{ asset('new_frontend\assets\imgs\theme\icons\icon-4.svg" alt="') }}">
+                            <img src="{{ asset("new_frontend\assets\imgs\theme\icons\icon-4.svg" ) }}" alt=''>
                         </div>
                         <div class="banner-text">
                             <h3 class="icon-box-title">Wide assortment</h3>
@@ -81,7 +82,7 @@
                     <div class="banner-left-icon d-flex align-items-center wow animate__animated animate__fadeInUp"
                         data-wow-delay=".4s">
                         <div class="banner-icon">
-                            <img src="{{ asset('new_frontend\assets\imgs\theme\icons\icon-5.svg" alt="') }}">
+                            <img src="{{ asset('new_frontend\assets\imgs\theme\icons\icon-5.svg') }}" alt=''>
                         </div>
                         <div class="banner-text">
                             <h3 class="icon-box-title">Easy returns</h3>
@@ -93,7 +94,7 @@
                     <div class="banner-left-icon d-flex align-items-center wow animate__animated animate__fadeInUp"
                         data-wow-delay=".5s">
                         <div class="banner-icon">
-                            <img src="{{ asset('new_frontend\assets\imgs\theme\icons\icon-6.svg" alt="') }}">
+                            <img src="{{ asset("new_frontend\assets\imgs\theme\icons\icon-6.svg") }}" alt=''>
                         </div>
                         <div class="banner-text">
                             <h3 class="icon-box-title">Safe delivery</h3>

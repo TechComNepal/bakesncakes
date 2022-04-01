@@ -230,6 +230,7 @@
                                     </div>
                                     <span class="font-small ml-5 text-muted"> (32 rates)</span>
                                 </div>
+
                             </div>
                             <a href="shop-grid-right.html" class="btn hover-up">Shop Now <i
                                     class="fi-rs-arrow-right"></i></a>
@@ -239,6 +240,7 @@
             </div>
         </div>
     </div>
+
 
     <!-- Quick view -->
     <div class="modal fade custom-modal" id="quickViewModal" tabindex="-1" aria-labelledby="quickViewModalLabel"
@@ -305,6 +307,8 @@
                                     </div>
                                 </div>
                             </div>
+                                            </div>
+                                            <span class="font-small ml-5 text-muted"> (32 reviews)</span>
                             <!-- End Gallery -->
                         </div>
                         <div class="col-md-6 col-sm-12 col-xs-12">
@@ -328,6 +332,7 @@
                                             <span class="old-price font-md ml-15">$52</span>
                                         </span>
                                     </div>
+
                                 </div>
                                 <div class="detail-extralink mb-30">
                                     <div class="detail-qty border radius">
@@ -354,6 +359,7 @@
                 </div>
             </div>
         </div>
+
     </div>
 
     @include('site._layouts._partials._new_partials.new_header')
@@ -372,7 +378,7 @@
         <div class="preloader d-flex align-items-center justify-content-center">
             <div class="preloader-inner position-relative">
                 <div class="text-center">
-                    <img src="{{ asset('new_frontend\assets\imgs\theme\loader.gif') }}" alt="loader">
+                    <img src="{{asset('new_frontend\assets\imgs\theme\Disk-1s-200px.svg')}}" alt="loader">
                 </div>
             </div>
         </div>

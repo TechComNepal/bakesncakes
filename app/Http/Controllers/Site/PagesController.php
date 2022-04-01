@@ -64,13 +64,13 @@ class PagesController extends Controller
 
     public function aboutus()
     {
-        return view('site.pages.aboutus', [
+        return view('site.pages.new_about_us', [
         'about'=> AboutUs::first(),
     ]);
     }
     public function contactus()
     {
-        return view('site.pages.contactus');
+        return view('site.pages.new_contact_us');
     }
 
     public function termsAndCondition()
@@ -98,15 +98,25 @@ class PagesController extends Controller
 
     public function blog()
     {
-        return view('site.pages.blog', [
+        return view('site.pages.new_blog', [
         'blogs'=> Blog::orderBy('id', 'desc')->paginate(9)
             ,
             ]);
     }
 
+    /* vendors */
+    public function vendor() 
+    {
+        return view('site.pages.vendor');
+    }
+    public function vendor_guide() 
+    {
+        return view('site.pages.vendor_guide'); 
+    }
+
     public function singleBlog($slug)
     {
-        return view('site.pages.singleBlog', [
+        return view('site.pages.new_single_blog', [
             'blog'=>Blog::where('slug', $slug)->firstOrFail(),
             'blogs'=> Blog::orderBy('id', 'desc')->limit(5)->get(),
             'categories'=> Category::orderBy('id', 'desc')->limit(5)->get(),
