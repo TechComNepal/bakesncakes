@@ -15,6 +15,7 @@ use App\Http\Requests\BrandStoreRequest;
 use App\Http\Requests\BrandUpdateRequest;
 use App\Repositories\Brands\BrandRepository;
 use App\Contracts\Categories\CategoryContract;
+use Illuminate\Support\Str;
 
 class BrandController extends Controller
 {
@@ -42,7 +43,6 @@ class BrandController extends Controller
 
     public function store(BrandStoreRequest $request)
     {
-
         try {
             $brand = $this->brandRepository->storeBrand($request->validated());
             if ($brand) {
@@ -95,8 +95,8 @@ class BrandController extends Controller
 
         return DataTables::of($brands)
             ->editColumn('status', function ($data) {
-            $checked = $data->status == 1 ? 'checked' : '';
-            return '
+                $checked = $data->status == 1 ? 'checked' : '';
+                return '
                 <label for="is-status-switch-' . $data->id . '"></label>
                 <input
                     type="checkbox"
@@ -109,15 +109,15 @@ class BrandController extends Controller
                     onchange="toggleIsStatus(' . $data->id . ')"
                 />
             ';
-        })
+            })
             ->editColumn('category', function (Brand $brand) {
-             return $brand->getcategory() ;
-         })
+                return $brand->getcategory() ;
+            })
             ->editColumn('user_id', function ($data) {
-              return $data->user->name;
-          })
+                return $data->user->name;
+            })
             ->addColumn('actions', function ($data) {
-             return '
+                return '
                     <div class="d-flex flex-wrap gap-2">
                         <a
                         href="' .route('admin.brands.edit', $data). '"
@@ -141,9 +141,26 @@ class BrandController extends Controller
                         ><i class="bx bx-trash font-size-16 align-middle"></i></a>
                     </div>
                 ';
+            })
+
+
+
+         ->editColumn('short_description', function ($data) {
+             return '
+                    <div class="d-flex flex-column">
+                        <h5
+                        class="text-body font-size-12 mb-1"
+                            data-bs-toggle="tooltip"
+                            data-bs-placement="top"
+                            title="' . $data->short_description . '"
+                            data-bs-original-title="' . $data->short_description . '"
+                        >' . Str::limit($data->short_description, 67) . '</h5>
+                        
+                    </div>
+                ';
          })
             ->addIndexColumn()
-            ->rawColumns(['status','actions'])
+            ->rawColumns(['status','actions','short_description'])
             ->make(true);
     }
 

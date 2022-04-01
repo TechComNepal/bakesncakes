@@ -13,7 +13,7 @@ class AddDeliveryDateColumnToCartsTable extends Migration
      */
     public function up()
     {
-        Schema::table('Carts', function (Blueprint $table) {
+        Schema::table('carts', function (Blueprint $table) {
             $table->dateTime('delivery_date')->after('quantity');
             $table->longText('user_note')->after('delivery_date')->nullable();
         });
@@ -26,7 +26,7 @@ class AddDeliveryDateColumnToCartsTable extends Migration
      */
     public function down()
     {
-        Schema::table('Carts', function (Blueprint $table) {
+        Schema::table('carts', function (Blueprint $table) {
             $table->dropColumn('delivery_date');
             $table->dropColumn('user_note');
         });

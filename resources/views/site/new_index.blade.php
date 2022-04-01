@@ -4,9 +4,9 @@
             <div class="home-slide-cover mt-30">
                 <div class="hero-slider-1 style-4 dot-style-1 dot-style-1-position-1">
                     @foreach ($sliders->where('is_popup', '!=', true) as $slider)
-                    <div class="single-hero-slider single-animation-wrap"
-                        style="background-image: url('{{ $slider->getFirstOrDefaultMediaUrl("desktop") }}')">
-                        <!-- <div class="slider-content">
+                        <div class="single-hero-slider single-animation-wrap"
+                            style="background-image: url('{{ $slider->getFirstOrDefaultMediaUrl('desktop') }}')">
+                            <!-- <div class="slider-content">
                                     <h1 class="display-2 mb-40">
                                         Don’t miss amazing<br>
                                         grocery deals
@@ -17,7 +17,7 @@
                                         <button class="btn" type="submit">Subscribe</button>
                                     </form>
                                 </div> -->
-                    </div>
+                        </div>
                     @endforeach
 
                 </div>
@@ -33,7 +33,8 @@
                     <h3>Featured Categories</h3>
                     <ul class="list-inline nav nav-tabs links">
 
-                        <li class="list-inline-item nav-item"><a class="nav-link" href="shop-grid-right.html">Cake &
+                        <li class="list-inline-item nav-item"><a class="nav-link" href="shop-grid-right.html">Cake
+                                &
                                 Milk</a></li>
                         <!-- <li class="list-inline-item nav-item"><a class="nav-link" href="shop-grid-right.html">Coffes & Teas</a></li>
                                 <li class="list-inline-item nav-item"><a class="nav-link active" href="shop-grid-right.html">Pet Foods</a></li>
@@ -46,14 +47,14 @@
             <div class="carausel-10-columns-cover position-relative">
                 <div class="carausel-10-columns" id="carausel-10-columns">
                     @foreach ($categories as $category)
-                    <div class="card-2 bg-9 wow animate__animated animate__fadeInUp" data-wow-delay=".1s">
-                        <figure class="img-hover-scale overflow-hidden">
-                            <a href="shop-grid-right.html"><img
-                                    src="{{ $category->getFirstOrDefaultMediaUrl('image', 'thumb') }}" alt=""></a>
-                        </figure>
-                        <h6><a href="shop-grid-right.html">Cake & Milk</a></h6>
-                        <span>26 items</span>
-                    </div>
+                        <div class="card-2 bg-9 wow animate__animated animate__fadeInUp" data-wow-delay=".1s">
+                            <figure class="img-hover-scale overflow-hidden">
+                                <a href="shop-grid-right.html"><img
+                                        src="{{ $category->getFirstOrDefaultMediaUrl('image', 'thumb') }}" alt=""></a>
+                            </figure>
+                            <h6><a href="shop-grid-right.html">Cake & Milk</a></h6>
+                            <span>26 items</span>
+                        </div>
                     @endforeach
                 </div>
             </div>
@@ -64,7 +65,7 @@
             <div class="row">
                 <div class="col-lg-4 col-md-6">
                     <div class="banner-img wow animate__animated animate__fadeInUp" data-wow-delay="0">
-                        <img src="{{asset('new_frontend\assets\imgs\banner\banner-1.png" alt="')}}">
+                        <img src="{{ asset('new_frontend\assets\imgs\banner\banner-1.png" alt="') }}">
                         <div class="banner-text">
                             <h4>
                                 Everyday Fresh & <br>Clean with Our<br>
@@ -77,7 +78,7 @@
                 </div>
                 <div class="col-lg-4 col-md-6">
                     <div class="banner-img wow animate__animated animate__fadeInUp" data-wow-delay=".2s">
-                        <img src="{{asset('new_frontend\assets\imgs\banner\banner-2.png" alt="')}}">
+                        <img src="{{ asset('new_frontend\assets\imgs\banner\banner-2.png" alt="') }}">
                         <div class="banner-text">
                             <h4>
                                 Make your Breakfast<br>
@@ -90,7 +91,7 @@
                 </div>
                 <div class="col-lg-4 d-md-none d-lg-flex">
                     <div class="banner-img mb-sm-0 wow animate__animated animate__fadeInUp" data-wow-delay=".4s">
-                        <img src="{{asset('new_frontend\assets\imgs\banner\banner-3.png')}}" alt="">
+                        <img src="{{ asset('new_frontend\assets\imgs\banner\banner-3.png') }}" alt="">
                         <div class="banner-text">
                             <h4>The best Organic <br>Products Online</h4>
                             <a href="shop-grid-right.html" class="btn btn-xs">Shop Now <i
@@ -113,59 +114,60 @@
 
                 <div class="row product-grid-4">
                     @foreach ($featured_products as $featured_product)
-
-                    <div class="col-lg-1-5 col-md-4 col-12 col-sm-6">
-                        <div class="product-cart-wrap mb-30 wow animate__animated animate__fadeIn" data-wow-delay=".1s">
-                            <div class="product-img-action-wrap">
-                                <div class="product-img product-img-zoom">
-                                    <a href="shop-product-right.html featured-products_a">
-                                        <img class="default-img"
-                                            src="{{$featured_product->getFirstOrDefaultMediaUrl('image', 'thumb')}}">
-                                        <img class="hover-img"
-                                            src="{{$featured_product->getFirstOrDefaultMediaUrl('image', 'thumb')}}">
-                                    </a>
-                                </div>
-                                <div class="product-action-1">
-                                    <a aria-label="Add To Wishlist" class="action-btn featured-products_a"
-                                        href="shop-wishlist.html"><i class="fi-rs-heart"></i></a>
-                                    <a aria-label="Compare" class="action-btn featured-products_a"
-                                        href="shop-compare.html"><i class="fi-rs-shuffle"></i></a>
-                                    <a aria-label="Quick view" class="action-btn featured-products_a"
-                                        data-bs-toggle="modal" data-bs-target="#quickViewModal"><i
-                                            class="fi-rs-eye"></i></a>
-                                </div>
-                                <div class="product-badges product-badges-position product-badges-mrg">
-                                    <span class="hot">Hot</span>
-                                </div>
-                            </div>
-                            <div class="product-content-wrap">
-                                <div class="product-category">
-                                    <a href="shop-grid-right.html">Snack</a>
-                                </div>
-                                <h2><a href="shop-product-right.html">{{$featured_product->name}}</a></h2>
-                                <div class="product-rate-cover">
-                                    <div class="product-rate d-inline-block">
-                                        <div class="product-rating" style="width: 90%"></div>
-                                    </div>
-                                    <span class="font-small ml-5 text-muted"> (4.0)</span>
-                                </div>
-                                <div>
-                                    <span class="font-small text-muted">By <a
-                                            href="vendor-details-1.html">NestFood</a></span>
-                                </div>
-                                <div class="product-card-bottom">
-                                    <div class="product-price">
-                                        <span>{{$featured_product->cost_price}}</span>
-                                        <span class="old-price">{{$featured_product->discount}}</span>
-                                    </div>
-                                    <div class="add-cart">
-                                        <a class="add" href="shop-cart.html"><i class="fi-rs-shopping-cart mr-5"></i>Add
+                        <div class="col-lg-1-5 col-md-4 col-12 col-sm-6">
+                            <div class="product-cart-wrap mb-30 wow animate__animated animate__fadeIn"
+                                data-wow-delay=".1s">
+                                <div class="product-img-action-wrap">
+                                    <div class="product-img product-img-zoom">
+                                        <a href="shop-product-right.html featured-products_a">
+                                            <img class="default-img"
+                                                src="{{ $featured_product->getFirstOrDefaultMediaUrl('image', 'thumb') }}">
+                                            <img class="hover-img"
+                                                src="{{ $featured_product->getFirstOrDefaultMediaUrl('image', 'thumb') }}">
                                         </a>
+                                    </div>
+                                    <div class="product-action-1">
+                                        <a aria-label="Add To Wishlist" class="action-btn featured-products_a"
+                                            href="shop-wishlist.html"><i class="fi-rs-heart"></i></a>
+                                        <a aria-label="Compare" class="action-btn featured-products_a"
+                                            href="shop-compare.html"><i class="fi-rs-shuffle"></i></a>
+                                        <a aria-label="Quick view" class="action-btn featured-products_a"
+                                            data-bs-toggle="modal" data-bs-target="#quickViewModal"><i
+                                                class="fi-rs-eye"></i></a>
+                                    </div>
+                                    <div class="product-badges product-badges-position product-badges-mrg">
+                                        <span class="hot">Hot</span>
+                                    </div>
+                                </div>
+                                <div class="product-content-wrap">
+                                    <div class="product-category">
+                                        <a href="shop-grid-right.html">Snack</a>
+                                    </div>
+                                    <h2><a href="shop-product-right.html">{{ $featured_product->name }}</a></h2>
+                                    <div class="product-rate-cover">
+                                        <div class="product-rate d-inline-block">
+                                            <div class="product-rating" style="width: 90%"></div>
+                                        </div>
+                                        <span class="font-small ml-5 text-muted"> (4.0)</span>
+                                    </div>
+                                    <div>
+                                        <span class="font-small text-muted">By <a
+                                                href="vendor-details-1.html">NestFood</a></span>
+                                    </div>
+                                    <div class="product-card-bottom">
+                                        <div class="product-price">
+                                            <span>{{ $featured_product->cost_price }}</span>
+                                            <span class="old-price">{{ $featured_product->discount }}</span>
+                                        </div>
+                                        <div class="add-cart">
+                                            <a class="add" href="shop-cart.html"><i
+                                                    class="fi-rs-shopping-cart mr-5"></i>Add
+                                            </a>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
                         </div>
-                    </div>
                     @endforeach
 
                 </div>
@@ -212,56 +214,58 @@
                                     id="carausel-4-columns-arrows"></div>
                                 <div class="carausel-4-columns carausel-arrow-center" id="carausel-4-columns">
                                     @foreach ($best_selling_products as $best_selling_product)
-                                    <div class="product-cart-wrap">
+                                        <div class="product-cart-wrap">
 
 
-                                        <div class="product-img-action-wrap">
-                                            <div class="product-img product-img-zoom">
-                                                <a href="shop-product-right.html">
-                                                    <img class="default-img"
-                                                        src="{{$best_selling_product->getFirstOrDefaultMediaUrl('image', 'thumb')}}">
-                                                    <img class="hover-img"
-                                                        src="{{$best_selling_product->getFirstOrDefaultMediaUrl('image', 'thumb')}}">
-                                                </a>
-                                            </div>
-                                            <div class="product-action-1">
-                                                <a aria-label="Quick view" class="action-btn small hover-up"
-                                                    data-bs-toggle="modal" data-bs-target="#quickViewModal"> <i
-                                                        class="fi-rs-eye"></i></a>
-                                                <a aria-label="Add To Wishlist" class="action-btn small hover-up"
-                                                    href="shop-wishlist.html"><i class="fi-rs-heart"></i></a>
-                                                <a aria-label="Compare" class="action-btn small hover-up"
-                                                    href="shop-compare.html"><i class="fi-rs-shuffle"></i></a>
-                                            </div>
-                                            <div class="product-badges product-badges-position product-badges-mrg">
-                                                <span class="hot">Save 15%</span>
-                                            </div>
-                                        </div>
-                                        <div class="product-content-wrap">
-                                            <div class="product-category">
-                                                <a href="shop-grid-right.html">Hodo Foods</a>
-                                            </div>
-                                            <h2><a href="shop-product-right.html">{{$best_selling_product->name}}</a>
-                                            </h2>
-                                            <div class="product-rate d-inline-block">
-                                                <div class="product-rating" style="width: 80%"></div>
-                                            </div>
-                                            <div class="product-price mt-10">
-                                                <span>{{$best_selling_product->cost_price}} </span>
-                                                <span class="old-price">Flat Discount:
-                                                    {{$best_selling_product->discount}}%</span>
-                                            </div>
-                                            <div class="sold mt-15 mb-15">
-                                                <div class="progress mb-5">
-                                                    <div class="progress-bar" role="progressbar" style="width: 50%"
-                                                        aria-valuemin="0" aria-valuemax="100"></div>
+                                            <div class="product-img-action-wrap">
+                                                <div class="product-img product-img-zoom">
+                                                    <a href="shop-product-right.html">
+                                                        <img class="default-img"
+                                                            src="{{ $best_selling_product->getFirstOrDefaultMediaUrl('image', 'thumb') }}">
+                                                        <img class="hover-img"
+                                                            src="{{ $best_selling_product->getFirstOrDefaultMediaUrl('image', 'thumb') }}">
+                                                    </a>
                                                 </div>
-                                                <span class="font-xs text-heading"> Sold: 90/120</span>
+                                                <div class="product-action-1">
+                                                    <a aria-label="Quick view" class="action-btn small hover-up"
+                                                        data-bs-toggle="modal" data-bs-target="#quickViewModal"> <i
+                                                            class="fi-rs-eye"></i></a>
+                                                    <a aria-label="Add To Wishlist" class="action-btn small hover-up"
+                                                        href="shop-wishlist.html"><i class="fi-rs-heart"></i></a>
+                                                    <a aria-label="Compare" class="action-btn small hover-up"
+                                                        href="shop-compare.html"><i class="fi-rs-shuffle"></i></a>
+                                                </div>
+                                                <div class="product-badges product-badges-position product-badges-mrg">
+                                                    <span class="hot">Save 15%</span>
+                                                </div>
                                             </div>
-                                            <a href="shop-cart.html" class="btn w-100 hover-up"><i
-                                                    class="fi-rs-shopping-cart mr-5"></i>Add To Cart</a>
+                                            <div class="product-content-wrap">
+                                                <div class="product-category">
+                                                    <a href="shop-grid-right.html">Hodo Foods</a>
+                                                </div>
+                                                <h2><a
+                                                        href="shop-product-right.html">{{ $best_selling_product->name }}</a>
+                                                </h2>
+                                                <div class="product-rate d-inline-block">
+                                                    <div class="product-rating" style="width: 80%"></div>
+                                                </div>
+                                                <div class="product-price mt-10">
+                                                    <span>{{ $best_selling_product->cost_price }} </span>
+                                                    <span class="old-price">Flat Discount:
+                                                        {{ $best_selling_product->discount }}%</span>
+                                                </div>
+                                                <div class="sold mt-15 mb-15">
+                                                    <div class="progress mb-5">
+                                                        <div class="progress-bar" role="progressbar"
+                                                            style="width: 50%" aria-valuemin="0" aria-valuemax="100">
+                                                        </div>
+                                                    </div>
+                                                    <span class="font-xs text-heading"> Sold: 90/120</span>
+                                                </div>
+                                                <a href="shop-cart.html" class="btn w-100 hover-up"><i
+                                                        class="fi-rs-shopping-cart mr-5"></i>Add To Cart</a>
+                                            </div>
                                         </div>
-                                    </div>
                                     @endforeach
                                 </div>
                             </div>
@@ -281,57 +285,59 @@
             </div>
             <div class="row">
                 @foreach ($trending_products as $trending_product)
-
-                <div class="col-xl-3 col-lg-4 col-md-6">
-                    <div class="product-cart-wrap style-2 wow animate__animated animate__fadeInUp" data-wow-delay="0">
-                        <div class="product-img-action-wrap">
-                            <div class="product-img">
-                                <a href="shop-product-right.html">
-                                    <img src="{{$trending_product->getFirstOrDefaultMediaUrl('image', 'thumb')}}">
-                                </a>
-                            </div>
-                        </div>
-                        <div class="product-content-wrap">
-                            <div class="deals-countdown-wrap">
-                                <div class="deals-countdown" data-countdown="2025/03/25 00:00:00"></div>
-                            </div>
-                            <div class="deals-content">
-                                <h2><a href="shop-product-right.html">Seeds of Change Organic Quinoa, Brown, & Red
-                                        Rice</a></h2>
-                                <div class="product-rate-cover">
-                                    <div class="product-rate d-inline-block">
-                                        <div class="product-rating" style="width: 90%"></div>
-                                    </div>
-                                    <span class="font-small ml-5 text-muted"> (4.0)</span>
+                    <div class="col-xl-3 col-lg-4 col-md-6">
+                        <div class="product-cart-wrap style-2 wow animate__animated animate__fadeInUp"
+                            data-wow-delay="0">
+                            <div class="product-img-action-wrap">
+                                <div class="product-img">
+                                    <a href="shop-product-right.html">
+                                        <img
+                                            src="{{ $trending_product->getFirstOrDefaultMediaUrl('image', 'thumb') }}">
+                                    </a>
                                 </div>
-                                <div>
-                                    <span class="font-small text-muted">By <a
-                                            href="vendor-details-1.html">NestFood</a></span>
+                            </div>
+                            <div class="product-content-wrap">
+                                <div class="deals-countdown-wrap">
+                                    <div class="deals-countdown" data-countdown="2025/03/25 00:00:00"></div>
                                 </div>
-                                <div class="product-card-bottom">
-                                    <div class="product-price">
-                                        <span>$32.85</span>
-                                        <span class="old-price">$33.8</span>
+                                <div class="deals-content">
+                                    <h2><a href="shop-product-right.html">Seeds of Change Organic Quinoa, Brown, & Red
+                                            Rice</a></h2>
+                                    <div class="product-rate-cover">
+                                        <div class="product-rate d-inline-block">
+                                            <div class="product-rating" style="width: 90%"></div>
+                                        </div>
+                                        <span class="font-small ml-5 text-muted"> (4.0)</span>
                                     </div>
-                                    <div class="add-cart">
-                                        <a class="add" href="shop-cart.html"><i class="fi-rs-shopping-cart mr-5"></i>Add
-                                        </a>
+                                    <div>
+                                        <span class="font-small text-muted">By <a
+                                                href="vendor-details-1.html">NestFood</a></span>
+                                    </div>
+                                    <div class="product-card-bottom">
+                                        <div class="product-price">
+                                            <span>$32.85</span>
+                                            <span class="old-price">$33.8</span>
+                                        </div>
+                                        <div class="add-cart">
+                                            <a class="add" href="shop-cart.html"><i
+                                                    class="fi-rs-shopping-cart mr-5"></i>Add
+                                            </a>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
                         </div>
                     </div>
-                </div>
                 @endforeach
 
 
-                <!-- 
+                <!--
                         <div class="col-xl-3 col-lg-4 col-md-6">
                             <div class="product-cart-wrap style-2 wow animate__animated animate__fadeInUp" data-wow-delay=".1s">
                                 <div class="product-img-action-wrap">
                                     <div class="product-img">
                                         <a href="shop-product-right.html">
-                                            <img src="{{asset('new_frontend\assets\imgs\banner\banner-6.png" alt="')}}">
+                                            <img src="{{ asset('new_frontend\assets\imgs\banner\banner-6.png" alt="') }}">
                                         </a>
                                     </div>
                                 </div>
@@ -368,7 +374,7 @@
                                 <div class="product-img-action-wrap">
                                     <div class="product-img">
                                         <a href="shop-product-right.html">
-                                            <img src="{{asset('new_frontend\assets\imgs\banner\banner-7.png" alt="')}}">
+                                            <img src="{{ asset('new_frontend\assets\imgs\banner\banner-7.png" alt="') }}">
                                         </a>
                                     </div>
                                 </div>
@@ -405,7 +411,7 @@
                                 <div class="product-img-action-wrap">
                                     <div class="product-img">
                                         <a href="shop-product-right.html">
-                                            <img src="{{asset('new_frontend\assets\imgs\banner\banner-8.png" alt="')}}">
+                                            <img src="{{ asset('new_frontend\assets\imgs\banner\banner-8.png" alt="') }}">
                                         </a>
                                     </div>
                                 </div>
@@ -447,61 +453,109 @@
                 <div class="col-xl-3 col-lg-4 col-md-6 mb-sm-5 mb-md-0 wow animate__animated animate__fadeInUp"
                     data-wow-delay="0">
                     <h4 class="section-title style-1 mb-30 animated animated">Top Selling</h4>
-                    @foreach($top_selling_products as $top_selling_product)
-                    <div class="product-list-small animated animated">
-                        <article class="row align-items-center hover-up">
-                            <figure class="col-md-4 mb-0">
-                                <a href="shop-product-right.html"><img
-                                        src="{{$top_selling_product->getFirstOrDefaultMediaUrl('image', 'thumb')}}"
-                                        alt=""></a>
-                            </figure>
-                            <div class="col-md-8 mb-0">
-                                <h6>
-                                    <a href="shop-product-right.html">Nestle Original Coffee-Mate Coffee Creamer</a>
-                                </h6>
-                                <div class="product-rate-cover">
-                                    <div class="product-rate d-inline-block">
-                                        <div class="product-rating" style="width: 90%"></div>
+                    @foreach ($top_selling_products as $top_selling_product)
+                        <div class="product-list-small animated animated">
+                            <article class="row align-items-center hover-up">
+                                <figure class="col-md-4 mb-0">
+                                    <a href="shop-product-right.html"><img
+                                            src="{{ $top_selling_product->getFirstOrDefaultMediaUrl('image', 'thumb') }}"
+                                            alt=""></a>
+                                </figure>
+                                <div class="col-md-8 mb-0">
+                                    <h6>
+                                        <a href="shop-product-right.html">{{ $top_selling_product->name }}</a>
+                                    </h6>
+                                    <div class="rating">
+                                        @php
+                                            $num_rating = number_format($top_selling_product->averageRating);
+                                        @endphp
+                                        @for ($i = 0; $i < $num_rating; $i++)
+                                            <i class="fa fa-star checked"> </i>
+                                        @endfor
+                                        @for ($j = $num_rating; $j < 5; $j++)
+                                            <i class="fa fa-star"> </i>
+                                        @endfor
+                                        <span class="font-small ml-5 text-muted">
+                                            ({{ round($top_selling_product->averageRating, 1) }})</span>
                                     </div>
-                                    <span class="font-small ml-5 text-muted"> (4.0)</span>
+                                    @if ($top_selling_product->discount === 0)
+                                        <div class="product-price">
+                                            <span> Rs.{{ $top_selling_product->selling_price }}</span>
+                                        </div>
+                                    @else
+                                        @if ($top_selling_product->discount_type === 'percent')
+                                            <div class="product-price">
+                                                <span>
+                                                    Rs.{{ $top_selling_product->selling_price * (1 - $top_selling_product->discount / 100) }}</span>
+                                                <span
+                                                    class="old-price">Rs.{{ $top_selling_product->selling_price }}</span>
+                                            </div>
+                                        @else
+                                            <div class="product-price">
+                                                <span>
+                                                    {{ $top_selling_product->selling_price - $top_selling_product->discount }}</span>
+                                                <span
+                                                    class="old-price">{{ $top_selling_product->selling_price }}</span>
+                                            </div>
+                                        @endif
+                                    @endif
                                 </div>
-                                <div class="product-price">
-                                    <span>$32.85</span>
-                                    <span class="old-price">$33.8</span>
-                                </div>
-                            </div>
-                        </article>
-                    </div>
+                            </article>
+                        </div>
                     @endforeach
                 </div>
                 <div class="col-xl-3 col-lg-4 col-md-6 mb-md-0 wow animate__animated animate__fadeInUp"
                     data-wow-delay=".1s">
                     <h4 class="section-title style-1 mb-30 animated animated">Trending Products</h4>
                     @foreach ($featured_products as $featured_product)
-                    <div class="product-list-small animated animated">
-                        <article class="row align-items-center hover-up">
-                            <figure class="col-md-4 mb-0">
-                                <a href="shop-product-right.html"><img
-                                        src="{{$featured_product->getFirstOrDefaultMediaUrl('image', 'thumb')}}"
-                                        alt=""></a>
-                            </figure>
-                            <div class="col-md-8 mb-0">
-                                <h6>
-                                    <a href="shop-product-right.html">Organic Cage-Free Grade A Large Brown Eggs</a>
-                                </h6>
-                                <div class="product-rate-cover">
-                                    <div class="product-rate d-inline-block">
-                                        <div class="product-rating" style="width: 90%"></div>
+                        <div class="product-list-small animated animated">
+                            <article class="row align-items-center hover-up">
+                                <figure class="col-md-4 mb-0">
+                                    <a href="shop-product-right.html"><img
+                                            src="{{ $featured_product->getFirstOrDefaultMediaUrl('image', 'thumb') }}"
+                                            alt=""></a>
+                                </figure>
+                                <div class="col-md-8 mb-0">
+                                    <h6>
+                                        <a href="shop-product-right.html">{{ $featured_product->name }}</a>
+                                    </h6>
+                                    <div class="rating">
+                                        @php
+                                            $num_rating = number_format($featured_product->averageRating);
+                                        @endphp
+                                        @for ($i = 0; $i < $num_rating; $i++)
+                                            <i class="fa fa-star checked"> </i>
+                                        @endfor
+                                        @for ($j = $num_rating; $j < 5; $j++)
+                                            <i class="fa fa-star"> </i>
+                                        @endfor
+                                        <span class="font-small ml-5 text-muted">
+                                            ({{ round($featured_product->averageRating, 1) }})</span>
                                     </div>
-                                    <span class="font-small ml-5 text-muted"> (4.0)</span>
+                                    @if ($featured_product->discount === 0)
+                                        <div class="product-price">
+                                            <span> Rs.{{ $featured_product->selling_price }}</span>
+                                        </div>
+                                    @else
+                                        @if ($featured_product->discount_type === 'percent')
+                                            <div class="product-price">
+                                                <span>
+                                                    Rs.{{ $featured_product->selling_price * (1 - $featured_product->discount / 100) }}</span>
+                                                <span
+                                                    class="old-price">Rs.{{ $featured_product->selling_price }}</span>
+                                            </div>
+                                        @else
+                                            <div class="product-price">
+                                                <span>
+                                                    {{ $featured_product->selling_price - $featured_product->discount }}</span>
+                                                <span
+                                                    class="old-price">{{ $featured_product->selling_price }}</span>
+                                            </div>
+                                        @endif
+                                    @endif
                                 </div>
-                                <div class="product-price">
-                                    <span>$32.85</span>
-                                    <span class="old-price">$33.8</span>
-                                </div>
-                            </div>
-                        </article>
-                    </div>
+                            </article>
+                        </div>
                     @endforeach
 
                 </div>
@@ -509,103 +563,113 @@
                     data-wow-delay=".2s">
                     <h4 class="section-title style-1 mb-30 animated animated">Recently added</h4>
                     @foreach ($recent_products as $recent_product)
-                    <div class="product-list-small animated animated">
-                        <article class="row align-items-center hover-up">
-                            <figure class="col-md-4 mb-0">
-                                <a href="shop-product-right.html"><img
-                                        src="{{$recent_product->getFirstOrDefaultMediaUrl('image', 'thumb')}}"
-                                        alt=""></a>
-                            </figure>
-                            <div class="col-md-8 mb-0">
-                                <h6>
-                                    <a href="shop-product-right.html">Pepperidge Farm Farmhouse Hearty White Bread</a>
-                                </h6>
-                                <div class="product-rate-cover">
-                                    <div class="product-rate d-inline-block">
-                                        <div class="product-rating" style="width: 90%"></div>
+                        <div class="product-list-small animated animated">
+                            <article class="row align-items-center hover-up">
+                                <figure class="col-md-4 mb-0">
+                                    <a href="shop-product-right.html"><img
+                                            src="{{ $recent_product->getFirstOrDefaultMediaUrl('image', 'thumb') }}"
+                                            alt=""></a>
+                                </figure>
+                                <div class="col-md-8 mb-0">
+                                    <h6>
+                                        <a href="shop-product-right.html">{{ $recent_product->name }}</a>
+                                    </h6>
+                                    <div class="rating">
+                                        @php
+                                            $num_rating = number_format($recent_product->averageRating);
+                                        @endphp
+                                        @for ($i = 0; $i < $num_rating; $i++)
+                                            <i class="fa fa-star checked"> </i>
+                                        @endfor
+                                        @for ($j = $num_rating; $j < 5; $j++)
+                                            <i class="fa fa-star"> </i>
+                                        @endfor
+                                        <span class="font-small ml-5 text-muted">
+                                            ({{ round($recent_product->averageRating, 1) }})</span>
                                     </div>
-                                    <span class="font-small ml-5 text-muted"> (4.0)</span>
+                                    @if ($recent_product->discount === 0)
+                                        <div class="product-price">
+                                            <span> Rs.{{ $recent_product->selling_price }}</span>
+                                        </div>
+                                    @else
+                                        @if ($recent_product->discount_type === 'percent')
+                                            <div class="product-price">
+                                                <span>
+                                                    Rs.{{ $recent_product->selling_price * (1 - $recent_product->discount / 100) }}</span>
+                                                <span
+                                                    class="old-price">Rs.{{ $recent_product->selling_price }}</span>
+                                            </div>
+                                        @else
+                                            <div class="product-price">
+                                                <span>
+                                                    {{ $recent_product->selling_price - $recent_product->discount }}</span>
+                                                <span
+                                                    class="old-price">{{ $recent_product->selling_price }}</span>
+                                            </div>
+                                        @endif
+                                    @endif
                                 </div>
-                                <div class="product-price">
-                                    <span>$32.85</span>
-                                    <span class="old-price">$33.8</span>
-                                </div>
-                            </div>
-                        </article>
-                    </div>
+                            </article>
+                        </div>
                     @endforeach
                 </div>
+                <!-- Top Rated Products -->
                 <div class="col-xl-3 col-lg-4 col-md-6 mb-sm-5 mb-md-0 d-none d-xl-block wow animate__animated animate__fadeInUp"
                     data-wow-delay=".3s">
                     <h4 class="section-title style-1 mb-30 animated animated">Top Rated</h4>
                     <div class="product-list-small animated animated">
-                        <article class="row align-items-center hover-up">
-                            <figure class="col-md-4 mb-0">
-                                <a href="shop-product-right.html"><img
-                                        src="{{asset('new_frontend\assets\imgs\shop\thumbnail-10.jpg')}}" alt=""></a>
-                            </figure>
-                            <div class="col-md-8 mb-0">
-                                <h6>
-                                    <a href="shop-product-right.html">Foster Farms Takeout Crispy Classic Buffalo
-                                        Wings</a>
-                                </h6>
-                                <div class="product-rate-cover">
-                                    <div class="product-rate d-inline-block">
-                                        <div class="product-rating" style="width: 90%"></div>
+                        @foreach ($rated_products as $rated_product)
+                            <article class="row align-items-center hover-up">
+                                <figure class="col-md-4 mb-0">
+                                    <a href="shop-product-right.html"><img
+                                            src="{{ $rated_product->getFirstOrDefaultMediaUrl('image', 'thumb') }}"
+                                            alt=""></a>
+                                </figure>
+                                <div class="col-md-8 mb-0">
+                                    <h6>
+                                        <a href="shop-product-right.html">{{ $rated_product->name }}</a>
+                                    </h6>
+                                    <div class="rating">
+                                        @php
+                                            $num_rating = number_format($rated_product->averageRating);
+                                        @endphp
+                                        @for ($i = 0; $i < $num_rating; $i++)
+                                            <i class="fa fa-star checked"> </i>
+                                        @endfor
+                                        @for ($j = $num_rating; $j < 5; $j++)
+                                            <i class="fa fa-star"> </i>
+                                        @endfor
+                                        <span class="font-small ml-5 text-muted">
+                                            ({{ round($rated_product->averageRating, 1) }})</span>
                                     </div>
-                                    <span class="font-small ml-5 text-muted"> (4.0)</span>
+                                    @if ($rated_product->discount === 0)
+                                        <div class="product-price">
+                                            <span> Rs.{{ $rated_product->selling_price }}</span>
+                                        </div>
+                                    @else
+                                        @if ($rated_product->discount_type === 'percent')
+                                            <div class="product-price">
+                                                <span>
+                                                    Rs.{{ $rated_product->selling_price * (1 - $rated_product->discount / 100) }}</span>
+                                                <span
+                                                    class="old-price">Rs.{{ $rated_product->selling_price }}</span>
+                                            </div>
+                                        @else
+                                            <div class="product-price">
+                                                <span>
+                                                    {{ $rated_product->selling_price - $rated_product->discount }}</span>
+                                                <span
+                                                    class="old-price">{{ $rated_product->selling_price }}</span>
+                                            </div>
+                                        @endif
+                                    @endif
                                 </div>
-                                <div class="product-price">
-                                    <span>$32.85</span>
-                                    <span class="old-price">$33.8</span>
-                                </div>
-                            </div>
-                        </article>
-                        <article class="row align-items-center hover-up">
-                            <figure class="col-md-4 mb-0">
-                                <a href="shop-product-right.html"><img
-                                        src="{{asset('new_frontend\assets\imgs\shop\thumbnail-11.jpg')}}" alt=""></a>
-                            </figure>
-                            <div class="col-md-8 mb-0">
-                                <h6>
-                                    <a href="shop-product-right.html">Angie’s Boomchickapop Sweet & Salty Kettle
-                                        Corn</a>
-                                </h6>
-                                <div class="product-rate-cover">
-                                    <div class="product-rate d-inline-block">
-                                        <div class="product-rating" style="width: 90%"></div>
-                                    </div>
-                                    <span class="font-small ml-5 text-muted"> (4.0)</span>
-                                </div>
-                                <div class="product-price">
-                                    <span>$32.85</span>
-                                    <span class="old-price">$33.8</span>
-                                </div>
-                            </div>
-                        </article>
-                        <article class="row align-items-center hover-up">
-                            <figure class="col-md-4 mb-0">
-                                <a href="shop-product-right.html"><img
-                                        src="{{asset('new_frontend\assets\imgs\shop\thumbnail-12.jpg')}}" alt=""></a>
-                            </figure>
-                            <div class="col-md-8 mb-0">
-                                <h6>
-                                    <a href="shop-product-right.html">All Natural Italian-Style Chicken Meatballs</a>
-                                </h6>
-                                <div class="product-rate-cover">
-                                    <div class="product-rate d-inline-block">
-                                        <div class="product-rating" style="width: 90%"></div>
-                                    </div>
-                                    <span class="font-small ml-5 text-muted"> (4.0)</span>
-                                </div>
-                                <div class="product-price">
-                                    <span>$32.85</span>
-                                    <span class="old-price">$33.8</span>
-                                </div>
-                            </div>
-                        </article>
+                            </article>
+                        @endforeach
                     </div>
                 </div>
+
+                <!--End of top rated products -->
             </div>
         </div>
     </section>

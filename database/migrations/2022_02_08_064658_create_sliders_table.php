@@ -16,7 +16,7 @@ class CreateSlidersTable extends Migration
         Schema::create('sliders', function (Blueprint $table) {
             $table->id();
             $table->foreignId('brand_id')->constrained('brands')->onDelete('cascade');
-            $table->boolean('status')->default(true);
+            $table->boolean('status')->default(false);
             $table->boolean('is_popup')->default(false);
             $table->timestamps();
         });

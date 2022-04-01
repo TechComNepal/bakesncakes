@@ -15,6 +15,7 @@
                 @if (!$carts->isEmpty())
                     <form method="post" id="checkout-form">
                         @csrf
+                        <input type="hidden" name="seller_id" value="{{ $carts[0]['seller_id'] }}">
                         <div class="row">
                             <div class="col-12 col-lg-8">
                                 <div class="ps-checkout__form">
@@ -317,11 +318,13 @@
                     let payment_method = $("input[type=radio][name=payment]:checked");
                     let address_id = $('input[type=radio][name="address_id"]:checked').val();
                     let total = $('#total').text();
+                    let seller_id = $('input[type=hidden][name="seller_id"]').val();
 
                     let data = {
                         'payment_method': payment_method.val(),
                         'total': total,
                         'address_id': address_id,
+                        'seller_id' : seller_id,
                     }
 
                     if ($('input:radio[name="address_id"]').is(':checked')) {
@@ -395,6 +398,8 @@
                     let charge = $(this).data('charge') ? $(this).data('charge') : 0;
                     let total = {{ $total }};
                     let totalAfterCharge = parseFloat(charge) + parseFloat(total);
+
+
 
                     $('#shipping_charge').html(charge);
                     $('#total').html(totalAfterCharge);

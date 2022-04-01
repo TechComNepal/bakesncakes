@@ -12,7 +12,7 @@
                         <div class="ms-auto">
                             <div>
                                 <a href="{{ route('admin.' . Str::plural(Str::lower($pageTitle)) . '.create') }}"
-                                   type="button" class="btn btn-primary btn-md">
+                                    type="button" class="btn btn-primary btn-md">
                                     <i class="bx bx-plus"></i> New {{ $pageTitle }}
                                 </a>
                             </div>
@@ -27,22 +27,26 @@
             <div class="accordion-item">
                 <h2 class="accordion-header" id="flush-headingOne">
                     <button class="accordion-button fw-medium collapsed" type="button" data-bs-toggle="collapse"
-                            data-bs-target="#flush-collapseOne" aria-expanded="false" aria-controls="flush-collapseOne">
+                        data-bs-target="#flush-collapseOne" aria-expanded="false" aria-controls="flush-collapseOne">
                         <i class='bx bxs-file-import fw-bold mr-10 bx-sm'></i> Import
                     </button>
                 </h2>
                 <div id="flush-collapseOne" class="accordion-collapse collapse" aria-labelledby="flush-headingOne"
-                     data-bs-parent="#accordionFlushExample">
+                    data-bs-parent="#accordionFlushExample">
                     <div class="accordion-body text-muted">
-                        <p class="text-sm"><b>Note:</b> While importing the excel file, Please do not change any of the heading. <b>role</b> column on excel file should be only the <b>vendor or user</b> as per their role. <b>Password</b> by default of the uploaded users will be <b>password</b>.</p>
-                        <form action="#" method="post" enctype="multipart/form-data">
+                        <p class="text-sm"><b>Note:</b> While importing the excel file, Please do not change any
+                            of the heading. <b>role</b> column on excel file should be only the <b>vendor or user</b> as
+                            per their role. <b>Password</b> by default of the uploaded users will be <b>password</b>.
+                        </p>
+                        <form action="{{ route('admin.users.import') }}" method="post" enctype="multipart/form-data">
                             @csrf
-                            <x-input-field :type="'file'" :label="'Choose excel file'" :name="'import_file'" :placeholder="'Please Select Excel File.'"
-                                           :required="true" :autofocus="true" />
+                            <x-input-field :type="'file'" :label="'Choose excel file'" :name="'import_file'"
+                                :placeholder="'Please Select Excel File.'" :required="true" :autofocus="true" />
 
-                            <x-button :title="'Import File'"/>
+                            <x-button :title="'Import File'" />
 
-                            <a class="btn btn-success" href="{{ asset('import_template/User_Import.xlsx') }}">Download Template</a>
+                            <a class="btn btn-success" href="{{ asset('import_template/User_Import.xlsx') }}">Download
+                                Template</a>
                         </form>
 
                     </div>
@@ -52,12 +56,12 @@
             <div class="accordion-item">
                 <h2 class="accordion-header" id="flush-headingTwo">
                     <button class="accordion-button fw-medium collapsed" type="button" data-bs-toggle="collapse"
-                            data-bs-target="#flush-collapseTwo" aria-expanded="false" aria-controls="flush-collapseTwo">
+                        data-bs-target="#flush-collapseTwo" aria-expanded="false" aria-controls="flush-collapseTwo">
                         <i class='bx bx-search-alt fw-bold mr-10 bx-sm'></i> Advanced Search
                     </button>
                 </h2>
                 <div id="flush-collapseTwo" class="accordion-collapse collapse" aria-labelledby="flush-headingTwo"
-                     data-bs-parent="#accordionFlushExample">
+                    data-bs-parent="#accordionFlushExample">
                     <div class="accordion-body text-muted">
                         <form class="form-horizontal" method="GET" role="form" autocomplete="off" id="search-form">
                             @csrf
@@ -88,7 +92,8 @@
                                 </div>
                                 <div class="col-md-4">
                                     <div class="mt-4">
-                                        <button type="submit" class="btn btn-success"><i class="fa fa-search fa-lg"></i>search</button>
+                                        <button type="submit" class="btn btn-success"><i
+                                                class="fa fa-search fa-lg"></i>search</button>
                                     </div>
                                 </div>
                             </div>
@@ -151,8 +156,9 @@
                         ">",
                     processing: true,
                     serverSide: true,
+                    responsive: false,
                     ajax: {
-                        url : "{!! route('admin.users.index') !!}",
+                        url: "{!! route('admin.users.index') !!}",
                         data: function(d) {
                             d.email = $('#email').val();
                             d.name = $('#name').val();
@@ -202,6 +208,11 @@
                             searchable: false
                         },
                     ]
+                });
+
+                $('#search-form').on('submit', function(e) {
+                    DTable.draw();
+                    e.preventDefault();
                 });
 
 

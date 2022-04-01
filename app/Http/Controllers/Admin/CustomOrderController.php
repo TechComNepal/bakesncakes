@@ -51,7 +51,7 @@ class CustomOrderController extends Controller
             $customOrder=CustomOrder::create($merge->all());
        
             if ($customOrder) {
-                $this->imageUploadService->uploadMultipleMediaFromRequest($request, $customOrder, 'gallery_image_url', 'gallery_image');
+                $this->imageUploadService->uploadMultipleMediaFromRequest($request, $customOrder, 'gallery_image', 'gallery_image');
                 $this->imageUploadService->uploadImageFromRequest($request, $customOrder, 'image', 'image');
             }
             return $customOrder
@@ -83,7 +83,7 @@ class CustomOrderController extends Controller
         ]);
 
             return $customOrder->update(['status' => $request->status])
-        ? $this->responseRedirect('admin.customOrder.index', 'Custom Order Successfully Created.', 'success')
+        ? $this->responseRedirect('admin.customOrder.index', 'Custom Order Successfully Updated', 'success')
         : $this->responseRedirectBack('Custom Order Successfully Created Error.', 'error', true, true);
         } catch (\Throwable $exception) {
             return $exception->getMessage();
@@ -158,10 +158,6 @@ class CustomOrderController extends Controller
                     ';
             })
 
-           
-            ->editColumn('image', function ($data) {
-                return ' <img src="'. $data->getFirstOrDefaultMediaUrl("gallery_image", "original") .'" style="wiidth: 60px; height: 60px;">';
-            })
 
            
                  ->editColumn('address', function ($data) {
@@ -215,7 +211,7 @@ class CustomOrderController extends Controller
 
         
             ->addIndexColumn()
-            ->rawColumns(['actions', 'name', 'email', 'image', 'description','address', 'quantity', 'date', 'status'])
+            ->rawColumns(['actions', 'name', 'email', 'description','address', 'quantity', 'date', 'status'])
             ->make(true);
     }
 

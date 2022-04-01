@@ -78,7 +78,7 @@ class User extends Authenticatable implements MustVerifyEmail, HasMedia
             ->dontLogIfAttributesChangedOnly(['created_at', 'updated_at', 'password', 'provider_id'])
             ->logOnlyDirty()
             ->dontSubmitEmptyLogs()
-            ->setDescriptionForEvent(fn(string $eventName) => "User has been {$eventName}");
+            ->setDescriptionForEvent(fn (string $eventName) => "User has been {$eventName}");
     }
 
 
@@ -143,8 +143,13 @@ class User extends Authenticatable implements MustVerifyEmail, HasMedia
         return $this->hasMany(Order::class, 'user_id');
     }
 
-      public function ratings()
+    public function ratings()
     {
         return $this->hasMany(Rating::class, 'user_id');
+    }
+
+    public function products()
+    {
+        return $this->hasMany(User::class, 'user_id');
     }
 }

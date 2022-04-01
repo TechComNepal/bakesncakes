@@ -1,6 +1,6 @@
 <x-cms-employee-master-layout :pageTitle="$pageTitle">
     <x-breadcrumb :title="$pageTitle" :item="1" :method="'List Of'" />
-    <x-error/>
+    <x-error />
 
     <div class="row">
         <div class="col-12">
@@ -10,11 +10,11 @@
                         <h4 class="card-title">List of {{ $pageTitle }}</h4>
                         <div class="ms-auto">
                             <div>
-                                @if(auth()->user()->can('add product'))
-                                <a href="{{ route('employee.products.create') }}" type="button"
-                                   class="btn btn-primary btn-md">
-                                    <i class="bx bx-plus"></i> New {{ $pageTitle }}
-                                </a>
+                                @if (auth()->user()->can('add product'))
+                                    <a href="{{ route('employee.products.create') }}" type="button"
+                                        class="btn btn-primary btn-md">
+                                        <i class="bx bx-plus"></i> New {{ $pageTitle }}
+                                    </a>
                                 @endif
                             </div>
                         </div>
@@ -24,19 +24,19 @@
 
                     <table id="datatable" class="table table-bordered dt-responsive  nowrap w-100">
                         <thead>
-                        <tr>
-                            <th>SN.</th>
-                            <th>Name</th>
-                            <th>Info</th>
-                            <th>SKU</th>
-                            <th>Slug</th>
-                            <th>Taxable</th>
-                            <th>Featured</th>
-                            <th>Refundable</th>
-                            <th>Trending</th>
-                            <th>Sellable</th>
-                            <th>Actions</th>
-                        </tr>
+                            <tr>
+                                <th>SN.</th>
+                                <th>Name</th>
+                                <th>Info</th>
+                                <th>SKU</th>
+                                <th>Slug</th>
+                                <th>Taxable</th>
+                                <th>Featured</th>
+                                <th>Refundable</th>
+                                <th>Trending</th>
+                                <th>Sellable</th>
+                                <th>Actions</th>
+                            </tr>
                         </thead>
 
 
@@ -53,21 +53,21 @@
 
     @push('scripts')
         <script>
-            function toggleIsStatus(id) {
-                let statusEl = $('#is-status-switch-' + id);
-                let is_status = statusEl.prop('checked') === true ? 'on' : 'off';
+            function toggleIsTaxable(id) {
+                let statusEl = $('#is-taxable-switch-' + id);
+                let is_taxable = statusEl.prop('checked') === true ? 'on' : 'off';
 
                 $.ajax({
                     type: "GET",
                     dataType: "json",
-                    url: "{{ route('employee.categories.toggle.status') }}",
+                    url: "{{ route('employee.products.toggle.taxable') }}",
                     data: {
-                        'is_status': is_status,
-                        'category_id': id,
+                        'is_taxable': is_taxable,
+                        'product_id': id,
                     },
                     success: function(data) {
                         (data.status === 'success') ?
-                            alertify.success(data.message): alertify.error(data.message);
+                        alertify.success(data.message): alertify.error(data.message);
                     }
                 });
             }
@@ -79,33 +79,71 @@
                 $.ajax({
                     type: "GET",
                     dataType: "json",
-                    url: "{{ route('employee.categories.toggle.featured') }}",
+                    url: "{{ route('employee.products.toggle.featured') }}",
                     data: {
                         'is_featured': is_featured,
-                        'category_id': id,
+                        'product_id': id,
                     },
                     success: function(data) {
                         (data.status === 'success') ?
-                            alertify.success(data.message): alertify.error(data.message);
+                        alertify.success(data.message): alertify.error(data.message);
                     }
                 });
             }
 
-            function toggleInMenu(id) {
-                let menuEl = $('#in-menu-switch-' + id);
-                let in_menu = menuEl.prop('checked') === true ? 'on' : 'off';
+            function toggleIsRefundable(id) {
+                let statusEl = $('#is-refundable-switch-' + id);
+                let is_refundable = statusEl.prop('checked') === true ? 'on' : 'off';
 
                 $.ajax({
                     type: "GET",
                     dataType: "json",
-                    url: "{{ route('employee.categories.toggle.menu') }}",
+                    url: "{{ route('employee.products.toggle.refundable') }}",
                     data: {
-                        'in_menu': in_menu,
-                        'category_id': id,
+                        'is_refundable': is_refundable,
+                        'product_id': id,
                     },
                     success: function(data) {
                         (data.status === 'success') ?
-                            alertify.success(data.message): alertify.error(data.message);
+                        alertify.success(data.message): alertify.error(data.message);
+                    }
+                });
+            }
+
+            function toggleIsTrending(id) {
+                let statusEl = $('#is-trending-switch-' + id);
+                let is_trending = statusEl.prop('checked') === true ? 'on' : 'off';
+
+                $.ajax({
+                    type: "GET",
+                    dataType: "json",
+                    url: "{{ route('employee.products.toggle.trending') }}",
+                    data: {
+                        'is_trending': is_trending,
+                        'product_id': id,
+                    },
+                    success: function(data) {
+                        (data.status === 'success') ?
+                        alertify.success(data.message): alertify.error(data.message);
+                    }
+                });
+            }
+
+            function toggleIsSellable(id) {
+                let statusEl = $('#is-sellable-switch-' + id);
+                let is_sellable = statusEl.prop('checked') === true ? 'on' : 'off';
+
+                $.ajax({
+                    type: "GET",
+                    dataType: "json",
+                    url: "{{ route('employee.products.toggle.sellable') }}",
+                    data: {
+                        'is_sellable': is_sellable,
+                        'product_id': id,
+                    },
+                    success: function(data) {
+                        (data.status === 'success') ?
+                        alertify.success(data.message): alertify.error(data.message);
                     }
                 });
             }
@@ -133,19 +171,56 @@
                     responsive: false,
                     ajax: window.location.href,
                     columns: [{
-                        data: 'DT_RowIndex',
-                        name: 'DT_RowIndex'
-                    },
-                        {data: 'name', name: 'name'},
-                        {data: 'info', name: 'info'},
-                        {data: 'sku', name: 'sku'},
-                        {data: 'slug', name: 'slug', orderable: false},
-                        {data: 'is_taxable', name: 'is_taxable'},
-                        {data: 'is_featured', name: 'is_featured', orderable: false},
-                        {data: 'is_refundable', name: 'is_refundable', orderable: false},
-                        {data: 'is_trending', name: 'is_trending', orderable: false},
-                        {data: 'is_sellable', name: 'is_sellable', orderable: false},
-                        {data: 'actions', name: 'actions', orderable: false, searchable: false},
+                            data: 'DT_RowIndex',
+                            name: 'DT_RowIndex'
+                        },
+                        {
+                            data: 'name',
+                            name: 'name'
+                        },
+                        {
+                            data: 'info',
+                            name: 'info'
+                        },
+                        {
+                            data: 'sku',
+                            name: 'sku'
+                        },
+                        {
+                            data: 'slug',
+                            name: 'slug',
+                            orderable: false
+                        },
+                        {
+                            data: 'is_taxable',
+                            name: 'is_taxable'
+                        },
+                        {
+                            data: 'is_featured',
+                            name: 'is_featured',
+                            orderable: false
+                        },
+                        {
+                            data: 'is_refundable',
+                            name: 'is_refundable',
+                            orderable: false
+                        },
+                        {
+                            data: 'is_trending',
+                            name: 'is_trending',
+                            orderable: false
+                        },
+                        {
+                            data: 'is_sellable',
+                            name: 'is_sellable',
+                            orderable: false
+                        },
+                        {
+                            data: 'actions',
+                            name: 'actions',
+                            orderable: false,
+                            searchable: false
+                        },
                     ],
                     "fnDrawCallback": function() {
                         initSwitchToggler();
@@ -163,7 +238,6 @@
                 });
             });
         </script>
-
     @endpush
 
 </x-cms-employee-master-layout>

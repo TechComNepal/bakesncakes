@@ -18,6 +18,12 @@
                             <a class="nav-link px-3 " data-bs-toggle="tab" href="#security" role="tab">Orders</a>
                         </li>
 
+                        <li class="nav-item">
+                            <a class="nav-link px-3 " data-bs-toggle="tab" href="#newsletter" role="tab">NewsLetter
+                                Subscriptions</a>
+                        </li>
+
+
                     </ul>
                 </div>
                 <div class="tab-content">
@@ -80,6 +86,36 @@
                     </div>
                     <!--end tab pane-->
 
+                    <div class="tab-pane " id="newsletter" role="tabpanel">
+                        <div class="card">
+                            <div class="card-header">
+                                <h5 class="card-title mb-0">newsletter subscription</h5>
+                            </div>
+                            <div class="card-body">
+
+
+                                <table id="news-datatable" class="table table-bordered dt-responsive  nowrap w-100">
+                                    <thead>
+                                        <tr>
+                                            <th>SN.</th>
+                                            <th>Email</th>
+                                            <th>Created At</th>
+                                            <th>Actions</th>
+                                        </tr>
+                                    </thead>
+
+
+                                    <tbody>
+
+
+                                    </tbody>
+                                </table>
+
+                            </div>
+                        </div>
+                    </div>
+                    <!--end tab pane-->
+
                 </div>
                 <!-- end col -->
 
@@ -95,7 +131,7 @@
             $(document).ready(() => {
 
 
-                var DTable = $("#datatable").DataTable({
+                var DTable1 = $("#datatable").DataTable({
                     "language": {
                         "lengthMenu": "Show _MENU_",
                     },
@@ -141,7 +177,17 @@
 
                 });
 
-                var DTable = $("#order-datatable").DataTable({
+                //
+                $('#datatable').on('click', '#delete-btn', function(event) {
+                    event.preventDefault();
+                    event.stopPropagation();
+                    var id = $(this).data('id');
+                    var delete_url = "{{ route('admin.notifications.destroy', '') }}/" + id;
+
+                    showConfirmationDialog(delete_url, DTable1);
+                });
+
+                var DTable2 = $("#order-datatable").DataTable({
                     "language": {
                         "lengthMenu": "Show _MENU_",
                     },
@@ -192,13 +238,68 @@
                 });
 
                 //
-                $('#datatable').on('click', '#delete-btn', function(event) {
+                $('#order-datatable').on('click', '#order-delete-btn', function(event) {
                     event.preventDefault();
                     event.stopPropagation();
                     var id = $(this).data('id');
-                    var delete_url = "{{ route('admin.newsletters.destroy', '') }}/" + id;
+                    var delete_url = "{{ route('admin.notifications.destroy', '') }}/" + id;
 
-                    showConfirmationDialog(delete_url, DTable);
+                    showConfirmationDialog(delete_url, DTable2);
+                });
+
+
+
+                var DTable3 = $("#news-datatable").DataTable({
+                    "language": {
+                        "lengthMenu": "Show _MENU_",
+                    },
+                    "dom": "<'row'" +
+                        "<'col-sm-6 d-flex align-items-center justify-conten-start'l>" +
+                        "<'col-sm-6 d-flex align-items-center justify-content-end'f>" +
+                        ">" +
+
+                        "<'table-responsive'tr>" +
+
+                        "<'row'" +
+                        "<'col-sm-12 col-md-5 d-flex align-items-center justify-content-center justify-content-md-start'i>" +
+                        "<'col-sm-12 col-md-7 d-flex align-items-center justify-content-center justify-content-md-end'p>" +
+                        ">",
+                    processing: true,
+                    serverSide: true,
+                    responsive: false,
+                    ajax: "{{ route('admin.notifications.newsletter') }}",
+                    columns: [{
+                            data: 'DT_RowIndex',
+                            name: 'DT_RowIndex'
+                        },
+                        {
+                            data: 'email',
+                            name: 'email'
+                        },
+
+                        {
+                            data: 'created_at',
+                            name: 'created_at'
+                        },
+
+                        {
+                            data: 'actions',
+                            name: 'actions',
+                            orderable: false,
+                            searchable: false
+                        },
+                    ],
+
+                });
+
+                //
+                $('#news-datatable').on('click', '#news-delete-btn', function(event) {
+                    event.preventDefault();
+                    event.stopPropagation();
+                    var id = $(this).data('id');
+                    var delete_url = "{{ route('admin.notifications.destroy', '') }}/" + id;
+
+                    showConfirmationDialog(delete_url, DTable3);
                 });
             });
         </script>

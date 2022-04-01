@@ -30,12 +30,12 @@
                             </a>
                         </li>
 
-                        @if(auth()->user()->can('add category'))
-                        <li>
-                            <a href="{{ route('employee.categories.create') }}">
-                                <span data-key="t-chat">Create Category</span>
-                            </a>
-                        </li>
+                        @if (auth()->user()->can('add category'))
+                            <li>
+                                <a href="{{ route('employee.categories.create') }}">
+                                    <span data-key="t-chat">Create Category</span>
+                                </a>
+                            </li>
                         @endif
                     </ul>
                 </li>
@@ -48,8 +48,9 @@
                     </a>
                     <ul class="sub-menu" aria-expanded="false">
                         <li><a href="{{ route('employee.brands.index') }}" data-key="t-register">All Brands</a></li>
-                        @if(auth()->user()->can('add brand'))
-                            <li><a href="{{ route('employee.brands.create') }}" data-key="t-login">Create Brands</a></li>
+                        @if (auth()->user()->can('add brand'))
+                            <li><a href="{{ route('employee.brands.create') }}" data-key="t-login">Create Brands</a>
+                            </li>
                         @endif
                     </ul>
                 </li>
@@ -61,10 +62,27 @@
                         <span data-key="t-authentication">Products</span>
                     </a>
                     <ul class="sub-menu" aria-expanded="false">
-                        <li><a href="{{ route('employee.products.index') }}" data-key="t-register">All Products</a></li>
-                        @if(auth()->user()->can('add product'))
-                            <li><a href="{{ route('employee.products.create') }}" data-key="t-login">Create Products</a></li>
+                        <li><a href="{{ route('employee.products.index') }}" data-key="t-register">All Products</a>
+                        </li>
+                        @if (auth()->user()->can('add product'))
+                            <li><a href="{{ route('employee.products.create') }}" data-key="t-login">Create
+                                    Products</a></li>
                         @endif
+                    </ul>
+                </li>
+
+                <!-- Reports -->
+                <li>
+                    <a href="javascript: void(0);" class="has-arrow">
+                        <i data-feather="grid"></i>
+                        <span data-key="t-apps">Reports</span>
+                    </a>
+                    <ul class="sub-menu" aria-expanded="false">
+                        <li>
+                            <a href="{{ route('employee.productStock.view') }}">
+                                <span data-key="t-calendar">Product Stock Report</span>
+                            </a>
+                        </li>
                     </ul>
                 </li>
 
@@ -77,11 +95,20 @@
                     </a>
                     <ul class="sub-menu" aria-expanded="false">
                         <li><a href="{{ route('employee.blogs.index') }}" data-key="t-blogs">All Blogs</a></li>
-                        @if(auth()->user()->can('add blog'))
-                        <li><a href="{{ route('employee.blogs.create') }}" data-key="t-Terms">Create Blogs</a></li>
+                        @if (auth()->user()->can('add blog'))
+                            <li><a href="{{ route('employee.blogs.create') }}" data-key="t-Terms">Create Blogs</a>
+                            </li>
                         @endif
 
                     </ul>
+                </li>
+
+                <!-- Order -->
+                <li>
+                    <a href="{{ route('employee.orders.index') }}">
+                        <i data-feather="home"></i>
+                        <span data-key="t-dashboard">Orders</span>
+                    </a>
                 </li>
 
             </ul>

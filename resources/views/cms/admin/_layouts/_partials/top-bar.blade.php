@@ -1,4 +1,5 @@
  <header id="page-topbar">
+    
      <div class="navbar-header">
          <div class="d-flex">
              <!-- LOGO -->
@@ -100,20 +101,19 @@
                              </div>
                              @foreach (auth()->user()->unreadNotifications->where('type', 'App\Notifications\UserCustomOrder')->sortByDesc('created_at')->take(4)
     as $notification)
-                                 <a href="{{ route('admin.customOrder.index') }}"
-                                     class="text-reset notification-item ">
-                                     <div class="d-flex bg-light text-dark">
-                                         <a href="javascript:void(0)" title="Mark as Read"
-                                             onclick="markSingleRead('{{ $notification->id }}')">
-                                             <div class="flex-shrink-0 avatar-sm me-3">
-                                                 <span class="avatar-title bg-success rounded-circle font-size-16">
-                                                     <i class="bx bx-badge-check"></i>
-                                                 </span>
+                                 <div class="d-flex bg-light text-dark">
+                                     <a href="javascript:void(0)" title="Mark as Read"
+                                         onclick="markSingleRead('{{ $notification->id }}')">
+                                         <div class="flex-shrink-0 avatar-sm me-3">
+                                             <span class="avatar-title bg-success rounded-circle font-size-16">
+                                                 <i class="bx bx-badge-check"></i>
+                                             </span>
 
-                                             </div>
-                                         </a>
+                                         </div>
+                                     </a>
 
-
+                                     <a href="{{ route('admin.customOrder.index') }}"
+                                         class="text-reset notification-item ">
                                          <div class="flex-grow-1">
 
                                              <h6 class="mb-1">{{ $notification->data['title'] ?? '' }}</h6>
@@ -133,24 +133,24 @@
                                              </div>
 
                                          </div>
-
-                                     </div>
-                                 </a>
+                                     </a>
+                                 </div>
                              @endforeach
 
                              @foreach (auth()->user()->unreadNotifications->where('type', 'App\Notifications\UserOrderNotification')->sortByDesc('created_at')->take(4)
     as $notification)
-                                 <a href="{{ route('admin.orders.index') }}" class="text-reset notification-item ">
-                                     <div class="d-flex bg-light text-dark">
-                                         <a href="javascript:void(0)" title="Mark as Read"
-                                             onclick="markSingleRead('{{ $notification->id }}')">
-                                             <div class="flex-shrink-0 avatar-sm me-3">
-                                                 <span class="avatar-title bg-success rounded-circle font-size-16">
-                                                     <i class="bx bx-badge-check"></i>
-                                                 </span>
+                                 <div class="d-flex bg-light text-dark">
+                                     <a href="javascript:void(0)" title="Mark as Read"
+                                         onclick="markSingleRead('{{ $notification->id }}')">
+                                         <div class="flex-shrink-0 avatar-sm me-3">
+                                             <span class="avatar-title bg-success rounded-circle font-size-16">
+                                                 <i class="bx bx-badge-check"></i>
+                                             </span>
 
-                                             </div>
-                                         </a>
+                                         </div>
+                                     </a>
+                                     <a href="{{ route('admin.orders.index') }}"
+                                         class="text-reset notification-item ">
                                          <div class="flex-grow-1">
                                              <h6 class="mb-1">{{ $notification->data['title'] ?? '' }}</h6>
                                              <div class="font-size-13 text-muted">
@@ -165,26 +165,26 @@
                                                  </p>
                                              </div>
                                          </div>
-                                     </div>
-                                 </a>
+                                     </a>
+                                 </div>
                              @endforeach
 
 
 
                              @foreach (auth()->user()->unreadNotifications->where('type', 'App\Notifications\UserSubscribedNotification')->sortByDesc('created_at')->take(2)
     as $notification)
-                                 <a href="{{ route('admin.newsletters.index') }}"
-                                     class="text-reset notification-item ">
-                                     <div class="d-flex bg-light text-dark">
-                                         <a href="javascript:void(0)" title="Mark as Read"
-                                             onclick="markSingleRead('{{ $notification->id }}')">
-                                             <div class="flex-shrink-0 avatar-sm me-3">
-                                                 <span class="avatar-title bg-success rounded-circle font-size-16">
-                                                     <i class="bx bx-badge-check"></i>
-                                                 </span>
+                                 <div class="d-flex bg-light text-dark">
+                                     <a href="javascript:void(0)" title="Mark as Read"
+                                         onclick="markSingleRead('{{ $notification->id }}')">
+                                         <div class="flex-shrink-0 avatar-sm me-3">
+                                             <span class="avatar-title bg-success rounded-circle font-size-16">
+                                                 <i class="bx bx-badge-check"></i>
+                                             </span>
 
-                                             </div>
-                                         </a>
+                                         </div>
+                                     </a>
+                                     <a href="{{ route('admin.newsletters.index') }}"
+                                         class="text-reset notification-item ">
                                          <div class="flex-grow-1">
                                              <h6 class="mb-1">{{ $notification->data['title'] }}</h6>
                                              <div class="font-size-13 text-muted">
@@ -195,8 +195,8 @@
                                                  </p>
                                              </div>
                                          </div>
-                                     </div>
-                                 </a>
+                                     </a>
+                                 </div>
                              @endforeach
 
                              @foreach (auth()->user()->readNotifications->where('type', 'App\Notifications\UserCustomOrder')->sortByDesc('created_at')->take(2)
@@ -293,9 +293,11 @@
              </div>
 
              <div class="dropdown d-inline-block">
-                 <button type="button" class="btn header-item right-bar-toggle me-2">
+                 &nbsp;&nbsp;&nbsp;
+                 
+                 {{-- <button type="button" class="btn header-item right-bar-toggle me-2">
 
-                 </button>
+                 </button> --}}
              </div>
 
              <div class="dropdown d-inline-block">

@@ -25,6 +25,14 @@ class NotificationController extends Controller
             : view('cms.admin.notifications.index');
     }
 
+    public function newsletterList()
+    {
+        $this->setPageTitle('Newsletter Notifications', '');
+        return (request()->ajax())
+            ? $this->newsDatatable()
+            : view('cms.admin.notifications.index');
+    }
+
 
     
     protected function datatable()
@@ -88,7 +96,7 @@ class NotificationController extends Controller
                       
                         <a
                             href="#"
-                            id="delete-btn"
+                            id="order-delete-btn"
                             data-id="' . $data->id . '"
                             type="button"
                             class="btn btn-danger waves-effect waves-light btn-md "
@@ -104,5 +112,48 @@ class NotificationController extends Controller
             ->rawColumns(['actions'])
          
             ->make(true);
+    }
+
+    protected function newsDatatable()
+    {
+        $notifications =auth()->user()->notifications->where('type', 'App\Notifications\UserSubscribedNotification')->sortByDesc('created_at');
+
+        return DataTables::of($notifications)
+           
+             ->addColumn('email', function ($data) {
+                 return $data->data['email'];
+             })
+            
+              ->editColumn('created_at', function ($data) {
+                  return Carbon::parse($data->created_at)->format('d-M-Y G:ia');
+              })
+            ->addColumn('actions', function ($data) {
+                return '
+                    <div class="d-flex flex-wrap gap-2">
+                      
+                        <a
+                            href="#"
+                            id="news-delete-btn"
+                            data-id="' . $data->id . '"
+                            type="button"
+                            class="btn btn-danger waves-effect waves-light btn-md "
+                            data-bs-toggle="tooltip"
+                            data-bs-placement="top"
+                            title="Delete"
+                            data-bs-original-title="Delete"
+                        ><i class="bx bx-trash font-size-16 align-middle"></i></a>
+                    </div>
+                ';
+            })
+            ->addIndexColumn()
+            ->rawColumns(['actions'])
+         
+            ->make(true);
+    }
+    public function destroyNotification($id)
+    {
+        return auth()->user()->notifications->where('id', $id)->first()->delete()
+        ? response()->json(['success' => ' Notification Successfully deleted.'])
+            : response()->json(['success' => 'There was some issue with the server. Please try again.']);
     }
 }

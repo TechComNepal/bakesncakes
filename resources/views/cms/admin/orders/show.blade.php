@@ -109,7 +109,6 @@
                         <th>No.</th>
                         <th>Product Name</th>
                         <th>Brand</th>
-                        <th>Unit Price</th>
                         <th>Quantity</th>
                         <th>Delivery Date</th>
                         <th class="text-end" style="width: 120px;">Price</th>
@@ -121,21 +120,17 @@
                     @endphp
                     @forelse ($order->products as $key => $product)
                         @php
-                            $total_tax = $total_tax + $product->pivot->tax * $product->pivot->quantity;
+                            $total_tax = $total_tax + $product->pivot->tax;
                         @endphp
 
                         <tr>
                             <td>{{ $key + 1 }} </td>
                             <td>{{ $product->name }} </td>
                             <td>{{ $product->brand->name }} </td>
-                            <td>{{ $product->pivot->price }} </td>
                             <td>{{ $product->pivot->quantity }} </td>
                             <td> {{ Carbon\Carbon::parse($product->pivot->delivery_date)->format('d-M-Y G:ia') }}
                             </td>
-                            <td class="text-end">
-                                {{ $product->pivot->total - $product->pivot->tax * $product->pivot->quantity }} </td>
-
-
+                            <td class="text-end">{{ $product->pivot->price }} </td>
                         </tr>
                     @empty
                         <tr>
@@ -145,7 +140,7 @@
                     <tr>
                         <th scope="row" colspan="5" class="text-end">Sub Total</th>
                         <td class="text-end">Rs.
-                            {{ $order->billing_total - $order->delivery_charge - $total_tax + $order->coupon_discount }}
+                            {{ $order->orderProducts->sum('price') }}
                         </td>
                     </tr>
                     <tr>

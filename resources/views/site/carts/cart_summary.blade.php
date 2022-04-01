@@ -101,7 +101,7 @@
                 </div>
                 {{-- </form> --}}
             </div>
-          
+
                 <!-- Cart Totals -->
                 <div class="col-12 col-md-5 col-lg-3 shadow-lg p-4 cart-add">
                     <div class="ps-shopping__label-cart text-center">Cart Total</div>
@@ -120,7 +120,9 @@
                         </div>
                         <div class="ps-shopping__checkout">
                             @auth
-                                <a class="ps-btn ps-btn--address" href="{{ route('checkout') }}">Proceed to checkout</a>
+{{--                                <a class="ps-btn ps-btn--address" href="{{ route('checkout') }}">Proceed to checkout</a>--}}
+                                <a class="ps-btn ps-btn--address" href="{{ route('user.shipping.info') }}">Continue to Shipping</a>
+
                             @endauth
                             @guest
                                 <a class="ps-btn ps-btn--warning" href="{{ route('auth.login.show') }}">Login to

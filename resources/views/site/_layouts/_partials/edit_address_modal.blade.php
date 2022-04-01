@@ -41,7 +41,8 @@
 
     <hr />
     <div class="float-right">
-        <button type="button" class="btn btn-lg ps-btn-address ps-btn--address-outline" data-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-lg ps-btn-address ps-btn--address-outline"
+            data-bs-dismiss="modal">Close</button>
         <button type="submit" class="btn btn-lg ps-btn-address ps-btn--address">Save changes</button>
     </div>
 

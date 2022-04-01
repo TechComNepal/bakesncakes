@@ -2,23 +2,25 @@
 
 namespace App\Http\Controllers\Employee;
 
-use App\Http\Controllers\Controller;
-use App\Http\Requests\ProductStoreRequest;
-use App\Http\Requests\ProductUpdateRequest;
 use App\Models\Brand;
-use App\Models\Category;
 use App\Models\Product;
-use App\Repositories\Products\ProductRepository;
-use App\Services\ImageUploadService;
+use App\Models\Category;
 use Illuminate\Http\Request;
 use Yajra\DataTables\DataTables;
+use Illuminate\Http\JsonResponse;
+use App\Http\Controllers\Controller;
+use App\Services\ImageUploadService;
+use App\Http\Requests\ProductStoreRequest;
+use App\Http\Requests\ProductUpdateRequest;
+use App\Repositories\Products\ProductRepository;
 
 class ProductController extends Controller
 {
     private $productRepository;
     private $imageUploadService;
 
-    public function __construct(ProductRepository $productRepository, ImageUploadService $imageUploadService) {
+    public function __construct(ProductRepository $productRepository, ImageUploadService $imageUploadService)
+    {
         $this->productRepository = $productRepository;
         $this->setPageTitle('Product', '');
         $this->imageUploadService = $imageUploadService;
@@ -33,19 +35,19 @@ class ProductController extends Controller
 
     public function create()
     {
-        if(!auth()->user()->can('add product')){
+        if (!auth()->user()->can('add product')) {
             abort(403);
         }
 
-        return view('cms.employees.products.create',[
-            'categories' => Category::with('children')->whereStatus(TRUE)->where('parent_id',NULL)->get(),
-            'brands' => Brand::whereStatus(TRUE)->get(),
+        return view('cms.employees.products.create', [
+            'categories' => Category::with('children')->whereStatus(true)->where('parent_id', null)->get(),
+            'brands' => Brand::whereStatus(true)->get(),
         ]);
     }
 
     public function store(ProductStoreRequest $request)
     {
-        if(!auth()->user()->can('add product')){
+        if (!auth()->user()->can('add product')) {
             abort(403);
         }
         try {
@@ -58,27 +60,29 @@ class ProductController extends Controller
             return $product
                 ? $this->responseRedirect('employee.products.index', 'Product has been created successfully.', 'success')
                 : $this->responseRedirectBacK('There was some with the server. Please try again later.');
-
-        }catch (\Throwable $exception){
+        } catch (\Throwable $exception) {
             return $exception->getMessage();
         }
     }
 
     public function edit(Product $product)
     {
-        if(!auth()->user()->can('edit product')){
+        if (!auth()->user()->can('edit product')) {
             abort(403);
         }
+         $gallerys=$product->getMedia('gallery_image');
+
         return view('cms.employees.products.edit', [
             'product' => $product,
-            'categories' => Category::whereStatus(TRUE)->get(),
-            'brands' => Brand::whereStatus(TRUE)->get(),
+            'categories' => Category::whereStatus(true)->get(),
+            'brands' => Brand::whereStatus(true)->get(),
+             'gallerys'=>$gallerys,
         ]);
     }
 
     public function update(ProductUpdateRequest $request, Product $product)
     {
-        if(!auth()->user()->can('edit product')){
+        if (!auth()->user()->can('edit product')) {
             abort(403);
         }
         try {
@@ -87,14 +91,14 @@ class ProductController extends Controller
             return $product
                 ? $this->responseRedirect('employee.products.index', 'Product has been updated successfully.', 'success')
                 : $this->responseRedirectBack('There was some problem occurred with  the server. Please try again later.');
-        }catch (\Throwable $exception){
+        } catch (\Throwable $exception) {
             return $exception->getMessage();
         }
     }
 
     public function destroy(Product $product)
     {
-        if(!auth()->user()->can('delete product')){
+        if (!auth()->user()->can('delete product')) {
             abort(403);
         }
         return $this->productRepository->deleteProduct($product->id)
@@ -102,12 +106,13 @@ class ProductController extends Controller
             : response()->json(['status' => 'error', 'message' => 'There was some issue with the server. Please try again later.']);
     }
 
-    public function datatable(){
+    public function datatable()
+    {
         $products = $this->productRepository->listProducts('created_at', 'desc');
         return DataTables::of($products)
             ->addColumn('actions', function ($data) {
                 $button = '';
-                if(auth()->user()->can('edit product')){
+                if (auth()->user()->can('edit product')) {
                     $button .= '<a
                         href="' . route('employee.products.edit', $data) . '"
                             type="button"
@@ -118,7 +123,7 @@ class ProductController extends Controller
                             data-bs-original-title="Edit"
                         ><i class="bx bx-pencil font-size-16 align-middle"></i></a>';
                 }
-                if(auth()->user()->can('delete product')){
+                if (auth()->user()->can('delete product')) {
                     $button .= '<a
                             href="#"
                             id="delete-btn"
@@ -137,7 +142,7 @@ class ProductController extends Controller
                     </div>
                 ';
             })
-            ->editColumn('name', function($data){
+            ->editColumn('name', function ($data) {
                 return '<div class="col-auto" style="display: inline-block">
                     <img src="'.$data->getFirstOrDefaultMediaUrl('image', 'square-sm-thumb').'" alt="Product Image" height="50" width="50"/>
                 </div>
@@ -145,7 +150,7 @@ class ProductController extends Controller
                     <span class="text-muted text-truncate">'.$data->name.' </span>
                 </div>';
             })
-            ->addColumn('info', function ($data){
+            ->addColumn('info', function ($data) {
                 $type = ($data->discount_type==='flat') ? 'Rs.' : '%';
                 return '<strong>Selling Price : </strong>'. $data->selling_price .'<br />'.
                     '<strong>Discount : </strong>'. $data->discount . $type .'<br />';
@@ -238,5 +243,55 @@ class ProductController extends Controller
             ->addIndexColumn()
             ->rawColumns(['actions', 'name', 'info', 'is_featured', 'is_taxable', 'is_refundable', 'is_trending', 'is_sellable'])
             ->make(true);
+    }
+    public function galleryUpdate(Request $request, Product $product)
+    {
+        try {
+            $this->imageUploadService->uploadMultipleMediaFromRequest($request, $product, 'gallery_image_url', 'gallery_image');
+        } catch (\Throwable $exception) {
+            return $exception->getMessage();
+        }
+        return $this->responseRedirect('employee.products.index', 'Product Gallery Updated successfully.', 'success');
+    }
+
+    public function galleryDestroy($id)
+    {
+        return $this->productRepository->deleteGallery($id)
+            ? response()->json(['success' => 'Gallery Image Successfully Deleted.'])
+            : response()->json(['success' => 'There was some issue with the server. Please try again.']);
+    }
+
+    public function toggleIsFeatured(Request $request): JsonResponse
+    {
+        return $this->productRepository->updateProductFeature($request->all())
+            ? response()->json(['message' => 'Product Featured Updated Successfully.', 'status' => 'success'])
+            : response()->json(['message' => 'Error occurred while updating product featured status.', 'status' => 'error']);
+    }
+
+    public function toggleIsTaxable(Request $request): JsonResponse
+    {
+        return $this->productRepository->updateProductTaxable($request->all())
+            ? response()->json(['message' => 'Product Taxable Updated Successfully.', 'status' => 'success'])
+            : response()->json(['message' => 'Error occurred while updating product taxable status.', 'status' => 'error']);
+    }
+
+    public function toggleIsRefundable(Request $request): JsonResponse
+    {
+        return $this->productRepository->updateProductRefundable($request->all())
+            ? response()->json(['message' => 'Product Refundable Updated Successfully.', 'status' => 'success'])
+            : response()->json(['message' => 'Error occurred while updating product refundable status.', 'status' => 'error']);
+    }
+    public function toggleIsTrending(Request $request): JsonResponse
+    {
+        return $this->productRepository->updateProductTrending($request->all())
+            ? response()->json(['message' => 'Product Trending Updated Successfully.', 'status' => 'success'])
+            : response()->json(['message' => 'Error occurred while updating product trending status.', 'status' => 'error']);
+    }
+
+    public function toggleIsSellable(Request $request): JsonResponse
+    {
+        return $this->productRepository->updateProductSellable($request->all())
+            ? response()->json(['message' => 'Product Sellable Updated Successfully.', 'status' => 'success'])
+            : response()->json(['message' => 'Error occurred while updating product sellable status.', 'status' => 'error']);
     }
 }

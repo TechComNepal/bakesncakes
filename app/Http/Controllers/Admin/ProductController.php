@@ -7,6 +7,7 @@ use App\Models\Product;
 use App\Models\Category;
 use Illuminate\Http\Request;
 use Yajra\DataTables\DataTables;
+use Illuminate\Http\JsonResponse;
 use App\Http\Controllers\Controller;
 use App\Services\ImageUploadService;
 use App\Http\Requests\ProductStoreRequest;
@@ -26,10 +27,10 @@ class ProductController extends Controller
         $this->imageUploadService = $imageUploadService;
     }
 
-    public function index()
+    public function index(Request $request)
     {
-        return (\request()->ajax())
-            ? $this->datatable()
+        return (request()->ajax())
+            ? $this->datatable($request)
             : view('cms.admin.products.index');
     }
 
@@ -45,7 +46,7 @@ class ProductController extends Controller
     {
         try {
             $product = $this->productRepository->storeProduct($request->validated());
-
+         
             if ($product) {
                 $this->imageUploadService->uploadImageFromRequest($request, $product, 'image', 'image');
                 $this->imageUploadService->uploadMultipleMediaFromRequest($request, $product, 'gallery_image_url', 'gallery_image');
@@ -91,9 +92,120 @@ class ProductController extends Controller
             : response()->json(['status' => 'error', 'message' => 'There was some issue with the server. Please try again later.']);
     }
 
-    public function datatable()
+    protected function datatable($request)
     {
-        $products = $this->productRepository->listProducts('created_at', 'desc');
+        // $products = $this->productRepository->listProducts('created_at', 'desc');
+        $query=Product::query();
+        if ($request['name']) {
+            $query->where('name', 'like', '%'. $request['name'].'%');
+        }
+        if ($request['sku']) {
+            $query->where('sku', 'like', '%'. $request['sku'].'%');
+        }
+        if ($request['categories']) {
+            $query->whereHas('category', function ($query) use ($request) {
+                $query->where('name', 'like', '%'.$request['categories'] .'%');
+            });
+        }
+        if ($request['vendor']) {
+            $query->whereHas('user', function ($query) use ($request) {
+                $query->where('name', 'like', '%'.$request['vendor'] .'%');
+            });
+        }
+
+        if ($request['name'] && $request['sku']) {
+            $query->where('name', 'like', '%'. $request['name'].'%')
+                  ->where('sku', 'like', '%'. $request['sku'].'%');
+        }
+        if ($request['name'] && $request['categories']) {
+            $query->where('name', 'like', '%'. $request['name'].'%')
+            ->whereHas('category', function ($query) use ($request) {
+                $query->where('name', 'like', '%'.$request['categories'] .'%');
+            });
+        }
+        if ($request['name'] && $request['vendor']) {
+            $query->where('name', 'like', '%'. $request['name'].'%')
+            ->whereHas('user', function ($query) use ($request) {
+                $query->where('name', 'like', '%'.$request['vendor'] .'%');
+            });
+        }
+
+        if ($request['sku'] && $request['categories']) {
+            $query->where('sku', 'like', '%'. $request['sku'].'%')
+            ->whereHas('category', function ($query) use ($request) {
+                $query->where('name', 'like', '%'.$request['categories'] .'%');
+            });
+        }
+        if ($request['sku'] && $request['vendor']) {
+            $query->where('sku', 'like', '%'. $request['sku'].'%')
+            ->whereHas('user', function ($query) use ($request) {
+                $query->where('name', 'like', '%'.$request['vendor'] .'%');
+            });
+        }
+
+        if ($request['sku'] && $request['categories'] && $request['vendor']) {
+            $query->where('sku', 'like', '%'. $request['sku'].'%')
+             ->whereHas('category', function ($query) use ($request) {
+                 $query->where('name', 'like', '%'.$request['categories'] .'%');
+             })
+            ->whereHas('user', function ($query) use ($request) {
+                $query->where('name', 'like', '%'.$request['vendor'] .'%');
+            });
+        }
+
+        if ($request['name']&& $request['sku'] && $request['vendor']) {
+            $query->where('name', 'like', '%'. $request['name'].'%')
+            ->where('sku', 'like', '%'. $request['sku'].'%')
+            ->whereHas('user', function ($query) use ($request) {
+                $query->where('name', 'like', '%'.$request['vendor'] .'%');
+            });
+        }
+
+        if ($request['name']&& $request['categories'] && $request['vendor']) {
+            $query->where('name', 'like', '%'. $request['name'].'%')
+            ->whereHas('category', function ($query) use ($request) {
+                $query->where('name', 'like', '%'.$request['categories'] .'%');
+            })
+            ->whereHas('user', function ($query) use ($request) {
+                $query->where('name', 'like', '%'.$request['vendor'] .'%');
+            });
+        }
+
+
+
+        if ($request['categories'] && $request['vendor']) {
+            $query->whereHas('category', function ($query) use ($request) {
+                $query->where('name', 'like', '%'.$request['categories'] .'%');
+            })
+            ->whereHas('user', function ($query) use ($request) {
+                $query->where('name', 'like', '%'.$request['vendor'] .'%');
+            });
+        }
+
+
+
+        if ($request['name'] && $request['sku'] && $request['categories']) {
+            $query->where('name', 'like', '%'. $request['name'].'%')
+            ->where('sku', 'like', '%'. $request['sku'].'%')
+            ->whereHas('category', function ($query) use ($request) {
+                $query->where('name', 'like', '%'.$request['categories'] .'%');
+            });
+        }
+
+        if ($request['name'] && $request['sku'] && $request['categories'] && $request['vendor']) {
+            $query->where('name', 'like', '%'. $request['name'].'%')
+            ->where('sku', 'like', '%'. $request['sku'].'%')
+            ->whereHas('category', function ($query) use ($request) {
+                $query->where('name', 'like', '%'.$request['categories'] .'%');
+            })
+             ->whereHas('user', function ($query) use ($request) {
+                 $query->where('name', 'like', '%'.$request['vendor'] .'%');
+             });
+        }
+
+
+
+        $products=$query->latest()->get();
         return DataTables::of($products)
             ->addColumn('actions', function ($data) {
                 return '
@@ -239,5 +351,39 @@ class ProductController extends Controller
         return $this->productRepository->deleteGallery($id)
             ? response()->json(['success' => 'Gallery Image Successfully Deleted.'])
             : response()->json(['success' => 'There was some issue with the server. Please try again.']);
+    }
+
+    public function toggleIsFeatured(Request $request): JsonResponse
+    {
+        return $this->productRepository->updateProductFeature($request->all())
+            ? response()->json(['message' => 'Product Featured Updated Successfully.', 'status' => 'success'])
+            : response()->json(['message' => 'Error occurred while updating product featured status.', 'status' => 'error']);
+    }
+
+    public function toggleIsTaxable(Request $request): JsonResponse
+    {
+        return $this->productRepository->updateProductTaxable($request->all())
+            ? response()->json(['message' => 'Product Taxable Updated Successfully.', 'status' => 'success'])
+            : response()->json(['message' => 'Error occurred while updating product taxable status.', 'status' => 'error']);
+    }
+
+    public function toggleIsRefundable(Request $request): JsonResponse
+    {
+        return $this->productRepository->updateProductRefundable($request->all())
+            ? response()->json(['message' => 'Product Refundable Updated Successfully.', 'status' => 'success'])
+            : response()->json(['message' => 'Error occurred while updating product refundable status.', 'status' => 'error']);
+    }
+    public function toggleIsTrending(Request $request): JsonResponse
+    {
+        return $this->productRepository->updateProductTrending($request->all())
+            ? response()->json(['message' => 'Product Trending Updated Successfully.', 'status' => 'success'])
+            : response()->json(['message' => 'Error occurred while updating product trending status.', 'status' => 'error']);
+    }
+
+    public function toggleIsSellable(Request $request): JsonResponse
+    {
+        return $this->productRepository->updateProductSellable($request->all())
+            ? response()->json(['message' => 'Product Sellable Updated Successfully.', 'status' => 'success'])
+            : response()->json(['message' => 'Error occurred while updating product sellable status.', 'status' => 'error']);
     }
 }
