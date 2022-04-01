@@ -25,6 +25,8 @@ Route::get('/privacyAndPolicy', [PagesController::class, 'privacyAndPolicy'])->n
 Route::get('/termsAndCondition', [PagesController::class, 'termsAndCondition'])->name('site.page.termsAndCondition');
 Route::get('/blog', [PagesController::class, 'blog'])->name('site.page.blog');
 Route::get('/blog-details/{slug}', [PagesController::class, 'singleblog'])->name('site.page.singleblog');
+Route::get('/vendors', [PagesController::class, 'vendor'])->name('site.page.vendor');
+Route::get('/vendor-guide', [PagesController::class, 'vendor_guide'])->name('site.page.vendor_guide');
 Route::get('/product-details/{id}', [ProductController::class, 'singleProductShow'])->name('site.page.singleProductShow');
 Route::post('custom-order', [CustomOrderController::class, 'store'])->name('site.page.customOrder.store');
 

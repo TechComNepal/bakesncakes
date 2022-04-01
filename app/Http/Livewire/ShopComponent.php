@@ -36,6 +36,6 @@ class ShopComponent extends Component
 
         $categories = Category::where('id', '!=', $this->category->id)->where('parent_id', NULL)->where('status', TRUE)->with(['children'])->orderBY('created_at', 'DESC')->limit(8)->get();
 
-        return view('livewire.shop-component', compact('products', 'categories'));
+        return view('livewire.new_shop-component', compact('products', 'categories'));
     }
 }
