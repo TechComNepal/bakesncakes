@@ -1,5 +1,32 @@
 <!-- footer -->
 <footer class="main">
+    <section class="newsletter mb-15 wow animate__animated animate__fadeIn">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="position-relative newsletter-inner">
+                        <div class="newsletter-content">
+                            <h2 class="mb-20">
+                                Stay home & get your daily <br>
+                                needs from our shop
+                            </h2>
+                            <p class="mb-45">Start You'r Daily Shopping with <span
+                                    class="text-brand">{{ config('app.name') ?? 'Bakes n Cakes' }}</span>
+                            </p>
+
+                            <form class="form-subcriber d-flex" id="news-form">
+                                <input type="email" name="email" id="email" placeholder="Your emaill address">
+                                <button id="news-btn" class="btn" type="submit">Subscribe</button>
+                                <span class="text-warning error-text email_error ml-5"></span>
+                            </form>
+                        </div>
+                        <img src="{{ asset('new_frontend\assets\imgs\banner\banner-9.png" alt="newsletter') }}">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
     <section class="featured section-padding">
         <div class="container">
             <div class="row">
@@ -91,18 +118,18 @@
                             <p class=" font-lg text-heading">Awesome Multipurpose store website </p>
                         </div>
                         <ul class="contact-infor">
-                            <li><img src="{{asset('new_frontend\assets\imgs\theme\icons\icon-location.svg')}}"
+                            <li><img src="{{ asset('new_frontend\assets\imgs\theme\icons\icon-location.svg') }}"
                                     alt=""><strong>Address: </strong> <span> Durbarmarg, Kathmandu, Nepal</span></li>
                             <li><img src="
-                                    {{asset('new_frontend\assets\imgs\theme\icons\icon-contact.svg')}}"
+                                    {{ asset('new_frontend\assets\imgs\theme\icons\icon-contact.svg') }}"
                                     alt=""><strong>Call Us:</strong><span> (+977) - 9801075755</span></li>
-                            <li><img src="{{asset('new_frontend\assets\imgs\theme\icons\icon-email-2.svg')}}"
+                            <li><img src="{{ asset('new_frontend\assets\imgs\theme\icons\icon-email-2.svg') }}"
                                     alt=""><strong>Email:</strong><span><a href="/cdn-cgi/l/email-protection"
                                         class="__cf_email__"
                                         data-cfemail="493a28252c09072c3a3d672a2624">avi.pradhan1987@gmail.com</a></span>
                             </li>
                             <li><img src="
-                                        {{asset('new_frontend\assets\imgs\theme\icons\icon-clock.svg')}}"
+                                        {{ asset('new_frontend\assets\imgs\theme\icons\icon-clock.svg') }}"
                                     alt=""><strong>Hours:</strong><span> 09:00 - 20:00, Sun - Sat</span></li>
                         </ul>
                     </div>
@@ -110,11 +137,11 @@
                 <div class="footer-link-widget col wow animate__animated animate__fadeInUp" data-wow-delay=".1s">
                     <h4 class="widget-title">Company</h4>
                     <ul class="footer-list mb-sm-5 mb-md-0">
-                        <li><a href="{{route('site.page.aboutus')}}">About Us</a></li>
+                        <li><a href="{{ route('site.page.aboutus') }}">About Us</a></li>
                         <li><a href="#">Delivery Information</a></li>
-                        <li><a href="{{route('site.page.privacyAndPolicy')}}">Privacy Policy</a></li>
-                        <li><a href="{{route('site.page.termsAndCondition')}}">Terms &amp; Conditions</a></li>
-                        <li><a href="{{route('site.page.contact')}}">Contact Us</a></li>
+                        <li><a href="{{ route('site.page.privacyAndPolicy') }}">Privacy Policy</a></li>
+                        <li><a href="{{ route('site.page.termsAndCondition') }}">Terms &amp; Conditions</a></li>
+                        <li><a href="{{ route('site.page.contact') }}">Contact Us</a></li>
                         <!-- <li><a href="#">Support Center</a></li> -->
                         <!-- <li><a href="#">Careers</a></li> -->
                     </ul>
@@ -122,7 +149,7 @@
                 <div class="footer-link-widget col wow animate__animated animate__fadeInUp" data-wow-delay=".2s">
                     <h4 class="widget-title">Account</h4>
                     <ul class="footer-list mb-sm-5 mb-md-0">
-                        <li><a href="{{route('auth.register.show')}}">Sign In</a></li>
+                        <li><a href="{{ route('auth.register.show') }}">Sign In</a></li>
                         <li><a href="{{ route('cart.index') }}">">View Cart</a></li>
                         <!-- <li><a href="#">My Wishlist</a></li>
                         <li><a href="#">Track My Order</a></li>
@@ -142,12 +169,11 @@
                     <h4 class="widget-title">Popular Product</h4>
                     <ul class="footer-list mb-sm-5 mb-md-0">
                         <!-- popular category show -->
-                        @foreach ($menuproducts->take(6) as $menuproduct )
-
-                        <li>
-                            <a href="#">
-                                {{$menuproduct->name}}</a>
-                        </li>
+                        @foreach ($menuproducts->take(6) as $menuproduct)
+                            <li>
+                                <a href="#">
+                                    {{ $menuproduct->name }}</a>
+                            </li>
                         @endforeach
 
                     </ul>
@@ -156,7 +182,8 @@
                     data-wow-delay=".5s">
                     <h4 class="widget-title">Pay from Anywhere</h4>
                     <p class=" mb-20">Secured Payment Gateways</p>
-                    <img class="" src="{{asset('new_frontend\assets\imgs\theme\payment-method.png')}}" alt="">
+                    <img class=""
+                        src="{{ asset('new_frontend\assets\imgs\theme\payment-method.png') }}" alt="">
                 </div>
             </div>
         </div>
@@ -167,16 +194,17 @@
                 <div class="footer-bottom"></div>
             </div>
             <div class="col-xl-4 col-lg-6 col-md-6">
-                <p class="font-sm mb-0">&copy; 2022, <strong class="text-primary">Tech Community Nepal</strong><br>All
+                <p class="font-sm mb-0">&copy; 2022, <strong class="text-primary">Tech Community
+                        Nepal</strong><br>All
                     rights reserved</p>
             </div>
             <div class="col-xl-4 col-lg-6 text-center d-none d-xl-block">
                 <div class="hotline d-lg-inline-flex mr-30">
-                    <img src="{{asset('new_frontend\assets\imgs\theme\icons\phone-call.svg')}}" alt="hotline">
+                    <img src="{{ asset('new_frontend\assets\imgs\theme\icons\phone-call.svg') }}" alt="hotline">
                     <p>9801075755<span>Working 9:00 - 20:00</span></p>
                 </div>
                 <div class="hotline d-lg-inline-flex">
-                    <img src="{{asset('new_frontend\assets\imgs\theme\icons\phone-call.svg')}}" alt="hotline">
+                    <img src="{{ asset('new_frontend\assets\imgs\theme\icons\phone-call.svg') }}" alt="hotline">
                     <p>014226354<span>24/7 Support Center</span></p>
                 </div>
             </div>
@@ -184,14 +212,19 @@
                 <div class="mobile-social-icon">
                     <h6>Follow Us</h6>
                     <a href="https://www.facebook.com/BakesnCakes"><img
-                            src="{{asset('new_frontend\assets\imgs\theme\icons\icon-facebook-white.svg')}}" alt=""></a>
-                    <a href=" https://twitter.com/bakesncakes"><img
-                            src="{{asset('new_frontend\assets\imgs\theme\icons\icon-twitter-white.svg')}}" alt=""></a>
-                    <a href="https://www.instagram.com/bakesncakes_nepal/"><img
-                            src="{{asset('new_frontend\assets\imgs\theme\icons\icon-instagram-white.svg')}}" alt=""></a>
-                    <a href=" #"><img src="{{asset('new_frontend\assets\imgs\theme\icons\icon-pinterest-white.svg')}}"
+                            src="{{ asset('new_frontend\assets\imgs\theme\icons\icon-facebook-white.svg') }}"
                             alt=""></a>
-                    <a href=" #"><img src="{{asset('new_frontend\assets\imgs\theme\icons\icon-youtube-white.svg')}}"
+                    <a href=" https://twitter.com/bakesncakes"><img
+                            src="{{ asset('new_frontend\assets\imgs\theme\icons\icon-twitter-white.svg') }}"
+                            alt=""></a>
+                    <a href="https://www.instagram.com/bakesncakes_nepal/"><img
+                            src="{{ asset('new_frontend\assets\imgs\theme\icons\icon-instagram-white.svg') }}"
+                            alt=""></a>
+                    <a href=" #"><img
+                            src="{{ asset('new_frontend\assets\imgs\theme\icons\icon-pinterest-white.svg') }}"
+                            alt=""></a>
+                    <a href=" #"><img
+                            src="{{ asset('new_frontend\assets\imgs\theme\icons\icon-youtube-white.svg') }}"
                             alt=""></a>
                 </div>
             </div>
