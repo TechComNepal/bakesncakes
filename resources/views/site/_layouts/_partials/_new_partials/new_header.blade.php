@@ -282,9 +282,7 @@
                                      </li>
 
                                      <li>
-                                         <a href="{{ route('site.category') }}">Shop <i
-                                                 class="fi-rs-angle-down"></i></a>
-
+                                         <a href="{{ route('site.category') }}">Shop</a>
                                      </li>
 
                                      <li>
@@ -292,19 +290,12 @@
                                      </li>
 
                                      <li>
-                                         <a href="#">Vendors <i class="fi-rs-angle-down"></i></a>
+                                         <a href="{{route('site.page.vendor')}}">Vendors <i
+                                                 class="fi-rs-angle-down"></i></a>
                                          <ul class="sub-menu">
-                                             <li><a href="vendors-grid.html">Vendors Grid</a>
+                                             <li><a href="{{route('site.page.vendor')}}">Vendors List</a>
                                              </li>
-                                             <li><a href="vendors-list.html">Vendors List</a>
-                                             </li>
-                                             <li><a href="vendor-details-1.html">Vendor Details
-                                                     01</a></li>
-                                             <li><a href="vendor-details-2.html">Vendor Details
-                                                     02</a></li>
-                                             <li><a href="vendor-dashboard.html">Vendor
-                                                     Dashboard</a></li>
-                                             <li><a href="vendor-guide.html">Vendor Guide</a>
+                                             <li><a href="{{route('site.page.vendor_guide')}}">Vendor Guide</a>
                                              </li>
                                          </ul>
                                      </li>
@@ -516,14 +507,11 @@
 
                                  </li>
                                  <li class="menu-item-has-children">
-                                     <a href="#">Vendors</a>
+                                     <a href="{{route('site.page.vendor')}}">Vendors</a>
                                      <ul class="dropdown">
-                                         <li><a href="vendors-grid.html">Vendors Grid</a></li>
-                                         <li><a href="vendors-list.html">Vendors List</a></li>
-                                         <li><a href="vendor-details-1.html">Vendor Details 01</a></li>
-                                         <li><a href="vendor-details-2.html">Vendor Details 02</a></li>
-                                         <li><a href="vendor-dashboard.html">Vendor Dashboard</a></li>
-                                         <li><a href="vendor-guide.html">Vendor Guide</a></li>
+                                         <li><a href="{{route('site.page.vendor')}}">Vendors List</a></li>
+                                         <li><a href="{{route('site.page.vendor_guide')}}">Vendor Guide</a></li>
+                                         <li><a href="{{route('site.page.vendor_guide')}}">Hello</a></li>
                                      </ul>
                                  </li>
                                  <li class="menu-item-has-children">
