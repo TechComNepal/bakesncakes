@@ -19,7 +19,7 @@
                 <li>Product Details</li>
             </ul>
         </div>
-    </div>
+    </div>  
     <section class="blog-area pt-50">
         <!-- shop details start -->
         <section class="shop_details pt-120 pb-90">

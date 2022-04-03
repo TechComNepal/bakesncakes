@@ -42,7 +42,7 @@
              <div class="container">
                  <div class="header-wrap">
                      <div class="logo logo-width-1">
-                         <a href="index.html"><img
+                         <a href="{{route('site.page')}}"><img
                                  src="{{ asset('new_frontend\assets\imgs\theme\MINIPASAL@4X-8(1).png') }}"
                                  alt="logo"></a>
                      </div>
@@ -278,7 +278,7 @@
                                              src="{{ asset('new_frontend\assets\imgs\theme\icons\icon-hot.svg') }}"
                                              alt="hot deals"><a href="shop-grid-right.html">Hot Deals</a></li>
                                      <li>
-                                         <a href="page-about.html">Home</a>
+                                         <a href="{{route('site.page')}}">Home</a>
                                      </li>
 
                                      <li>
@@ -477,7 +477,7 @@
              <div class="mobile-header-wrapper-inner">
                  <div class="mobile-header-top">
                      <div class="mobile-header-logo">
-                         <a href="index.html"><img src="{{ asset('new_frontend\assets\imgs\theme\logo.svg') }}"
+                         <a href="{{route('site.page')}}"><img src="{{ asset('new_frontend\assets\imgs\theme\logo.svg') }}"
                                  alt="logo"></a>
                      </div>
                      <div class=" mobile-menu-close close-style-wrap close-style-position-inherit">
