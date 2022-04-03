@@ -235,28 +235,31 @@
 
                 <div class="row product-grid-4">
                     @foreach ($featured_products as $featured_product)
-                    <div class="col-lg-1-5 col-md-4 col-12 col-sm-6">
-                        <div class="product-cart-wrap mb-30 wow animate__animated animate__fadeIn" data-wow-delay=".1s">
-                            <div class="product-img-action-wrap">
-                                <div class="product-img product-img-zoom">
-                                    <a href="shop-product-right.html featured-products_a">
-                                        <img class="default-img"
-                                            src="{{ $featured_product->getFirstOrDefaultMediaUrl('image', 'square-md-thumb') }}">
-                                        <img class="hover-img"
-                                            src="{{ $featured_product->getFirstOrDefaultMediaUrl('image', 'square-md-thumb') }}">
-                                    </a>
-                                </div>
-                                <div class="product-action-1">
-                                    <a aria-label="Add To Wishlist" class="action-btn featured-products_a"
-                                        href="shop-wishlist.html"><i class="fi-rs-heart"></i></a>
-                                    <a aria-label="Compare" class="action-btn featured-products_a"
-                                        href="shop-compare.html"><i class="fi-rs-shuffle"></i></a>
-                                    <a aria-label="Quick view" class="action-btn featured-products_a"
-                                        data-bs-toggle="modal" data-bs-target="#quickViewModal"><i
-                                            class="fi-rs-eye"></i></a>
-                                </div>
-                                <div class="product-badges product-badges-position product-badges-mrg">
-                                    <span class="hot">Hot</span>
+
+                        <div class="col-lg-1-5 col-md-4 col-12 col-sm-6">
+                            <div class="product-cart-wrap mb-30 wow animate__animated animate__fadeIn"
+                                data-wow-delay=".1s">
+                                <div class="product-img-action-wrap">
+                                    <div class="product-img product-img-zoom">
+                                        <a href="{{ route('site.page.singleProductShow', $featured_product->id) }}">
+                                            <img class="default-img"
+                                                src="{{ $featured_product->getFirstOrDefaultMediaUrl('image', 'square-md-thumb') }}">
+                                            <img class="hover-img"
+                                                src="{{ $featured_product->getFirstOrDefaultMediaUrl('image', 'square-md-thumb') }}">
+                                        </a>
+                                    </div>
+                                    <div class="product-action-1">
+                                        <a aria-label="Add To Wishlist" class="action-btn featured-products_a"
+                                            href="shop-wishlist.html"><i class="fi-rs-heart"></i></a>
+                                        <a aria-label="Compare" class="action-btn featured-products_a"
+                                            href="shop-compare.html"><i class="fi-rs-shuffle"></i></a>
+                                        <a aria-label="Quick view" class="action-btn featured-products_a"
+                                            data-bs-toggle="modal" data-bs-target="#quickViewModal"><i
+                                                class="fi-rs-eye"></i></a>
+                                    </div>
+                                    <div class="product-badges product-badges-position product-badges-mrg">
+                                        <span class="hot">Hot</span>
+
                                 </div>
                             </div>
                             <div class="product-content-wrap">
@@ -275,6 +278,7 @@
                                                 @endfor
                                                 <span class="font-small ml-5 text-muted">
                                                     ({{ round($featured_product->averageRating, 1) }})</span>
+
                                     </div>
                                 </div>
                                 <div>

@@ -30,6 +30,9 @@
     <link rel="stylesheet" href="{{ asset('new_frontend\assets\css\main.css?v=4.1') }}">
     <link rel="stylesheet" href="{{ asset('new_frontend\assets\css\new_main.css') }}">
     <link rel="stylesheet" href="{{ asset('frontend/plugins/font-awesome/css/font-awesome.min.css') }}">
+    <!-- datepicker css -->
+    <link href="{{ asset('cms/libs/css/flatpickr.min.css') }}" rel="stylesheet">
+
 
     <style>
         /* rating */
@@ -255,58 +258,58 @@
                                     </div>
                                 </div>
                             </div>
-                                            </div>
-                                            <span class="font-small ml-5 text-muted"> (32 reviews)</span>
-                            <!-- End Gallery -->
                         </div>
-                        <div class="col-md-6 col-sm-12 col-xs-12">
-                            <div class="detail-info pr-30 pl-30">
-                                <span class="stock-status out-stock"> Sale Off </span>
-                                <h3 class="title-detail"><a href="shop-product-right.html"
-                                        class="text-heading">Seeds of Change Organic Quinoa, Brown</a></h3>
-                                <div class="product-detail-rating">
-                                    <div class="product-rate-cover text-end">
-                                        <div class="product-rate d-inline-block">
-                                            <div class="product-rating" style="width: 90%"></div>
-                                        </div>
-                                        <span class="font-small ml-5 text-muted"> (32 reviews)</span>
+                        <span class="font-small ml-5 text-muted"> (32 reviews)</span>
+                        <!-- End Gallery -->
+                    </div>
+                    <div class="col-md-6 col-sm-12 col-xs-12">
+                        <div class="detail-info pr-30 pl-30">
+                            <span class="stock-status out-stock"> Sale Off </span>
+                            <h3 class="title-detail"><a href="shop-product-right.html" class="text-heading">Seeds of
+                                    Change Organic Quinoa, Brown</a></h3>
+                            <div class="product-detail-rating">
+                                <div class="product-rate-cover text-end">
+                                    <div class="product-rate d-inline-block">
+                                        <div class="product-rating" style="width: 90%"></div>
                                     </div>
-                                </div>
-                                <div class="clearfix product-price-cover">
-                                    <div class="product-price primary-color float-left">
-                                        <span class="current-price text-brand">$38</span>
-                                        <span>
-                                            <span class="save-price font-md color3 ml-15">26% Off</span>
-                                            <span class="old-price font-md ml-15">$52</span>
-                                        </span>
-                                    </div>
-
-                                </div>
-                                <div class="detail-extralink mb-30">
-                                    <div class="detail-qty border radius">
-                                        <a href="#" class="qty-down"><i class="fi-rs-angle-small-down"></i></a>
-                                        <span class="qty-val">1</span>
-                                        <a href="#" class="qty-up"><i class="fi-rs-angle-small-up"></i></a>
-                                    </div>
-                                    <div class="product-extra-link2">
-                                        <button type="submit" class="button button-add-to-cart"><i
-                                                class="fi-rs-shopping-cart"></i>Add to cart</button>
-                                    </div>
-                                </div>
-                                <div class="font-xs">
-                                    <ul>
-                                        <li class="mb-5">Vendor: <span class="text-brand">Nest</span></li>
-                                        <li class="mb-5">MFG:<span class="text-brand"> Jun 4.2021</span>
-                                        </li>
-                                    </ul>
+                                    <span class="font-small ml-5 text-muted"> (32 reviews)</span>
                                 </div>
                             </div>
-                            <!-- Detail Info -->
+                            <div class="clearfix product-price-cover">
+                                <div class="product-price primary-color float-left">
+                                    <span class="current-price text-brand">$38</span>
+                                    <span>
+                                        <span class="save-price font-md color3 ml-15">26% Off</span>
+                                        <span class="old-price font-md ml-15">$52</span>
+                                    </span>
+                                </div>
+
+                            </div>
+                            <div class="detail-extralink mb-30">
+                                <div class="detail-qty border radius">
+                                    <a href="#" class="qty-down"><i class="fi-rs-angle-small-down"></i></a>
+                                    <span class="qty-val">1</span>
+                                    <a href="#" class="qty-up"><i class="fi-rs-angle-small-up"></i></a>
+                                </div>
+                                <div class="product-extra-link2">
+                                    <button type="submit" class="button button-add-to-cart"><i
+                                            class="fi-rs-shopping-cart"></i>Add to cart</button>
+                                </div>
+                            </div>
+                            <div class="font-xs">
+                                <ul>
+                                    <li class="mb-5">Vendor: <span class="text-brand">Nest</span></li>
+                                    <li class="mb-5">MFG:<span class="text-brand"> Jun 4.2021</span>
+                                    </li>
+                                </ul>
+                            </div>
                         </div>
+                        <!-- Detail Info -->
                     </div>
                 </div>
             </div>
         </div>
+    </div>
 
     </div>
 
@@ -321,16 +324,16 @@
 
     @include('site._layouts._partials._new_partials.new_footer')
 
-    <!-- Preloader Start -->
+    {{-- <!-- Preloader Start -->
     <div id="preloader-active">
         <div class="preloader d-flex align-items-center justify-content-center">
             <div class="preloader-inner position-relative">
                 <div class="text-center">
-                    <img src="{{asset('new_frontend\assets\imgs\theme\Disk-1s-200px.svg')}}" alt="loader">
+                    <img src="{{ asset('new_frontend\assets\imgs\theme\Disk-1s-200px.svg') }}" alt="loader">
                 </div>
             </div>
         </div>
-    </div>
+    </div> --}}
 
     <!-- Bootstrap Icons -->
     <script src="{{ mix('site/js/jquery-3.5.1.min.js') }}"></script>
@@ -439,6 +442,21 @@
             alertify.warning("{{ Session::get('warning') }}");
         </script>
     @endif
+    <!--Start of Tawk.to Script-->
+    <script type="text/javascript">
+        var Tawk_API = Tawk_API || {},
+            Tawk_LoadStart = new Date();
+        (function() {
+            var s1 = document.createElement("script"),
+                s0 = document.getElementsByTagName("script")[0];
+            s1.async = true;
+            s1.src = 'https://embed.tawk.to/61cee4b4c82c976b71c43c67/1fo82qp3a';
+            s1.charset = 'UTF-8';
+            s1.setAttribute('crossorigin', '*');
+            s0.parentNode.insertBefore(s1, s0);
+        })();
+    </script>
+
     @stack('scripts')
 </body>
 

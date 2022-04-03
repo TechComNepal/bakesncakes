@@ -112,9 +112,9 @@
 
     <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.0/jquery.min.js"></script>
 
- 
+
     <script src="{{ asset('cms/libs/js/popper.min.js') }}"></script>
-    <script src="{{ asset('cms/libs/js/bootstrap.bundle.min.js') }}"></script>
+    <script src="{{ asset('cms/libs/js/bootstrap.b/undle.min.js') }}"></script>
     <script src="{{ asset('site/js/bootstrap.min.js') }}"></script>
 
     <script src="{{ asset('cms/libs/js/metisMenu.min.js') }}"></script>
