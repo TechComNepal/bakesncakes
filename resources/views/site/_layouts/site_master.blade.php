@@ -50,7 +50,7 @@
         /* rating */
         .rating-css div {
             color: #ffab50;
-            font-size: 30px;
+            font-size: 20px;
             font-family: sans-serif;
             font-weight: 800;
             text-align: center;
@@ -63,7 +63,7 @@
         }
 
         .rating-css input+label {
-            font-size: 40px;
+            font-size: 20px;
             text-shadow: 1px 1px 0 #8f8420;
             cursor: pointer;
         }
@@ -256,7 +256,8 @@
                             @if (session('impersonated_by'))
                                 <li class="nav-item">
                                     <a class="nav-link" href="javascript:void(0)">
-                                        <span class="impersonate">Impersonated as {{ auth()->user()->name }}</span>
+                                        <span class="impersonate">Impersonated as
+                                            {{ auth()->user()->name }}</span>
                                     </a>
                                 </li>
 

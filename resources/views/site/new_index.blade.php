@@ -121,7 +121,7 @@
                                 data-wow-delay=".1s">
                                 <div class="product-img-action-wrap">
                                     <div class="product-img product-img-zoom">
-                                        <a href="shop-product-right.html featured-products_a">
+                                        <a href="{{ route('site.page.singleProductShow', $featured_product->id) }}">
                                             <img class="default-img"
                                                 src="{{ $featured_product->getFirstOrDefaultMediaUrl('image', 'square-md-thumb') }}">
                                             <img class="hover-img"
