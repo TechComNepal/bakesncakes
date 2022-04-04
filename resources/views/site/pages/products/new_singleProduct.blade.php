@@ -108,9 +108,9 @@
                                             <form id="add-to-cart-form">
                                                 @csrf
                                                 <input type="hidden" name="id" value="{{ $singleProduct->id }}">
-                                                <x-input-field :type="'date'" :label="'Delivery Date'"
-                                                    :name="'delivery_date'" :placeholder="'enter a delivery date'"
-                                                    :col="6" :required="TRUE" :autofocus="TRUE" />
+                                                <x-input-field :type="'date'" :label="'Delivery Date'" :name="'delivery_date'"
+                                                    :placeholder="'enter a delivery date'" :col="6" :required="true"
+                                                    :autofocus="true" />
                                                 <span id="add_delivery_date"> </span>
                                                 <div class="ps-form--review">
                                                     <div class="ps-form__block">
@@ -137,7 +137,8 @@
                                                     </li>
                                                     <li>
                                                         <div class="product-extra-link2">
-                                                            <button type="submit" class="button button-add-to-cart"><i
+                                                            <button class="button button-add-to-cart"
+                                                                onclick="addToCart()"><i
                                                                     class="fi-rs-shopping-cart"></i>Add to cart</button>
                                                             <a aria-label="Add To Wishlist" class="action-btn hover-up"
                                                                 href="shop-wishlist.html"><i
