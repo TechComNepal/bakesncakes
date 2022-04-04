@@ -32,7 +32,7 @@ class CartController extends Controller
             $carts = ($tmp_user_id != null) ? Cart::where('tmp_user_id', $tmp_user_id)->get() : [] ;
         }
 
-        return view('site.carts.index', compact('carts'));
+        return view('site.carts.new_index', compact('carts'));
     }
 
     public function addToCart(Request $request)
@@ -65,7 +65,7 @@ class CartController extends Controller
                 'status' => 0,
                 'cart_count' => count($carts),
                 'modal_view' => view('site._layouts._partials.minQtyNotSatisfied', [ 'min_qty' => $product->min_purchase_unit ])->render(),
-                'nav_cart_view' => view('site._layouts._partials.cart')->render(),
+                'nav_cart_view' => view('site._layouts._partials._new_partials.new_cart')->render(),
             ];
         }
 
@@ -97,7 +97,7 @@ class CartController extends Controller
                         'status' => 0,
                         'cart_count' => count($carts),
                         'modal_view' => view('site._layouts._partials.outOfStockCart')->render(),
-                        'nav_cart_view' => view('site._layouts._partials.cart')->render(),
+                        'nav_cart_view' => view('site._layouts._partials._new_partials.new_cart')->render(),
                     ];
                 }
 
@@ -110,7 +110,7 @@ class CartController extends Controller
                     'status' => 0,
                     'cart_count' => count($carts),
                     'modal_view' => view('site._layouts._partials.availableProductLessThanRequested', [ 'available_product' => $product->quantity ])->render(),
-                     'nav_cart_view' => view('site._layouts._partials.cart')->render(),
+                     'nav_cart_view' => view('site._layouts._partials._new_partials.new_cart')->render(),
 
                 ];
             } else {
@@ -121,7 +121,7 @@ class CartController extends Controller
             'status' => 1,
             'cart_count' => count($carts),
             'modal_view' => view('site._layouts._partials.addedToCart', compact('product', 'data'))->render(),
-             'nav_cart_view' => view('site._layouts._partials.cart')->render(),
+             'nav_cart_view' => view('site._layouts._partials._new_partials.new_cart')->render(),
         ];
     }
 
@@ -137,8 +137,8 @@ class CartController extends Controller
         }
         return [
             'cart_count' => count($carts),
-            'cart_view' => view('site.carts.cart_summary', compact('carts'))->render(),
-            'nav_cart_view' => view('site._layouts._partials.cart')->render(),
+            'cart_view' => view('site.carts.new_cart_summary', compact('carts'))->render(),
+            'nav_cart_view' => view('site._layouts._partials._new_partials.new_cart')->render(),
         ];
     }
     public function updateQuantity(Request $request)
@@ -168,8 +168,8 @@ class CartController extends Controller
 
         return [
             'cart_count' => count($carts),
-            'cart_view' => view('site.carts.cart_summary', compact('carts'))->render(),
-            'nav_cart_view' => view('site._layouts._partials.cart')->render(),
+            'cart_view' => view('site.carts.new_cart_summary', compact('carts'))->render(),
+            'nav_cart_view' => view('site._layouts._partials._new_partials.new_cart')->render(),
         ];
     }
 }

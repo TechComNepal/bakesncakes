@@ -190,7 +190,7 @@
 </head>
 
 <body>
-    
+
 
 
     <!-- Quick view -->
@@ -324,6 +324,20 @@
 
     @include('site._layouts._partials._new_partials.new_footer')
 
+    <!-- Modal -->
+    <div class="modal fade" id="popupQuickview" tabindex="-1" aria-labelledby="popupQuickviewLabel"
+        aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered ps-quickview" id="modal-size">
+            <div class="modal-content">
+                <div id="addToCart-modal-body">
+
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+
     {{-- <!-- Preloader Start -->
     <div id="preloader-active">
         <div class="preloader d-flex align-items-center justify-content-center">
@@ -381,11 +395,85 @@
                 }
             });
 
+            $('#refresh_cart, #cart-mini, .ps-cart--mini').hover(function(e) {
+                $(".ps-cart--mini").stop(true, true).addClass("active");
+            }, function() {
+                $(".ps-cart--mini").stop(true, true).removeClass("active");
+            });
 
+
+        });
+
+        $('.minus').on('click', function() {
+            var $input = $(this).parent().find('input');
+            var count = parseInt($input.val()) - 1;
+            count = count < 1 ? 1 : count;
+            $input.val(count);
+            $input.change();
+            return false;
+        });
+        $('.plus').on('click', function() {
+            var $input = $(this).parent().find('input');
+            $input.val(parseInt($input.val()) + 1);
+            $input.change();
+            return false;
         });
     </script>
 
     <script>
+        function addToCart() {
+            $('#popupQuickview').modal();
+            let ser = $('#add-to-cart-form').serializeArray();
+            var delivery_date = $('#delivery_date').val();
+            if (delivery_date == '') {
+                $('#add_delivery_date').html(
+                    '<div class="alert alert-warning alert-dismissible fade show" role="alert"> Delivery Date is required<button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button></div>'
+                );
+            } else {
+                $.ajax({
+                    type: "POST",
+                    url: '{{ route('cart.addToCart') }}',
+                    data: ser,
+                    success: function(data) {
+                        $('#addToCart-modal-body').html(null);
+                        $('#modal-size').removeClass('modal-xl');
+                        $('#addToCart-modal-body').html(data.modal_view);
+                        updateNavCart(data.nav_cart_view, data.cart_count);
+                        $('#popupQuickview').modal('show');
+
+
+                    },
+                    error: function(data) {
+                        console.log(data);
+                        console.log('Quick View Error');
+                    }
+                });
+            }
+
+        }
+
+        function updateNavCart(view, count) {
+            $('.cart-count').html(count);
+            $('#refresh_cart').html(view);
+        }
+
+        function removeFromCart(key) {
+            $.ajax({
+                type: "POST",
+                url: '{{ route('cart.removeFromCart') }}',
+                data: {
+                    id: key
+                },
+                success: function(data) {
+                    $('#cart-summary').html(data.cart_view);
+                    updateNavCart(data.nav_cart_view, data.cart_count);
+                },
+                error: function(data) {
+                    console.log(data);
+                    console.log('Quick View Error');
+                }
+            });
+        }
         //store newsletter and send email to admin
         $('body').on('click', '#news-btn', function(e) {
             e.preventDefault();

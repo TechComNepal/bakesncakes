@@ -10,7 +10,7 @@
                      <div class="col-xl-3 col-lg-4">
                          <div class="header-info">
                              <ul>
-                                 <li><a href="{{route('site.page.aboutus')}}">About Us</a></li>
+                                 <li><a href="{{ route('site.page.aboutus') }}">About Us</a></li>
                                  <li><a href="page-account.html">My Account</a></li>
                                  <li><a href="shop-wishlist.html">Wishlist</a></li>
                                  <li><a href="shop-order.html">Order Tracking</a></li>
@@ -42,7 +42,7 @@
              <div class="container">
                  <div class="header-wrap">
                      <div class="logo logo-width-1">
-                         <a href="{{route('site.page')}}"><img
+                         <a href="{{ route('site.page') }}"><img
                                  src="{{ asset('new_frontend\assets\imgs\theme\MINIPASAL@4X-8(1).png') }}"
                                  alt="logo"></a>
                      </div>
@@ -51,12 +51,11 @@
                              <form action="#">
                                  <select class="select-active">
                                      <option>All Categories</option>
-                                     @foreach ($menucategories as $menucategorie )
-                                     <option><a href="">{{$menucategorie->name}}</a></option>
-
+                                     @foreach ($menucategories as $menucategorie)
+                                         <option><a href="">{{ $menucategorie->name }}</a></option>
                                      @endforeach
                                  </select>
-                                 <form action="{{route('site.page.search')}}">
+                                 <form action="{{ route('site.page.search') }}">
                                      <input type="text" placeholder="Search for items..." name="query">
                                  </form>
                              </form>
@@ -100,67 +99,12 @@
                                      </a>
                                      <a href="shop-wishlist.html"><span class="lable">Wishlist</span></a>
                                  </div>
-                                 <div class="header-action-icon-2">
-                                     <a class="mini-cart-icon" href="shop-cart.html">
-                                         <img alt="Nest"
-                                             src="{{ asset('new_frontend\assets\imgs\theme\icons\icon-cart.svg') }}">
-                                         <span class="pro-count blue">2</span>
-                                     </a>
-                                     <a href="shop-cart.html"><span class="lable">Cart</span></a>
-                                     <div class="cart-dropdown-wrap cart-dropdown-hm2">
-                                         <ul>
-                                             <li>
-                                                 <div class="shopping-cart-img">
-                                                     <a href="shop-product-right.html">
-                                                         <img alt="Nest"
-                                                             src="{{ asset('new_frontend\assets\imgs\shop\thumbnail-3.jpg')}}"></a>
-                                                 </div>
-                                                 <div class=" shopping-cart-title">
-                                                     <h4><a href="shop-product-right.html">Daisy
-                                                             Casual
-                                                             Bag</a>
-                                                     </h4>
-                                                     <h4><span>1 ×
-                                                         </span>$800.00
-                                                     </h4>
-                                                 </div>
-                                                 <div class="shopping-cart-delete">
-                                                     <a href="#"><i class="fi-rs-cross-small"></i></a>
-                                                 </div>
-                                             </li>
-                                             <li>
-                                                 <div class="shopping-cart-img">
-                                                     <a href="shop-product-right.html">
-                                                         <img alt="Nest"
-                                                             src="{{ asset('new_frontend\assets\imgs\shop\thumbnail-2.jpg')}}"></a>
-                                                 </div>
-                                                 <div class=" shopping-cart-title">
-                                                     <h4><a href="shop-product-right.html">Corduroy
-                                                             Shirts</a>
-                                                     </h4>
-                                                     <h4><span>1 ×
-                                                         </span>$3200.00
-                                                     </h4>
-                                                 </div>
-                                                 <div class="shopping-cart-delete">
-                                                     <a href="#"><i class="fi-rs-cross-small"></i></a>
-                                                 </div>
-                                             </li>
-                                         </ul>
-                                         <div class="shopping-cart-footer">
-                                             <div class="shopping-cart-total">
-                                                 <h4>Total
-                                                     <span>$4000.00</span>
-                                                 </h4>
-                                             </div>
-                                             <div class="shopping-cart-button">
-                                                 <a href="shop-cart.html" class="outline">View
-                                                     cart</a>
-                                                 <a href="shop-checkout.html">Checkout</a>
-                                             </div>
-                                         </div>
-                                     </div>
-                                 </div>
+                                 <span id="refresh_cart">
+                                     @include(
+                                         'site._layouts._partials._new_partials.new_cart'
+                                     )
+                                 </span>
+
                                  <div class="header-action-icon-2">
                                      <a href="page-account.html">
                                          <img class="svgInject" alt="Nest"
@@ -220,46 +164,47 @@
                              <div class="categories-dropdown-wrap categories-dropdown-active-large font-heading">
                                  <div class="d-flex categori-dropdown-inner">
                                      <ul>
-                                         @foreach ($menucategories->take(6) as $menucategorie )
-
-                                         <li>
-                                             <a href="shop-grid-right.html "> <img
-                                                     src="{{ $menucategorie->getFirstOrDefaultMediaUrl('image', 'thumb') }}"
-                                                     alt="" class="rounded-circle">
-                                                 {{$menucategorie->name}}</a>
-                                         </li>
+                                         @foreach ($menucategories->take(6) as $menucategorie)
+                                             <li>
+                                                 <a href="shop-grid-right.html "> <img
+                                                         src="{{ $menucategorie->getFirstOrDefaultMediaUrl('image', 'thumb') }}"
+                                                         alt="" class="rounded-circle">
+                                                     {{ $menucategorie->name }}</a>
+                                             </li>
                                          @endforeach
                                      </ul>
                                      <ul class=" end">
-                                         @foreach ($menucategories->skip(6)->take(6) as $menucategorie )
-                                         <li>
-                                             <a href="shop-grid-right.html"> <img
-                                                     src="{{ $menucategorie->getFirstOrDefaultMediaUrl('image', 'thumb') }}"
-                                                     alt="" class="rounded-circle">{{$menucategorie->name}}</a>
-                                         </li>
+                                         @foreach ($menucategories->skip(6)->take(6) as $menucategorie)
+                                             <li>
+                                                 <a href="shop-grid-right.html"> <img
+                                                         src="{{ $menucategorie->getFirstOrDefaultMediaUrl('image', 'thumb') }}"
+                                                         alt="" class="rounded-circle">{{ $menucategorie->name }}</a>
+                                             </li>
                                          @endforeach
                                      </ul>
                                  </div>
                                  <div class=" more_slide_open" style="display: none">
                                      <div class="d-flex categori-dropdown-inner">
                                          <ul>
-                                             @foreach ($menucategories->skip(12)->take(2) as $menucategorie )
-                                             <li>
-                                                 <a href="shop-grid-right.html"> <img
-                                                         src="{{ $menucategorie->getFirstOrDefaultMediaUrl('image', 'thumb') }}"
-                                                         alt="" class="rounded-circle">{{$menucategorie->name}}</a>
-                                             </li>
+                                             @foreach ($menucategories->skip(12)->take(2) as $menucategorie)
+                                                 <li>
+                                                     <a href="shop-grid-right.html"> <img
+                                                             src="{{ $menucategorie->getFirstOrDefaultMediaUrl('image', 'thumb') }}"
+                                                             alt=""
+                                                             class="rounded-circle">{{ $menucategorie->name }}</a>
+                                                 </li>
                                              @endforeach
 
                                          </ul>
                                          <ul class=" end">
 
-                                             @foreach ($menucategories->skip(14)->take(2) as $menucategorie )
-                                             <li>
-                                                 <a href="shop-grid-right.html"> <img
-                                                         src="{{ $menucategorie->getFirstOrDefaultMediaUrl('image', 'thumb') }}"
-                                                         alt="" class="rounded-circle">{{$menucategorie->name}}</a>
-                                             </li>
+                                             @foreach ($menucategories->skip(14)->take(2) as $menucategorie)
+                                                 <li>
+                                                     <a href="shop-grid-right.html"> <img
+                                                             src="{{ $menucategorie->getFirstOrDefaultMediaUrl('image', 'thumb') }}"
+                                                             alt=""
+                                                             class="rounded-circle">{{ $menucategorie->name }}</a>
+                                                 </li>
                                              @endforeach
 
                                          </ul>
@@ -278,7 +223,7 @@
                                              src="{{ asset('new_frontend\assets\imgs\theme\icons\icon-hot.svg') }}"
                                              alt="hot deals"><a href="shop-grid-right.html">Hot Deals</a></li>
                                      <li>
-                                         <a href="{{route('site.page')}}">Home</a>
+                                         <a href="{{ route('site.page') }}">Home</a>
                                      </li>
 
                                      <li>
@@ -286,16 +231,16 @@
                                      </li>
 
                                      <li>
-                                         <a href="{{route('site.page.aboutus')}}">About</a>
+                                         <a href="{{ route('site.page.aboutus') }}">About</a>
                                      </li>
 
                                      <li>
-                                         <a href="{{route('site.page.vendor')}}">Vendors <i
+                                         <a href="{{ route('site.page.vendor') }}">Vendors <i
                                                  class="fi-rs-angle-down"></i></a>
                                          <ul class="sub-menu">
-                                             <li><a href="{{route('site.page.vendor')}}">Vendors List</a>
+                                             <li><a href="{{ route('site.page.vendor') }}">Vendors List</a>
                                              </li>
-                                             <li><a href="{{route('site.page.vendor_guide')}}">Vendor Guide</a>
+                                             <li><a href="{{ route('site.page.vendor_guide') }}">Vendor Guide</a>
                                              </li>
                                          </ul>
                                      </li>
@@ -387,11 +332,11 @@
                                          </ul>
                                      </li>
                                      <li>
-                                         <a href="{{route('site.page.blog')}}">Blog</a>
+                                         <a href="{{ route('site.page.blog') }}">Blog</a>
                                      </li>
 
                                      <li>
-                                         <a href="{{route('site.page.contact')}}">Contact</a>
+                                         <a href="{{ route('site.page.contact') }}">Contact</a>
                                      </li>
                                  </ul>
                              </nav>
@@ -409,6 +354,7 @@
                              <span class="burger-icon-bottom"></span>
                          </div>
                      </div>
+                     <!--Possible Mobile View for top header -->
                      <div class="header-action-right d-block d-lg-none">
                          <div class="header-action-2">
                              <div class="header-action-icon-2">
@@ -468,6 +414,7 @@
                              </div>
                          </div>
                      </div>
+                     <!-- End Possible Mobile View for top header  -->
                  </div>
              </div>
          </div>
@@ -477,8 +424,8 @@
              <div class="mobile-header-wrapper-inner">
                  <div class="mobile-header-top">
                      <div class="mobile-header-logo">
-                         <a href="{{route('site.page')}}"><img src="{{ asset('new_frontend\assets\imgs\theme\logo.svg') }}"
-                                 alt="logo"></a>
+                         <a href="{{ route('site.page') }}"><img
+                                 src="{{ asset('new_frontend\assets\imgs\theme\logo.svg') }}" alt="logo"></a>
                      </div>
                      <div class=" mobile-menu-close close-style-wrap close-style-position-inherit">
                          <button class="close-style search-close">
@@ -507,11 +454,11 @@
 
                                  </li>
                                  <li class="menu-item-has-children">
-                                     <a href="{{route('site.page.vendor')}}">Vendors</a>
+                                     <a href="{{ route('site.page.vendor') }}">Vendors</a>
                                      <ul class="dropdown">
-                                         <li><a href="{{route('site.page.vendor')}}">Vendors List</a></li>
-                                         <li><a href="{{route('site.page.vendor_guide')}}">Vendor Guide</a></li>
-                                         <li><a href="{{route('site.page.vendor_guide')}}">Hello</a></li>
+                                         <li><a href="{{ route('site.page.vendor') }}">Vendors List</a></li>
+                                         <li><a href="{{ route('site.page.vendor_guide') }}">Vendor Guide</a></li>
+                                         <li><a href="{{ route('site.page.vendor_guide') }}">Hello</a></li>
                                      </ul>
                                  </li>
                                  <li class="menu-item-has-children">
@@ -548,16 +495,16 @@
                                  </li>
 
                                  <li class="menu-item-has-children">
-                                     <a href="{{route('site.page.blog')}}">Blog</a>
+                                     <a href="{{ route('site.page.blog') }}">Blog</a>
 
                                  </li>
                                  <!-- <li class="menu-item-has-children">
                                      <a href="#">Pages</a>
                                      <ul class="dropdown">
-                                         <li><a href="{{route('site.page.aboutus')}}">About Us</a></li>
-                                         <li><a href="{{route('site.page.contact')}}">Contact</a></li>
+                                         <li><a href="{{ route('site.page.aboutus') }}">About Us</a></li>
+                                         <li><a href="{{ route('site.page.contact') }}">Contact</a></li>
                                          <li><a href="page-account.html">My Account</a></li>
-                                         <li><a href="{{route('auth.login.show')}}">Login</a></li>
+                                         <li><a href="{{ route('auth.login.show') }}">Login</a></li>
                                          <li><a href="page-register.html">Register</a></li>
                                          <li><a href="page-purchase-guide.html">Purchase Guide</a></li>
                                          <li><a href="page-privacy-policy.html">Privacy Policy</a></li>
@@ -583,7 +530,8 @@
                              <a href="page-contact.html"><i class="fi-rs-marker"></i> Our location </a>
                          </div>
                          <div class="single-mobile-header-info">
-                             <a href="{{route('auth.register.show')}}"><i class="fi-rs-user"></i>Log In / Sign Up </a>
+                             <a href="{{ route('auth.register.show') }}"><i class="fi-rs-user"></i>Log In / Sign
+                                 Up </a>
                          </div>
                          <div class="single-mobile-header-info">
                              <a href="#"><i class="fi-rs-headphones"></i>(+01) - 2345 - 6789 </a>
@@ -607,7 +555,8 @@
                                  src="{{ asset('new_frontend\assets\imgs\theme\icons\icon-youtube-white.svg') }}"
                                  alt=""></a>
                      </div>
-                     <div class="site-copyright">Copyright 2021 © Nest. All rights reserved. Powered by AliThemes.</div>
+                     <div class="site-copyright">Copyright 2021 © Nest. All rights reserved. Powered by AliThemes.
+                     </div>
                  </div>
              </div>
          </div>
