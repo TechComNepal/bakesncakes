@@ -23,8 +23,10 @@ use Illuminate\Contracts\View\View;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
 use App\Models\CustomerShippingAddress;
+use App\Models\User;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Session;
+use Spatie\Permission\Models\Role;
 use Spatie\Searchable\ModelSearchAspect;
 
 class PagesController extends Controller
@@ -107,7 +109,12 @@ class PagesController extends Controller
     /* vendors */
     public function vendor() 
     {
-        return view('site.pages.vendor');
+        $paginator = User::paginate(8); 
+
+        return view('site.pages.vendor', [
+            'vendors' => User::role('vendor')->get(),
+            'paginator' => $paginator
+        ]);
     }
     public function vendor_guide() 
     {

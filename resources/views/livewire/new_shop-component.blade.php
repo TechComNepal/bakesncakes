@@ -1387,4 +1387,8 @@
             </div>
         </div>
     </main>
+
+    <div class="d-flex justify-content-center">
+        {{ $products->links('site._layouts._partials.custom-pagination') }}
+    </div>
 </X-new-site-master-layout>
