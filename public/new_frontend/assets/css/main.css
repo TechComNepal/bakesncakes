@@ -11238,6 +11238,47 @@ footer .hotline img {
   margin-right: 200px !important;
 }
 
+/* #### Pagination#### */
+
+
+ul.pagination .page-link {
+  padding: 0 !important;
+}
+
+.pagination-area .page-item:first-child .page-link {
+  margin-left: 10px !important;   
+}
+
+
+/* #### End Pagination #### */
+
+
+
+/* #### Single Product #### */
+
+
+.product title h2 {
+  font-size: 1rem !important;
+}
+
+.detail-info .product-price .current-price {
+  font-size: 2rem;
+}
+
+.product-tag {
+  background: #af3039; 
+  border-radius: 5px;
+  padding: 3px;
+  color: #fff;
+}
+
+.slider-nav-thumbnails .slick-slide.slick-current img {
+  border: 2px solid #af3039;
+}
+
+
+/* #### End Single Product #### */
+
 @media only screen and (max-width: 768px) {
   .totall-product h2 {
     font-size: 28px;

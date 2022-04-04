@@ -43,8 +43,8 @@
                             </div>
                             <div class="col-md-6 col-sm-12 col-xs-12">
                                 <div class="detail-info pr-30 pl-30">
-                                    <span class="stock-status out-stock"> Sale Off </span>
-                                    <h2 class="title-detail">{{ $singleProduct->name }}</h2>
+                                    <span class="stock-status out-stock product-title"> Sale Off </span>
+                                    <h2 class="title-detail ">{{ $singleProduct->name }}</h2>
                                     <div class="product-detail-rating">
                                         <div class="product-rate-cover text-end">
                                             <div class="rating">
@@ -185,10 +185,11 @@
 
                                         <ul class="float-start">
                                             <li class="mb-5">SKU: <a
-                                                    href="javascript:void(0)">{{ $singleProduct->sku }}</a></li>
+                                                    href="javascript:void(0)" >{{ $singleProduct->sku }}</a></li>
                                             <li class="mb-5">Tags: @if ($singleProduct->tags != '')
                                                     @foreach (explode(',', $singleProduct->tags) as $tag)
-                                                        <a href="javascript:void(0)" rel="tag">{{ $tag }}</a>
+                                                        <a href="javascript:void(0)" class="product-tag"
+                                                            rel="tag">{{ $tag }}</a>
                                                     @endforeach
                                                 @endif
                                             </li>
