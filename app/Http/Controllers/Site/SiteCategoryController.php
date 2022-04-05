@@ -14,10 +14,14 @@ class SiteCategoryController extends Controller
     {
         $categories = Category::where('parent_id', Null)->limit(8)->OrderBy('id', 'desc')->get();
         $products = Product::orderBy('id', 'desc')->paginate(8);
-        return view('site.pages.categories.index', compact('categories','products'));
+        $trending_products = Product::where('is_trending', 1)->orderBy('created_at', 'desc')->limit(4)->get();
+        $featured_products = Product::orderBy('created_at', 'desc')->get();
+        
+        return view('site.pages.categories.new_index', compact('categories','products','trending_products','featured_products'));
     }
 
     public function getCategoryProducts($slug){
+        
         return view('site.pages.categories.all_products', compact('slug'));
     }
 
