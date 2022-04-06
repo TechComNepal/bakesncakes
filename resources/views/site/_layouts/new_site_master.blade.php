@@ -311,7 +311,6 @@
         </div>
     </div>
 
-    </div>
 
     @include('site._layouts._partials._new_partials.new_header')
 
@@ -421,6 +420,32 @@
     </script>
 
     <script>
+        function productview(id) {
+            $('#popupQuickview').modal();
+            $('#addToCart-modal-body').html(null);
+
+            $.ajax({
+                type: "GET",
+                url: '{{ route('product.quickView') }}',
+                data: {
+                    id: id,
+                },
+                success: function(data) {
+                    if (!$('#modal-size').hasClass('modal-xl')) {
+                        $('#modal-size').addClass('modal-xl');
+                    }
+                    $('#addToCart-modal-body').html(data.modal_view);
+                    $('#popupQuickview').modal('show');
+
+                },
+                error: function(data) {
+                    console.log(data);
+                }
+
+            })
+
+        }
+
         function addToCart() {
             $('#popupQuickview').modal();
             let ser = $('#add-to-cart-form').serializeArray();

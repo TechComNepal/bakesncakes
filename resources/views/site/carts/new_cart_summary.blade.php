@@ -2,7 +2,7 @@
      <div class="page-header breadcrumb-wrap">
          <div class="container">
              <div class="breadcrumb">
-                 <a href="index.html" rel="nofollow"><i class="fi-rs-home mr-5"></i>Home</a>
+                 <a href="{{ route('site.page') }}" rel="nofollow"><i class="fi-rs-home mr-5"></i>Home</a>
                  <span></span> Shop
                  <span></span> Cart
              </div>
@@ -102,7 +102,8 @@
                                                  <button type="button" class="minus number-input" data-type="minus"
                                                      data-field="quantity[{{ $cart->id }}]"><i
                                                          class="fa fa-minus"></i></button>
-                                                 <input class="quantity" min="{{ $product->min_purchase_unit }}"
+                                                 <input class="quantity"
+                                                     min="{{ $product->min_purchase_unit }}"
                                                      max="{{ $product->quantity }}"
                                                      name="quantity[{{ $cart->id }}]"
                                                      value="{{ $cart->quantity }}" type="number"

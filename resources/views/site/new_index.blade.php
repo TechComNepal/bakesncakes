@@ -4,9 +4,9 @@
             <div class="home-slide-cover mt-30">
                 <div class="hero-slider-1 style-4 dot-style-1 dot-style-1-position-1">
                     @foreach ($sliders->where('is_popup', '!=', true) as $slider)
-                    <div class="single-hero-slider single-animation-wrap"
-                        style="background-image: url('{{ $slider->getFirstOrDefaultMediaUrl('desktop') }}')">
-                        <!-- <div class="slider-content">
+                        <div class="single-hero-slider single-animation-wrap"
+                            style="background-image: url('{{ $slider->getFirstOrDefaultMediaUrl('desktop') }}')">
+                            <!-- <div class="slider-content">
                                     <h1 class="display-2 mb-40">
                                         Don’t miss amazing<br>
                                         grocery deals
@@ -17,7 +17,7 @@
                                         <button class="btn" type="submit">Subscribe</button>
                                     </form>
                                 </div> -->
-                    </div>
+                        </div>
                     @endforeach
 
                 </div>
@@ -33,10 +33,10 @@
                             aria-label="Close" style="cursor:pointer !important;"></button>
                         <div class=" carousel-inner">
                             @foreach ($sliders->where('is_popup', '!=', true) as $slider)
-                            <div class="carousel-item @if ($loop->iteration == 1) active @endif ">
-                                <img src="{{ $slider->getFirstOrDefaultMediaUrl('desktop') }}"
-                                    class="d-block w-100 img-fluid" alt="slider-img">
-                            </div>
+                                <div class="carousel-item @if ($loop->iteration == 1) active @endif ">
+                                    <img src="{{ $slider->getFirstOrDefaultMediaUrl('desktop') }}"
+                                        class="d-block w-100 img-fluid" alt="slider-img">
+                                </div>
                             @endforeach
                         </div>
                     </div>
@@ -69,14 +69,14 @@
             <div class="carausel-10-columns-cover position-relative">
                 <div class="carausel-10-columns" id="carausel-10-columns">
                     @foreach ($categories as $category)
-                    <div class="card-2 bg-9 wow animate__animated animate__fadeInUp" data-wow-delay=".1s">
-                        <figure class="img-hover-scale overflow-hidden">
-                            <a href="shop-grid-right.html"><img
-                                    src="{{ $category->getFirstOrDefaultMediaUrl('image', 'thumb') }}" alt=""></a>
-                        </figure>
-                        <h6><a href="shop-grid-right.html">Cake & Milk</a></h6>
-                        <span>26 items</span>
-                    </div>
+                        <div class="card-2 bg-9 wow animate__animated animate__fadeInUp" data-wow-delay=".1s">
+                            <figure class="img-hover-scale overflow-hidden">
+                                <a href="shop-grid-right.html"><img
+                                        src="{{ $category->getFirstOrDefaultMediaUrl('image', 'thumb') }}" alt=""></a>
+                            </figure>
+                            <h6><a href="shop-grid-right.html">Cake & Milk</a></h6>
+                            <span>26 items</span>
+                        </div>
                     @endforeach
                 </div>
             </div>
@@ -129,7 +129,8 @@
                                                     </div>
                                                     <div class="col-lg-6">
                                                         <div class="form-group">
-                                                            <input type="email" class="form-control" placeholder="Email"
+                                                            <input type="email" class="form-control"
+                                                                placeholder="Email"
                                                                 value="{{ Auth::user()->email ?? '' }}" name="email"
                                                                 required>
                                                         </div>
@@ -145,8 +146,8 @@
                                                         <div class="form-group">
                                                             <input type="text" class="form-control"
                                                                 placeholder="Home Address"
-                                                                value="{{ Auth::user()->address ?? '' }}" name="address"
-                                                                required>
+                                                                value="{{ Auth::user()->address ?? '' }}"
+                                                                name="address" required>
                                                         </div>
                                                     </div>
                                                     <div class="col-lg-6">
@@ -176,7 +177,8 @@
                                                         <div class="form-group">
                                                             <input type="datetime-local" class="form-control"
                                                                 id="arrive" name="date" name="date" required>
-                                                            <label for="date" class="mx-2">(Please add Delivery Date and
+                                                            <label for="date" class="mx-2">(Please add
+                                                                Delivery Date and
                                                                 Time)</label>
                                                         </div>
                                                     </div>
@@ -194,8 +196,7 @@
                                                         <div class="form-group">
                                                             <br>
                                                             <label for="">Description : </label>
-                                                            <textarea id="your_message" class="form-control" rows="10"
-                                                                placeholder="Write a message"
+                                                            <textarea id="your_message" class="form-control" rows="10" placeholder="Write a message"
                                                                 name="description"></textarea>
                                                         </div>
                                                     </div>
@@ -235,7 +236,6 @@
 
                 <div class="row product-grid-4">
                     @foreach ($featured_products as $featured_product)
-
                         <div class="col-lg-1-5 col-md-4 col-12 col-sm-6">
                             <div class="product-cart-wrap mb-30 wow animate__animated animate__fadeIn"
                                 data-wow-delay=".1s">
@@ -254,67 +254,76 @@
                                         <a aria-label="Compare" class="action-btn featured-products_a"
                                             href="shop-compare.html"><i class="fi-rs-shuffle"></i></a>
                                         <a aria-label="Quick view" class="action-btn featured-products_a"
-                                            data-bs-toggle="modal" data-bs-target="#quickViewModal"><i
+                                            id="{{ $featured_product->id }}"
+                                            onclick="productview({{ $featured_product->id }})"><i
                                                 class="fi-rs-eye"></i></a>
+                                        {{-- <a aria-label="Quick view" class="action-btn" data-bs-toggle="modal"
+                                            data-bs-target="#quickViewModal"><i class="fi-rs-eye"></i></a> --}}
                                     </div>
                                     <div class="product-badges product-badges-position product-badges-mrg">
                                         <span class="hot">Hot</span>
 
+                                    </div>
                                 </div>
-                            </div>
-                            <div class="product-content-wrap">
-                                <div class="product-category">
-                                    <a href="javascript:void(0)">{{ $featured_product->category->name }}</a>
-                                </div>
-                                <h2><a href="shop-product-right.html">{{ $featured_product->name }}</a></h2>
-                                <div class="product-rate-cover">
-                                    <div class="rating">
-                                        @php
-                                        $num_rating = number_format($featured_product->averageRating);
-                                        @endphp
-                                        @for ($i = 0; $i < $num_rating; $i++) <i class="fa fa-star checked"> </i>
+                                <div class="product-content-wrap">
+                                    <div class="product-category">
+                                        <a href="javascript:void(0)">{{ $featured_product->category->name }}</a>
+                                    </div>
+                                    <h2><a href="shop-product-right.html">{{ $featured_product->name }}</a></h2>
+                                    <div class="product-rate-cover">
+                                        <div class="rating">
+                                            @php
+                                                $num_rating = number_format($featured_product->averageRating);
+                                            @endphp
+                                            @for ($i = 0; $i < $num_rating; $i++)
+                                                <i class="fa fa-star checked"> </i>
                                             @endfor
-                                            @for ($j = $num_rating; $j < 5; $j++) <i class="fa fa-star"> </i>
-                                                @endfor
-                                                <span class="font-small ml-5 text-muted">
-                                                    ({{ round($featured_product->averageRating, 1) }})</span>
+                                            @for ($j = $num_rating; $j < 5; $j++)
+                                                <i class="fa fa-star"> </i>
+                                            @endfor
+                                            <span class="font-small ml-5 text-muted">
+                                                ({{ round($featured_product->averageRating, 1) }})</span>
 
+                                        </div>
                                     </div>
-                                </div>
-                                <div>
-                                    <span class="font-small text-muted">By <a
-                                            href="vendor-details-1.html">{{ $featured_product->user->name }}</a></span>
-                                </div>
-                                <div class="product-card-bottom">
-                                    @if ($featured_product->discount === 0)
-                                    <div class="product-price">
-                                        <span> Rs.{{ $featured_product->selling_price }}</span>
+                                    <div>
+                                        <span class="font-small text-muted">By <a
+                                                href="vendor-details-1.html">{{ $featured_product->user->name }}</a></span>
                                     </div>
-                                    @else
-                                    @if ($featured_product->discount_type === 'percent')
-                                    <div class="product-price">
-                                        <span>
-                                            Rs.{{ $featured_product->selling_price * (1 - $featured_product->discount / 100) }}</span>
-                                        <span class="old-price">Rs.{{ $featured_product->selling_price }}</span>
-                                    </div>
-                                    @else
-                                    <div class="product-price">
-                                        <span>
-                                            Rs.
-                                            {{ $featured_product->selling_price - $featured_product->discount }}</span>
-                                        <span class="old-price">
-                                            Rs.{{ $featured_product->selling_price }}</span>
-                                    </div>
-                                    @endif
-                                    @endif
-                                    <div class="add-cart">
-                                        <a class="add" href="shop-cart.html"><i class="fi-rs-shopping-cart mr-5"></i>Add
-                                        </a>
+                                    <div class="product-card-bottom">
+                                        @if ($featured_product->discount === 0)
+                                            <div class="product-price">
+                                                <span> Rs.{{ $featured_product->selling_price }}</span>
+                                            </div>
+                                        @else
+                                            @if ($featured_product->discount_type === 'percent')
+                                                <div class="product-price">
+                                                    <span>
+                                                        Rs.{{ $featured_product->selling_price * (1 - $featured_product->discount / 100) }}</span>
+                                                    <span
+                                                        class="old-price">Rs.{{ $featured_product->selling_price }}</span>
+                                                </div>
+                                            @else
+                                                <div class="product-price">
+                                                    <span>
+                                                        Rs.
+                                                        {{ $featured_product->selling_price - $featured_product->discount }}</span>
+                                                    <span class="old-price">
+                                                        Rs.{{ $featured_product->selling_price }}</span>
+                                                </div>
+                                            @endif
+                                        @endif
+                                        <div class="add-cart">
+                                            <a href="javascript:void(0);" class="add"
+                                                id="{{ $featured_product->id }}"
+                                                onclick="productview({{ $featured_product->id }})"><i
+                                                    class="fi-rs-shopping-cart mr-5"></i>Add
+                                            </a>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
                         </div>
-                    </div>
                     @endforeach
 
                 </div>
@@ -364,94 +373,100 @@
                                     id="carausel-4-columns-arrows"></div>
                                 <div class="carausel-4-columns carausel-arrow-center" id="carausel-4-columns">
                                     @foreach ($best_selling_products as $best_selling_product)
-                                    <div class="product-cart-wrap">
+                                        <div class="product-cart-wrap">
 
 
-                                        <div class="product-img-action-wrap">
-                                            <div class="product-img product-img-zoom">
-                                                <a href="shop-product-right.html">
-                                                    <img class="default-img"
-                                                        src="{{ $best_selling_product->getFirstOrDefaultMediaUrl('image', 'square-md-thumb') }}">
-                                                    <img class="hover-img"
-                                                        src="{{ $best_selling_product->getFirstOrDefaultMediaUrl('image', 'square-md-thumb') }}">
-                                                </a>
-                                            </div>
-                                            <div class="product-action-1">
-                                                <a aria-label="Quick view" class="action-btn small hover-up"
-                                                    data-bs-toggle="modal" data-bs-target="#quickViewModal"> <i
-                                                        class="fi-rs-eye"></i></a>
-                                                <a aria-label="Add To Wishlist" class="action-btn small hover-up"
-                                                    href="shop-wishlist.html"><i class="fi-rs-heart"></i></a>
-                                                <a aria-label="Compare" class="action-btn small hover-up"
-                                                    href="shop-compare.html"><i class="fi-rs-shuffle"></i></a>
-                                            </div>
-                                            <div class="product-badges product-badges-position product-badges-mrg">
-                                                <span class="hot">Save 15%</span>
-                                            </div>
-                                        </div>
-                                        <div class="product-content-wrap">
-                                            <div class="product-category">
-                                                <a
-                                                    href="shop-grid-right.html">{{ $best_selling_product->category->name }}</a>
-                                            </div>
-                                            <h2><a href="shop-product-right.html">{{ $best_selling_product->name }}</a>
-                                            </h2>
-
-                                            <div class="rating">
-                                                @php
-                                                $num_rating = number_format($best_selling_product->averageRating);
-                                                @endphp
-                                                @for ($i = 0; $i < $num_rating; $i++) <i class="fa fa-star checked">
-                                                    </i>
-                                                    @endfor
-                                                    @for ($j = $num_rating; $j < 5; $j++) <i class="fa fa-star"> </i>
-                                                        @endfor
-                                                        <span class="font-small ml-5 text-muted">
-                                                            ({{ round($best_selling_product->averageRating, 1) }})</span>
-                                            </div>
-
-                                            @if ($best_selling_product->discount === 0)
-                                            <div class="product-price">
-                                                <span> Rs.{{ $best_selling_product->selling_price }}</span>
-                                            </div>
-                                            @else
-                                            @if ($best_selling_product->discount_type === 'percent')
-                                            <div class="product-price">
-                                                <span>
-                                                    Rs.{{ $best_selling_product->selling_price * (1 - $best_selling_product->discount / 100) }}</span>
-                                                <span
-                                                    class="old-price">Rs.{{ $best_selling_product->selling_price }}</span>
-                                            </div>
-                                            @else
-                                            <div class="product-price">
-                                                <span>
-                                                    {{ $best_selling_product->selling_price - $best_selling_product->discount }}</span>
-                                                <span
-                                                    class="old-price">{{ $best_selling_product->selling_price }}</span>
-                                            </div>
-                                            @endif
-                                            @endif
-                                            <div class="sold mt-15 mb-15">
-                                                <div class="progress mb-5">
-                                                    <div class="progress-bar" role="progressbar" style="width: 50%"
-                                                        aria-valuemin="0" aria-valuemax="100">
-                                                    </div>
+                                            <div class="product-img-action-wrap">
+                                                <div class="product-img product-img-zoom">
+                                                    <a href="shop-product-right.html">
+                                                        <img class="default-img"
+                                                            src="{{ $best_selling_product->getFirstOrDefaultMediaUrl('image', 'square-md-thumb') }}">
+                                                        <img class="hover-img"
+                                                            src="{{ $best_selling_product->getFirstOrDefaultMediaUrl('image', 'square-md-thumb') }}">
+                                                    </a>
                                                 </div>
-                                                @php
-                                                $total_order_quantity = 0;
-                                                foreach ($best_selling_product->orders as $order) {
-                                                $total_order_quantity = $total_order_quantity + $order->pivot->quantity;
-                                                }
-                                                $total_quantity = $best_selling_product->quantity +
-                                                $total_order_quantity;
-                                                @endphp
-                                                <span class="font-xs text-heading"> Sold:
-                                                    {{ $total_order_quantity }}/{{ $total_quantity }}</span>
+                                                <div class="product-action-1">
+                                                    <a aria-label="Quick view" class="action-btn small hover-up"
+                                                        href="javascript:void(0);"
+                                                        id="{{ $best_selling_product->id }}"
+                                                        onclick="productview({{ $best_selling_product->id }})"> <i
+                                                            class="fi-rs-eye"></i></a>
+                                                    <a aria-label="Add To Wishlist" class="action-btn small hover-up"
+                                                        href="shop-wishlist.html"><i class="fi-rs-heart"></i></a>
+                                                    <a aria-label="Compare" class="action-btn small hover-up"
+                                                        href="shop-compare.html"><i class="fi-rs-shuffle"></i></a>
+                                                </div>
+                                                <div class="product-badges product-badges-position product-badges-mrg">
+                                                    <span class="hot">Save 15%</span>
+                                                </div>
                                             </div>
-                                            <a href="shop-cart.html" class="btn w-100 hover-up"><i
-                                                    class="fi-rs-shopping-cart mr-5"></i>Add To Cart</a>
+                                            <div class="product-content-wrap">
+                                                <div class="product-category">
+                                                    <a
+                                                        href="shop-grid-right.html">{{ $best_selling_product->category->name }}</a>
+                                                </div>
+                                                <h2><a
+                                                        href="shop-product-right.html">{{ $best_selling_product->name }}</a>
+                                                </h2>
+
+                                                <div class="rating">
+                                                    @php
+                                                        $num_rating = number_format($best_selling_product->averageRating);
+                                                    @endphp
+                                                    @for ($i = 0; $i < $num_rating; $i++)
+                                                        <i class="fa fa-star checked">
+                                                        </i>
+                                                    @endfor
+                                                    @for ($j = $num_rating; $j < 5; $j++)
+                                                        <i class="fa fa-star"> </i>
+                                                    @endfor
+                                                    <span class="font-small ml-5 text-muted">
+                                                        ({{ round($best_selling_product->averageRating, 1) }})</span>
+                                                </div>
+
+                                                @if ($best_selling_product->discount === 0)
+                                                    <div class="product-price">
+                                                        <span> Rs.{{ $best_selling_product->selling_price }}</span>
+                                                    </div>
+                                                @else
+                                                    @if ($best_selling_product->discount_type === 'percent')
+                                                        <div class="product-price">
+                                                            <span>
+                                                                Rs.{{ $best_selling_product->selling_price * (1 - $best_selling_product->discount / 100) }}</span>
+                                                            <span
+                                                                class="old-price">Rs.{{ $best_selling_product->selling_price }}</span>
+                                                        </div>
+                                                    @else
+                                                        <div class="product-price">
+                                                            <span>
+                                                                {{ $best_selling_product->selling_price - $best_selling_product->discount }}</span>
+                                                            <span
+                                                                class="old-price">{{ $best_selling_product->selling_price }}</span>
+                                                        </div>
+                                                    @endif
+                                                @endif
+                                                <div class="sold mt-15 mb-15">
+                                                    <div class="progress mb-5">
+                                                        <div class="progress-bar" role="progressbar"
+                                                            style="width: 50%" aria-valuemin="0" aria-valuemax="100">
+                                                        </div>
+                                                    </div>
+                                                    @php
+                                                        $total_order_quantity = 0;
+                                                        foreach ($best_selling_product->orders as $order) {
+                                                            $total_order_quantity = $total_order_quantity + $order->pivot->quantity;
+                                                        }
+                                                        $total_quantity = $best_selling_product->quantity + $total_order_quantity;
+                                                    @endphp
+                                                    <span class="font-xs text-heading"> Sold:
+                                                        {{ $total_order_quantity }}/{{ $total_quantity }}</span>
+                                                </div>
+                                                <a href="javascript:void(0);" class="btn w-100 hover-up"
+                                                    id="{{ $best_selling_product->id }}"
+                                                    onclick="productview({{ $best_selling_product->id }})"><i
+                                                        class="fi-rs-shopping-cart mr-5"></i>Add To Cart</a>
+                                            </div>
                                         </div>
-                                    </div>
                                     @endforeach
                                 </div>
                             </div>
@@ -471,70 +486,76 @@
             </div>
             <div class="row">
                 @foreach ($trending_products as $trending_product)
-                <div class="col-xl-3 col-lg-4 col-md-6">
-                    <div class="product-cart-wrap style-2 wow animate__animated animate__fadeInUp" data-wow-delay="0">
-                        <div class="product-img-action-wrap">
-                            <div class="product-img">
-                                <a href="shop-product-right.html">
-                                    <img
-                                        src="{{ $trending_product->getFirstOrDefaultMediaUrl('image', 'square-md-thumb') }}">
-                                </a>
+                    <div class="col-xl-3 col-lg-4 col-md-6">
+                        <div class="product-cart-wrap style-2 wow animate__animated animate__fadeInUp"
+                            data-wow-delay="0">
+                            <div class="product-img-action-wrap">
+                                <div class="product-img">
+                                    <a href="shop-product-right.html">
+                                        <img
+                                            src="{{ $trending_product->getFirstOrDefaultMediaUrl('image', 'square-md-thumb') }}">
+                                    </a>
+                                </div>
                             </div>
-                        </div>
-                        <div class="product-content-wrap">
-                            <div class="deals-countdown-wrap">
-                                <div class="deals-countdown" data-countdown="2025/03/25 00:00:00"></div>
-                            </div>
-                            <div class="deals-content">
-                                <h2><a href="shop-product-right.html">{{ $trending_product->name }}</a></h2>
-                                <div class="product-rate-cover">
-                                    <div class="rating">
-                                        @php
-                                        $num_rating = number_format($trending_product->averageRating);
-                                        @endphp
-                                        @for ($i = 0; $i < $num_rating; $i++) <i class="fa fa-star checked"> </i>
+                            <div class="product-content-wrap">
+                                <div class="deals-countdown-wrap">
+                                    <div class="deals-countdown" data-countdown="2025/03/25 00:00:00"></div>
+                                </div>
+                                <div class="deals-content">
+                                    <h2><a href="shop-product-right.html">{{ $trending_product->name }}</a></h2>
+                                    <div class="product-rate-cover">
+                                        <div class="rating">
+                                            @php
+                                                $num_rating = number_format($trending_product->averageRating);
+                                            @endphp
+                                            @for ($i = 0; $i < $num_rating; $i++)
+                                                <i class="fa fa-star checked"> </i>
                                             @endfor
-                                            @for ($j = $num_rating; $j < 5; $j++) <i class="fa fa-star"> </i>
-                                                @endfor
-                                                <span class="font-small ml-5 text-muted">
-                                                    ({{ round($trending_product->averageRating, 1) }})</span>
-                                    </div>
+                                            @for ($j = $num_rating; $j < 5; $j++)
+                                                <i class="fa fa-star"> </i>
+                                            @endfor
+                                            <span class="font-small ml-5 text-muted">
+                                                ({{ round($trending_product->averageRating, 1) }})</span>
+                                        </div>
 
-                                </div>
-                                <div>
-                                    <span class="font-small text-muted">By <a
-                                            href="vendor-details-1.html">{{ $trending_product->user->name }}</a></span>
-                                </div>
-                                <div class="product-card-bottom">
-                                    @if ($trending_product->discount === 0)
-                                    <div class="product-price">
-                                        <span> Rs.{{ $trending_product->selling_price }}</span>
                                     </div>
-                                    @else
-                                    @if ($trending_product->discount_type === 'percent')
-                                    <div class="product-price">
-                                        <span>
-                                            Rs.{{ $trending_product->selling_price * (1 - $trending_product->discount / 100) }}</span>
-                                        <span class="old-price">Rs.{{ $trending_product->selling_price }}</span>
+                                    <div>
+                                        <span class="font-small text-muted">By <a
+                                                href="vendor-details-1.html">{{ $trending_product->user->name }}</a></span>
                                     </div>
-                                    @else
-                                    <div class="product-price">
-                                        <span>
-                                            Rs.
-                                            {{ $trending_product->selling_price - $trending_product->discount }}</span>
-                                        <span class="old-price">Rs.{{ $trending_product->selling_price }}</span>
-                                    </div>
-                                    @endif
-                                    @endif
-                                    <div class="add-cart">
-                                        <a class="add" href="shop-cart.html"><i class="fi-rs-shopping-cart mr-5"></i>Add
-                                        </a>
+                                    <div class="product-card-bottom">
+                                        @if ($trending_product->discount === 0)
+                                            <div class="product-price">
+                                                <span> Rs.{{ $trending_product->selling_price }}</span>
+                                            </div>
+                                        @else
+                                            @if ($trending_product->discount_type === 'percent')
+                                                <div class="product-price">
+                                                    <span>
+                                                        Rs.{{ $trending_product->selling_price * (1 - $trending_product->discount / 100) }}</span>
+                                                    <span
+                                                        class="old-price">Rs.{{ $trending_product->selling_price }}</span>
+                                                </div>
+                                            @else
+                                                <div class="product-price">
+                                                    <span>
+                                                        Rs.
+                                                        {{ $trending_product->selling_price - $trending_product->discount }}</span>
+                                                    <span
+                                                        class="old-price">Rs.{{ $trending_product->selling_price }}</span>
+                                                </div>
+                                            @endif
+                                        @endif
+                                        <div class="add-cart">
+                                            <a class="add" href="shop-cart.html"><i
+                                                    class="fi-rs-shopping-cart mr-5"></i>Add
+                                            </a>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
                         </div>
                     </div>
-                </div>
                 @endforeach
 
                 <!--
@@ -660,100 +681,108 @@
                     data-wow-delay="0">
                     <h4 class="section-title style-1 mb-30 animated animated">Top Selling</h4>
                     @foreach ($top_selling_products as $top_selling_product)
-                    <div class="product-list-small animated animated">
-                        <article class="row align-items-center hover-up">
-                            <figure class="col-md-4 mb-0">
-                                <a href="shop-product-right.html"><img
-                                        src="{{ $top_selling_product->getFirstOrDefaultMediaUrl('image', 'thumb') }}"
-                                        alt=""></a>
-                            </figure>
-                            <div class="col-md-8 mb-0">
-                                <h6>
-                                    <a href="shop-product-right.html">{{ $top_selling_product->name }}</a>
-                                </h6>
-                                <div class="rating">
-                                    @php
-                                    $num_rating = number_format($top_selling_product->averageRating);
-                                    @endphp
-                                    @for ($i = 0; $i < $num_rating; $i++) <i class="fa fa-star checked"> </i>
+                        <div class="product-list-small animated animated">
+                            <article class="row align-items-center hover-up">
+                                <figure class="col-md-4 mb-0">
+                                    <a href="shop-product-right.html"><img
+                                            src="{{ $top_selling_product->getFirstOrDefaultMediaUrl('image', 'thumb') }}"
+                                            alt=""></a>
+                                </figure>
+                                <div class="col-md-8 mb-0">
+                                    <h6>
+                                        <a href="shop-product-right.html">{{ $top_selling_product->name }}</a>
+                                    </h6>
+                                    <div class="rating">
+                                        @php
+                                            $num_rating = number_format($top_selling_product->averageRating);
+                                        @endphp
+                                        @for ($i = 0; $i < $num_rating; $i++)
+                                            <i class="fa fa-star checked"> </i>
                                         @endfor
-                                        @for ($j = $num_rating; $j < 5; $j++) <i class="fa fa-star"> </i>
-                                            @endfor
-                                            <span class="font-small ml-5 text-muted">
-                                                ({{ round($top_selling_product->averageRating, 1) }})</span>
+                                        @for ($j = $num_rating; $j < 5; $j++)
+                                            <i class="fa fa-star"> </i>
+                                        @endfor
+                                        <span class="font-small ml-5 text-muted">
+                                            ({{ round($top_selling_product->averageRating, 1) }})</span>
+                                    </div>
+                                    @if ($top_selling_product->discount === 0)
+                                        <div class="product-price">
+                                            <span> Rs.{{ $top_selling_product->selling_price }}</span>
+                                        </div>
+                                    @else
+                                        @if ($top_selling_product->discount_type === 'percent')
+                                            <div class="product-price">
+                                                <span>
+                                                    Rs.{{ $top_selling_product->selling_price * (1 - $top_selling_product->discount / 100) }}</span>
+                                                <span
+                                                    class="old-price">Rs.{{ $top_selling_product->selling_price }}</span>
+                                            </div>
+                                        @else
+                                            <div class="product-price">
+                                                <span>
+                                                    Rs.{{ $top_selling_product->selling_price - $top_selling_product->discount }}</span>
+                                                <span
+                                                    class="old-price">Rs.{{ $top_selling_product->selling_price }}</span>
+                                            </div>
+                                        @endif
+                                    @endif
                                 </div>
-                                @if ($top_selling_product->discount === 0)
-                                <div class="product-price">
-                                    <span> Rs.{{ $top_selling_product->selling_price }}</span>
-                                </div>
-                                @else
-                                @if ($top_selling_product->discount_type === 'percent')
-                                <div class="product-price">
-                                    <span>
-                                        Rs.{{ $top_selling_product->selling_price * (1 - $top_selling_product->discount / 100) }}</span>
-                                    <span class="old-price">Rs.{{ $top_selling_product->selling_price }}</span>
-                                </div>
-                                @else
-                                <div class="product-price">
-                                    <span>
-                                        Rs.{{ $top_selling_product->selling_price - $top_selling_product->discount }}</span>
-                                    <span class="old-price">Rs.{{ $top_selling_product->selling_price }}</span>
-                                </div>
-                                @endif
-                                @endif
-                            </div>
-                        </article>
-                    </div>
+                            </article>
+                        </div>
                     @endforeach
                 </div>
                 <div class="col-xl-3 col-lg-4 col-md-6 mb-md-0 wow animate__animated animate__fadeInUp"
                     data-wow-delay=".1s">
                     <h4 class="section-title style-1 mb-30 animated animated">Trending Products</h4>
                     @foreach ($trending_products as $trending_product)
-                    <div class="product-list-small animated animated">
-                        <article class="row align-items-center hover-up">
-                            <figure class="col-md-4 mb-0">
-                                <a href="shop-product-right.html"><img
-                                        src="{{ $trending_product->getFirstOrDefaultMediaUrl('image', 'thumb') }}"
-                                        alt=""></a>
-                            </figure>
-                            <div class="col-md-8 mb-0">
-                                <h6>
-                                    <a href="shop-product-right.html">{{ $trending_product->name }}</a>
-                                </h6>
-                                <div class="rating">
-                                    @php
-                                    $num_rating = number_format($trending_product->averageRating);
-                                    @endphp
-                                    @for ($i = 0; $i < $num_rating; $i++) <i class="fa fa-star checked"> </i>
+                        <div class="product-list-small animated animated">
+                            <article class="row align-items-center hover-up">
+                                <figure class="col-md-4 mb-0">
+                                    <a href="shop-product-right.html"><img
+                                            src="{{ $trending_product->getFirstOrDefaultMediaUrl('image', 'thumb') }}"
+                                            alt=""></a>
+                                </figure>
+                                <div class="col-md-8 mb-0">
+                                    <h6>
+                                        <a href="shop-product-right.html">{{ $trending_product->name }}</a>
+                                    </h6>
+                                    <div class="rating">
+                                        @php
+                                            $num_rating = number_format($trending_product->averageRating);
+                                        @endphp
+                                        @for ($i = 0; $i < $num_rating; $i++)
+                                            <i class="fa fa-star checked"> </i>
                                         @endfor
-                                        @for ($j = $num_rating; $j < 5; $j++) <i class="fa fa-star"> </i>
-                                            @endfor
-                                            <span class="font-small ml-5 text-muted">
-                                                ({{ round($trending_product->averageRating, 1) }})</span>
+                                        @for ($j = $num_rating; $j < 5; $j++)
+                                            <i class="fa fa-star"> </i>
+                                        @endfor
+                                        <span class="font-small ml-5 text-muted">
+                                            ({{ round($trending_product->averageRating, 1) }})</span>
+                                    </div>
+                                    @if ($trending_product->discount === 0)
+                                        <div class="product-price">
+                                            <span> Rs.{{ $trending_product->selling_price }}</span>
+                                        </div>
+                                    @else
+                                        @if ($trending_product->discount_type === 'percent')
+                                            <div class="product-price">
+                                                <span>
+                                                    Rs.{{ $trending_product->selling_price * (1 - $trending_product->discount / 100) }}</span>
+                                                <span
+                                                    class="old-price">Rs.{{ $trending_product->selling_price }}</span>
+                                            </div>
+                                        @else
+                                            <div class="product-price">
+                                                <span>
+                                                    Rs.{{ $trending_product->selling_price - $trending_product->discount }}</span>
+                                                <span
+                                                    class="old-price">Rs.{{ $trending_product->selling_price }}</span>
+                                            </div>
+                                        @endif
+                                    @endif
                                 </div>
-                                @if ($trending_product->discount === 0)
-                                <div class="product-price">
-                                    <span> Rs.{{ $trending_product->selling_price }}</span>
-                                </div>
-                                @else
-                                @if ($trending_product->discount_type === 'percent')
-                                <div class="product-price">
-                                    <span>
-                                        Rs.{{ $trending_product->selling_price * (1 - $trending_product->discount / 100) }}</span>
-                                    <span class="old-price">Rs.{{ $trending_product->selling_price }}</span>
-                                </div>
-                                @else
-                                <div class="product-price">
-                                    <span>
-                                        Rs.{{ $trending_product->selling_price - $trending_product->discount }}</span>
-                                    <span class="old-price">Rs.{{ $trending_product->selling_price }}</span>
-                                </div>
-                                @endif
-                                @endif
-                            </div>
-                        </article>
-                    </div>
+                            </article>
+                        </div>
                     @endforeach
 
                 </div>
@@ -761,50 +790,54 @@
                     data-wow-delay=".2s">
                     <h4 class="section-title style-1 mb-30 animated animated">Recently added</h4>
                     @foreach ($recent_products as $recent_product)
-                    <div class="product-list-small animated animated">
-                        <article class="row align-items-center hover-up">
-                            <figure class="col-md-4 mb-0">
-                                <a href="shop-product-right.html"><img
-                                        src="{{ $recent_product->getFirstOrDefaultMediaUrl('image', 'thumb') }}"
-                                        alt=""></a>
-                            </figure>
-                            <div class="col-md-8 mb-0">
-                                <h6>
-                                    <a href="shop-product-right.html">{{ $recent_product->name }}</a>
-                                </h6>
-                                <div class="rating">
-                                    @php
-                                    $num_rating = number_format($recent_product->averageRating);
-                                    @endphp
-                                    @for ($i = 0; $i < $num_rating; $i++) <i class="fa fa-star checked"> </i>
+                        <div class="product-list-small animated animated">
+                            <article class="row align-items-center hover-up">
+                                <figure class="col-md-4 mb-0">
+                                    <a href="shop-product-right.html"><img
+                                            src="{{ $recent_product->getFirstOrDefaultMediaUrl('image', 'thumb') }}"
+                                            alt=""></a>
+                                </figure>
+                                <div class="col-md-8 mb-0">
+                                    <h6>
+                                        <a href="shop-product-right.html">{{ $recent_product->name }}</a>
+                                    </h6>
+                                    <div class="rating">
+                                        @php
+                                            $num_rating = number_format($recent_product->averageRating);
+                                        @endphp
+                                        @for ($i = 0; $i < $num_rating; $i++)
+                                            <i class="fa fa-star checked"> </i>
                                         @endfor
-                                        @for ($j = $num_rating; $j < 5; $j++) <i class="fa fa-star"> </i>
-                                            @endfor
-                                            <span class="font-small ml-5 text-muted">
-                                                ({{ round($recent_product->averageRating, 1) }})</span>
+                                        @for ($j = $num_rating; $j < 5; $j++)
+                                            <i class="fa fa-star"> </i>
+                                        @endfor
+                                        <span class="font-small ml-5 text-muted">
+                                            ({{ round($recent_product->averageRating, 1) }})</span>
+                                    </div>
+                                    @if ($recent_product->discount === 0)
+                                        <div class="product-price">
+                                            <span> Rs.{{ $recent_product->selling_price }}</span>
+                                        </div>
+                                    @else
+                                        @if ($recent_product->discount_type === 'percent')
+                                            <div class="product-price">
+                                                <span>
+                                                    Rs.{{ $recent_product->selling_price * (1 - $recent_product->discount / 100) }}</span>
+                                                <span
+                                                    class="old-price">Rs.{{ $recent_product->selling_price }}</span>
+                                            </div>
+                                        @else
+                                            <div class="product-price">
+                                                <span>
+                                                    Rs.{{ $recent_product->selling_price - $recent_product->discount }}</span>
+                                                <span
+                                                    class="old-price">Rs.{{ $recent_product->selling_price }}</span>
+                                            </div>
+                                        @endif
+                                    @endif
                                 </div>
-                                @if ($recent_product->discount === 0)
-                                <div class="product-price">
-                                    <span> Rs.{{ $recent_product->selling_price }}</span>
-                                </div>
-                                @else
-                                @if ($recent_product->discount_type === 'percent')
-                                <div class="product-price">
-                                    <span>
-                                        Rs.{{ $recent_product->selling_price * (1 - $recent_product->discount / 100) }}</span>
-                                    <span class="old-price">Rs.{{ $recent_product->selling_price }}</span>
-                                </div>
-                                @else
-                                <div class="product-price">
-                                    <span>
-                                        Rs.{{ $recent_product->selling_price - $recent_product->discount }}</span>
-                                    <span class="old-price">Rs.{{ $recent_product->selling_price }}</span>
-                                </div>
-                                @endif
-                                @endif
-                            </div>
-                        </article>
-                    </div>
+                            </article>
+                        </div>
                     @endforeach
                 </div>
                 <!-- Top Rated Products -->
@@ -813,48 +846,52 @@
                     <h4 class="section-title style-1 mb-30 animated animated">Top Rated</h4>
                     <div class="product-list-small animated animated">
                         @foreach ($rated_products as $rated_product)
-                        <article class="row align-items-center hover-up">
-                            <figure class="col-md-4 mb-0">
-                                <a href="shop-product-right.html"><img
-                                        src="{{ $rated_product->getFirstOrDefaultMediaUrl('image', 'thumb') }}"
-                                        alt=""></a>
-                            </figure>
-                            <div class="col-md-8 mb-0">
-                                <h6>
-                                    <a href="shop-product-right.html">{{ $rated_product->name }}</a>
-                                </h6>
-                                <div class="rating">
-                                    @php
-                                    $num_rating = number_format($rated_product->averageRating);
-                                    @endphp
-                                    @for ($i = 0; $i < $num_rating; $i++) <i class="fa fa-star checked"> </i>
+                            <article class="row align-items-center hover-up">
+                                <figure class="col-md-4 mb-0">
+                                    <a href="shop-product-right.html"><img
+                                            src="{{ $rated_product->getFirstOrDefaultMediaUrl('image', 'thumb') }}"
+                                            alt=""></a>
+                                </figure>
+                                <div class="col-md-8 mb-0">
+                                    <h6>
+                                        <a href="shop-product-right.html">{{ $rated_product->name }}</a>
+                                    </h6>
+                                    <div class="rating">
+                                        @php
+                                            $num_rating = number_format($rated_product->averageRating);
+                                        @endphp
+                                        @for ($i = 0; $i < $num_rating; $i++)
+                                            <i class="fa fa-star checked"> </i>
                                         @endfor
-                                        @for ($j = $num_rating; $j < 5; $j++) <i class="fa fa-star"> </i>
-                                            @endfor
-                                            <span class="font-small ml-5 text-muted">
-                                                ({{ round($rated_product->averageRating, 1) }})</span>
+                                        @for ($j = $num_rating; $j < 5; $j++)
+                                            <i class="fa fa-star"> </i>
+                                        @endfor
+                                        <span class="font-small ml-5 text-muted">
+                                            ({{ round($rated_product->averageRating, 1) }})</span>
+                                    </div>
+                                    @if ($rated_product->discount === 0)
+                                        <div class="product-price">
+                                            <span> Rs.{{ $rated_product->selling_price }}</span>
+                                        </div>
+                                    @else
+                                        @if ($rated_product->discount_type === 'percent')
+                                            <div class="product-price">
+                                                <span>
+                                                    Rs.{{ $rated_product->selling_price * (1 - $rated_product->discount / 100) }}</span>
+                                                <span
+                                                    class="old-price">Rs.{{ $rated_product->selling_price }}</span>
+                                            </div>
+                                        @else
+                                            <div class="product-price">
+                                                <span>
+                                                    Rs.{{ $rated_product->selling_price - $rated_product->discount }}</span>
+                                                <span
+                                                    class="old-price">Rs.{{ $rated_product->selling_price }}</span>
+                                            </div>
+                                        @endif
+                                    @endif
                                 </div>
-                                @if ($rated_product->discount === 0)
-                                <div class="product-price">
-                                    <span> Rs.{{ $rated_product->selling_price }}</span>
-                                </div>
-                                @else
-                                @if ($rated_product->discount_type === 'percent')
-                                <div class="product-price">
-                                    <span>
-                                        Rs.{{ $rated_product->selling_price * (1 - $rated_product->discount / 100) }}</span>
-                                    <span class="old-price">Rs.{{ $rated_product->selling_price }}</span>
-                                </div>
-                                @else
-                                <div class="product-price">
-                                    <span>
-                                        Rs.{{ $rated_product->selling_price - $rated_product->discount }}</span>
-                                    <span class="old-price">Rs.{{ $rated_product->selling_price }}</span>
-                                </div>
-                                @endif
-                                @endif
-                            </div>
-                        </article>
+                            </article>
                         @endforeach
                     </div>
                 </div>

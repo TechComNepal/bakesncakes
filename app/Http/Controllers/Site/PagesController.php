@@ -4,10 +4,10 @@ namespace App\Http\Controllers\Site;
 
 use App\Models\Blog;
 use App\Models\Cart;
+use App\Models\User;
 use App\Models\Brand;
-use App\Models\Qrcode;
 use App\Models\Order;
-use App\Models\OrderProduct;
+use App\Models\Qrcode;
 use App\Models\Slider;
 use App\Models\AboutUs;
 use App\Models\Product;
@@ -15,19 +15,23 @@ use App\Models\Service;
 use App\Models\Category;
 use App\Models\Shipping;
 use App\Models\Testimonial;
+use App\Models\OrderProduct;
 use Illuminate\Http\Request;
 use Spatie\Searchable\Search;
 use App\Models\PrivacyAndPolicy;
 use App\Models\TermsAndCondition;
+use Illuminate\Support\Facades\DB;
+use Spatie\Permission\Models\Role;
+use App\Mail\OrderConfirmationMail;
 use Illuminate\Contracts\View\View;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Mail;
 use App\Models\CustomerShippingAddress;
-use App\Models\User;
-use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Session;
-use Spatie\Permission\Models\Role;
 use Spatie\Searchable\ModelSearchAspect;
+use App\Notifications\UserOrderNotification;
+use Illuminate\Support\Facades\Notification;
 
 class PagesController extends Controller
 {
@@ -93,8 +97,9 @@ class PagesController extends Controller
     public function quickView(Request $request)
     {
         $product = Product::findOrFail($request->id);
+        $gallerys=$product->getMedia('gallery_image')->take(4);
         return [
-            'modal_view' => view('site._layouts._partials.quickView', compact('product'))->render(),
+            'modal_view' => view('site._layouts._partials.quickView', compact('product', 'gallerys'))->render(),
         ];
     }
 
@@ -107,18 +112,18 @@ class PagesController extends Controller
     }
 
     /* vendors */
-    public function vendor() 
+    public function vendor()
     {
-        $paginator = User::paginate(8); 
+        $paginator = User::paginate(8);
 
         return view('site.pages.vendor', [
             'vendors' => User::role('vendor')->get(),
             'paginator' => $paginator
         ]);
     }
-    public function vendor_guide() 
+    public function vendor_guide()
     {
-        return view('site.pages.vendor_guide'); 
+        return view('site.pages.vendor_guide');
     }
 
     public function singleBlog($slug)
@@ -189,6 +194,7 @@ class PagesController extends Controller
             $shipping = 0;
             $total = 0;
             $couponDiscount = 0;
+            $final_billing_total=0;
 
             foreach ($carts as $cartItem) {
                 $product_ids = array();
@@ -203,8 +209,9 @@ class PagesController extends Controller
                 $shipping += $product_shipping_cost;
                 $total = $total + ($cartItem->price + $cartItem->tax) * $cartItem->quantity;
             }
+            $mail_details=[];
 
-            foreach ($seller_products as $seller_product) {
+            foreach ($seller_products as $key=>$seller_product) {
                 $order = new Order();
                 $order->order_code = 'ORD'.date('Ymd-His') . rand(10, 99);
                 $order->user_id = Auth::user()->id;
@@ -274,11 +281,27 @@ class PagesController extends Controller
                 $order->billing_total -= $coupon_discount;
                 $order->delivery_charge = $shipping;
                 $order->save();
+                $final_billing_total += $order->billing_total;
+                $mail_details[$key]=[
+                        'order_code'=>$order->order_code,
+                        'billing_total'   => $order->billing_total,
+                        'delivery_address' => $address->delivery_address,
+                        'final_billing_total'=>$final_billing_total,
+                    ];
+               
+
+                //Admin Notification
+                $admins=User::role(['admin','superadmin'])->get();
+                Notification::send($admins, new UserOrderNotification($order));
             }
+            Mail::to(Auth::user()->email)->send(new OrderConfirmationMail($mail_details));
+
+          
 
             foreach ($carts as $cart) {
                 Cart::destroy($cart->id);
             }
+           
 
             DB::commit();
             return redirect()->route('site.page')->with(['success' => 'Your order has been placed successfully.']);

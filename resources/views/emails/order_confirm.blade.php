@@ -118,31 +118,53 @@
                                             please contact us at {{ $setting->primary_email }} </p>
                                     </td>
                                 </tr>
+                                @foreach ($mail_details as $mail_detail)
+                                    <tr>
+                                        <td align="left" style="padding-top: 20px;">
+                                            <table cellspacing="0" cellpadding="0" border="0" width="100%">
+
+                                                <tr>
+                                                    <td width="75%" align="left" bgcolor="#eeeeee"
+                                                        style="font-family: Open Sans, Helvetica, Arial, sans-serif; font-size: 16px; font-weight: 800; line-height: 24px; padding: 10px;">
+                                                        Order Confirmation # </td>
+                                                    <td width="25%" align="left" bgcolor="#eeeeee"
+                                                        style="font-family: Open Sans, Helvetica, Arial, sans-serif; font-size: 16px; font-weight: 800; line-height: 24px; padding: 10px;">
+                                                        {{ $mail_detail['order_code'] }} </td>
+                                                </tr>
+
+                                            </table>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td align="left" style="padding-top: 20px;">
+                                            <table cellspacing="0" cellpadding="0" border="0" width="100%">
+
+                                                <tr>
+                                                    <td width="75%" align="left"
+                                                        style="font-family: Open Sans, Helvetica, Arial, sans-serif; font-size: 16px; font-weight: 800; line-height: 24px; padding: 10px; border-top: 3px solid #eeeeee; border-bottom: 3px solid #eeeeee;">
+                                                        Billing TOTAL </td>
+                                                    <td width="25%" align="left"
+                                                        style="font-family: Open Sans, Helvetica, Arial, sans-serif; font-size: 16px; font-weight: 800; line-height: 24px; padding: 10px; border-top: 3px solid #eeeeee; border-bottom: 3px solid #eeeeee;">
+                                                        Rs. {{ $mail_detail['billing_total'] }} </td>
+                                                </tr>
+
+                                            </table>
+                                        </td>
+                                    </tr>
+                                @endforeach
                                 <tr>
                                     <td align="left" style="padding-top: 20px;">
                                         <table cellspacing="0" cellpadding="0" border="0" width="100%">
-                                            <tr>
-                                                <td width="75%" align="left" bgcolor="#eeeeee"
-                                                    style="font-family: Open Sans, Helvetica, Arial, sans-serif; font-size: 16px; font-weight: 800; line-height: 24px; padding: 10px;">
-                                                    Order Confirmation # </td>
-                                                <td width="25%" align="left" bgcolor="#eeeeee"
-                                                    style="font-family: Open Sans, Helvetica, Arial, sans-serif; font-size: 16px; font-weight: 800; line-height: 24px; padding: 10px;">
-                                                    {{ $mail_details['order_code'] }} </td>
-                                            </tr>
-                                        </table>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td align="left" style="padding-top: 20px;">
-                                        <table cellspacing="0" cellpadding="0" border="0" width="100%">
+
                                             <tr>
                                                 <td width="75%" align="left"
                                                     style="font-family: Open Sans, Helvetica, Arial, sans-serif; font-size: 16px; font-weight: 800; line-height: 24px; padding: 10px; border-top: 3px solid #eeeeee; border-bottom: 3px solid #eeeeee;">
                                                     TOTAL </td>
                                                 <td width="25%" align="left"
                                                     style="font-family: Open Sans, Helvetica, Arial, sans-serif; font-size: 16px; font-weight: 800; line-height: 24px; padding: 10px; border-top: 3px solid #eeeeee; border-bottom: 3px solid #eeeeee;">
-                                                    Rs. {{ $mail_details['billing_total'] }} </td>
+                                                    Rs. {{ $mail_detail['final_billing_total'] }} </td>
                                             </tr>
+
                                         </table>
                                     </td>
                                 </tr>
@@ -160,11 +182,13 @@
                                             style="display:inline-block; max-width:50%; min-width:240px; vertical-align:top; width:100%;">
                                             <table align="left" border="0" cellpadding="0" cellspacing="0" width="100%"
                                                 style="max-width:300px;">
+
                                                 <tr>
                                                     <td align="left" valign="top"
                                                         style="font-family: Open Sans, Helvetica, Arial, sans-serif; font-size: 16px; font-weight: 400; line-height: 24px;">
                                                         <p style="font-weight: 800;">Delivery Address</p>
-                                                        <p>{{ $mail_details['delivery_address'] }}</p>
+                                                        <p>{{ $mail_details[key($mail_details)]['delivery_address'] }}
+                                                        </p>
                                                     </td>
                                                 </tr>
                                             </table>
