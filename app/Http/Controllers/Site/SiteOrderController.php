@@ -89,7 +89,7 @@ class SiteOrderController extends Controller
                         $total += $promocode->rate;
                     }
 
-                    foreach ($promocode->products as $product){
+                    foreach ($promocode->products as $product) {
                         Cart::where('user_id', Auth::user()->id)
                                                 ->where('product_id', $product->id)
                                                 ->update([
@@ -121,13 +121,12 @@ class SiteOrderController extends Controller
                             $total += $promocode->rate;
                         }
 
-                        foreach ($category->products as $product){
+                        foreach ($category->products as $product) {
                             Cart::where('user_id', Auth::user()->id)
                                 ->where('product_id', $product->id)
                                 ->update([
                                     'coupon_discount' => $total
                                 ]);
-
                         }
 
                         $request->session()->forget('coupon_discount_amount');
@@ -156,7 +155,7 @@ class SiteOrderController extends Controller
         return response()->json(['message' => 'Coupon doesn\'t match.', 'text_class' =>'text-danger', 'status' => 'error']);
     }
 
-        public function setDefaultShippingAddress($id)
+    public function setDefaultShippingAddress($id)
     {
         foreach (Auth::user()->shipping_address as $key => $address) {
             $address->set_default = 0;
@@ -170,8 +169,9 @@ class SiteOrderController extends Controller
     }
 
 
-    public function get_shipping_info(){
-        return view('site.checkouts.shipping_info',[
+    public function get_shipping_info()
+    {
+        return view('site.checkouts.new_shipping_info', [
             'carts' => Cart::where('user_id', Auth::user()->id)->get(),
             'shippings' => Shipping::all(),
             'qrcode' => Qrcode::first(),
@@ -180,7 +180,6 @@ class SiteOrderController extends Controller
 
     public function store_shipping_info(Request $request)
     {
-
         if ($request->address_id == null) {
             return back();
         }
@@ -192,7 +191,7 @@ class SiteOrderController extends Controller
             $cartItem->save();
         }
 
-        return view('site.checkouts.delivery_info', compact('carts'));
+        return view('site.checkouts.new_delivery_info', compact('carts'));
     }
 
     public function store_delivery_info(Request $request)
@@ -200,7 +199,7 @@ class SiteOrderController extends Controller
         $carts = Cart::where('user_id', Auth::user()->id)
             ->get();
 
-        if($carts->isEmpty()) {
+        if ($carts->isEmpty()) {
             return redirect()->route('site.page')->withError('Your Cart is empty.');
         }
 
@@ -224,17 +223,13 @@ class SiteOrderController extends Controller
 
                 $shipping += $cartItem['shipping_cost'];
                 $cartItem->save();
-
             }
             $total = $subtotal + $tax + $shipping;
 
             $qrcode = Qrcode::first();
-            return view('site.checkouts.payment_select', compact('carts', 'shipping_info', 'total', 'qrcode'));
-
+            return view('site.checkouts.new_payment_select', compact('carts', 'shipping_info', 'total', 'qrcode'));
         } else {
             return redirect()->route('site.page')->withErrors('Your Cart is Empty');
         }
     }
-
-
 }

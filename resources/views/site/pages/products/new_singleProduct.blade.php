@@ -137,6 +137,7 @@
                                                     </li>
                                                     <li>
                                                         <div class="product-extra-link2">
+
                                                             <button class="button button-add-to-cart"
                                                                 onclick="addToCart()"><i
                                                                     class="fi-rs-shopping-cart"></i>Add to cart</button>
@@ -186,7 +187,7 @@
 
                                         <ul class="float-start">
                                             <li class="mb-5">SKU: <a
-                                                    href="javascript:void(0)" >{{ $singleProduct->sku }}</a></li>
+                                                    href="javascript:void(0)">{{ $singleProduct->sku }}</a></li>
                                             <li class="mb-5">Tags: @if ($singleProduct->tags != '')
                                                     @foreach (explode(',', $singleProduct->tags) as $tag)
                                                         <a href="javascript:void(0)" class="product-tag"
@@ -588,8 +589,10 @@
                                                         </a>
                                                     </div>
                                                     <div class="product-action-1">
-                                                        <a aria-label="Quick view" class="action-btn small hover-up"
-                                                            data-bs-toggle="modal" data-bs-target="#quickViewModal"><i
+                                                        <a href="javascript:void(0);" aria-label="Quick view"
+                                                            class="action-btn small hover-up"
+                                                            id="{{ $product->id }}"
+                                                            onclick="productview({{ $product->id }})"><i
                                                                 class="fi-rs-search"></i></a>
                                                         <a aria-label="Add To Wishlist"
                                                             class="action-btn small hover-up" href="shop-wishlist.html"
