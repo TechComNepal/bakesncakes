@@ -3475,7 +3475,7 @@ table .product-thumbnail img {
   border-radius: 15px;
   overflow: hidden;
   height: 520px;
-  background: url(../imgs/banner/banner-4.png) no-repeat center bottom;
+  background: url(../imgs/banner/ad-horizontal.jpg) no-repeat center bottom;
   background-size: cover;
   width: 100%;
 }
@@ -11278,6 +11278,41 @@ ul.pagination .page-link {
 
 
 /* #### End Single Product #### */
+
+/* #### #### */
+
+
+.home-ad-shop-new {
+  padding: 7px 8px 7px 12px;
+  font-size: 12px;
+  text-transform: none;
+  display: -webkit-inline-box;
+  display: -ms-inline-flexbox;
+  display: inline-flex;
+  -ms-flex-wrap: wrap;
+  flex-wrap: wrap;
+  line-height: 1.3;
+  margin-bottom: 37px !important;
+}
+
+.newsletter .newsletter-inner {
+  background: url(../imgs/banner/newsletter.jpg) no-repeat center;
+  background-size: cover;
+}
+
+.banner-img.style-2 .banner-text {
+  top: 130px;
+  -webkit-transform: none;
+  transform: none;
+  left: 25px;
+}
+
+
+
+
+/* #### #### */
+
+
 
 @media only screen and (max-width: 768px) {
   .totall-product h2 {

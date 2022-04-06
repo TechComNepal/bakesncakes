@@ -20,7 +20,6 @@
                                 <span class="text-warning error-text email_error ml-5"></span>
                             </form>
                         </div>
-                        <img src="{{ asset('new_frontend\assets\imgs\banner\banner-9.png" alt="newsletter') }}">
                     </div>
                 </div>
             </div>
@@ -34,7 +33,7 @@
                     <div class="banner-left-icon d-flex align-items-center wow animate__animated animate__fadeInUp"
                         data-wow-delay="0">
                         <div class="banner-icon">
-                            <img src="{{ asset('new_frontend\assets\imgs\theme\icons\icon-1.svg' ) }}" alt=''>
+                            <img src="{{ asset('new_frontend\assets\imgs\icons\bestPrice.png' ) }}" alt=''>
                         </div>
                         <div class="banner-text">
                             <h3 class="icon-box-title">Best prices & offers</h3>
@@ -46,7 +45,7 @@
                     <div class="banner-left-icon d-flex align-items-center wow animate__animated animate__fadeInUp"
                         data-wow-delay=".1s">
                         <div class="banner-icon">
-                            <img src="{{ asset('new_frontend\assets\imgs\theme\icons\icon-2.svg' ) }}" alt=''>
+                            <img src="{{ asset('new_frontend\assets\imgs\icons\FreeDelivery.png' ) }}" alt=''>
                         </div>
                         <div class="banner-text">
                             <h3 class="icon-box-title">Free delivery</h3>
@@ -58,7 +57,7 @@
                     <div class="banner-left-icon d-flex align-items-center wow animate__animated animate__fadeInUp"
                         data-wow-delay=".2s">
                         <div class="banner-icon">
-                            <img src="{{ asset('new_frontend\assets\imgs\theme\icons\icon-3.svg' ) }}" alt=''>
+                            <img src="{{ asset('new_frontend\assets\imgs\icons\GreatDeal.png' ) }}" alt=''>
                         </div>
                         <div class="banner-text">
                             <h3 class="icon-box-title">Great daily deal</h3>
@@ -70,7 +69,7 @@
                     <div class="banner-left-icon d-flex align-items-center wow animate__animated animate__fadeInUp"
                         data-wow-delay=".3s">
                         <div class="banner-icon">
-                            <img src="{{ asset("new_frontend\assets\imgs\theme\icons\icon-4.svg" ) }}" alt=''>
+                            <img src="{{ asset("new_frontend\assets\imgs\icons\WideAssortment.png" ) }}" alt=''>
                         </div>
                         <div class="banner-text">
                             <h3 class="icon-box-title">Wide assortment</h3>
@@ -82,7 +81,7 @@
                     <div class="banner-left-icon d-flex align-items-center wow animate__animated animate__fadeInUp"
                         data-wow-delay=".4s">
                         <div class="banner-icon">
-                            <img src="{{ asset('new_frontend\assets\imgs\theme\icons\icon-5.svg') }}" alt=''>
+                            <img src="{{ asset('new_frontend\assets\imgs\icons\EasyReturns.png') }}" alt=''>
                         </div>
                         <div class="banner-text">
                             <h3 class="icon-box-title">Easy returns</h3>
@@ -94,7 +93,7 @@
                     <div class="banner-left-icon d-flex align-items-center wow animate__animated animate__fadeInUp"
                         data-wow-delay=".5s">
                         <div class="banner-icon">
-                            <img src="{{ asset("new_frontend\assets\imgs\theme\icons\icon-6.svg") }}" alt=''>
+                            <img src="{{ asset("new_frontend\assets\imgs\icons\icon-6.svg") }}" alt=''>
                         </div>
                         <div class="banner-text">
                             <h3 class="icon-box-title">Safe delivery</h3>
@@ -170,10 +169,10 @@
                     <ul class="footer-list mb-sm-5 mb-md-0">
                         <!-- popular category show -->
                         @foreach ($menuproducts->take(6) as $menuproduct)
-                            <li>
-                                <a href="#">
-                                    {{ $menuproduct->name }}</a>
-                            </li>
+                        <li>
+                            <a href="#">
+                                {{ $menuproduct->name }}</a>
+                        </li>
                         @endforeach
 
                     </ul>
@@ -182,8 +181,7 @@
                     data-wow-delay=".5s">
                     <h4 class="widget-title">Pay from Anywhere</h4>
                     <p class=" mb-20">Secured Payment Gateways</p>
-                    <img class=""
-                        src="{{ asset('new_frontend\assets\imgs\theme\payment-method.png') }}" alt="">
+                    <img class="" src="{{ asset('new_frontend\assets\imgs\theme\payment-method.png') }}" alt="">
                 </div>
             </div>
         </div>
@@ -215,16 +213,13 @@
                             src="{{ asset('new_frontend\assets\imgs\theme\icons\icon-facebook-white.svg') }}"
                             alt=""></a>
                     <a href=" https://twitter.com/bakesncakes"><img
-                            src="{{ asset('new_frontend\assets\imgs\theme\icons\icon-twitter-white.svg') }}"
-                            alt=""></a>
+                            src="{{ asset('new_frontend\assets\imgs\theme\icons\icon-twitter-white.svg') }}" alt=""></a>
                     <a href="https://www.instagram.com/bakesncakes_nepal/"><img
                             src="{{ asset('new_frontend\assets\imgs\theme\icons\icon-instagram-white.svg') }}"
                             alt=""></a>
-                    <a href=" #"><img
-                            src="{{ asset('new_frontend\assets\imgs\theme\icons\icon-pinterest-white.svg') }}"
+                    <a href=" #"><img src="{{ asset('new_frontend\assets\imgs\theme\icons\icon-pinterest-white.svg') }}"
                             alt=""></a>
-                    <a href=" #"><img
-                            src="{{ asset('new_frontend\assets\imgs\theme\icons\icon-youtube-white.svg') }}"
+                    <a href=" #"><img src="{{ asset('new_frontend\assets\imgs\theme\icons\icon-youtube-white.svg') }}"
                             alt=""></a>
                 </div>
             </div>
