@@ -346,11 +346,11 @@
             </div>
             <div class="row">
                 <div class="col-lg-2 d-none d-lg-flex wow animate__animated animate__fadeIn">
-                    <x-advertisement :placement="'Below Featured Categories'" />
+                    <!-- <x-advertisement :placement="'Below Featured Categories'" /> -->
                     <div class="banner-img style-2">
                         <div class="banner-text">
-                            <h2 class="mb-100">Bring nature into your home</h2>
-                            <a href="shop-grid-right.html" class="btn btn-xs">Shop Now <i
+                            <h2 class="mb-25 text-white">Bring Foods into your home</h2>
+                            <a href="shop-grid-right.html" class="btn btn-xs home-ad-shop-now">Shop Now <i
                                     class="fi-rs-arrow-small-right"></i></a>
                         </div>
                     </div>
