@@ -111,62 +111,63 @@
                                     <div class="product-badges product-badges-position product-badges-mrg">
                                         <span class="hot">Hot</span>
 
+                                    </div>
                                 </div>
-                            </div>
-                            <div class="product-content-wrap">
-                                <div class="product-category">
-                                    <a href="javascript:void(0)">{{ $featured_product->category->name }}</a>
-                                </div>
-                                <h2><a href="shop-product-right.html">{{ $featured_product->name }}</a></h2>
-                                <div class="product-rate-cover">
-                                    <div class="rating">
-                                        @php
-                                        $num_rating = number_format($featured_product->averageRating);
-                                        @endphp
-                                        @for ($i = 0; $i < $num_rating; $i++) <i class="fa fa-star checked"> </i>
-                                            @endfor
-                                            @for ($j = $num_rating; $j < 5; $j++) <i class="fa fa-star"> </i>
+                                <div class="product-content-wrap">
+                                    <div class="product-category">
+                                        <a href="javascript:void(0)">{{ $featured_product->category->name }}</a>
+                                    </div>
+                                    <h2><a href="shop-product-right.html">{{ $featured_product->name }}</a></h2>
+                                    <div class="product-rate-cover">
+                                        <div class="rating">
+                                            @php
+                                            $num_rating = number_format($featured_product->averageRating);
+                                            @endphp
+                                            @for ($i = 0; $i < $num_rating; $i++) <i class="fa fa-star checked"> </i>
                                                 @endfor
-                                                <span class="font-small ml-5 text-muted">
-                                                    ({{ round($featured_product->averageRating, 1) }})</span>
+                                                @for ($j = $num_rating; $j < 5; $j++) <i class="fa fa-star"> </i>
+                                                    @endfor
+                                                    <span class="font-small ml-5 text-muted">
+                                                        ({{ round($featured_product->averageRating, 1) }})</span>
 
+                                        </div>
                                     </div>
-                                </div>
-                                <div>
-                                    <span class="font-small text-muted">By <a
-                                            href="vendor-details-1.html">{{ $featured_product->user->name }}</a></span>
-                                </div>
-                                <div class="product-card-bottom">
-                                    @if ($featured_product->discount === 0)
-                                    <div class="product-price">
-                                        <span> Rs.{{ $featured_product->selling_price }}</span>
+                                    <div>
+                                        <span class="font-small text-muted">By <a
+                                                href="vendor-details-1.html">{{ $featured_product->user->name }}</a></span>
                                     </div>
-                                    @else
-                                    @if ($featured_product->discount_type === 'percent')
-                                    <div class="product-price">
-                                        <span>
-                                            Rs.{{ $featured_product->selling_price * (1 - $featured_product->discount / 100) }}</span>
-                                        <span class="old-price">Rs.{{ $featured_product->selling_price }}</span>
-                                    </div>
-                                    @else
-                                    <div class="product-price">
-                                        <span>
-                                            Rs.
-                                            {{ $featured_product->selling_price - $featured_product->discount }}</span>
-                                        <span class="old-price">
-                                            Rs.{{ $featured_product->selling_price }}</span>
-                                    </div>
-                                    @endif
-                                    @endif
-                                    <div class="add-cart">
-                                        <a class="add" href="shop-cart.html"><i class="fi-rs-shopping-cart mr-5"></i>Add
-                                        </a>
+                                    <div class="product-card-bottom">
+                                        @if ($featured_product->discount === 0)
+                                        <div class="product-price">
+                                            <span> Rs.{{ $featured_product->selling_price }}</span>
+                                        </div>
+                                        @else
+                                        @if ($featured_product->discount_type === 'percent')
+                                        <div class="product-price">
+                                            <span>
+                                                Rs.{{ $featured_product->selling_price * (1 - $featured_product->discount / 100) }}</span>
+                                            <span class="old-price">Rs.{{ $featured_product->selling_price }}</span>
+                                        </div>
+                                        @else
+                                        <div class="product-price">
+                                            <span>
+                                                Rs.
+                                                {{ $featured_product->selling_price - $featured_product->discount }}</span>
+                                            <span class="old-price">
+                                                Rs.{{ $featured_product->selling_price }}</span>
+                                        </div>
+                                        @endif
+                                        @endif
+                                        <div class="add-cart">
+                                            <a class="add" href="shop-cart.html"><i
+                                                    class="fi-rs-shopping-cart mr-5"></i>Add
+                                            </a>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
                         </div>
-                    </div>
-                    @endforeach
+                        @endforeach
                         <!--end product card-->
 
                         {{-- <div class="col-lg-1-5 col-md-4 col-12 col-sm-6">
@@ -1130,7 +1131,7 @@
                         </nav>
                     </div>
                     <section class="section-padding pb-5">
-                        <div class="section-title  wow animate__animated animate__fadeIn"  data-wow-delay="0">
+                        <div class="section-title  wow animate__animated animate__fadeIn" data-wow-delay="0">
                             <h3 class="">Deals Of The Day</h3>
                             <a class="show-all" href="shop-grid-right.html">
                                 All Deals
@@ -1140,7 +1141,8 @@
                         <div class="row">
                             @foreach ($trending_products as $trending_product)
                             <div class="col-xl-3 col-lg-4 col-md-6">
-                                <div class="product-cart-wrap style-2 wow animate__animated animate__fadeInUp" data-wow-delay="0">
+                                <div class="product-cart-wrap style-2 wow animate__animated animate__fadeInUp"
+                                    data-wow-delay="0">
                                     <div class="product-img-action-wrap">
                                         <div class="product-img">
                                             <a href="shop-product-right.html">
@@ -1160,17 +1162,19 @@
                                                     @php
                                                     $num_rating = number_format($trending_product->averageRating);
                                                     @endphp
-                                                    @for ($i = 0; $i < $num_rating; $i++) <i class="fa fa-star checked"> </i>
+                                                    @for ($i = 0; $i < $num_rating; $i++) <i class="fa fa-star checked">
+                                                        </i>
                                                         @endfor
-                                                        @for ($j = $num_rating; $j < 5; $j++) <i class="fa fa-star"> </i>
+                                                        @for ($j = $num_rating; $j < 5; $j++) <i class="fa fa-star">
+                                                            </i>
                                                             @endfor
                                                             <span class="font-small ml-5 text-muted">
                                                                 ({{ round($trending_product->averageRating, 1) }})</span>
                                                 </div>
-                
+
                                             </div>
                                             <div>
-                                                <span class="font-small text-muted">By:    <a
+                                                <span class="font-small text-muted">By: <a
                                                         href="vendor-details-1.html">{{ $trending_product->user->name }}</a></span>
                                             </div>
                                             <div class="product-card-bottom">
@@ -1183,19 +1187,22 @@
                                                 <div class="product-price">
                                                     <span>
                                                         Rs.{{ $trending_product->selling_price * (1 - $trending_product->discount / 100) }}</span>
-                                                    <span class="old-price">Rs.{{ $trending_product->selling_price }}</span>
+                                                    <span
+                                                        class="old-price">Rs.{{ $trending_product->selling_price }}</span>
                                                 </div>
                                                 @else
                                                 <div class="product-price">
                                                     <span>
                                                         Rs.
                                                         {{ $trending_product->selling_price - $trending_product->discount }}</span>
-                                                    <span class="old-price">Rs.{{ $trending_product->selling_price }}</span>
+                                                    <span
+                                                        class="old-price">Rs.{{ $trending_product->selling_price }}</span>
                                                 </div>
                                                 @endif
                                                 @endif
                                                 <div class="add-cart">
-                                                    <a class="add" href="shop-cart.html"><i class="fi-rs-shopping-cart mr-5"></i>Add
+                                                    <a class="add" href="shop-cart.html"><i
+                                                            class="fi-rs-shopping-cart mr-5"></i>Add
                                                     </a>
                                                 </div>
                                             </div>
@@ -1244,46 +1251,9 @@
                                 <div id="slider-range" class="mb-20"></div>
                                 <div class="d-flex justify-content-between">
                                     <div class="caption">From: <strong id="slider-range-value1"
-                                            class="text-brand"></strong></div>
+                                            class="text-brand"><input type="text"></strong></div>
                                     <div class="caption">To: <strong id="slider-range-value2"
-                                            class="text-brand"></strong></div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="list-group">
-                            <div class="list-group-item mb-10 mt-10">
-                                <label class="fw-900">Color</label>
-                                <div class="custome-checkbox">
-                                    <input class="form-check-input" type="checkbox" name="checkbox"
-                                        id="exampleCheckbox1" value="">
-                                    <label class="form-check-label" for="exampleCheckbox1"><span>Red (56)</span></label>
-                                    <br>
-                                    <input class="form-check-input" type="checkbox" name="checkbox"
-                                        id="exampleCheckbox2" value="">
-                                    <label class="form-check-label" for="exampleCheckbox2"><span>Green
-                                            (78)</span></label>
-                                    <br>
-                                    <input class="form-check-input" type="checkbox" name="checkbox"
-                                        id="exampleCheckbox3" value="">
-                                    <label class="form-check-label" for="exampleCheckbox3"><span>Blue
-                                            (54)</span></label>
-                                </div>
-                                <label class="fw-900 mt-15">Item Condition</label>
-                                <div class="custome-checkbox">
-                                    <input class="form-check-input" type="checkbox" name="checkbox"
-                                        id="exampleCheckbox11" value="">
-                                    <label class="form-check-label" for="exampleCheckbox11"><span>New
-                                            (1506)</span></label>
-                                    <br>
-                                    <input class="form-check-input" type="checkbox" name="checkbox"
-                                        id="exampleCheckbox21" value="">
-                                    <label class="form-check-label" for="exampleCheckbox21"><span>Refurbished
-                                            (27)</span></label>
-                                    <br>
-                                    <input class="form-check-input" type="checkbox" name="checkbox"
-                                        id="exampleCheckbox31" value="">
-                                    <label class="form-check-label" for="exampleCheckbox31"><span>Used
-                                            (45)</span></label>
+                                            class="text-brand"><input type="text" type="text"></strong></div>
                                 </div>
                             </div>
                         </div>
@@ -1293,53 +1263,20 @@
                     <!-- Product sidebar Widget -->
                     <div class="sidebar-widget product-sidebar mb-30 p-30 bg-grey border-radius-10">
                         <h5 class="section-title style-1 mb-30">New products</h5>
-                        <div class="single-post clearfix">
-                            <div class="image">
-                                <img src="assets\imgs\shop\thumbnail-3.jpg" alt="#">
-                            </div>
-                            <div class="content pt-10">
-                                <h5><a href="shop-product-detail.html">Chen Cardigan</a></h5>
-                                <p class="price mb-0 mt-5">$99.50</p>
-                                <div class="product-rate">
-                                    <div class="product-rating" style="width: 90%"></div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="single-post clearfix">
-                            <div class="image">
-                                <img src="assets\imgs\shop\thumbnail-4.jpg" alt="#">
-                            </div>
-                            <div class="content pt-10">
-                                <h6><a href="shop-product-detail.html">Chen Sweater</a></h6>
-                                <p class="price mb-0 mt-5">$89.50</p>
-                                <div class="product-rate">
-                                    <div class="product-rating" style="width: 80%"></div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="single-post clearfix">
-                            <div class="image">
-                                <img src="assets\imgs\shop\thumbnail-5.jpg" alt="#">
-                            </div>
-                            <div class="content pt-10">
-                                <h6><a href="shop-product-detail.html">Colorful Jacket</a></h6>
-                                <p class="price mb-0 mt-5">$25</p>
-                                <div class="product-rate">
-                                    <div class="product-rating" style="width: 60%"></div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="banner-img wow fadeIn mb-lg-0 animated d-lg-block d-none">
-                        <img src="assets\imgs\banner\banner-11.png" alt="">
-                        <div class="banner-text">
-                            <span>Oganic</span>
-                            <h4>
-                                Save 17% <br>
-                                on <span class="text-brand">Oganic</span><br>
-                                Juice
-                            </h4>
-                        </div>
+                          @foreach ($new_products as $product)
+                          <div class="single-post clearfix">
+                              <div class="image">
+                                  <img src="{{$product->getFirstOrDefaultMediaUrl('image', 'square-md-thumb')}}" alt="#">
+                              </div>
+                              <div class="content">
+                                  <h5><a href="shop-product-detail.html">{{$product->name}}</a></h5>
+                                  <p class="price mb-0 mt-5">{{$product->price}}</p>
+                                  <div class="product-rate">
+                                      <div class="product-rating" style="width: 90%"></div>
+                                  </div>
+                              </div>
+                          </div>
+                          @endforeach
                     </div>
                 </div>
             </div>
