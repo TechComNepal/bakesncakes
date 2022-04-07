@@ -1,6 +1,4 @@
 <x-new-site-master-layout>
-
-
     <main class="main">
         <div class="page-header mt-30 mb-50">
             <div class="container">
@@ -85,7 +83,7 @@
                         </div>
                     </div>
                     <div class="row product-grid">
-                        @foreach ($featured_products as $featured_product)
+                        @foreach ($products as $featured_product)
 
                         <div class="col-lg-1-5 col-md-4 col-12 col-sm-7">
                             <div class="product-cart-wrap mb-30 wow animate__animated animate__fadeIn"
@@ -1113,23 +1111,10 @@
 
                     </div>
                     <!--product grid-->
-                    <div class="pagination-area mt-20 mb-20">
-                        <nav aria-label="Page navigation example">
-                            <ul class="pagination justify-content-start">
-                                <li class="page-item">
-                                    <a class="page-link" href="#"><i class="fi-rs-arrow-small-left"></i></a>
-                                </li>
-                                <li class="page-item"><a class="page-link" href="#">1</a></li>
-                                <li class="page-item active"><a class="page-link" href="#">2</a></li>
-                                <li class="page-item"><a class="page-link" href="#">3</a></li>
-                                <li class="page-item"><a class="page-link dot" href="#">...</a></li>
-                                <li class="page-item"><a class="page-link" href="#">6</a></li>
-                                <li class="page-item">
-                                    <a class="page-link" href="#"><i class="fi-rs-arrow-small-right"></i></a>
-                                </li>
-                            </ul>
-                        </nav>
+                    <div class="">
+                        {{$products->links()}}
                     </div>
+                    <!-- end pagination -->
                     <section class="section-padding pb-5">
                         <div class="section-title  wow animate__animated animate__fadeIn" data-wow-delay="0">
                             <h3 class="">Deals Of The Day</h3>
@@ -1252,8 +1237,8 @@
                                 <div class="d-flex justify-content-between">
                                     <div class="caption">From: <strong id="slider-range-value1"
                                             class="text-brand"><input type="text"></strong></div>
-                                    <div class="caption">To: <strong id="slider-range-value2"
-                                            class="text-brand"><input type="text" type="text"></strong></div>
+                                    <div class="caption">To: <strong id="slider-range-value2" class="text-brand"><input
+                                                type="text" type="text"></strong></div>
                                 </div>
                             </div>
                         </div>
@@ -1263,23 +1248,25 @@
                     <!-- Product sidebar Widget -->
                     <div class="sidebar-widget product-sidebar mb-30 p-30 bg-grey border-radius-10">
                         <h5 class="section-title style-1 mb-30">New products</h5>
-                          @foreach ($new_products as $product)
-                          <div class="single-post clearfix">
-                              <div class="image">
-                                  <img src="{{$product->getFirstOrDefaultMediaUrl('image', 'square-md-thumb')}}" alt="#">
-                              </div>
-                              <div class="content">
-                                  <h5><a href="shop-product-detail.html">{{$product->name}}</a></h5>
-                                  <p class="price mb-0 mt-5">{{$product->price}}</p>
-                                  <div class="product-rate">
-                                      <div class="product-rating" style="width: 90%"></div>
-                                  </div>
-                              </div>
-                          </div>
-                          @endforeach
+                        @foreach ($new_products as $product)
+                        <div class="single-post clearfix">
+                            <div class="image">
+                                <img src="{{$product->getFirstOrDefaultMediaUrl('image', 'square-md-thumb')}}" alt="#">
+                            </div>
+                            <div class="content">
+                                <h5><a href="shop-product-detail.html">{{$product->name}}</a></h5>
+                                <p class="price mb-0 mt-5">{{$product->price}}</p>
+                                <div class="product-rate">
+                                    <div class="product-rating" style="width: 90%"></div>
+                                </div>
+                            </div>
+                        </div>
+                        @endforeach
                     </div>
                 </div>
             </div>
         </div>
     </main>
+
+
 </x-new-site-master-layout>
