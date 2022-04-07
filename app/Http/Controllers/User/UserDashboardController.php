@@ -14,7 +14,8 @@ class UserDashboardController extends Controller
     public function index()
     {
         $pageTitle = 'Dashboard';
-        return view('cms.users.dashboard', compact('pageTitle'));
+        return view('cms.users.new_dashboard', compact('pageTitle'));
+        // return view('cms.users.dashboard', compact('pageTitle'));
     }
 
     public function showOrder()
@@ -23,7 +24,7 @@ class UserDashboardController extends Controller
         if (Auth::check()) {
             return (request()->ajax())
                 ? $this->datatable()
-                :view('cms.users.orders.show');
+                :view('cms.users.orders.new_show');
         }
     }
     protected function datatable()
@@ -104,7 +105,7 @@ class UserDashboardController extends Controller
     {
         $this->setPageTitle('Detail Order View', '');
         $order = Order::with(['products'])->where('id', $id)->where('user_id', Auth::user()->id)->first();
-        return view('cms.users.orders.viewDetail', [
+        return view('cms.users.orders.new_viewDetail', [
             'order' => $order,
             'shipping_address' => json_decode($order->shipping_address, true)
         ]);

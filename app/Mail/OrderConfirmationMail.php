@@ -7,6 +7,8 @@ use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Mail\Mailable;
 use Illuminate\Queue\SerializesModels;
 
+use PDF;
+
 class OrderConfirmationMail extends Mailable
 {
     use Queueable, SerializesModels;
@@ -20,6 +22,7 @@ class OrderConfirmationMail extends Mailable
     public function __construct($mail_details)
     {
         $this->mail_details=$mail_details;
+        $this->pdf = PDF::loadView('emails.order_confirm', compact('mail_details'));
     }
 
     /**
@@ -29,6 +32,6 @@ class OrderConfirmationMail extends Mailable
      */
     public function build()
     {
-        return $this->subject('Order Confirmation')->view('emails.order_confirm');
+        return $this->subject('Order Confirmation') ->attachData($this->pdf->output(), "invoice.pdf")->view('emails.order_confirm');
     }
 }

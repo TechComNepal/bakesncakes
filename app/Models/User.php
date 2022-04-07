@@ -152,4 +152,8 @@ class User extends Authenticatable implements MustVerifyEmail, HasMedia
     {
         return $this->hasMany(User::class, 'user_id');
     }
+      public function wishlists()
+    {
+        return $this->hasMany(Wishlist::class, 'user_id');
+    }
 }

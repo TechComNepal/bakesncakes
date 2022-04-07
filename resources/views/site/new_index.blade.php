@@ -250,7 +250,9 @@
                                     </div>
                                     <div class="product-action-1">
                                         <a aria-label="Add To Wishlist" class="action-btn featured-products_a"
-                                            href="shop-wishlist.html"><i class="fi-rs-heart"></i></a>
+                                            href="javascript:void(0);" id="{{ $featured_product->id }}"
+                                            onclick="addToWishList({{ $featured_product->id }})"><i
+                                                class="fi-rs-heart"></i></a>
                                         <a aria-label="Compare" class="action-btn featured-products_a"
                                             href="shop-compare.html"><i class="fi-rs-shuffle"></i></a>
                                         <a aria-label="Quick view" class="action-btn featured-products_a"
