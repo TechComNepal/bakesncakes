@@ -5,6 +5,7 @@ use App\Http\Controllers\Site\CartController;
 use App\Http\Controllers\Site\PagesController;
 use App\Http\Controllers\Site\ReviewController;
 use App\Http\Controllers\Site\ProductController;
+use App\Http\Controllers\Site\WishlistController;
 use App\Http\Controllers\Admin\CategoryController;
 use App\Http\Controllers\Site\SiteOrderController;
 use App\Http\Controllers\Admin\NewsLetterController;
@@ -86,4 +87,8 @@ Route::group(['middleware' => ['auth']], function () {
     Route::post('/reviews', ReviewController::class)->name('review.store');
     Route::delete('/user/reviews/delete/{id}', [ReviewController::class, 'deleteReview'])->name('user.reviews.delete');
     Route::post('/user/comments', [ReviewController::class, 'showReview'])->name('user.comments');
+
+    Route::get('/wishlists', [WishlistController::class, 'index'])->name('wishlist.index');
+    Route::post('/wishlists', [WishlistController::class, 'store'])->name('wishlist.store');
+    Route::post('/wishlists/remove', [WishlistController::class, 'remove'])->name('wishlist.remove');
 });

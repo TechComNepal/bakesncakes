@@ -272,7 +272,7 @@
                         <div class="side-nav">
                             <ul class="navbar-nav">
                                 <li class="nav-item nav-user">
-                                    <a class="nav-link dropdown-toggle" href="#"><i
+                                    <a class="nav-link dropdown-toggle" href="javascript:void(0)"><i
                                             class="fas fa-user-alt user-icon"></i>
                                     </a>
                                     @auth

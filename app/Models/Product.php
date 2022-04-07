@@ -146,4 +146,9 @@ class Product extends Model implements HasMedia, Searchable
     {
         return $this->belongsTo(User::class, 'user_id');
     }
+
+    public function wishlists()
+    {
+        return $this->hasMany(Wishlist::class, 'product_id');
+    }
 }
