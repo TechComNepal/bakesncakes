@@ -30,6 +30,9 @@
     <!-- datepicker css -->
     <link href="{{ asset('cms/libs/css/flatpickr.min.css') }}" rel="stylesheet">
 
+    <!-- livewire -->
+    @livewireStyles
+
 
     <!-- Dropify -->
 
@@ -254,19 +257,19 @@
                             </li>
 
                             @if (session('impersonated_by'))
-                                <li class="nav-item">
-                                    <a class="nav-link" href="javascript:void(0)">
-                                        <span class="impersonate">Impersonated as
-                                            {{ auth()->user()->name }}</span>
-                                    </a>
-                                </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="javascript:void(0)">
+                                    <span class="impersonate">Impersonated as
+                                        {{ auth()->user()->name }}</span>
+                                </a>
+                            </li>
 
-                                <li class="nav-item">
-                                    <a class="nav-link" href="{{ route('users.impersonate.leave') }}">
-                                        <span class="impersonate">
-                                            {{ \Illuminate\Support\Str::upper('Finish Impersonated Session') }}</span>
-                                    </a>
-                                </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="{{ route('users.impersonate.leave') }}">
+                                    <span class="impersonate">
+                                        {{ \Illuminate\Support\Str::upper('Finish Impersonated Session') }}</span>
+                                </a>
+                            </li>
                             @endif
                         </ul>
                         <div class="side-nav">
@@ -276,26 +279,25 @@
                                             class="fas fa-user-alt user-icon"></i>
                                     </a>
                                     @auth
-                                        <ul class="dropdown-menu">
-                                            <li class="nav-item">
-                                                <a class="nav-link" href="{{ route('user.dashboard') }}">My
-                                                    Panel</a>
-                                            </li>
-                                            <li class="nav-item">
-                                                <a class="nav-link" href="{{ route('logout') }}">Logout</a>
-                                            </li>
-                                        </ul>
+                                    <ul class="dropdown-menu">
+                                        <li class="nav-item">
+                                            <a class="nav-link" href="{{ route('user.dashboard') }}">My
+                                                Panel</a>
+                                        </li>
+                                        <li class="nav-item">
+                                            <a class="nav-link" href="{{ route('logout') }}">Logout</a>
+                                        </li>
+                                    </ul>
                                     @endauth
                                     @guest
-                                        <ul class="dropdown-menu">
-                                            <li class="nav-item">
-                                                <a class="nav-link" href="{{ route('auth.login.show') }}">Login</a>
-                                            </li>
-                                            <li class="nav-item">
-                                                <a class="nav-link"
-                                                    href="{{ route('auth.register.show') }}">Register</a>
-                                            </li>
-                                        </ul>
+                                    <ul class="dropdown-menu">
+                                        <li class="nav-item">
+                                            <a class="nav-link" href="{{ route('auth.login.show') }}">Login</a>
+                                        </li>
+                                        <li class="nav-item">
+                                            <a class="nav-link" href="{{ route('auth.register.show') }}">Register</a>
+                                        </li>
+                                    </ul>
                                     @endguest
                                 </li>
                             </ul>
@@ -488,8 +490,7 @@
     </div>
 
     <!-- Modal -->
-    <div class="modal fade" id="popupQuickview" tabindex="-1" aria-labelledby="popupQuickviewLabel"
-        aria-hidden="true">
+    <div class="modal fade" id="popupQuickview" tabindex="-1" aria-labelledby="popupQuickviewLabel" aria-hidden="true">
         <div class="modal-dialog modal-dialog-centered ps-quickview" id="modal-size">
             <div class="modal-content">
                 <div id="addToCart-modal-body">
@@ -511,7 +512,8 @@
     <script src="{{ asset('site/js/popper.min.js') }}"></script>
     <script src="{{ asset('site/js/bootstrap.min.js') }}"></script>
 
-    <script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.10.25/js/jquery.dataTables.js" defer>
+    <script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.10.25/js/jquery.dataTables.js"
+        defer>
     </script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.min.js"></script>
 
@@ -550,19 +552,20 @@
 
 
     <script>
-        $(document).ready(function() {
+        $(document).ready(function () {
 
             $.ajaxSetup({
                 headers: {
                     'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
                 }
             });
-            $('#refresh_cart, #cart-mini, .ps-cart--mini').hover(function(e) {
+            $('#refresh_cart, #cart-mini, .ps-cart--mini').hover(function (e) {
                 $(".ps-cart--mini").stop(true, true).addClass("active");
-            }, function() {
+            }, function () {
                 $(".ps-cart--mini").stop(true, true).removeClass("active");
             });
         });
+
     </script>
 
     <!--  -->
@@ -573,11 +576,12 @@
 
             $.ajax({
                 type: "GET",
-                url: '{{ route('product.quickView') }}',
+                url: '{{ route('
+                product.quickView ') }}',
                 data: {
                     id: id,
                 },
-                success: function(data) {
+                success: function (data) {
                     if (!$('#modal-size').hasClass('modal-xl')) {
                         $('#modal-size').addClass('modal-xl');
                     }
@@ -585,7 +589,7 @@
                     $('#popupQuickview').modal('show');
 
                 },
-                error: function(data) {
+                error: function (data) {
                     console.log(data);
                 }
 
@@ -604,9 +608,10 @@
             } else {
                 $.ajax({
                     type: "POST",
-                    url: '{{ route('cart.addToCart') }}',
+                    url: '{{ route('
+                    cart.addToCart ') }}',
                     data: ser,
-                    success: function(data) {
+                    success: function (data) {
                         $('#addToCart-modal-body').html(null);
                         $('#modal-size').removeClass('modal-xl');
                         $('#addToCart-modal-body').html(data.modal_view);
@@ -615,7 +620,7 @@
 
 
                     },
-                    error: function(data) {
+                    error: function (data) {
                         console.log(data);
                         console.log('Quick View Error');
                     }
@@ -632,15 +637,16 @@
         function removeFromCart(key) {
             $.ajax({
                 type: "POST",
-                url: '{{ route('cart.removeFromCart') }}',
+                url: '{{ route('
+                cart.removeFromCart ') }}',
                 data: {
                     id: key
                 },
-                success: function(data) {
+                success: function (data) {
                     $('#cart-summary').html(data.cart_view);
                     updateNavCart(data.nav_cart_view, data.cart_count);
                 },
-                error: function(data) {
+                error: function (data) {
                     console.log(data);
                     console.log('Quick View Error');
                 }
@@ -648,7 +654,7 @@
         }
 
         //store newsletter and send email to admin
-        $('body').on('click', '#news-btn', function(e) {
+        $('body').on('click', '#news-btn', function (e) {
             e.preventDefault();
 
             var email = $("#email").val();
@@ -659,14 +665,14 @@
                     email: email,
                 },
                 dataType: 'json',
-                beforeSend: function() {
+                beforeSend: function () {
                     $(document).find('span.error-text').text('');
                 },
 
-                success: function(data) {
+                success: function (data) {
 
                     if (data.status == 0) {
-                        $.each(data.error, function(prefix, val) {
+                        $.each(data.error, function (prefix, val) {
                             $('span.' + prefix + '_error').text(val[0]);
                         });
 
@@ -676,7 +682,7 @@
                     }
 
                 },
-                error: function(data) {
+                error: function (data) {
                     console.log(data.error);
                 }
             });
@@ -685,7 +691,7 @@
         // category slide toggle
 
         //jquery for toggle sub menus
-        $('.sub-btn').click(function() {
+        $('.sub-btn').click(function () {
             $(this).next('.sub-menu').slideToggle();
             $(this).find('.arrow').toggleClass('rotate');
         });
@@ -693,7 +699,7 @@
         //accordins
         $('.accordin_desc').hide();
 
-        $('.accordin_title').on('click', function() {
+        $('.accordin_title').on('click', function () {
             $(this).next().slideToggle('slow');
             $(this).parent().toggleClass('active');
 
@@ -709,36 +715,41 @@
         //     $(this).next('.sub-menu').slideToggle();
         //     $(this).find('.dropdown').toggleClass('rotate');
         // });
+
     </script>
 
 
     <!-- Alertify -->
     @if (Session::has('info'))
-        <script>
-            alertify.message("{{ Session::get('info') }}");
-        </script>
+    <script>
+        alertify.message("{{ Session::get('info') }}");
+
+    </script>
     @endif
     @if (Session::has('success'))
-        <script>
-            alertify.success("{{ Session::get('success') }}");
-        </script>
+    <script>
+        alertify.success("{{ Session::get('success') }}");
+
+    </script>
     @endif
     @if (Session::has('error'))
-        <script>
-            alertify.error("{{ Session::get('error') }}");
-        </script>
+    <script>
+        alertify.error("{{ Session::get('error') }}");
+
+    </script>
     @endif
     @if (Session::has('warning'))
-        <script>
-            alertify.warning("{{ Session::get('warning') }}");
-        </script>
+    <script>
+        alertify.warning("{{ Session::get('warning') }}");
+
+    </script>
     @endif
 
     <!--Start of Tawk.to Script-->
     <script type="text/javascript">
         var Tawk_API = Tawk_API || {},
             Tawk_LoadStart = new Date();
-        (function() {
+        (function () {
             var s1 = document.createElement("script"),
                 s0 = document.getElementsByTagName("script")[0];
             s1.async = true;
@@ -747,12 +758,13 @@
             s1.setAttribute('crossorigin', '*');
             s0.parentNode.insertBefore(s1, s0);
         })();
+
     </script>
 
 
     @stack('scripts')
 
-    @livewireScripts
 </body>
+@livewireScripts
 
 </html>
