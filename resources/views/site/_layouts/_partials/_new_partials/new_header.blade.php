@@ -55,8 +55,9 @@
                                          <option><a href="">{{ $menucategorie->name }}</a></option>
                                      @endforeach
                                  </select>
-                                 <form action="{{ route('site.page.search') }}">
-                                     <input type="text" placeholder="Search for items..." name="query">
+                                 <form action="{{ route('site.search') }}">
+                                    <!-- <input type="text" placeholder="Search for items..." name="query"> -->
+                                    @livewire('filter')
                                  </form>
                              </form>
                          </div>

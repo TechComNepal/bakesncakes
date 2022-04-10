@@ -42,7 +42,7 @@
                             <p>We found <strong class="text-brand">29</strong> items for you!</p>
                         </div>
                         <div class="sort-by-product-area">
-                            <div class="sort-by-cover mr-10">
+                            <div class="sort-by-cover mr-10" sortable wire:click="sortBy('name')">
                                 <div class="sort-by-product-wrap">
                                     <div class="sort-by">
                                         <span><i class="fi-rs-apps"></i>Show:</span>
@@ -83,7 +83,7 @@
                         </div>
                     </div>
                     <div class="row product-grid">
-                        @foreach ($products as $featured_product)
+                        @foreach ($featured_products as $featured_product)
 
                         <div class="col-lg-1-5 col-md-4 col-12 col-sm-7">
                             <div class="product-cart-wrap mb-30 wow animate__animated animate__fadeIn"
@@ -1111,9 +1111,7 @@
 
                     </div>
                     <!--product grid-->
-                    <div class="">
-                        {{$products->links()}}
-                    </div>
+                    
                     <!-- end pagination -->
                     <section class="section-padding pb-5">
                         <div class="section-title  wow animate__animated animate__fadeIn" data-wow-delay="0">

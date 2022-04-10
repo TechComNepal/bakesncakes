@@ -32,8 +32,7 @@
     <link rel="stylesheet" href="{{ asset('frontend/plugins/font-awesome/css/font-awesome.min.css') }}">
     <!-- datepicker css -->
     <link href="{{ asset('cms/libs/css/flatpickr.min.css') }}" rel="stylesheet">
-
-
+    
     <style>
         /* rating */
         .rating-css div {
@@ -187,6 +186,7 @@
         /* ul.pagination .page-link .active {background-color: rgb(177, 68, 68);} */
 
     </style>
+    @livewireStyles
 </head>
 
 <body>
@@ -571,6 +571,7 @@
     </script>
 
     @stack('scripts')
+    @livewireScripts
 </body>
 
 </html>
