@@ -30,6 +30,7 @@
     <link rel="stylesheet" href="{{ asset('new_frontend\assets\css\main.css?v=4.1') }}">
     <link rel="stylesheet" href="{{ asset('new_frontend\assets\css\new_main.css') }}">
     <link rel="stylesheet" href="{{ asset('frontend/plugins/font-awesome/css/font-awesome.min.css') }}">
+    <link rel="stylesheet" href="{{ asset('frontend/plugins/noUiSlider/nouislider.css') }}">
     <!-- datepicker css -->
     <link href="{{ asset('cms/libs/css/flatpickr.min.css') }}" rel="stylesheet">
     <!-- Dropify -->
@@ -243,6 +244,7 @@
     <script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.10.25/js/jquery.dataTables.js" defer>
     </script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.min.js"></script>
+
     <!-- datepicker js -->
     <script src="{{ asset('cms/libs/js/flatpickr.min.js') }}"></script>
 
@@ -251,6 +253,7 @@
     <script src="{{ asset('site/libs/dropify/dist/js/dropify.min.js') }}"></script>
 
 
+    <script src="{{ asset('frontend/plugins/noUiSlider/nouislider.min.js') }}"></script>
 
     <!-- alertifyjs js -->
     <script src="{{ asset('cms/libs/js/alertify.min.js') }}"></script>
@@ -412,6 +415,26 @@
                 }
             });
         }
+
+        function addToCompare(id) {
+            $.ajax({
+                type: "POST",
+                url: "{{ route('compare.addToCompare') }}",
+                data: {
+                    id: id
+                },
+                success: function(data) {
+                    $('#compare').html(data);
+                    alertify.success("Item has been added to compare list");
+                    // $('#compare_items_sidenav').html(parseInt($('#compare_items_sidenav').html()) + 1);
+                },
+                error: function(data) {
+                    console.log(data);
+                    console.log('Compare Error');
+                }
+            });
+        }
+
         //store newsletter and send email to admin
         $('body').on('click', '#news-btn', function(e) {
             e.preventDefault();
@@ -483,6 +506,7 @@
         })();
     </script>
 
+    @livewireScripts
     @stack('scripts')
 </body>
 

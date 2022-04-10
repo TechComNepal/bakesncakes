@@ -1,5 +1,5 @@
-<x-site-master-layout>
+<x-new-site-master-layout>
 
-    <livewire:shop-component :slug="$slug" />
+    <livewire:shop-component />
 
-</x-site-master-layout>
+</x-new-site-master-layout>
