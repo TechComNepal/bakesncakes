@@ -4,7 +4,9 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Site\CartController;
 use App\Http\Controllers\Site\PagesController;
 use App\Http\Controllers\Site\ReviewController;
+use App\Http\Controllers\Site\CompareController;
 use App\Http\Controllers\Site\ProductController;
+use App\Http\Controllers\Site\WishlistController;
 use App\Http\Controllers\Admin\CategoryController;
 use App\Http\Controllers\Site\SiteOrderController;
 use App\Http\Controllers\Admin\NewsLetterController;
@@ -53,6 +55,11 @@ Route::post('/cart/addtocart', [CartController::class, 'addToCart'])->name('cart
 Route::post('/cart/removeFromCart', [CartController::class, 'removeFromCart'])->name('cart.removeFromCart');
 Route::post('/cart/updateQuantity', [CartController::class, 'updateQuantity'])->name('cart.updateQuantity');
 
+Route::get('/compare', [CompareController::class, 'index'])->name('compare.index');
+Route::post('/compare/addToCompare', [CompareController::class, 'addToCompare'])->name('compare.addToCompare');
+Route::get('/compare/reset/{id}', [CompareController::class, 'reset'])->name('compare.reset');
+
+
 
 Route::group(['middleware' => ['auth']], function () {
     Route::get('/checkout', [PagesController::class, 'checkout'])->name('checkout');
@@ -86,4 +93,8 @@ Route::group(['middleware' => ['auth']], function () {
     Route::post('/reviews', ReviewController::class)->name('review.store');
     Route::delete('/user/reviews/delete/{id}', [ReviewController::class, 'deleteReview'])->name('user.reviews.delete');
     Route::post('/user/comments', [ReviewController::class, 'showReview'])->name('user.comments');
+
+    Route::get('/wishlists', [WishlistController::class, 'index'])->name('wishlist.index');
+    Route::post('/wishlists', [WishlistController::class, 'store'])->name('wishlist.store');
+    Route::post('/wishlists/remove', [WishlistController::class, 'remove'])->name('wishlist.remove');
 });

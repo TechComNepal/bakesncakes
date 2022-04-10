@@ -20,7 +20,7 @@ class UserProfileController extends Controller
         $user=auth()->user();
         $shippings = Shipping::all();
         $this->setPageTitle('User Profile', '');
-        return view('cms.users.profiles.index', compact('user', 'shippings'));
+        return view('cms.users.profiles.new_index', compact('user', 'shippings'));
     }
 
     public function update(User $user, ProfileUpdateRequest $request)

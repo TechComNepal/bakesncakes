@@ -10,10 +10,10 @@
             <h1 class="text-white text-uppercase"> <strong>{{ auth()->user()->username }}</strong></h1>
             <p class="text-white">{{ auth()->user()->email }}</p>
             <button type="button" class="ps-btn cmn-btn-outline" id="avatar-update-btn" data-bs-toggle="modal"
-            data-bs-target="#avatarUpdate" title="Update Profile Picture">
-            <i class="fa fa-edit"></i>
-            Edit 
-        </button>
+                data-bs-target="#avatarUpdate" title="Update Profile Picture">
+                <i class="fa fa-edit"></i>
+                Edit
+            </button>
         </div>
 
         <ul class="nav nav-pills nav-stacked flex-column">

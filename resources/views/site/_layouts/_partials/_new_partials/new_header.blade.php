@@ -84,21 +84,17 @@
                                          </select>
                                      </form>
                                  </div> -->
-                                 <div class="header-action-icon-2">
-                                     <a href="shop-compare.html">
-                                         <img class="svgInject" alt="Nest"
-                                             src="{{ asset('new_frontend\assets\imgs\theme\icons\icon-compare.svg') }}">
-                                         <span class="pro-count blue">3</span>
-                                     </a>
-                                     <a href="shop-compare.html"><span class="lable ml-0">Compare</span></a>
+                                 <div class="header-action-icon-2" id="compare">
+                                     @include(
+                                         'site._layouts._partials._new_partials.compare'
+                                     )
+
                                  </div>
-                                 <div class="header-action-icon-2">
-                                     <a href="shop-wishlist.html">
-                                         <img class="svgInject" alt="Nest"
-                                             src="{{ asset('new_frontend\assets\imgs\theme\icons\icon-heart.svg') }}">
-                                         <span class="pro-count blue">6</span>
-                                     </a>
-                                     <a href="shop-wishlist.html"><span class="lable">Wishlist</span></a>
+                                 <div class="header-action-icon-2 wishlist">
+                                     @include(
+                                         'site._layouts._partials._new_partials.wishlist'
+                                     )
+
                                  </div>
                                  <span id="refresh_cart">
                                      @include(
@@ -107,38 +103,49 @@
                                  </span>
 
                                  <div class="header-action-icon-2">
-                                     <a href="page-account.html">
+                                     <a href="{{ route('user.dashboard') }}">
                                          <img class="svgInject" alt="Nest"
                                              src="{{ asset('new_frontend\assets\imgs\theme\icons\icon-user.svg') }}">
                                      </a>
-                                     <a href="page-account.html"><span class="lable ml-0">Account</span></a>
+                                     <a href="{{ route('user.dashboard') }}"><span
+                                             class="lable ml-0">Account</span></a>
                                      <div class="cart-dropdown-wrap cart-dropdown-hm2 account-dropdown">
                                          <ul>
-                                             <li>
-                                                 <a href="page-account.html"><i class="fi fi-rs-user mr-10"></i>My
-                                                     Account</a>
-                                             </li>
-                                             <li>
-                                                 <a href="page-account.html"><i
-                                                         class="fi fi-rs-location-alt mr-10"></i>Order
-                                                     Tracking</a>
-                                             </li>
-                                             <li>
-                                                 <a href="page-account.html"><i class="fi fi-rs-label mr-10"></i>My
-                                                     Voucher</a>
-                                             </li>
-                                             <li>
-                                                 <a href="shop-wishlist.html"><i class="fi fi-rs-heart mr-10"></i>My
-                                                     Wishlist</a>
-                                             </li>
-                                             <li>
-                                                 <a href="page-account.html"><i
-                                                         class="fi fi-rs-settings-sliders mr-10"></i>Setting</a>
-                                             </li>
-                                             <li>
-                                                 <a href="page-login.html"><i class="fi fi-rs-sign-out mr-10"></i>Sign
-                                                     out</a>
-                                             </li>
+                                             @auth
+                                                 <li>
+                                                     <a href="{{ route('user.dashboard') }}"><i
+                                                             class="fi fi-rs-user mr-10"></i>My
+                                                         Account</a>
+                                                 </li>
+
+
+                                                 <li>
+                                                     <a href="{{ route('wishlist.index') }}"><i
+                                                             class="fi fi-rs-heart mr-10"></i>My
+                                                         Wishlist</a>
+                                                 </li>
+
+                                                 <li>
+                                                     <a href="{{ route('logout') }}"><i
+                                                             class="fi fi-rs-sign-out mr-10"></i>Sign
+                                                         out</a>
+                                                 </li>
+                                             @endauth
+
+                                             @guest
+                                                 <li>
+                                                     <a href="{{ route('auth.login.show') }}"><i
+                                                             class="fi fi-rs-sign-out mr-10"></i>Login
+                                                         in</a>
+                                                 </li>
+
+                                                 <li>
+                                                     <a href="{{ route('auth.register.show') }}"><i
+                                                             class="fi fi-rs-user mr-10"></i>
+                                                         Register</a>
+                                                 </li>
+
+                                             @endguest
                                          </ul>
                                      </div>
                                  </div>

@@ -30,9 +30,16 @@
     <link rel="stylesheet" href="{{ asset('new_frontend\assets\css\main.css?v=4.1') }}">
     <link rel="stylesheet" href="{{ asset('new_frontend\assets\css\new_main.css') }}">
     <link rel="stylesheet" href="{{ asset('frontend/plugins/font-awesome/css/font-awesome.min.css') }}">
+    <link rel="stylesheet" href="{{ asset('frontend/plugins/noUiSlider/nouislider.css') }}">
     <!-- datepicker css -->
     <link href="{{ asset('cms/libs/css/flatpickr.min.css') }}" rel="stylesheet">
-    
+
+    <!-- Dropify -->
+
+    <link href="{{ asset('site/libs/dropify/dist/css/dropify.min.css') }}" rel="stylesheet">
+
+
+
     <style>
         /* rating */
         .rating-css div {
@@ -180,136 +187,19 @@
         }
 
 
-
-
-
         /* ul.pagination .page-link .active {background-color: rgb(177, 68, 68);} */
 
     </style>
+
+    @stack('stylesheet')
+
+
     @livewireStyles
 </head>
 
 <body>
 
 
-
-    <!-- Quick view -->
-    <div class="modal fade custom-modal" id="quickViewModal" tabindex="-1" aria-labelledby="quickViewModalLabel"
-        aria-hidden="true">
-        <div class="modal-dialog">
-            <div class="modal-content">
-                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                <div class="modal-body">
-                    <div class="row">
-                        <div class="col-md-6 col-sm-12 col-xs-12 mb-md-0 mb-sm-5">
-                            <div class="detail-gallery">
-                                <span class="zoom-icon"><i class="fi-rs-search"></i></span>
-                                <!-- MAIN SLIDES -->
-                                <div class="product-image-slider">
-                                    <figure class="border-radius-10">
-                                        <img src="{{ asset('new_frontend\assets\imgs\shop\product-16-2.jpg ') }}"
-                                            alt="product image">
-                                    </figure>
-                                    <figure class="border-radius-10">
-                                        <img src="{{ asset('new_frontend\assets\imgs\shop\product-16-1.jpg ') }}"
-                                            alt="product image">
-                                    </figure>
-                                    <figure class="border-radius-10">
-                                        <img src="{{ asset('new_frontend\assets\imgs\shop\product-16-3.jpg ') }}"
-                                            alt="product image">
-                                    </figure>
-                                    <figure class="border-radius-10">
-                                        <img src="{{ asset('new_frontend\assets\imgs\shop\product-16-4.jpg ') }}"
-                                            alt="product image">
-                                    </figure>
-                                    <figure class="border-radius-10">
-                                        <img src="{{ asset('new_frontend\assets\imgs\shop\product-16-5.jpg ') }}"
-                                            alt="product image">
-                                    </figure>
-                                    <figure class="border-radius-10">
-                                        <img src="{{ asset('new_frontend\assets\imgs\shop\product-16-6.jpg ') }}"
-                                            alt="product image">
-                                    </figure>
-                                    <figure class="border-radius-10">
-                                        <img
-                                            src="{{ asset('new_frontend\assets\imgs\shop\product-16-7.jpg" alt="product image') }}">
-                                    </figure>
-                                </div>
-                                <!-- THUMBNAILS -->
-                                <div class="slider-nav-thumbnails">
-                                    <div><img
-                                            src="{{ asset('new_frontend\assets\imgs\shop\thumbnail-3.jpg" alt="product image') }}">
-                                    </div>
-                                    <div><img
-                                            src="{{ asset('new_frontend\assets\imgs\shop\thumbnail-4.jpg" alt="product image') }}">
-                                    </div>
-                                    <div><img
-                                            src="{{ asset('new_frontend\assets\imgs\shop\thumbnail-5.jpg" alt="product image') }}">
-                                    </div>
-                                    <div><img
-                                            src="{{ asset('new_frontend\assets\imgs\shop\thumbnail-6.jpg" alt="product image') }}">
-                                    </div>
-                                    <div><img src="assets/imgs/shop/thumbnail-7.jpg" alt="product image"></div>
-                                    <div><img
-                                            src="{{ asset('new_frontend\assets\imgs\shop\thumbnail-8.jpg" alt="product image') }}">
-                                    </div>
-                                    <div><img
-                                            src="{{ asset('new_frontend\assets\imgs\shop\thumbnail-9.jpg" alt="product image') }}">
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <span class="font-small ml-5 text-muted"> (32 reviews)</span>
-                        <!-- End Gallery -->
-                    </div>
-                    <div class="col-md-6 col-sm-12 col-xs-12">
-                        <div class="detail-info pr-30 pl-30">
-                            <span class="stock-status out-stock"> Sale Off </span>
-                            <h3 class="title-detail"><a href="shop-product-right.html" class="text-heading">Seeds of
-                                    Change Organic Quinoa, Brown</a></h3>
-                            <div class="product-detail-rating">
-                                <div class="product-rate-cover text-end">
-                                    <div class="product-rate d-inline-block">
-                                        <div class="product-rating" style="width: 90%"></div>
-                                    </div>
-                                    <span class="font-small ml-5 text-muted"> (32 reviews)</span>
-                                </div>
-                            </div>
-                            <div class="clearfix product-price-cover">
-                                <div class="product-price primary-color float-left">
-                                    <span class="current-price text-brand">$38</span>
-                                    <span>
-                                        <span class="save-price font-md color3 ml-15">26% Off</span>
-                                        <span class="old-price font-md ml-15">$52</span>
-                                    </span>
-                                </div>
-
-                            </div>
-                            <div class="detail-extralink mb-30">
-                                <div class="detail-qty border radius">
-                                    <a href="#" class="qty-down"><i class="fi-rs-angle-small-down"></i></a>
-                                    <span class="qty-val">1</span>
-                                    <a href="#" class="qty-up"><i class="fi-rs-angle-small-up"></i></a>
-                                </div>
-                                <div class="product-extra-link2">
-                                    <button type="submit" class="button button-add-to-cart"><i
-                                            class="fi-rs-shopping-cart"></i>Add to cart</button>
-                                </div>
-                            </div>
-                            <div class="font-xs">
-                                <ul>
-                                    <li class="mb-5">Vendor: <span class="text-brand">Nest</span></li>
-                                    <li class="mb-5">MFG:<span class="text-brand"> Jun 4.2021</span>
-                                    </li>
-                                </ul>
-                            </div>
-                        </div>
-                        <!-- Detail Info -->
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
 
 
     @include('site._layouts._partials._new_partials.new_header')
@@ -354,8 +244,20 @@
     <script src="{{ asset('site/js/popper.min.js') }}"></script>
     <script src="{{ asset('site/js/bootstrap.min.js') }}"></script>
 
+
+    <script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.10.25/js/jquery.dataTables.js" defer>
+    </script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.min.js"></script>
+
     <!-- datepicker js -->
     <script src="{{ asset('cms/libs/js/flatpickr.min.js') }}"></script>
+
+    <!-- Dropify -->
+    <script src="{{ asset('new_frontend\assets\js\vendor\jquery-3.6.0.min.js') }}"></script>
+    <script src="{{ asset('site/libs/dropify/dist/js/dropify.min.js') }}"></script>
+
+
+    <script src="{{ asset('frontend/plugins/noUiSlider/nouislider.min.js') }}"></script>
 
     <!-- alertifyjs js -->
     <script src="{{ asset('cms/libs/js/alertify.min.js') }}"></script>
@@ -363,7 +265,7 @@
     <!-- Vendor JS-->
     <script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script>
     <script src="{{ asset('new_frontend\assets\js\vendor\modernizr-3.6.0.min.js') }}"></script>
-    <script src="{{ asset('new_frontend\assets\js\vendor\jquery-3.6.0.min.js') }}"></script>
+
     <script src="{{ asset('new_frontend\assets\js\vendor\jquery-migrate-3.3.0.min.js') }}"></script>
     <script src="{{ asset('new_frontend\assets\js\plugins\jquery.syotimer.min.js') }}"></script>
     <script src="{{ asset('new_frontend\assets\js\vendor\bootstrap.bundle.min.js') }}"></script>
@@ -499,6 +401,44 @@
                 }
             });
         }
+
+        function addToWishList(id) {
+            $.ajax({
+                type: "POST",
+                url: "{{ route('wishlist.store') }}",
+                data: {
+                    id: id
+                },
+                success: function(data) {
+                    $('.wishlist').html(data);
+                    console.log(data);
+                    alertify.success("Item has been added to wishlist");
+                },
+                error: function(data) {
+                    alertify.warning("Please login first.");
+                }
+            });
+        }
+
+        function addToCompare(id) {
+            $.ajax({
+                type: "POST",
+                url: "{{ route('compare.addToCompare') }}",
+                data: {
+                    id: id
+                },
+                success: function(data) {
+                    $('#compare').html(data);
+                    alertify.success("Item has been added to compare list");
+                    // $('#compare_items_sidenav').html(parseInt($('#compare_items_sidenav').html()) + 1);
+                },
+                error: function(data) {
+                    console.log(data);
+                    console.log('Compare Error');
+                }
+            });
+        }
+
         //store newsletter and send email to admin
         $('body').on('click', '#news-btn', function(e) {
             e.preventDefault();
@@ -570,6 +510,7 @@
         })();
     </script>
 
+    @livewireScripts
     @stack('scripts')
     @livewireScripts
 </body>

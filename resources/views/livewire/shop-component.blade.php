@@ -1,289 +1,350 @@
-<div>
-    @push('stylesheet')
-        <style>
-            /* check side categories */
-            .accordin {
-                /* padding-top: 5rem;
-            min-height: 50rem; */
-                margin: 0 auto;
-            }
-
-            .accordin_item {
-                margin-bottom: 1rem;
-            }
-
-            .accordin_title {
-                position: relative;
-                padding: 2rem 6rem 2rem 2.5rem;
-                box-shadow: 0 4px 20px rgba(0, 0, 0, 0.03);
-                background: var(--secondary-bg-color);
-                border-bottom: 2px solid #fff;
-                color: white;
-            }
-
-            .accordin_title h5,
-            i {
-                color: #fff;
-            }
-
-            .accordin_title .arrow {
-                position: absolute;
-                right: 2rem;
-                top: 25%;
-                transition: all ease 0.6s 0.5s;
-            }
-
-            .accordin_title h5 {
-                font-size: 1.5rem;
-                font-weight: 600;
-            }
-
-            .accordin_title p {
-                font-size: 1rem;
-                line-height: 2.5rem;
-                font-weight: 500;
-                color: #696868;
-                margin-bottom: 10px;
-            }
-
-            .accordin_desc {
-                padding: 1.5rem;
-                background-color: #fff;
-                box-shadow: 0 4px 20px rgba(0, 0, 0, 0.03);
-                border-top: 3px solid rgba(0, 0, 0, 0.07);
-                display: flex;
-                flex-direction: column;
-                line-height: 2;
-                padding-left: 3em;
-                list-style-type: none;
-
-            }
-
-            .accordin_desc li:hover {
-                background-color: #aaa;
-                box-shadow: 0 4px 20px rgba(0, 0, 0, 0.03);
-                border-top: 3px solid rgba(0, 0, 0, 0.07);
-                display: flex;
-                cursor: pointer;
-
-                flex-direction: column;
-                list-style-type: none;
-
-            }
-
-            .accordin_item.active {
-                color: var(--secondary-bg-color-hover);
-            }
-
-            .accordin_item.active .arrow {
-                transform: scale(-1) translateY(5px);
-            }
-
-            .sub-item:hover {
-                color: var(--secondary-font-color);
-            }
-
-            .bxs-cart {
-                color: var(--secondary-bg-color);
-            }
-
-            .blog-item {
-                box-shadow: 0 0 20px 0 #333;
-            }
-
-            .blog-item .blog-top span {
-                color: #333 !important;
-            }
-
-            .collection-bottom span {
-                font-size: 16px !important;
-            }
-
-            .add-cart-list a {
-                margin-left: 222px !important;
-                padding: 5px;
-                font-size: 15px !important;
-            }
-
-
-        </style>
-    @endpush
-
-    <div class="loader" style="display: none;">
-        <div class="d-table">
-            <div class="d-table-cell">
-                <div class="spinner"></div>
-            </div>
-        </div>
-    </div>
-
-    <div class="mobile-nav">
-        <a href="index.html" class="logo">
-            <img src="assets/img/logo-two.png" alt="Logo">
-        </a>
-    </div>
-
-
-    <div class="page-title-area page-title-area-two">
+<main class="main">
+    <div class="page-header mt-30 mb-50">
         <div class="container">
-            <div class="row">
-                <div class="col-lg-5">
-                    <div class="page-title-item">
-                        <h2>Shop</h2>
-                        <ul>
-                            <li>
-                                <a href="{{route('site.page')}}">Home</a>
-                            </li>
-                            <li>
-                                <i class='bx bx-chevron-right'></i>
-                            </li>
-                            <li>Shop</li>
-                        </ul>
+            <div class="archive-header">
+                <div class="row align-items-center">
+                    <div class="col-xl-3">
+                        <h1 class="mb-15">Snack</h1>
+                        <div class="breadcrumb">
+                            <a href="index.html" rel="nofollow"><i class="fi-rs-home mr-5"></i>Home</a>
+                            <span></span> Shop <span></span> Snack
+                        </div>
                     </div>
-                </div>
-                <div class="col-lg-7">
-                    <div class="page-title-plate">
-                        <ul>
-                            @foreach($categories->take(4) as $category)
-                                <li>
-                                    <img src="{{$category->getFirstOrDefaultMediaUrl('image','thumb')}}" alt="{{ $category->slug }}" style="border-radius: 50%;">
-                                </li>
-                            @endforeach
-                        </ul>
-                    </div>
+
                 </div>
             </div>
         </div>
     </div>
-
-    <div class="service-details-area pt-100 pb-70">
-        <div class="container">
-            <div class="row">
-                <div class="col-lg-3 col-md-2">
-                    <div class="accordin">
-                        @foreach($categories as $category)
-                            <div class="accordin_item">
-                                <div class="accordin_title">
-                                    <h5>
-                                        <a href="{{ route('site.categories.getProducts', $category->slug) }}">
-                                            <span>{{$category->name}}</span>
-                                        </a>
-                                        @if($category->children->count() > 0) <i class='bx bx-chevron-down' style="float:right;"></i> @endif
-                                    </h5>
+    <div class="container mb-30">
+        <div class="row flex-row-reverse">
+            <div class="col-lg-4-5">
+                <div class="shop-product-fillter">
+                    <div class="totall-product">
+                        <p>We found <strong class="text-brand">29</strong> items for you!</p>
+                    </div>
+                    <div class="sort-by-product-area">
+                        <div class="sort-by-cover mr-10">
+                            <div class="sort-by-product-wrap">
+                                <div class="sort-by">
+                                    <span><i class="fi-rs-apps"></i>Show:</span>
                                 </div>
-
-                                @if($category->children->count() > 0)
-                                    <div class="accordin_desc">
-                                        @foreach($category->children as $subcategory)
-                                            <li>
-                                                <a href="{{ route('site.categories.getProducts', $subcategory->slug) }}"> {{ $subcategory->name }} </a>
-                                            </li>
-                                        @endforeach
-                                    </div>
-                                @endif
-
+                                <div class="sort-by-dropdown-wrap">
+                                    <span> 50 <i class="fi-rs-angle-small-down"></i></span>
+                                </div>
                             </div>
-                        @endforeach
-                    </div>
-                </div>
-                <div class="col-lg-9">
-                    <div class="service-details-item">
-                        <div class="row" id="container">
-                            @foreach($products as $product)
-                                <div class="col-sm-6 col-lg-3 all {{$product->category->slug}}">
-                                    <div class="collection-item">
-                                        <div class="collection-top">
-                                            <a href="{{ route('site.page.singleProductShow', $product->id) }}">
-                                                <img alt="Collection"
-                                                     src="{{ $product->getFirstOrDefaultMediaUrl('image', 'square-md-thumb') }}">
-                                            </a>
-
-                                            <ul>
-                                                <li>
-                                                    <i class="bx bxs-star checked"></i>
-                                                </li>
-
-                                                <li>
-                                                    <i class="bx bxs-star checked"></i>
-                                                </li>
-
-                                                <li>
-                                                    <i class="bx bxs-star checked"></i>
-                                                </li>
-
-                                                <li>
-                                                    <i class="bx bxs-star checked"></i>
-                                                </li>
-
-                                                <li>
-                                                    <i class="bx bxs-star unchecked"></i>
-                                                </li>
-                                            </ul>
-
-                                            @php
-                                                $type = $product->discount_type === 'flat' ? 'Rs.' : '%';
-
-                                            @endphp
-                                            <div class="thumb">
-
-                                        <span class="badge" style="background-color:#af3039; text-align:right;">{{
-                                            $product->discount }}
-                                            {{ $type }} OFF</span>
-
-                                                <div class="add-cart">
-                                                    <a href="javascript:void(0);" id="{{ $product->id }}"
-                                                       onclick="productview({{ $product->id }})">
-                                                        <i class="bx bxs-cart"></i>
-                                                        Add to Cart
-                                                    </a>
-
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="collection-bottom">
-                                            <h5>{{ \Illuminate\Support\Str::limit($product->name, 20, '...') }}</h5>
-                                            <ul>
-                                                <li>
-                                                    @if ($product->discount === 0)
-                                                        <span class="bps-product__price">Rs.
-                                                {{ $product->selling_price }}</span>
-                                                    @else
-                                                        @if ($product->discount_type === 'percent')
-                                                            <span class="bps-product__price">Rs.
-                                                {{ $product->selling_price * (1 - $product->discount / 100) }}</span>
-                                                        @else
-                                                            <span class="bps-product__price">Rs.
-                                                {{ $product->selling_price - $product->discount }}</span>
-
-                                                        @endif
-                                                    @endif
-                                                </li>
-                                                <li>
-
-                                                    <div class="add-cart-list">
-                                                        <a href="javascript:void(0);" id="{{ $product->id }}"
-                                                           onclick="productview({{ $product->id }})">
-                                                            <i class="bx bxs-cart add-cart-list"></i>
-                                                            Add to Cart
-                                                        </a>
-                                                    </div>
-                                                </li>
-                                            </ul>
-
-                                        </div>
-                                    </div>
+                            <div class="sort-by-dropdown">
+                                <ul>
+                                    <li><a class="active" href="#">50</a></li>
+                                    <li><a href="#">100</a></li>
+                                    <li><a href="#">150</a></li>
+                                    <li><a href="#">200</a></li>
+                                    <li><a href="#">All</a></li>
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="sort-by-cover">
+                            <div class="sort-by-product-wrap">
+                                <div class="sort-by">
+                                    <span><i class="fi-rs-apps-sort"></i>Sort by:</span>
                                 </div>
-                            @endforeach
+                                <div class="sort-by-dropdown-wrap">
+                                    <span> Featured <i class="fi-rs-angle-small-down"></i></span>
+                                </div>
+                            </div>
+                            <div class="sort-by-dropdown">
+                                <ul>
+                                    <li><a class="active" href="#">Featured</a></li>
+                                    <li><a href="#">Price: Low to High</a></li>
+                                    <li><a href="#">Price: High to Low</a></li>
+                                    <li><a href="#">Release Date</a></li>
+                                    <li><a href="#">Avg. Rating</a></li>
+                                </ul>
+                            </div>
                         </div>
                     </div>
                 </div>
+                <div class="row product-grid">
+                    @foreach ($products as $featured_product)
+                        <div class="col-lg-1-5 col-md-4 col-12 col-sm-7">
+                            <div class="product-cart-wrap mb-30 wow animate__animated animate__fadeIn"
+                                data-wow-delay=".1s">
+                                <div class="product-img-action-wrap">
+                                    <div class="product-img product-img-zoom">
+                                        <a href="{{ route('site.page.singleProductShow', $featured_product->id) }}">
+                                            <img class="default-img"
+                                                src="{{ $featured_product->getFirstOrDefaultMediaUrl('image', 'square-md-thumb') }}">
+                                            <img class="hover-img"
+                                                src="{{ $featured_product->getFirstOrDefaultMediaUrl('image', 'square-md-thumb') }}">
+                                        </a>
+                                    </div>
+                                    <div class="product-action-1">
+                                        <a aria-label="Add To Wishlist" class="action-btn featured-products_a"
+                                            href="shop-wishlist.html"><i class="fi-rs-heart"></i></a>
+                                        <a aria-label="Compare" class="action-btn featured-products_a"
+                                            href="shop-compare.html"><i class="fi-rs-shuffle"></i></a>
+                                        <a aria-label="Quick view" class="action-btn featured-products_a"
+                                            data-bs-toggle="modal" data-bs-target="#quickViewModal"><i
+                                                class="fi-rs-eye"></i></a>
+                                    </div>
+                                    <div class="product-badges product-badges-position product-badges-mrg">
+                                        <span class="hot">Hot</span>
+
+                                    </div>
+                                </div>
+                                <div class="product-content-wrap">
+                                    <div class="product-category">
+                                        <a href="javascript:void(0)">{{ $featured_product->category->name }}</a>
+                                    </div>
+                                    <h2><a href="shop-product-right.html">{{ $featured_product->name }}</a></h2>
+                                    <div class="product-rate-cover">
+                                        <div class="rating">
+                                            @php
+                                                $num_rating = number_format($featured_product->averageRating);
+                                            @endphp
+                                            @for ($i = 0; $i < $num_rating; $i++)
+                                                <i class="fa fa-star checked"> </i>
+                                            @endfor
+                                            @for ($j = $num_rating; $j < 5; $j++)
+                                                <i class="fa fa-star"> </i>
+                                            @endfor
+                                            <span class="font-small ml-5 text-muted">
+                                                ({{ round($featured_product->averageRating, 1) }})</span>
+
+                                        </div>
+                                    </div>
+                                    <div>
+                                        <span class="font-small text-muted">By <a
+                                                href="vendor-details-1.html">{{ $featured_product->user->name }}</a></span>
+                                    </div>
+                                    <div class="product-card-bottom">
+                                        @if ($featured_product->discount === 0)
+                                            <div class="product-price">
+                                                <span> Rs.{{ $featured_product->selling_price }}</span>
+                                            </div>
+                                        @else
+                                            @if ($featured_product->discount_type === 'percent')
+                                                <div class="product-price">
+                                                    <span>
+                                                        Rs.{{ $featured_product->selling_price * (1 - $featured_product->discount / 100) }}</span>
+                                                    <span
+                                                        class="old-price">Rs.{{ $featured_product->selling_price }}</span>
+                                                </div>
+                                            @else
+                                                <div class="product-price">
+                                                    <span>
+                                                        Rs.
+                                                        {{ $featured_product->selling_price - $featured_product->discount }}</span>
+                                                    <span class="old-price">
+                                                        Rs.{{ $featured_product->selling_price }}</span>
+                                                </div>
+                                            @endif
+                                        @endif
+                                        <div class="add-cart">
+                                            <a class="add" href="shop-cart.html"><i
+                                                    class="fi-rs-shopping-cart mr-5"></i>Add
+                                            </a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    @endforeach
+
+                </div>
+                <!--product grid-->
+                <div class="">
+                    {{ $products->links() }}
+                </div>
+                <!-- end pagination -->
+                <section class="section-padding pb-5">
+                    <div class="section-title  wow animate__animated animate__fadeIn" data-wow-delay="0">
+                        <h3 class="">Deals Of The Day</h3>
+                        <a class="show-all" href="shop-grid-right.html">
+                            All Deals
+                            <i class="fi-rs-angle-right"></i>
+                        </a>
+                    </div>
+                    <div class="row">
+                        @foreach ($trending_products as $trending_product)
+                            <div class="col-xl-3 col-lg-4 col-md-6">
+                                <div class="product-cart-wrap style-2 wow animate__animated animate__fadeInUp"
+                                    data-wow-delay="0">
+                                    <div class="product-img-action-wrap">
+                                        <div class="product-img">
+                                            <a href="shop-product-right.html">
+                                                <img
+                                                    src="{{ $trending_product->getFirstOrDefaultMediaUrl('image', 'square-md-thumb') }}">
+                                            </a>
+                                        </div>
+                                    </div>
+                                    <div class="product-content-wrap">
+                                        <div class="deals-countdown-wrap">
+                                            <div class="deals-countdown" data-countdown="2025/03/25 00:00:00"></div>
+                                        </div>
+                                        <div class="deals-content">
+                                            <h2><a href="shop-product-right.html">{{ $trending_product->name }}</a>
+                                            </h2>
+                                            <div class="product-rate-cover">
+                                                <div class="rating">
+                                                    @php
+                                                        $num_rating = number_format($trending_product->averageRating);
+                                                    @endphp
+                                                    @for ($i = 0; $i < $num_rating; $i++)
+                                                        <i class="fa fa-star checked">
+                                                        </i>
+                                                    @endfor
+                                                    @for ($j = $num_rating; $j < 5; $j++)
+                                                        <i class="fa fa-star">
+                                                        </i>
+                                                    @endfor
+                                                    <span class="font-small ml-5 text-muted">
+                                                        ({{ round($trending_product->averageRating, 1) }})</span>
+                                                </div>
+
+                                            </div>
+                                            <div>
+                                                <span class="font-small text-muted">By: <a
+                                                        href="vendor-details-1.html">{{ $trending_product->user->name }}</a></span>
+                                            </div>
+                                            <div class="product-card-bottom">
+                                                @if ($trending_product->discount === 0)
+                                                    <div class="product-price">
+                                                        <span> Rs.{{ $trending_product->selling_price }}</span>
+                                                    </div>
+                                                @else
+                                                    @if ($trending_product->discount_type === 'percent')
+                                                        <div class="product-price">
+                                                            <span>
+                                                                Rs.{{ $trending_product->selling_price * (1 - $trending_product->discount / 100) }}</span>
+                                                            <span
+                                                                class="old-price">Rs.{{ $trending_product->selling_price }}</span>
+                                                        </div>
+                                                    @else
+                                                        <div class="product-price">
+                                                            <span>
+                                                                Rs.
+                                                                {{ $trending_product->selling_price - $trending_product->discount }}</span>
+                                                            <span
+                                                                class="old-price">Rs.{{ $trending_product->selling_price }}</span>
+                                                        </div>
+                                                    @endif
+                                                @endif
+                                                <div class="add-cart">
+                                                    <a class="add" href="shop-cart.html"><i
+                                                            class="fi-rs-shopping-cart mr-5"></i>Add
+                                                    </a>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        @endforeach
+
+
+                    </div>
+                </section>
+                <!--End Deals-->
+            </div>
+            <div class="col-lg-1-5 primary-sidebar sticky-sidebar">
+                <div class="sidebar-widget widget-category-2 mb-30">
+                    <h5 class="section-title style-1 mb-30">Category</h5>
+                    <ul>
+                        <li>
+                            <a href="shop-grid-right.html"> <img src="assets\imgs\theme\icons\category-1.svg"
+                                    alt="">Milks & Dairies</a><span class="count">30</span>
+                        </li>
+                        <li>
+                            <a href="shop-grid-right.html"> <img src="assets\imgs\theme\icons\category-2.svg"
+                                    alt="">Clothing</a><span class="count">35</span>
+                        </li>
+                        <li>
+                            <a href="shop-grid-right.html"> <img src="assets\imgs\theme\icons\category-3.svg" alt="">Pet
+                                Foods </a><span class="count">42</span>
+                        </li>
+                        <li>
+                            <a href="shop-grid-right.html"> <img src="assets\imgs\theme\icons\category-4.svg"
+                                    alt="">Baking material</a><span class="count">68</span>
+                        </li>
+                        <li>
+                            <a href="shop-grid-right.html"> <img src="assets\imgs\theme\icons\category-5.svg"
+                                    alt="">Fresh Fruit</a><span class="count">87</span>
+                        </li>
+                    </ul>
+                </div>
+                <!-- Fillter By Price -->
+                <div class="sidebar-widget price_range range mb-30">
+                    <h5 class="section-title style-1 mb-30">Fill by price</h5>
+                    <div class="price-filter">
+                        <div class="price-filter-inner">
+                            <div id="price-slider" wire:ignore></div>
+                            <div class="d-flex justify-content-between">
+                                <div class="caption">From: <strong id="price-slider-min"
+                                        class="text-brand">Rs{{ $min_price }}</strong></div>
+                                <div class="caption">To: <strong id="price-slider-max"
+                                        class="text-brand">Rs{{ $max_price }}</strong></div>
+                            </div>
+
+
+                        </div>
+                    </div>
+                    <a href="shop-grid-right.html" class="btn btn-sm btn-default"><i class="fi-rs-filter mr-5"></i>
+                        Fillter</a>
+                </div>
+                <!-- Product sidebar Widget -->
+                <div class="sidebar-widget product-sidebar mb-30 p-30 bg-grey border-radius-10">
+                    <h5 class="section-title style-1 mb-30">New products</h5>
+                    @foreach ($new_products as $product)
+                        <div class="single-post clearfix">
+                            <div class="image">
+                                <img src="{{ $product->getFirstOrDefaultMediaUrl('image', 'square-md-thumb') }}"
+                                    alt="#">
+                            </div>
+                            <div class="content">
+                                <h5><a href="shop-product-detail.html">{{ $product->name }}</a></h5>
+                                <p class="price mb-0 mt-5">{{ $product->price }}</p>
+                                <div class="product-rate">
+                                    <div class="product-rating" style="width: 90%"></div>
+                                </div>
+                            </div>
+                        </div>
+                    @endforeach
+                </div>
             </div>
         </div>
     </div>
 
-    <div class="d-flex justify-content-center">
-        {!! $products->links('site._layouts._partials.custom-pagination') !!}
-    </div>
-    <br>
+</main>
 
-</div>
+@push('scripts')
+    <script>
+        $(document).ready(function() {
+            var rangeSlider = document.getElementById('price-slider');
+            if (rangeSlider) {
+                var input0 = document.getElementById('price-slider-min');
+                var input1 = document.getElementById('price-slider-max');
+                var inputs = [input0, input1];
+                noUiSlider.create(rangeSlider, {
+                    start: [1, {{ $max_price }}],
+                    connect: true,
+                    step: 1,
+                    range: {
+                        min: [1],
+                        max: [{{ $max_price }}]
+                    }
+                });
+
+                rangeSlider.noUiSlider.on("update", function(values, handle) {
+                    input0.innerText = values[0]
+                    input1.innerText = values[1]
+
+                    @this.min_price = values[0]
+
+                    @this.max_price = values[1]
+
+                    console.log(@this.max_price, @this.min_price)
+                });
+            }
+        })
+    </script>
+@endpush
