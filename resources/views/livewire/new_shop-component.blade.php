@@ -30,16 +30,16 @@
                                     <span><i class="fi-rs-apps"></i>Show:</span>
                                 </div>
                                 <div class="sort-by-dropdown-wrap">
-                                    <span> 50 <i class="fi-rs-angle-small-down"></i></span>
+                                    <span> 10 <i class="fi-rs-angle-small-down"></i></span>
                                 </div>
                             </div>
                             <div class="sort-by-dropdown">
                                 <ul>
-                                    <li><a class="active" href="#">50</a></li>
-                                    <li><a href="#">100</a></li>
-                                    <li><a href="#">150</a></li>
-                                    <li><a href="#">200</a></li>
-                                    <li><a href="#">All</a></li>
+                                    <li wire:click="setPaginationLimit(10)">10</li>
+                                    <li wire:click="setPaginationLimit(15)">15</li>
+                                    <li wire:click="setPaginationLimit(20)">20</li>
+                                    <li wire:click="setPaginationLimit(25)">25</li>
+                                    <li wire:click="setPaginationLimit(30)">30</li>
                                 </ul>
                             </div>
                         </div>
@@ -54,12 +54,11 @@
                             </div>
                             <div class="sort-by-dropdown">
                                 <ul>
-                                    <li><a class="active" href="#">Default</a></li>
-                                    <li><a class="active" href="#">Featured</a></li>
-                                    <li><a href="#">Price: Low to High</a></li>
-                                    <li><a href="#">Price: High to Low</a></li>
-                                    <li><a href="#">Release Date</a></li>
-                                    <li><a href="#">Avg. Rating</a></li>
+                                    <li><a wire:click="setFilter(1)">Default</a></li>
+                                    <li><a wire:click="setFilter(2)">Featured</a></li>
+                                    <li><a wire:click="setFilter(3)">Price: Low to High</a></li>
+                                    <li><a wire:click="setFilter(4)">Price: High to Low</a></li>
+                                    <li><a wire:click="setFilter(5)">Release Date</a></li>
                                 </ul>
                             </div>
                         </div>

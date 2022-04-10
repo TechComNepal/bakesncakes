@@ -15,6 +15,8 @@ class ShopComponent extends Component
     public $min_price;
     public $max_price;
     public $category_id = null;
+    public $pagination_limit = 10;
+    public $filter = 1;
 
     protected $listeners = [
         'price_filter' => 'priceFilter',
@@ -26,15 +28,29 @@ class ShopComponent extends Component
         $this->max_price =  Product::max('selling_price');
     }
 
+    public function setFilter($filter)
+    {
+        $this->filter = $filter;
+        $this->resetPage();
+    }
+
     public function selectedCategory($category_id)
     {
         $this->category_id = $category_id;
+        $this->resetPage();
+    }
+
+    public function setPaginationLimit($limit)
+    {
+        $this->pagination_limit = $limit;
+        $this->resetPage();
     }
 
     public function priceFilter($min_price, $max_price)
     {
         $this->min_price = $min_price;
         $this->max_price = $max_price;
+        $this->resetPage();
     }
 
     public function render()
@@ -57,7 +73,24 @@ class ShopComponent extends Component
             $products->whereBetween('selling_price', [$this->min_price, $this->max_price]);
         }
 
-        $this->products_count = $products->count();
-        return $products->paginate(10);
+        $filtered_products = $products;
+
+        $filter = $this->filter;
+        if ($filter == 1) {
+            $filtered_products = $products;
+        } elseif ($filter == 2) {
+            $filtered_products = $products->where('is_featured', 1);
+        } elseif ($filter == 3) {
+            $filtered_products = $products->orderBy('selling_price', 'asc');
+        } elseif ($filter == 4) {
+            $filtered_products = $products->orderBy('selling_price', 'desc');
+        } elseif ($filter == 5) {
+            $filtered_products = $products->orderBy('created_at', 'desc');
+        } else {
+            $filtered_products = $products;
+        }
+
+        $this->products_count = $filtered_products->count();
+        return $filtered_products->paginate($this->pagination_limit ?? 10);
     }
 }
