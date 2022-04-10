@@ -83,13 +83,11 @@
                                          </select>
                                      </form>
                                  </div> -->
-                                 <div class="header-action-icon-2">
-                                     <a href="shop-compare.html">
-                                         <img class="svgInject" alt="Nest"
-                                             src="{{ asset('new_frontend\assets\imgs\theme\icons\icon-compare.svg') }}">
-                                         <span class="pro-count blue">3</span>
-                                     </a>
-                                     <a href="shop-compare.html"><span class="lable ml-0">Compare</span></a>
+                                 <div class="header-action-icon-2" id="compare">
+                                     @include(
+                                         'site._layouts._partials._new_partials.compare'
+                                     )
+
                                  </div>
                                  <div class="header-action-icon-2 wishlist">
                                      @include(

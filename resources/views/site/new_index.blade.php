@@ -254,7 +254,9 @@
                                             onclick="addToWishList({{ $featured_product->id }})"><i
                                                 class="fi-rs-heart"></i></a>
                                         <a aria-label="Compare" class="action-btn featured-products_a"
-                                            href="shop-compare.html"><i class="fi-rs-shuffle"></i></a>
+                                            href="javascript:void(0);" id="{{ $featured_product->id }}"
+                                            onclick="addToCompare({{ $featured_product->id }})"><i
+                                                class="fi-rs-shuffle"></i></a>
                                         <a aria-label="Quick view" class="action-btn featured-products_a"
                                             id="{{ $featured_product->id }}"
                                             onclick="productview({{ $featured_product->id }})"><i

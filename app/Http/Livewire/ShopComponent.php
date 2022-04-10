@@ -11,31 +11,29 @@ class ShopComponent extends Component
 {
     use WithPagination;
 
-    public $slug = '';
-    public $category;
 
-    public function mount($slug): void
+
+    public $min_price;
+    public $max_price;
+
+    public function mount()
     {
-        $this->slug = $slug;
+    
 //        $this->sorting = "default";
-        $this->category = Category::whereSlug($slug)->first();
-//        $this->min_price = 0;
-//        $this->max_price = $this->category->products()->max('price');
+    
+        $this->min_price = 1;
+        $this->max_price =  Product::max('selling_price');
     }
 
     public function render()
     {
-        if ($this->slug = '')
-        {
-            $products = Product::with(['media'])->orderBy('id', 'desc')->paginate(8);
-        }else {
-            $products = $this->category->products()
-                ->with(['media'])
-                ->paginate(8);
-        }
+        $products = Product::with(['media'])->whereBetween('selling_price', [$this->min_price, $this->max_price])->paginate(10);
+        $products_count = Product::whereBetween('selling_price', [$this->min_price, $this->max_price])->count();
+        $trending_products = Product::where('is_trending', 1)->orderBy('created_at', 'desc')->limit(4)->get();
+        $featured_products = Product::orderBy('created_at', 'desc')->get();
+        $new_products = Product::orderBy('created_at', 'desc')->limit(4)->get();
+        $categories = Category::where('parent_id', null)->where('status', true)->with(['children'])->orderBY('created_at', 'DESC')->limit(8)->get();
 
-        $categories = Category::where('id', '!=', $this->category->id)->where('parent_id', NULL)->where('status', TRUE)->with(['children'])->orderBY('created_at', 'DESC')->limit(8)->get();
-
-        return view('livewire.new_shop-component', compact('products', 'categories'));
+        return view('livewire.new_shop-component', compact('products', 'products_count', 'categories', 'trending_products', 'featured_products', 'new_products'));
     }
 }

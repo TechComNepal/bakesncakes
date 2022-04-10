@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Site\CartController;
 use App\Http\Controllers\Site\PagesController;
 use App\Http\Controllers\Site\ReviewController;
+use App\Http\Controllers\Site\CompareController;
 use App\Http\Controllers\Site\ProductController;
 use App\Http\Controllers\Site\WishlistController;
 use App\Http\Controllers\Admin\CategoryController;
@@ -53,6 +54,11 @@ Route::get('/cart', [CartController::class, 'index'])->name('cart.index');
 Route::post('/cart/addtocart', [CartController::class, 'addToCart'])->name('cart.addToCart');
 Route::post('/cart/removeFromCart', [CartController::class, 'removeFromCart'])->name('cart.removeFromCart');
 Route::post('/cart/updateQuantity', [CartController::class, 'updateQuantity'])->name('cart.updateQuantity');
+
+Route::get('/compare', [CompareController::class, 'index'])->name('compare.index');
+Route::post('/compare/addToCompare', [CompareController::class, 'addToCompare'])->name('compare.addToCompare');
+Route::get('/compare/reset/{id}', [CompareController::class, 'reset'])->name('compare.reset');
+
 
 
 Route::group(['middleware' => ['auth']], function () {
