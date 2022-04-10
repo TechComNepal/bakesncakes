@@ -33,9 +33,11 @@
     <link rel="stylesheet" href="{{ asset('frontend/plugins/noUiSlider/nouislider.css') }}">
     <!-- datepicker css -->
     <link href="{{ asset('cms/libs/css/flatpickr.min.css') }}" rel="stylesheet">
+
     <!-- Dropify -->
 
     <link href="{{ asset('site/libs/dropify/dist/css/dropify.min.css') }}" rel="stylesheet">
+
 
 
     <style>
@@ -188,7 +190,9 @@
         /* ul.pagination .page-link .active {background-color: rgb(177, 68, 68);} */
 
     </style>
+
     @stack('stylesheet')
+
 
     @livewireStyles
 </head>
@@ -508,6 +512,7 @@
 
     @livewireScripts
     @stack('scripts')
+    @livewireScripts
 </body>
 
 </html>
