@@ -1,4 +1,4 @@
-{{-- <x-site-master-layout>
+<x-site-master-layout>
 
     <style>
         body {
@@ -86,6 +86,10 @@
             position: relative;
             left: 4.5vw;
             margin-bottom: 10vh;
+        }
+
+        .profile-nav .user-heading {
+            background: #af3039 !important;
         }
     </style>
 
@@ -179,4 +183,4 @@
     </div>
 
 
-</x-site-master-layout> --}}
+</x-site-master-layout>

@@ -42,9 +42,7 @@
              <div class="container">
                  <div class="header-wrap">
                      <div class="logo logo-width-1">
-                         <a href="{{ route('site.page') }}"><img
-                                 src="{{ asset('new_frontend\assets\imgs\theme\MINIPASAL@4X-8(1).png') }}"
-                                 alt="logo"></a>
+                         <a href="{{ route('site.page') }}"><img src="{{ asset('new_frontend\assets\imgs\theme\MINIPASAL@4X-8(1).png') }}" alt="logo"></a>
                      </div>
                      <div class=" header-right">
                          <div class="search-style-2">
@@ -52,12 +50,12 @@
                                  <select class="select-active">
                                      <option>All Categories</option>
                                      @foreach ($menucategories as $menucategorie)
-                                         <option><a href="">{{ $menucategorie->name }}</a></option>
+                                     <option><a href="">{{ $menucategorie->name }}</a></option>
                                      @endforeach
                                  </select>
-                                 <form action="{{ route('site.search') }}">
-                                    <!-- <input type="text" placeholder="Search for items..." name="query"> -->
-                                    @livewire('filter')
+                                 <form>
+                                     <!-- <input type="text" placeholder="Search for items..." name="query"> -->
+                                     @livewire('filter')
                                  </form>
                              </form>
                          </div>
@@ -86,64 +84,57 @@
                                  </div> -->
                                  <div class="header-action-icon-2" id="compare">
                                      @include(
-                                         'site._layouts._partials._new_partials.compare'
+                                     'site._layouts._partials._new_partials.compare'
                                      )
 
                                  </div>
                                  <div class="header-action-icon-2 wishlist">
                                      @include(
-                                         'site._layouts._partials._new_partials.wishlist'
+                                     'site._layouts._partials._new_partials.wishlist'
                                      )
 
                                  </div>
                                  <span id="refresh_cart">
                                      @include(
-                                         'site._layouts._partials._new_partials.new_cart'
+                                     'site._layouts._partials._new_partials.new_cart'
                                      )
                                  </span>
 
                                  <div class="header-action-icon-2">
                                      <a href="{{ route('user.dashboard') }}">
-                                         <img class="svgInject" alt="Nest"
-                                             src="{{ asset('new_frontend\assets\imgs\theme\icons\icon-user.svg') }}">
+                                         <img class="svgInject" alt="Nest" src="{{ asset('new_frontend\assets\imgs\theme\icons\icon-user.svg') }}">
                                      </a>
-                                     <a href="{{ route('user.dashboard') }}"><span
-                                             class="lable ml-0">Account</span></a>
+                                     <a href="{{ route('user.dashboard') }}"><span class="lable ml-0">Account</span></a>
                                      <div class="cart-dropdown-wrap cart-dropdown-hm2 account-dropdown">
                                          <ul>
                                              @auth
-                                                 <li>
-                                                     <a href="{{ route('user.dashboard') }}"><i
-                                                             class="fi fi-rs-user mr-10"></i>My
-                                                         Account</a>
-                                                 </li>
+                                             <li>
+                                                 <a href="{{ route('user.dashboard') }}"><i class="fi fi-rs-user mr-10"></i>My
+                                                     Account</a>
+                                             </li>
 
 
-                                                 <li>
-                                                     <a href="{{ route('wishlist.index') }}"><i
-                                                             class="fi fi-rs-heart mr-10"></i>My
-                                                         Wishlist</a>
-                                                 </li>
+                                             <li>
+                                                 <a href="{{ route('wishlist.index') }}"><i class="fi fi-rs-heart mr-10"></i>My
+                                                     Wishlist</a>
+                                             </li>
 
-                                                 <li>
-                                                     <a href="{{ route('logout') }}"><i
-                                                             class="fi fi-rs-sign-out mr-10"></i>Sign
-                                                         out</a>
-                                                 </li>
+                                             <li>
+                                                 <a href="{{ route('logout') }}"><i class="fi fi-rs-sign-out mr-10"></i>Sign
+                                                     out</a>
+                                             </li>
                                              @endauth
 
                                              @guest
-                                                 <li>
-                                                     <a href="{{ route('auth.login.show') }}"><i
-                                                             class="fi fi-rs-sign-out mr-10"></i>Login
-                                                         in</a>
-                                                 </li>
+                                             <li>
+                                                 <a href="{{ route('auth.login.show') }}"><i class="fi fi-rs-sign-out mr-10"></i>Login
+                                                     in</a>
+                                             </li>
 
-                                                 <li>
-                                                     <a href="{{ route('auth.register.show') }}"><i
-                                                             class="fi fi-rs-user mr-10"></i>
-                                                         Register</a>
-                                                 </li>
+                                             <li>
+                                                 <a href="{{ route('auth.register.show') }}"><i class="fi fi-rs-user mr-10"></i>
+                                                     Register</a>
+                                             </li>
 
                                              @endguest
                                          </ul>
@@ -159,13 +150,12 @@
              <div class="container">
                  <div class="header-wrap header-space-between position-relative">
                      <div class="logo logo-width-1 d-block d-lg-none">
-                         <a href="index.html"><img src="{{ asset('new_frontend\assets\imgs\theme\logo.svg') }}"
-                                 alt="logo"></a>
+                         <a href="index.html"><img src="{{ asset('new_frontend/assets/imgs/theme/logo.svg') }}" alt="logo"></a>
                      </div>
                      <div class=" header-nav d-none d-lg-flex">
                          <div class="main-categori-wrap d-none d-lg-block">
                              <a class="categories-button-active" href="#">
-                                 <span class="fi-rs-apps"></span> <span class="et">Browse</span> All
+                                 <span class="fi-rs-apps"></span>Browse All
                                  Categories
                                  <i class="fi-rs-angle-down"></i>
                              </a>
@@ -173,21 +163,17 @@
                                  <div class="d-flex categori-dropdown-inner">
                                      <ul>
                                          @foreach ($menucategories->take(6) as $menucategorie)
-                                             <li>
-                                                 <a href="shop-grid-right.html "> <img
-                                                         src="{{ $menucategorie->getFirstOrDefaultMediaUrl('image', 'thumb') }}"
-                                                         alt="" class="rounded-circle">
-                                                     {{ $menucategorie->name }}</a>
-                                             </li>
+                                         <li>
+                                             <a href="shop-grid-right.html "> <img src="{{ $menucategorie->getFirstOrDefaultMediaUrl('image', 'thumb') }}" alt="" class="rounded-circle">
+                                                 {{ $menucategorie->name }}</a>
+                                         </li>
                                          @endforeach
                                      </ul>
                                      <ul class=" end">
                                          @foreach ($menucategories->skip(6)->take(6) as $menucategorie)
-                                             <li>
-                                                 <a href="shop-grid-right.html"> <img
-                                                         src="{{ $menucategorie->getFirstOrDefaultMediaUrl('image', 'thumb') }}"
-                                                         alt="" class="rounded-circle">{{ $menucategorie->name }}</a>
-                                             </li>
+                                         <li>
+                                             <a href="shop-grid-right.html"> <img src="{{ $menucategorie->getFirstOrDefaultMediaUrl('image', 'thumb') }}" alt="" class="rounded-circle">{{ $menucategorie->name }}</a>
+                                         </li>
                                          @endforeach
                                      </ul>
                                  </div>
@@ -195,31 +181,24 @@
                                      <div class="d-flex categori-dropdown-inner">
                                          <ul>
                                              @foreach ($menucategories->skip(12)->take(2) as $menucategorie)
-                                                 <li>
-                                                     <a href="shop-grid-right.html"> <img
-                                                             src="{{ $menucategorie->getFirstOrDefaultMediaUrl('image', 'thumb') }}"
-                                                             alt=""
-                                                             class="rounded-circle">{{ $menucategorie->name }}</a>
-                                                 </li>
+                                             <li>
+                                                 <a href="shop-grid-right.html"> <img src="{{ $menucategorie->getFirstOrDefaultMediaUrl('image', 'thumb') }}" alt="" class="rounded-circle">{{ $menucategorie->name }}</a>
+                                             </li>
                                              @endforeach
 
                                          </ul>
                                          <ul class=" end">
 
                                              @foreach ($menucategories->skip(14)->take(2) as $menucategorie)
-                                                 <li>
-                                                     <a href="shop-grid-right.html"> <img
-                                                             src="{{ $menucategorie->getFirstOrDefaultMediaUrl('image', 'thumb') }}"
-                                                             alt=""
-                                                             class="rounded-circle">{{ $menucategorie->name }}</a>
-                                                 </li>
+                                             <li>
+                                                 <a href="shop-grid-right.html"> <img src="{{ $menucategorie->getFirstOrDefaultMediaUrl('image', 'thumb') }}" alt="" class="rounded-circle">{{ $menucategorie->name }}</a>
+                                             </li>
                                              @endforeach
 
                                          </ul>
                                      </div>
                                  </div>
-                                 <div class=" more_categories"><span class="icon"></span> <span
-                                         class="heading-sm-1">Show
+                                 <div class=" more_categories"><span class="icon"></span> <span class="heading-sm-1">Show
                                          more...</span>
                                  </div>
                              </div>
@@ -227,9 +206,9 @@
                          <div class="main-menu main-menu-padding-1 main-menu-lh-2 d-none d-lg-block font-heading">
                              <nav>
                                  <ul>
-                                     <li class="hot-deals"><img
+                                     <!-- <li class="hot-deals"><img
                                              src="{{ asset('new_frontend\assets\imgs\theme\icons\icon-hot.svg') }}"
-                                             alt="hot deals"><a href="shop-grid-right.html">Hot Deals</a></li>
+                                             alt="hot deals"><a href="shop-grid-right.html">Hot Deals</a></li> -->
                                      <li>
                                          <a href="{{ route('site.page') }}">Home</a>
                                      </li>
@@ -243,8 +222,7 @@
                                      </li>
 
                                      <li>
-                                         <a href="{{ route('site.page.vendor') }}">Vendors <i
-                                                 class="fi-rs-angle-down"></i></a>
+                                         <a href="{{ route('site.page.vendor') }}">Vendors <i class="fi-rs-angle-down"></i></a>
                                          <ul class="sub-menu">
                                              <li><a href="{{ route('site.page.vendor') }}">Vendors List</a>
                                              </li>
@@ -252,7 +230,7 @@
                                              </li>
                                          </ul>
                                      </li>
-                                     <li class="position-static">
+                                     <!-- <li class="position-static">
                                          <a href="#">Mega menu <i class="fi-rs-angle-down"></i></a>
                                          <ul class="mega-menu">
                                              <li class="sub-mega-menu sub-mega-menu-width-22">
@@ -338,7 +316,7 @@
                                                  </div>
                                              </li>
                                          </ul>
-                                     </li>
+                                     </li> -->
                                      <li>
                                          <a href="{{ route('site.page.blog') }}">Blog</a>
                                      </li>
@@ -351,8 +329,7 @@
                          </div>
                      </div>
                      <div class="hotline d-none d-lg-flex">
-                         <img
-                             src="{{ asset('new_frontend\assets\imgs\theme\icons\icon-headphone.svg" alt="hotline') }}">
+                         <img src="{{ asset('new_frontend\assets\imgs\theme\icons\icon-headphone.svg') }}" alt="hotline">
                          <p>1900 - 888<span>24/7 Support Center</span></p>
                      </div>
                      <div class="header-action-icon-2 d-block d-lg-none">
@@ -367,23 +344,20 @@
                          <div class="header-action-2">
                              <div class="header-action-icon-2">
                                  <a href="shop-wishlist.html">
-                                     <img alt="Nest"
-                                         src="{{ asset('new_frontend\assets\imgs\theme\icons\icon-heart.svg') }}">
+                                     <img alt="Nest" src="{{ asset('new_frontend\assets\imgs\theme\icons\icon-heart.svg') }}">
                                      <span class="pro-count white">4</span>
                                  </a>
                              </div>
                              <div class="header-action-icon-2">
                                  <a class="mini-cart-icon" href="#">
-                                     <img alt="Nest"
-                                         src="{{ asset('new_frontend\assets\imgs\theme\icons\icon-cart.svg') }}">
+                                     <img alt="Nest" src="{{ asset('new_frontend\assets\imgs\theme\icons\icon-cart.svg') }}">
                                      <span class="pro-count white">2</span>
                                  </a>
                                  <div class="cart-dropdown-wrap cart-dropdown-hm2">
                                      <ul>
                                          <li>
                                              <div class="shopping-cart-img">
-                                                 <a href="shop-product-right.html"><img alt="Nest"
-                                                         src="{{ asset('new_frontend\assets\imgs\shop\thumbnail-3.jpg') }}"></a>
+                                                 <a href="shop-product-right.html"><img alt="Nest" src="{{ asset('new_frontend\assets\imgs\shop\thumbnail-3.jpg') }}"></a>
                                              </div>
                                              <div class=" shopping-cart-title">
                                                  <h4><a href="shop-product-right.html">Plain Striola
@@ -396,8 +370,7 @@
                                          </li>
                                          <li>
                                              <div class="shopping-cart-img">
-                                                 <a href="shop-product-right.html"><img alt="Nest"
-                                                         src="{{ asset('new_frontend\assets\imgs\shop\thumbnail-4.jpg') }}"></a>
+                                                 <a href="shop-product-right.html"><img alt="Nest" src="{{ asset('new_frontend\assets\imgs\shop\thumbnail-4.jpg') }}"></a>
                                              </div>
                                              <div class=" shopping-cart-title">
                                                  <h4><a href="shop-product-right.html">Macbook Pro
@@ -432,8 +405,7 @@
              <div class="mobile-header-wrapper-inner">
                  <div class="mobile-header-top">
                      <div class="mobile-header-logo">
-                         <a href="{{ route('site.page') }}"><img
-                                 src="{{ asset('new_frontend\assets\imgs\theme\logo.svg') }}" alt="logo"></a>
+                         <a href="{{ route('site.page') }}"><img src="{{ asset('new_frontend\assets\imgs\theme\logo.svg') }}" alt="logo"></a>
                      </div>
                      <div class=" mobile-menu-close close-style-wrap close-style-position-inherit">
                          <button class="close-style search-close">
@@ -547,21 +519,11 @@
                      </div>
                      <div class="mobile-social-icon mb-50">
                          <h6 class="mb-15">Follow Us</h6>
-                         <a href="#"><img
-                                 src="{{ asset('new_frontend\assets\imgs\theme\icons\icon-facebook-white.svg') }}"
-                                 alt=""></a>
-                         <a href="#"><img
-                                 src="{{ asset('new_frontend\assets\imgs\theme\icons\icon-twitter-white.svg') }}"
-                                 alt=""></a>
-                         <a href="#"><img
-                                 src="{{ asset('new_frontend\assets\imgs\theme\icons\icon-instagram-white.svg') }}"
-                                 alt=""></a>
-                         <a href="#"><img
-                                 src="{{ asset('new_frontend\assets\imgs\theme\icons\icon-pinterest-white.svg') }}"
-                                 alt=""></a>
-                         <a href="#"><img
-                                 src="{{ asset('new_frontend\assets\imgs\theme\icons\icon-youtube-white.svg') }}"
-                                 alt=""></a>
+                         <a href="#"><img src="{{ asset('new_frontend\assets\imgs\theme\icons\icon-facebook-white.svg') }}" alt=""></a>
+                         <a href="#"><img src="{{ asset('new_frontend\assets\imgs\theme\icons\icon-twitter-white.svg') }}" alt=""></a>
+                         <a href="#"><img src="{{ asset('new_frontend\assets\imgs\theme\icons\icon-instagram-white.svg') }}" alt=""></a>
+                         <a href="#"><img src="{{ asset('new_frontend\assets\imgs\theme\icons\icon-pinterest-white.svg') }}" alt=""></a>
+                         <a href="#"><img src="{{ asset('new_frontend\assets\imgs\theme\icons\icon-youtube-white.svg') }}" alt=""></a>
                      </div>
                      <div class="site-copyright">Copyright 2021 © Nest. All rights reserved. Powered by AliThemes.
                      </div>

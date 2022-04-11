@@ -123,7 +123,7 @@
                                                 <ul class="btns_group ul_li">
                                                     <li>
                                                         <h4>Quantity:</h4>
-                                                        <div class="def-number-input number-input safari_only me-3">
+                                                        <div class="def-number-input number-input safari_only mb-4 me-3">
                                                             <button type="button btn-minus" class="minus ps-plus-minus"
                                                                 onclick="this.querySelector('input[type=number]').stepDown()"><i
                                                                     class="fa fa-minus"></i></button>
@@ -140,7 +140,7 @@
 
                                                             <button class="button button-add-to-cart"
                                                                 onclick="addToCart()"><i
-                                                                    class="fi-rs-shopping-cart"></i>Add to cart</button>
+                                                                    class="fi-rs-shopping-cart pl-2"></i>Add to cart</button>
                                                             <a aria-label="Add To Wishlist" class="action-btn hover-up"
                                                                 href="shop-wishlist.html"><i
                                                                     class="fi-rs-heart"></i></a>

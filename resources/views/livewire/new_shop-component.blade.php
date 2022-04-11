@@ -67,7 +67,7 @@
                 </div>
                 <div class="row product-grid">
                     @foreach ($products as $featured_product)
-                        <div class="col-lg-1-5 col-md-4 col-12 col-sm-7">
+                        <div class="col-lg-1-4 col-md-4 col-12 col-sm-7">
                             <div class="product-cart-wrap mb-30 wow animate__animated animate__fadeIn"
                                 data-wow-delay=".1s">
                                 <div class="product-img-action-wrap">

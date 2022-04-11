@@ -226,6 +226,12 @@ figure {
     margin: 0;
 }
 
+/* nav */
+.sticky-bar.stick {
+  border-bottom: none !important;
+}
+/* end nav */
+
 .tooltip-inner {
     background-color: #f0f2f5 !important;
     color: var(--primary-color);
@@ -10157,10 +10163,48 @@ textarea.form-control {
 }
 
 
-/* for profile */
+/* for Profile*/
 .profile-nav .user-heading {
-    background: var(--secondary-bg-color) !important;
+    background: var(--secondary-font-color) !important;
 }
+
+.card-box-profile {
+    border: 2px solid #af3039;
+}
+
+.profile-nav ul > li > a:hover, .profile-nav ul > li > a:focus, .profile-nav ul li.active a {
+    border-left: 5px solid #af3039 !important;
+}
+
+.nav-pills .nav-link.active, .nav-pills .show > .nav-link {
+    border:2px solid #af3039 !important; 
+    border-radius: 5px;
+    color: #000;
+    background: #fff;
+}
+
+.nav-link:focus, .nav-link {
+  color: #af3039 !important;
+}
+
+.nav-link:focus, .nav-link:focus {
+  color: #af3039 !important;
+}
+
+#pills-tabContent {
+    border: 2px solid #af3039;
+    padding: 2%;
+    border-radius: 15px;
+}
+
+.table-responsive {
+    border: 2px solid #af3039 !important;
+}
+
+/* End for Profile */
+
+
+
 
 .ps-section--sellers .ps-section__tab .tab-content {
     border: 1px solid #f0f2f5;
@@ -18748,7 +18792,7 @@ textarea {
 /* for Single Product Page */
 
 .single-product-input {
-    max-width: 3vw;/* 
+    max-width: 25% !important;/* 
     color: #fff;
     background: #ab3838; */
     border-radius: 10px;

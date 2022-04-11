@@ -125,10 +125,10 @@
                                                         <h5 class="text-brand ">
                                                             <div class="form-check">
                                                                 <input type="text" name="total"
-                                                                    placeholder="Enter Coupon" id="coupon">
+                                                                    placeholder="Enter Coupon" id="coupon" style="margin-top: 15px; height: 40px; width: 150px;">
                                                             </div>
 
-                                                            <div class="message form-check">
+                                                            <div class="message form-check mt-3">
                                                                 <span><small id="coupon-message"
                                                                         class=""></small></span>
                                                             </div>
@@ -197,7 +197,7 @@
                                             </tbody>
                                         </table>
                                     </div>
-                                    <button id="order-button" class="btn mb-20 w-100">Place
+                                    <button id="order-button" class="btn mb-20 w-100 mt-5">Place
                                         order <i class="fi-rs-sign-out ml-15"></i></button>
 
                                 </div>

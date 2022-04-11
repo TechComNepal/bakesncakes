@@ -25,10 +25,10 @@
                         @php
                             $seller_products = [];
                             $product_ids = [];
-                            
+
                             foreach ($carts as $key => $cartItem) {
                                 $product = \App\Models\Product::find($cartItem['product_id']);
-                            
+
                                 $product_ids = [];
                                 if (isset($seller_products[$product->user_id])) {
                                     $product_ids = $seller_products[$product->user_id];
@@ -41,8 +41,8 @@
                             @foreach ($seller_products as $key => $seller_product)
                                 <div class="card mb-3 shadow-sm border-0 rounded">
                                     <div class="card-header p-3">
-                                        <h5 class="fs-16 fw-600 mb-0">
-                                            {{ \App\Models\User::where('id', $key)->first()->name }} Products</h5>
+                                        <h4 class="fs-16 fw-600 mb-0">
+                                            {{ \App\Models\User::where('id', $key)->first()->name }} Products</h4>
                                     </div>
                                     <div class="card-body">
                                         <ul class="list-group list-group-flush">
@@ -58,7 +58,7 @@
                                                                 alt="{{ $product->name }}">
                                                         </span>
 
-                                                        <h5 class="heading-2 mb-10">{{ $product->name }}</h5>
+                                                        <h4 class="heading-2 mb-10" style="margin-top: 40px; margin-left: 10px;">Product: {{ $product->name }}</h3>
 
                                                     </div>
                                                 </li>
