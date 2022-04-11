@@ -114,12 +114,18 @@ class PagesController extends Controller
     /* vendors */
     public function vendor()
     {
-        $paginator = User::paginate(8);
+        return view('site.pages.vendor');
+        // $paginator = User::paginate(8);
 
-        return view('site.pages.vendor', [
-            'vendors' => User::role('vendor')->get(),
-            'paginator' => $paginator
-        ]);
+        // return view('site.pages.vendor', [
+        //     'vendors' => User::role('vendor')->get(),
+        //     'paginator' => $paginator
+        // ]);
+    }
+
+    public function vendorDetails($id)
+    {
+        return view('site.pages.vendorDetails', compact('id'));
     }
     public function vendor_guide()
     {
