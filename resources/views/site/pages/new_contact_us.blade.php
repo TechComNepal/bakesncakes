@@ -3,7 +3,7 @@
         <div class="page-header breadcrumb-wrap">
             <div class="container">
                 <div class="breadcrumb">
-                    <a href="{{  route('site.page')  }}" rel="nofollow"><i class="fi-rs-home mr-5"></i>Home</a>
+                    <a href="{{ route('site.page') }}" rel="nofollow"><i class="fi-rs-home mr-5"></i>Home</a>
                     <span></span> Pages <span></span> Contact
                 </div>
             </div>
@@ -16,44 +16,14 @@
                             <div class="col-lg-4 mb-lg-0 mb-md-5 mb-sm-5">
                                 <h4 class="mb-20 text-brand">How can help you ?</h4>
                                 <h1 class="mb-30">Let us know how we can help you</h1>
-                                <p class="mb-20">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut elit
-                                    tellus, luctus nec ullamcorper mattis, pulvinar dapibus leo.</p>
-                                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut elit tellus, luctus nec
-                                    ullamcorper mattis, pulvinar dapibus leo.</p>
+
                             </div>
-                            <div class="col-lg-8">
-                                <div class="row">
-                                    <div class="col-lg-6 mb-4">
-                                        <h5 class="mb-20">01. Visit Feedback</h5>
-                                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut elit tellus,
-                                            luctus nec ullamcorper mattis, pulvinar dapibus leo.</p>
-                                    </div>
-                                    <div class="col-lg-6 mb-4">
-                                        <h5 class="mb-20">02. Employer Services</h5>
-                                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut elit tellus,
-                                            luctus nec ullamcorper mattis, pulvinar dapibus leo.</p>
-                                    </div>
-                                    <div class="col-lg-6 mb-lg-0 mb-4">
-                                        <h5 class="mb-20 text-brand">03. Billing Inquiries</h5>
-                                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut elit tellus,
-                                            luctus nec ullamcorper mattis, pulvinar dapibus leo.</p>
-                                    </div>
-                                    <div class="col-lg-6">
-                                        <h5 class="mb-20">04.General Inquiries</h5>
-                                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut elit tellus,
-                                            luctus nec ullamcorper mattis, pulvinar dapibus leo.</p>
-                                    </div>
-                                </div>
-                            </div>
+
                         </section>
                     </div>
                 </div>
             </div>
-            <section class="container mb-50 d-none d-md-block">
-                <div class="border-radius-15 overflow-hidden">
-                    <div id="map-panes" class="leaflet-map"></div>
-                </div>
-            </section>
+
             <div class="container">
                 <div class="row">
                     <div class="col-xl-10 col-lg-12 m-auto">
@@ -61,40 +31,18 @@
                             <div class="row mb-60">
                                 <div class="col-md-4 mb-4 mb-md-0">
                                     <h4 class="mb-15 text-brand">Office</h4>
-                                    205 North Michigan Avenue, Suite 810<br>
-                                    Chicago, 60601, USA<br>
-                                    <abbr title="Phone">Phone:</abbr> (123) 456-7890<br>
+                                    <br>
+                                    {!! $setting->address !!}
+                                    <abbr title="Phone">Phone:</abbr> {{ $setting->company_phone }}<br>
                                     <abbr title="Email">Email: </abbr><a href="/cdn-cgi/l/email-protection"
                                         class="__cf_email__"
-                                        data-cfemail="2a4945445e4b495e6a6f5c4b584b04494547">[email&#160;protected]</a><br>
+                                        data-cfemail="2a4945445e4b495e6a6f5c4b584b04494547">{{ $setting->company_email }}</a><br>
                                     <a
                                         class="btn btn-sm font-weight-bold text-white mt-20 border-radius-5 btn-shadow-brand hover-up"><i
                                             class="fi-rs-marker mr-5"></i>View map</a>
                                 </div>
-                                <div class="col-md-4 mb-4 mb-md-0">
-                                    <h4 class="mb-15 text-brand">Studio</h4>
-                                    205 North Michigan Avenue, Suite 810<br>
-                                    Chicago, 60601, USA<br>
-                                    <abbr title="Phone">Phone:</abbr> (123) 456-7890<br>
-                                    <abbr title="Email">Email: </abbr><a href="/cdn-cgi/l/email-protection"
-                                        class="__cf_email__"
-                                        data-cfemail="197a76776d787a6d595c6f786b78377a7674">[email&#160;protected]</a><br>
-                                    <a
-                                        class="btn btn-sm font-weight-bold text-white mt-20 border-radius-5 btn-shadow-brand hover-up"><i
-                                            class="fi-rs-marker mr-5"></i>View map</a>
-                                </div>
-                                <div class="col-md-4">
-                                    <h4 class="mb-15 text-brand">Shop</h4>
-                                    205 North Michigan Avenue, Suite 810<br>
-                                    Chicago, 60601, USA<br>
-                                    <abbr title="Phone">Phone:</abbr> (123) 456-7890<br>
-                                    <abbr title="Email">Email: </abbr><a href="/cdn-cgi/l/email-protection"
-                                        class="__cf_email__"
-                                        data-cfemail="44272b2a302527300401322536256a272b29">[email&#160;protected]</a><br>
-                                    <a
-                                        class="btn btn-sm font-weight-bold text-white mt-20 border-radius-5 btn-shadow-brand hover-up"><i
-                                            class="fi-rs-marker mr-5"></i>View map</a>
-                                </div>
+
+
                             </div>
                             <div class="row">
                                 <div class="col-xl-8">
@@ -103,38 +51,59 @@
                                         <h2 class="mb-10">Drop Us a Line</h2>
                                         <p class="text-muted mb-30 font-sm">Your email address will not be published.
                                             Required fields are marked *</p>
-                                        <form class="contact-form-style mt-30" id="contact-form" action="{{route('site.contact.store')}}"
-                                            method="post">
+                                        <form id="contactForm" action="{{ route('site.contact.store') }}"
+                                            method="POST">
+                                            @csrf
                                             <div class="row">
                                                 <div class="col-lg-6 col-md-6">
                                                     <div class="input-style mb-20">
-                                                        <input name="name" placeholder="First Name" type="text">
+                                                        <input type="text" name="name" id="name" class="form-control"
+                                                            required data-error="Please enter your name"
+                                                            placeholder="Name">
+                                                        <div class="help-block with-errors"></div>
                                                     </div>
                                                 </div>
                                                 <div class="col-lg-6 col-md-6">
                                                     <div class="input-style mb-20">
-                                                        <input name="email" placeholder="Your Email" type="email">
+                                                        <input type="email" name="email" id="email"
+                                                            class="form-control" required
+                                                            data-error="Please enter your email" placeholder="Email">
+                                                        <div class="help-block with-errors"></div>
                                                     </div>
                                                 </div>
                                                 <div class="col-lg-6 col-md-6">
                                                     <div class="input-style mb-20">
-                                                        <input name="phone" placeholder="Your Phone" type="tel">
+                                                        <input type="text" name="number" id="number" required
+                                                            data-error="Please enter your number" class="form-control"
+                                                            placeholder="Phone">
+                                                        <div class="help-block with-errors"></div>
                                                     </div>
                                                 </div>
                                                 <div class="col-lg-6 col-md-6">
                                                     <div class="input-style mb-20">
-                                                        <input name="subject" placeholder="Subject" type="text">
+                                                        <input type="text" name="subject" id="subject"
+                                                            class="form-control" required
+                                                            data-error="Please enter your subject"
+                                                            placeholder="Subject">
+                                                        <div class="help-block with-errors"></div>
                                                     </div>
                                                 </div>
                                                 <div class="col-lg-12 col-md-12">
                                                     <div class="textarea-style mb-30">
-                                                        <textarea name="usermessage" placeholder="Message"></textarea>
+
+                                                        <textarea name="usermessage" class="form-control" id="usermessage" required data-error="Write your message"
+                                                            placeholder="Message"></textarea>
+                                                        <div class="help-block with-errors"></div>
                                                     </div>
-                                                    <button class="submit submit-auto-width" type="submit">Send
+                                                    <button id="msgSubmit" class="submit submit-auto-width"
+                                                        type="submit">Send
                                                         message</button>
                                                 </div>
+
+
                                             </div>
                                         </form>
+
                                         <p class="form-messege"></p>
                                     </div>
                                 </div>

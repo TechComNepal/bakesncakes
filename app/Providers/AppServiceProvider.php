@@ -13,7 +13,6 @@ use Illuminate\Pagination\Paginator;
 
 class AppServiceProvider extends ServiceProvider
 {
-
     public function register()
     {
         //

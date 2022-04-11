@@ -13,10 +13,8 @@ use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Str;
 use Yajra\DataTables\DataTables;
 
-
 class ContactMailController extends Controller
 {
-
     public function contactList()
     {
         $this->setPageTitle('Contact', '');
@@ -27,38 +25,33 @@ class ContactMailController extends Controller
 
     public function sendMail(ContactMailStoreRequest $request, ContactMail $contact)
     {
-
-        try{
+        try {
 
         // $modal = new ContactMail();
-        //    $modal->name=$request->post('name');
-        //    $modal->email=$request->post('email');
-        //    $modal->number=$request->post('number');
-        //    $modal->subject=$request->post('subject');
-        //    $modal->usermessage=$request->post('usermessage');
-        //    $modal->save();
+            //    $modal->name=$request->post('name');
+            //    $modal->email=$request->post('email');
+            //    $modal->number=$request->post('number');
+            //    $modal->subject=$request->post('subject');
+            //    $modal->usermessage=$request->post('usermessage');
+            //    $modal->save();
            
-        $data = $request->validated();
-        $contact->create($data);        
-        $user['to'] = 'shubrat.stylustechnology@gmail.com';
-        Mail::send('cms.admin.pages.contacts.emailMessage', $data, function ($message) use ($user, $data) {
-            $message->from($data['email']);
-            $message->to($user['to'])
+            $data = $request->validated();
+            $contact->create($data);
+            $user['to'] = 'ebakesandcakes@gmail.com';
+            Mail::send('cms.admin.pages.contacts.emailMessage', $data, function ($message) use ($user, $data) {
+                $message->from($data['email']);
+                $message->to($user['to'])
                 ->subject($data['subject']);
-               
-           });
-           return redirect()->route('site.page.contact')->with('success','Thank you for contacting us , We promise to respond to you as quickly as we can.!');
-          }  catch (\Throwable $exception) {
+            });
+            return redirect()->route('site.page.contact')->with('success', 'Thank you for contacting us , We promise to respond to you as quickly as we can.!');
+        } catch (\Throwable $exception) {
             return $exception->getMessage();
         }
-    
-
     }
 
     public function contactdelete(ContactMail $contatMail)
-
     {
-            return $contatMail->delete()
+        return $contatMail->delete()
             ? response()->json(['success' => 'Selected Contact Successfully Deleted.'])
             : response()->json(['error' => 'There was some issue with the server. Please try again.']);
     }
@@ -156,23 +149,19 @@ class ContactMailController extends Controller
                         autocomplete="off"
                         onchange="toggleIsStatus(' . $data->id . ')"
                     />';
-            })->addColumn('status_text', function($data){
+            })->addColumn('status_text', function ($data) {
                 $text = ($data->status == 0) ? 'Not-Responded' : 'Responded';
-                if($text=='Not-Responded'){
-                return '<span id="status-' . $data->id . '"
+                if ($text=='Not-Responded') {
+                    return '<span id="status-' . $data->id . '"
                 class="badge rounded-pill font-size-12 bg-soft-danger text-primary">'.
                 $text
                 .'</span>';
-                }
-                else
-                {
+                } else {
                     return '<span id="status-' . $data->id . '"
                     class="badge rounded-pill font-size-12 bg-soft-success text-primary">'.
                     $text
-                    .'</span>'; 
+                    .'</span>';
                 }
-
-
             })
 
             ->addIndexColumn()
@@ -186,7 +175,7 @@ class ContactMailController extends Controller
     {
         $contactMail = ContactMail::findOrFail($request['id']);
         $contactMail->status = !$contactMail->status;
-                return $contactMail->update()
+        return $contactMail->update()
             ? response()->json(['message' => 'Contact Status Updated Successfully.',  'status' => 'success'])
             : response()->json(['message' => 'Error occurred while updating category status.', 'status' => 'error']);
     }

@@ -32,6 +32,9 @@ class BladeComponentServiceProvider extends ServiceProvider
         Blade::component('site._layouts.site_master', 'site-master-layout');
         Blade::component('site._layouts.new_site_master', 'new-site-master-layout');
 
+        // Vendor Layouts
+        Blade::component('cms.vendors._layouts.vendor_master', 'vendor-master-layout');
+
         // CMS Admin Partials
         Blade::component('cms.admin._layouts._partials.top-bar', 'cms-top-bar');
         Blade::component('cms.admin._layouts._partials.side-bar', 'cms-side-bar');
@@ -40,6 +43,10 @@ class BladeComponentServiceProvider extends ServiceProvider
         Blade::component('cms.employees._layouts._partials.top-bar', 'cms-employee-top-bar');
         Blade::component('cms.employees._layouts._partials.side-bar', 'cms-employee-side-bar');
         Blade::component('cms.employees._layouts._partials.right-bar', 'cms-employee-right-bar');
+        // CMS Vendor Partials
+        Blade::component('cms.vendors._layouts._partials.top-bar', 'cms-vendor-top-bar');
+        Blade::component('cms.vendors._layouts._partials.side-bar', 'cms-vendor-side-bar');
+        Blade::component('cms.vendors._layouts._partials.right-bar', 'cms-vendor-right-bar');
 
 
         // UI Elements
