@@ -1,4 +1,3 @@
-
  <!-- header -->
  <div class="container">
      <header class="header-area header-style-1 header-height-2">
@@ -44,9 +43,7 @@
              <div class="container">
                  <div class="header-wrap">
                      <div class="logo logo-width-1">
-                         <a href="{{ route('site.page') }}"><img
-                                 src="{{ asset('new_frontend\assets\imgs\theme\MINIPASAL@4X-8(1).png') }}"
-                                 alt="logo"></a>
+                         <a href="{{ route('site.page') }}"><img src="{{ asset('new_frontend\assets\imgs\theme\MINIPASAL@4X-8(1).png') }}" alt="logo"></a>
                      </div>
                      <div class=" header-right">
                          <div class="search-style-2">
@@ -54,9 +51,10 @@
                                  <select class="select-active">
                                      <option>All Categories</option>
                                      @foreach ($menucategories as $menucategorie)
-                                         <option><a href="">{{ $menucategorie->name }}</a></option>
+                                     <option><a href="">{{ $menucategorie->name }}</a></option>
                                      @endforeach
                                  </select>
+
                                  <form action="#">
                                      <!-- <input type="text" placeholder="Search for items..." name="query"> -->
                                      @livewire('filter')
@@ -86,6 +84,7 @@
                                          </select>
                                      </form>
                                  </div> -->
+
                                 <div class="header-action-icon-2" id="compare">
                                     @include(
                                     'site._layouts._partials._new_partials.compare'
@@ -206,6 +205,7 @@
                                         </ul>
                                         <ul class=" end">
 
+
                                             @foreach ($menucategories->skip(14)->take(2) as $menucategorie)
                                             <li>
                                                 <a href="shop-grid-right.html"> <img
@@ -217,8 +217,7 @@
                                          </ul>
                                      </div>
                                  </div>
-                                 <div class=" more_categories"><span class="icon"></span> <span
-                                         class="heading-sm-1">Show
+                                 <div class=" more_categories"><span class="icon"></span> <span class="heading-sm-1">Show
                                          more...</span>
                                  </div>
                              </div>
@@ -339,7 +338,6 @@
                                         <a href="{{ route('site.page.blog') }}">Blog</a>
                                     </li>
 
-
                                      <li>
                                          <a href="{{ route('site.page.contact') }}">Contact</a>
                                      </li>
@@ -360,23 +358,20 @@
                          <div class="header-action-2">
                              <div class="header-action-icon-2">
                                  <a href="shop-wishlist.html">
-                                     <img alt="Nest"
-                                         src="{{ asset('new_frontend\assets\imgs\theme\icons\icon-heart.svg') }}">
+                                     <img alt="Nest" src="{{ asset('new_frontend\assets\imgs\theme\icons\icon-heart.svg') }}">
                                      <span class="pro-count white">4</span>
                                  </a>
                              </div>
                              <div class="header-action-icon-2">
                                  <a class="mini-cart-icon" href="#">
-                                     <img alt="Nest"
-                                         src="{{ asset('new_frontend\assets\imgs\theme\icons\icon-cart.svg') }}">
+                                     <img alt="Nest" src="{{ asset('new_frontend\assets\imgs\theme\icons\icon-cart.svg') }}">
                                      <span class="pro-count white">2</span>
                                  </a>
                                  <div class="cart-dropdown-wrap cart-dropdown-hm2">
                                      <ul>
                                          <li>
                                              <div class="shopping-cart-img">
-                                                 <a href="shop-product-right.html"><img alt="Nest"
-                                                         src="{{ asset('new_frontend\assets\imgs\shop\thumbnail-3.jpg') }}"></a>
+                                                 <a href="shop-product-right.html"><img alt="Nest" src="{{ asset('new_frontend\assets\imgs\shop\thumbnail-3.jpg') }}"></a>
                                              </div>
                                              <div class=" shopping-cart-title">
                                                  <h4><a href="shop-product-right.html">Plain Striola
@@ -389,8 +384,7 @@
                                          </li>
                                          <li>
                                              <div class="shopping-cart-img">
-                                                 <a href="shop-product-right.html"><img alt="Nest"
-                                                         src="{{ asset('new_frontend\assets\imgs\shop\thumbnail-4.jpg') }}"></a>
+                                                 <a href="shop-product-right.html"><img alt="Nest" src="{{ asset('new_frontend\assets\imgs\shop\thumbnail-4.jpg') }}"></a>
                                              </div>
                                              <div class=" shopping-cart-title">
                                                  <h4><a href="shop-product-right.html">Macbook Pro
@@ -425,8 +419,7 @@
              <div class="mobile-header-wrapper-inner">
                  <div class="mobile-header-top">
                      <div class="mobile-header-logo">
-                         <a href="{{ route('site.page') }}"><img
-                                 src="{{ asset('new_frontend\assets\imgs\theme\logo.svg') }}" alt="logo"></a>
+                         <a href="{{ route('site.page') }}"><img src="{{ asset('new_frontend\assets\imgs\theme\logo.svg') }}" alt="logo"></a>
                      </div>
                      <div class=" mobile-menu-close close-style-wrap close-style-position-inherit">
                          <button class="close-style search-close">

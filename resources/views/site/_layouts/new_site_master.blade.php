@@ -34,6 +34,11 @@
     <!-- datepicker css -->
     <link href="{{ asset('cms/libs/css/flatpickr.min.css') }}" rel="stylesheet">
 
+    <!-- CSS files -->
+        <link rel="stylesheet" href="{{ asset('frontend/css/style.css') }}">
+        
+
+
     <!-- Dropify -->
 
     <link href="{{ asset('site/libs/dropify/dist/css/dropify.min.css') }}" rel="stylesheet">

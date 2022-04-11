@@ -3475,7 +3475,7 @@ table .product-thumbnail img {
   border-radius: 15px;
   overflow: hidden;
   height: 520px;
-  background: url(../imgs/banner/ad-horizontal.jpg) no-repeat center bottom;
+  background: url(../imgs/theme/bakes-img-assets/SDA-10.jpg) no-repeat center bottom;
   background-size: cover;
   width: 100%;
 }
@@ -9199,7 +9199,6 @@ span.fi-rs-apps {
 }
 
 .price_range {
-  background: url(../imgs/banner/fillter-widget-bg.png) no-repeat right bottom;
   background-size: 150px;
 }
 
@@ -9550,7 +9549,7 @@ footer .hotline img {
 }
 
 .newsletter .newsletter-inner {
-  background: url(../imgs/banner/banner-10.png) no-repeat center;
+  background: url(../imgs/theme/bakes-img-assets/newsletter-07.jpg) no-repeat center;
   background-size: cover;
   padding: 84px 78px;
   clear: both;
@@ -11296,7 +11295,7 @@ ul.pagination .page-link {
 }
 
 .newsletter .newsletter-inner {
-  background: url(../imgs/banner/newsletter.jpg) no-repeat center;
+  background: url(../imgs/theme/bakes-img-assets/newsletter-07.jpg) no-repeat center;
   background-size: cover;
 }
 
@@ -11311,6 +11310,15 @@ ul.pagination .page-link {
 
 
 /* #### #### */
+
+/* ####### Shop Component ###### */
+/* .product-img a img {
+  width: 100% !important; 
+  height: 125px !important;
+} */
+
+
+/* ####### End Shop COmponent ###### */
 
 
 

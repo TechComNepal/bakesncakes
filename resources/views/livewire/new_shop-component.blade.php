@@ -64,6 +64,7 @@
                         </div>
                     </div>
                 </div>
+
                 <div class="product-grid">
                     <div wire:loading>
                         <h1 class="text-center">Loading ...</h1>

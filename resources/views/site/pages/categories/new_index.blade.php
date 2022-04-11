@@ -573,7 +573,7 @@
                         </div>
                         <!--end product card-->
 
-                        
+
                         <div class="col-lg-1-5 col-md-4 col-12 col-sm-6 d-none d-xl-block">
                             <div class="product-cart-wrap mb-30">
                                 <div class="product-img-action-wrap">
@@ -1243,9 +1243,9 @@
                             <div class="price-filter-inner">
                                 <div id="slider-range" class="mb-20"></div>
                                 <div class="d-flex justify-content-between">
-                                    <div class="caption">From: <strong id="slider-range-value1"
+                                    <div class="caption">  From: <strong id="slider-range-value1"
                                             class="text-brand"><input type="text"></strong></div>
-                                    <div class="caption">To: <strong id="slider-range-value2"
+                                    <div class="caption">  To: <strong id="slider-range-value2"
                                             class="text-brand"><input type="text" type="text"></strong></div>
                                 </div>
                             </div>
