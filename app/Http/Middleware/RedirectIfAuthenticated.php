@@ -32,6 +32,10 @@ class RedirectIfAuthenticated
                 if ($user->hasRole('user')) {
                     return redirect()->intended(route('user.dashboard'));
                 }
+                if ($user->hasRole('vendor')) {
+                    return redirect()->intended(route('vendor.dashboard'));
+                }
+
 
                 //return redirect(RouteServiceProvider::HOME);
                 return redirect()->intended(route('employee.dashboard'));

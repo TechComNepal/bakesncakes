@@ -11,9 +11,9 @@
                          <div class="header-info">
                              <ul>
                                  <li><a href="{{ route('site.page.aboutus') }}">About Us</a></li>
-                                 <li><a href="page-account.html">My Account</a></li>
-                                 <li><a href="shop-wishlist.html">Wishlist</a></li>
-                                 <li><a href="shop-order.html">Order Tracking</a></li>
+                                 <li><a href="{{ route('user.dashboard') }}">My Account</a></li>
+                                 <li><a href="{{ route('wishlist.index') }}">Wishlist</a></li>
+
                              </ul>
                          </div>
                      </div>
@@ -31,7 +31,8 @@
                      <div class="col-xl-3 col-lg-4">
                          <div class="header-info header-info-right">
                              <ul>
-                                 <li>Need help? Call Us: <strong class="text-brand"> + 9849392816</strong></li>
+                                 <li>Need help? Call Us: <strong class="text-brand">
+                                         {{ $setting->company_phone }}</strong></li>
                              </ul>
                          </div>
                      </div>
@@ -55,9 +56,9 @@
                                          <option><a href="">{{ $menucategorie->name }}</a></option>
                                      @endforeach
                                  </select>
-                                 <form action="{{ route('site.search') }}">
-                                    <!-- <input type="text" placeholder="Search for items..." name="query"> -->
-                                    @livewire('filter')
+                                 <form action="#">
+                                     <!-- <input type="text" placeholder="Search for items..." name="query"> -->
+                                     @livewire('filter')
                                  </form>
                              </form>
                          </div>
@@ -227,11 +228,8 @@
                          <div class="main-menu main-menu-padding-1 main-menu-lh-2 d-none d-lg-block font-heading">
                              <nav>
                                  <ul>
-                                     <li class="hot-deals"><img
-                                             src="{{ asset('new_frontend\assets\imgs\theme\icons\icon-hot.svg') }}"
-                                             alt="hot deals"><a href="shop-grid-right.html">Hot Deals</a></li>
-                                     <li>
-                                         <a href="{{ route('site.page') }}">Home</a>
+
+                                     <a href="{{ route('site.page') }}">Home</a>
                                      </li>
 
                                      <li>
@@ -350,11 +348,7 @@
                              </nav>
                          </div>
                      </div>
-                     <div class="hotline d-none d-lg-flex">
-                         <img
-                             src="{{ asset('new_frontend\assets\imgs\theme\icons\icon-headphone.svg" alt="hotline') }}">
-                         <p>1900 - 888<span>24/7 Support Center</span></p>
-                     </div>
+
                      <div class="header-action-icon-2 d-block d-lg-none">
                          <div class="burger-icon burger-icon-white">
                              <span class="burger-icon-top"></span>

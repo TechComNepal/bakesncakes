@@ -39,7 +39,7 @@ class PagesController extends Controller
     {
         $productCategories = Category::with('products')->where('status', 1)->orderBy('id', 'desc')->limit(7)->get();
         return view('site.new_index', [
-        'categories'=> Category::where('featured', 1)->orderBy('id', 'desc')->paginate(16),
+        'categories'=> Category::withCount('products')->where('featured', 1)->orderBy('id', 'desc')->paginate(16),
         'productCategories'=> $productCategories,
         'products'=>Product::orderBy('id', 'asc')->simplepaginate(72),
         'featured_products'=>Product::where('is_featured', 1)->orderBy('id', 'desc')->limit(5)->get(),

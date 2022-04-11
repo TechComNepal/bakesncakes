@@ -100,7 +100,7 @@ class Product extends Model implements HasMedia, Searchable
     {
         $url = $this->getFirstMediaUrl($collectionName, $conversionName);
 
-        return $url ?: $this::$defaultImage ?? '';
+        return $url ?  : $this::$defaultImage ?? '';
     }
 
     public function promocodes()
