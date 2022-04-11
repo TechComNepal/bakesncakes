@@ -150,9 +150,9 @@ class User extends Authenticatable implements MustVerifyEmail, HasMedia
 
     public function products()
     {
-        return $this->hasMany(User::class, 'user_id');
+        return $this->hasMany(Product::class, 'user_id');
     }
-      public function wishlists()
+    public function wishlists()
     {
         return $this->hasMany(Wishlist::class, 'user_id');
     }

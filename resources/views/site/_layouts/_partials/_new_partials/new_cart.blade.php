@@ -38,7 +38,7 @@
                                  </a>
                              </div>
                              <div class=" shopping-cart-title">
-                                 <h4><a href="#">{{ \Illuminate\Support\Str::limit($product->name, '30') }}</a></h4>
+                                 <h4><a href="#">{{ \Illuminate\Support\Str::limit($product->name, '15') }}</a></h4>
 
 
                                  <h3><span>{{ $cartItem['quantity'] }} × </span>Rs.{{ $cartItem['price'] }} </h3>

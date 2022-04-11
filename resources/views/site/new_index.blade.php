@@ -53,7 +53,7 @@
             <div class="section-title">
                 <div class="title">
                     <h3>Featured Categories</h3>
-                    <ul class="list-inline nav nav-tabs links">
+                    {{-- <ul class="list-inline nav nav-tabs links">
 
                         <li class="list-inline-item nav-item"><a class="nav-link" href="shop-grid-right.html">Cake
                                 &
@@ -61,7 +61,7 @@
                         <!-- <li class="list-inline-item nav-item"><a class="nav-link" href="shop-grid-right.html">Coffes & Teas</a></li>
                                 <li class="list-inline-item nav-item"><a class="nav-link active" href="shop-grid-right.html">Pet Foods</a></li>
                                 <li class="list-inline-item nav-item"><a class="nav-link" href="shop-grid-right.html">Vegetables</a></li> -->
-                    </ul>
+                    </ul> --}}
                 </div>
                 <div class="slider-arrow slider-arrow-2 flex-right carausel-10-columns-arrow"
                     id="carausel-10-columns-arrows"></div>
@@ -71,11 +71,11 @@
                     @foreach ($categories as $category)
                         <div class="card-2 bg-9 wow animate__animated animate__fadeInUp" data-wow-delay=".1s">
                             <figure class="img-hover-scale overflow-hidden">
-                                <a href="shop-grid-right.html"><img
+                                <a href="{{ route('site.category') }}"><img
                                         src="{{ $category->getFirstOrDefaultMediaUrl('image', 'thumb') }}" alt=""></a>
                             </figure>
-                            <h6><a href="shop-grid-right.html">Cake & Milk</a></h6>
-                            <span>26 items</span>
+                            <h6><a href="{{ route('site.category') }}">{{ $category->name }}</a></h6>
+                            <span>{{ $category->products_count }}</span>
                         </div>
                     @endforeach
                 </div>
@@ -382,7 +382,8 @@
 
                                             <div class="product-img-action-wrap">
                                                 <div class="product-img product-img-zoom">
-                                                    <a href="shop-product-right.html">
+                                                    <a
+                                                        href="{{ route('site.page.singleProductShow', $best_selling_product->id) }}">
                                                         <img class="default-img"
                                                             src="{{ $best_selling_product->getFirstOrDefaultMediaUrl('image', 'square-md-thumb') }}">
                                                         <img class="hover-img"
@@ -396,9 +397,13 @@
                                                         onclick="productview({{ $best_selling_product->id }})"> <i
                                                             class="fi-rs-eye"></i></a>
                                                     <a aria-label="Add To Wishlist" class="action-btn small hover-up"
-                                                        href="shop-wishlist.html"><i class="fi-rs-heart"></i></a>
+                                                        id="{{ $best_selling_product->id }}"
+                                                        onclick="addToWishList({{ $best_selling_product->id }})"><i
+                                                            class="fi-rs-heart"></i></a>
                                                     <a aria-label="Compare" class="action-btn small hover-up"
-                                                        href="shop-compare.html"><i class="fi-rs-shuffle"></i></a>
+                                                        id="{{ $best_selling_product->id }}"
+                                                        onclick="addToCompare({{ $best_selling_product->id }})"><i
+                                                            class="fi-rs-shuffle"></i></a>
                                                 </div>
                                                 <div class="product-badges product-badges-position product-badges-mrg">
                                                     <span class="hot">Save 15%</span>

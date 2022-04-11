@@ -30,16 +30,16 @@
                                     <span><i class="fi-rs-apps"></i>Show:</span>
                                 </div>
                                 <div class="sort-by-dropdown-wrap">
-                                    <span> 50 <i class="fi-rs-angle-small-down"></i></span>
+                                    <span> 10 <i class="fi-rs-angle-small-down"></i></span>
                                 </div>
                             </div>
                             <div class="sort-by-dropdown">
                                 <ul>
-                                    <li><a class="active" href="#">50</a></li>
-                                    <li><a href="#">100</a></li>
-                                    <li><a href="#">150</a></li>
-                                    <li><a href="#">200</a></li>
-                                    <li><a href="#">All</a></li>
+                                    <li wire:click="setPaginationLimit(10)">10</li>
+                                    <li wire:click="setPaginationLimit(15)">15</li>
+                                    <li wire:click="setPaginationLimit(20)">20</li>
+                                    <li wire:click="setPaginationLimit(25)">25</li>
+                                    <li wire:click="setPaginationLimit(30)">30</li>
                                 </ul>
                             </div>
                         </div>
@@ -54,103 +54,122 @@
                             </div>
                             <div class="sort-by-dropdown">
                                 <ul>
-                                    <li><a class="active" href="#">Default</a></li>
-                                    <li><a class="active" href="#">Featured</a></li>
-                                    <li><a href="#">Price: Low to High</a></li>
-                                    <li><a href="#">Price: High to Low</a></li>
-                                    <li><a href="#">Release Date</a></li>
-                                    <li><a href="#">Avg. Rating</a></li>
+                                    <li><a wire:click="setFilter(1)">Default</a></li>
+                                    <li><a wire:click="setFilter(2)">Featured</a></li>
+                                    <li><a wire:click="setFilter(3)">Price: Low to High</a></li>
+                                    <li><a wire:click="setFilter(4)">Price: High to Low</a></li>
+                                    <li><a wire:click="setFilter(5)">Release Date</a></li>
                                 </ul>
                             </div>
                         </div>
                     </div>
                 </div>
-                <div class="row product-grid">
-                    @foreach ($products as $featured_product)
-                        <div class="col-lg-1-4 col-md-4 col-12 col-sm-7">
-                            <div class="product-cart-wrap mb-30 wow animate__animated animate__fadeIn"
-                                data-wow-delay=".1s">
-                                <div class="product-img-action-wrap">
-                                    <div class="product-img product-img-zoom">
-                                        <a href="{{ route('site.page.singleProductShow', $featured_product->id) }}">
-                                            <img class="default-img"
-                                                src="{{ $featured_product->getFirstOrDefaultMediaUrl('image', 'square-md-thumb') }}">
-                                            <img class="hover-img"
-                                                src="{{ $featured_product->getFirstOrDefaultMediaUrl('image', 'square-md-thumb') }}">
-                                        </a>
-                                    </div>
-                                    <div class="product-action-1">
-                                        <a aria-label="Add To Wishlist" class="action-btn featured-products_a"
-                                            href="shop-wishlist.html"><i class="fi-rs-heart"></i></a>
-                                        <a aria-label="Compare" class="action-btn featured-products_a"
-                                            href="shop-compare.html"><i class="fi-rs-shuffle"></i></a>
-                                        <a aria-label="Quick view" class="action-btn featured-products_a"
-                                            data-bs-toggle="modal" data-bs-target="#quickViewModal"><i
-                                                class="fi-rs-eye"></i></a>
-                                    </div>
-                                    <div class="product-badges product-badges-position product-badges-mrg">
-                                        <span class="hot">Hot</span>
 
-                                    </div>
-                                </div>
-                                <div class="product-content-wrap">
-                                    <div class="product-category">
-                                        <a href="javascript:void(0)">{{ $featured_product->category->name }}</a>
-                                    </div>
-                                    <h2><a href="shop-product-right.html">{{ $featured_product->name }}</a></h2>
-                                    <div class="product-rate-cover">
-                                        <div class="rating">
-                                            @php
-                                                $num_rating = number_format($featured_product->averageRating);
-                                            @endphp
-                                            @for ($i = 0; $i < $num_rating; $i++)
-                                                <i class="fa fa-star checked"> </i>
-                                            @endfor
-                                            @for ($j = $num_rating; $j < 5; $j++)
-                                                <i class="fa fa-star"> </i>
-                                            @endfor
-                                            <span class="font-small ml-5 text-muted">
-                                                ({{ round($featured_product->averageRating, 1) }})</span>
+                <div class="product-grid">
+                    <div wire:loading>
+                        <h1 class="text-center">Loading ...</h1>
+                    </div>
+                    <div>
+                        @isset($products)
+                            <div class="row">
+                                @if ($products->count() > 0)
+                                    @foreach ($products as $featured_product)
+                                        <div class="col-lg-3">
+                                            <div class="product-cart-wrap mb-30 wow animate__animated animate__fadeIn"
+                                                data-wow-delay=".1s">
+                                                <div class="product-img-action-wrap">
+                                                    <div class="product-img product-img-zoom">
+                                                        <a
+                                                            href="{{ route('site.page.singleProductShow', $featured_product->id) }}">
+                                                            <img class="default-img"
+                                                                src="{{ $featured_product->getFirstOrDefaultMediaUrl('image', 'square-md-thumb') }}">
+                                                            <img class="hover-img"
+                                                                src="{{ $featured_product->getFirstOrDefaultMediaUrl('image', 'square-md-thumb') }}">
+                                                        </a>
+                                                    </div>
+                                                    <div class="product-action-1">
+                                                        <a aria-label="Add To Wishlist"
+                                                            class="action-btn featured-products_a"
+                                                            href="shop-wishlist.html"><i class="fi-rs-heart"></i></a>
+                                                        <a aria-label="Compare" class="action-btn featured-products_a"
+                                                            href="shop-compare.html"><i class="fi-rs-shuffle"></i></a>
+                                                        <a aria-label="Quick view" class="action-btn featured-products_a"
+                                                            data-bs-toggle="modal" data-bs-target="#quickViewModal"><i
+                                                                class="fi-rs-eye"></i></a>
+                                                    </div>
+                                                    <div class="product-badges product-badges-position product-badges-mrg">
+                                                        <span class="hot">Hot</span>
 
-                                        </div>
-                                    </div>
-                                    <div>
-                                        <span class="font-small text-muted">By <a
-                                                href="vendor-details-1.html">{{ $featured_product->user->name }}</a></span>
-                                    </div>
-                                    <div class="product-card-bottom">
-                                        @if ($featured_product->discount === 0)
-                                            <div class="product-price">
-                                                <span> Rs.{{ $featured_product->selling_price }}</span>
+                                                    </div>
+                                                </div>
+                                                <div class="product-content-wrap">
+                                                    <div class="product-category">
+                                                        <a
+                                                            href="javascript:void(0)">{{ $featured_product->category->name }}</a>
+                                                    </div>
+                                                    <h2><a
+                                                            href="shop-product-right.html">{{ $featured_product->name }}</a>
+                                                    </h2>
+                                                    <div class="product-rate-cover">
+                                                        <div class="rating">
+                                                            @php
+                                                                $num_rating = number_format($featured_product->averageRating);
+                                                            @endphp
+                                                            @for ($i = 0; $i < $num_rating; $i++)
+                                                                <i class="fa fa-star checked">
+                                                                </i>
+                                                            @endfor
+                                                            @for ($j = $num_rating; $j < 5; $j++)
+                                                                <i class="fa fa-star"> </i>
+                                                            @endfor
+                                                            <span class="font-small ml-5 text-muted">
+                                                                ({{ round($featured_product->averageRating, 1) }})
+                                                            </span>
+
+                                                        </div>
+                                                    </div>
+                                                    <div>
+                                                        <span class="font-small text-muted">By <a
+                                                               href="{{ route('site.page.vendorDetails', $featured_product->user->id) }}">{{ $featured_product->user->name }}</a></span>
+                                                    </div>
+                                                    <div class="product-card-bottom">
+                                                        @if ($featured_product->discount === 0)
+                                                            <div class="product-price">
+                                                                <span> Rs.{{ $featured_product->selling_price }}</span>
+                                                            </div>
+                                                        @else
+                                                            @if ($featured_product->discount_type === 'percent')
+                                                                <div class="product-price">
+                                                                    <span>
+                                                                        Rs.{{$featured_product->selling_price * (1 - $featured_product->discount / 100) }}</span>
+                                                                    <span
+                                                                        class="old-price">Rs.{{ $featured_product->selling_price }}</span>
+                                                                </div>
+                                                            @else
+                                                                <div class="product-price">
+                                                                    <span>
+                                                                        Rs.
+                                                                        {{$featured_product->selling_price - $featured_product->discount }}</span>
+                                                                    <span class="old-price">
+                                                                        Rs.{{ $featured_product->selling_price }}</span>
+                                                                </div>
+                                                            @endif
+                                                        @endif
+                                                        <div class="add-cart">
+                                                            <a class="add" href="javascript:void(0)"
+                                                                id="{{ $featured_product->id }}"
+                                                                onclick="productview({{ $featured_product->id }})"><i
+                                                                    class="fi-rs-shopping-cart mr-5"></i>Add </a>
+                                                        </div>
+                                                    </div>
+                                                </div>
                                             </div>
-                                        @else
-                                            @if ($featured_product->discount_type === 'percent')
-                                                <div class="product-price">
-                                                    <span>
-                                                        Rs.{{ $featured_product->selling_price * (1 - $featured_product->discount / 100) }}</span>
-                                                    <span
-                                                        class="old-price">Rs.{{ $featured_product->selling_price }}</span>
-                                                </div>
-                                            @else
-                                                <div class="product-price">
-                                                    <span>
-                                                        Rs.
-                                                        {{ $featured_product->selling_price - $featured_product->discount }}</span>
-                                                    <span class="old-price">
-                                                        Rs.{{ $featured_product->selling_price }}</span>
-                                                </div>
-                                            @endif
-                                        @endif
-                                        <div class="add-cart">
-                                            <a class="add" href="shop-cart.html"><i
-                                                    class="fi-rs-shopping-cart mr-5"></i>Add
-                                            </a>
                                         </div>
-                                    </div>
-                                </div>
+                                    @endforeach
+                                @endif
                             </div>
-                        </div>
-                    @endforeach
+                        @endisset
+                    </div>
                     <!--end product card-->
 
 
@@ -208,7 +227,7 @@
                                             </div>
                                             <div>
                                                 <span class="font-small text-muted">By: <a
-                                                        href="vendor-details-1.html">{{ $trending_product->user->name }}</a></span>
+                                                        href="vendor-details-1.html">{{ $trending_product->user->name  }}</a></span>
                                             </div>
                                             <div class="product-card-bottom">
                                                 @if ($trending_product->discount === 0)
@@ -227,7 +246,7 @@
                                                         <div class="product-price">
                                                             <span>
                                                                 Rs.
-                                                                {{ $trending_product->selling_price - $trending_product->discount }}</span>
+                                                                {{$trending_product->selling_price - $trending_product->discount }}</span>
                                                             <span
                                                                 class="old-price">Rs.{{ $trending_product->selling_price }}</span>
                                                         </div>
@@ -251,31 +270,21 @@
                 <!--End Deals-->
             </div>
             <div class="col-lg-1-5 primary-sidebar ">
-                <div class="sidebar-widget widget-category-2 mb-30">
-                    <h5 class="section-title style-1 mb-30">Category</h5>
-                    <ul>
-                        <li>
-                            <a href="shop-grid-right.html"> <img src="assets\imgs\theme\icons\category-1.svg"
-                                    alt="">Milks & Dairies</a><span class="count">30</span>
-                        </li>
-                        <li>
-                            <a href="shop-grid-right.html"> <img src="assets\imgs\theme\icons\category-2.svg"
-                                    alt="">Clothing</a><span class="count">35</span>
-                        </li>
-                        <li>
-                            <a href="shop-grid-right.html"> <img src="assets\imgs\theme\icons\category-3.svg" alt="">Pet
-                                Foods </a><span class="count">42</span>
-                        </li>
-                        <li>
-                            <a href="shop-grid-right.html"> <img src="assets\imgs\theme\icons\category-4.svg"
-                                    alt="">Baking material</a><span class="count">68</span>
-                        </li>
-                        <li>
-                            <a href="shop-grid-right.html"> <img src="assets\imgs\theme\icons\category-5.svg"
-                                    alt="">Fresh Fruit</a><span class="count">87</span>
-                        </li>
-                    </ul>
-                </div>
+                @isset($categories)
+                    <div class="sidebar-widget widget-category-2 mb-30">
+                        <h5 class="section-title style-1 mb-30">Category</h5>
+                        <ul>
+                            @foreach ($categories as $category)
+                                <li wire:click="selectedCategory({{ $category->id }})">
+                                    <img src="{{ $category->getFirstOrDefaultMediaUrl('image', 'thumb') }}"
+                                        alt="{{ $category->name }}" width="60">
+                                    {{ $category->name }}</a><span
+                                        class="count">{{ $category->products->count() }}</span>
+                                </li>
+                            @endforeach
+                        </ul>
+                    </div>
+                @endisset
                 <!-- Fillter By Price -->
                 <div class="sidebar-widget price_range range mb-30">
                     <h5 class="section-title style-1 mb-30">Fill by price</h5>
@@ -284,9 +293,11 @@
                         <div id="price-slider" wire:ignore></div>
                         <div class="d-flex justify-content-between">
                             <div class="caption">From: <strong id="price-slider-min"
-                                    class="text-brand">Rs{{ $min_price }}</strong></div>
+                                    class="text-brand">Rs{{ $min_price }}</strong>
+                            </div>
                             <div class="caption">To: <strong id="price-slider-max"
-                                    class="text-brand">Rs{{ $max_price }}</strong></div>
+                                    class="text-brand">Rs{{$max_price }}</strong>
+                            </div>
                         </div>
 
 
@@ -343,8 +354,7 @@
                     @this.min_price = values[0]
 
                     @this.max_price = values[1]
-
-                    console.log(@this.max_price, @this.min_price)
+                    window.livewire.emit('price_filter', values[0], values[1])
                 });
             }
         })

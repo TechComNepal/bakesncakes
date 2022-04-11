@@ -15,9 +15,6 @@ class AddIsTopBestSellingToProductsTable extends Migration
     {
         Schema::table('products', function (Blueprint $table) {
             $table->boolean('best_selling')->default(false);
-            $table->boolean('top_selling')->default(false);
-
-
         });
     }
 
