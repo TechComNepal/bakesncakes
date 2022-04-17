@@ -109,4 +109,11 @@ class ProductRepository extends BaseRepository implements ProductContract
         $product->is_sellable=$params['is_sellable'];
         return $product->update();
     }
+    
+    public function updateProductBestSelling(array $params)
+    {
+        $product = $this->findProductById($params['product_id']);
+        $product->best_selling=$params['best_selling'];
+        return $product->update();
+    }
 }

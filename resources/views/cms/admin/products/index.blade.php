@@ -101,6 +101,7 @@
                                 <th>Refundable</th>
                                 <th>Trending</th>
                                 <th>Sellable</th>
+                                <th>Best Selling</th>
                                 <th>Actions</th>
                             </tr>
                         </thead>
@@ -215,6 +216,26 @@
             }
 
 
+            function toggleBestSelling(id) {
+                let statusEl = $('#best-selling-switch-' + id);
+                let best_selling = statusEl.prop('checked') === true ? 'on' : 'off';
+
+                $.ajax({
+                    type: "GET",
+                    dataType: "json",
+                    url: "{{ route('admin.products.toggle.bestselling') }}",
+                    data: {
+                        'best_selling': best_selling,
+                        'product_id': id,
+                    },
+                    success: function(data) {
+                        (data.status === 'success') ?
+                        alertify.success(data.message): alertify.error(data.message);
+                    }
+                });
+            }
+
+
             $(document).ready(() => {
 
                 var DTable = $("#datatable").DataTable({
@@ -290,6 +311,11 @@
                         {
                             data: 'is_sellable',
                             name: 'is_sellable',
+                            orderable: false
+                        },
+                        {
+                            data: 'best_selling',
+                            name: 'best_selling',
                             orderable: false
                         },
                         {

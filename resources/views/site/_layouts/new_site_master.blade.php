@@ -35,8 +35,8 @@
     <link href="{{ asset('cms/libs/css/flatpickr.min.css') }}" rel="stylesheet">
 
     <!-- CSS files -->
-        <link rel="stylesheet" href="{{ asset('frontend/css/style.css') }}">
-        
+    <link rel="stylesheet" href="{{ asset('frontend/css/style.css') }}">
+
 
 
     <!-- Dropify -->
@@ -515,7 +515,7 @@
         })();
     </script>
 
-    @livewireScripts
+
     @stack('scripts')
     @livewireScripts
 </body>

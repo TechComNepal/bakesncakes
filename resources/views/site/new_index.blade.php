@@ -485,202 +485,108 @@
     </section>
     <!--End Best Sales-->
     <section class="section-padding pb-5">
-        <div class="container">
-            <div class="section-title wow animate__animated animate__fadeIn" data-wow-delay="0">
-                <h3 class="">Deals Of The Day</h3>
-                <a class="show-all" href="shop-grid-right.html">
-                    All Deals
-                    <i class="fi-rs-angle-right"></i>
-                </a>
-            </div>
-            <div class="row">
-                @foreach ($trending_products as $trending_product)
-                    <div class="col-xl-3 col-lg-4 col-md-6">
-                        <div class="product-cart-wrap style-2 wow animate__animated animate__fadeInUp"
-                            data-wow-delay="0">
-                            <div class="product-img-action-wrap">
-                                <div class="product-img">
-                                    <a href="shop-product-right.html">
-                                        <img
-                                            src="{{ $trending_product->getFirstOrDefaultMediaUrl('image', 'square-md-thumb') }}">
-                                    </a>
-                                </div>
-                            </div>
-                            <div class="product-content-wrap">
-                                <div class="deals-countdown-wrap">
-                                    <div class="deals-countdown" data-countdown="2025/03/25 00:00:00"></div>
-                                </div>
-                                <div class="deals-content">
-                                    <h2><a href="shop-product-right.html">{{ $trending_product->name }}</a></h2>
-                                    <div class="product-rate-cover">
-                                        <div class="rating">
-                                            @php
-                                                $num_rating = number_format($trending_product->averageRating);
-                                            @endphp
-                                            @for ($i = 0; $i < $num_rating; $i++)
-                                                <i class="fa fa-star checked"> </i>
-                                            @endfor
-                                            @for ($j = $num_rating; $j < 5; $j++)
-                                                <i class="fa fa-star"> </i>
-                                            @endfor
-                                            <span class="font-small ml-5 text-muted">
-                                                ({{ round($trending_product->averageRating, 1) }})</span>
-                                        </div>
+        @if ($deal_products)
+            <div class="container">
+                <div class="section-title wow animate__animated animate__fadeIn" data-wow-delay="0">
+                    <h3 class="">Deals Of The Day</h3>
 
+                </div>
+                <div class="row">
+                    @foreach ($deal_products as $deal_product)
+                        @php
+                            $ticketTime = strtotime($deal_product->deal_date);
+                            
+                            // This difference is in seconds.
+                            $difference = $ticketTime - time();
+                            $hoursDiff = round($difference / 3600);
+                            
+                        @endphp
+
+                        <div class="col-xl-3 col-lg-4 col-md-6">
+                            <div class="product-cart-wrap style-2 wow animate__animated animate__fadeInUp"
+                                data-wow-delay="0">
+                                <div class="product-img-action-wrap">
+
+                                    <div class="product-img">
+
+                                        <a href="{{ route('site.page.singleProductShow', $deal_product->id) }}">
+                                            <img
+                                                src="{{ $deal_product->getFirstOrDefaultMediaUrl('image', 'square-md-thumb') }}">
+                                        </a>
                                     </div>
-                                    <div>
-                                        <span class="font-small text-muted">By <a
-                                                href="vendor-details-1.html">{{ $trending_product->user->name }}</a></span>
+                                </div>
+                                <div class="product-content-wrap">
+                                    <div class="deals-countdown-wrap">
+                                        <div class="deals-countdown"
+                                            data-countdown="{{ $deal_product->deal_date }}">
+                                        </div>
                                     </div>
-                                    <div class="product-card-bottom">
-                                        @if ($trending_product->discount === 0)
-                                            <div class="product-price">
-                                                <span> Rs.{{ $trending_product->selling_price }}</span>
+                                    <div class="deals-content">
+                                        <h2><a
+                                                href="{{ route('site.page.singleProductShow', $deal_product->id) }}">{{ $deal_product->name }}</a>
+                                        </h2>
+                                        <div class="product-rate-cover">
+                                            <div class="rating">
+                                                @php
+                                                    $num_rating = number_format($deal_product->averageRating);
+                                                @endphp
+                                                @for ($i = 0; $i < $num_rating; $i++)
+                                                    <i class="fa fa-star checked"> </i>
+                                                @endfor
+                                                @for ($j = $num_rating; $j < 5; $j++)
+                                                    <i class="fa fa-star"> </i>
+                                                @endfor
+                                                <span class="font-small ml-5 text-muted">
+                                                    ({{ round($deal_product->averageRating, 1) }})
+                                                </span>
                                             </div>
-                                        @else
-                                            @if ($trending_product->discount_type === 'percent')
+
+                                        </div>
+                                        <div>
+                                            <span class="font-small text-muted">By <a
+                                                    href="vendor-details-1.html">{{ $deal_product->user->name }}</a></span>
+                                        </div>
+                                        <div class="product-card-bottom">
+                                            @if ($deal_product->discount === 0)
                                                 <div class="product-price">
-                                                    <span>
-                                                        Rs.{{ $trending_product->selling_price * (1 - $trending_product->discount / 100) }}</span>
-                                                    <span
-                                                        class="old-price">Rs.{{ $trending_product->selling_price }}</span>
+                                                    <span> Rs.{{ $deal_product->selling_price }}</span>
                                                 </div>
                                             @else
-                                                <div class="product-price">
-                                                    <span>
-                                                        Rs.
-                                                        {{ $trending_product->selling_price - $trending_product->discount }}</span>
-                                                    <span
-                                                        class="old-price">Rs.{{ $trending_product->selling_price }}</span>
-                                                </div>
+                                                @if ($deal_product->discount_type === 'percent')
+                                                    <div class="product-price">
+                                                        <span>
+                                                            Rs.{{ $deal_product->selling_price * (1 - $deal_product->discount / 100) }}</span>
+                                                        <span
+                                                            class="old-price">Rs.{{ $deal_product->selling_price }}</span>
+                                                    </div>
+                                                @else
+                                                    <div class="product-price">
+                                                        <span>
+                                                            Rs.
+                                                            {{ $deal_product->selling_price - $deal_product->discount }}</span>
+                                                        <span
+                                                            class="old-price">Rs.{{ $deal_product->selling_price }}</span>
+                                                    </div>
+                                                @endif
                                             @endif
-                                        @endif
-                                        <div class="add-cart">
-                                            <a class="add" href="shop-cart.html"><i
-                                                    class="fi-rs-shopping-cart mr-5"></i>Add
-                                            </a>
+                                            <div class="add-cart">
+                                                <a class="add" href="javascript:void(0)"
+                                                    id="{{ $deal_product->id }}"
+                                                    onclick="productview({{ $deal_product->id }})"><i
+                                                        class="fi-rs-shopping-cart mr-5"></i>Add
+                                                </a>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
                             </div>
                         </div>
-                    </div>
-                @endforeach
+                    @endforeach
 
-                <!--
-                        <div class="col-xl-3 col-lg-4 col-md-6">
-                            <div class="product-cart-wrap style-2 wow animate__animated animate__fadeInUp" data-wow-delay=".1s">
-                                <div class="product-img-action-wrap">
-                                    <div class="product-img">
-                                        <a href="shop-product-right.html">
-                                            <img src="{{ asset('new_frontend\assets\imgs\banner\banner-6.png" alt="') }}">
-                                        </a>
-                                    </div>
-                                </div>
-                                <div class="product-content-wrap">
-                                    <div class="deals-countdown-wrap">
-                                        <div class="deals-countdown" data-countdown="2026/04/25 00:00:00"></div>
-                                    </div>
-                                    <div class="deals-content">
-                                        <h2><a href="shop-product-right.html">Perdue Simply Smart Organics Gluten Free</a></h2>
-                                        <div class="product-rate-cover">
-                                            <div class="product-rate d-inline-block">
-                                                <div class="product-rating" style="width: 90%"></div>
-                                            </div>
-                                            <span class="font-small ml-5 text-muted"> (4.0)</span>
-                                        </div>
-                                        <div>
-                                            <span class="font-small text-muted">By <a href="vendor-details-1.html">Old El Paso</a></span>
-                                        </div>
-                                        <div class="product-card-bottom">
-                                            <div class="product-price">
-                                                <span>$24.85</span>
-                                                <span class="old-price">$26.8</span>
-                                            </div>
-                                            <div class="add-cart">
-                                                <a class="add" href="shop-cart.html"><i class="fi-rs-shopping-cart mr-5"></i>Add </a>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-xl-3 col-lg-4 col-md-6 d-none d-lg-block">
-                            <div class="product-cart-wrap style-2 wow animate__animated animate__fadeInUp" data-wow-delay=".2s">
-                                <div class="product-img-action-wrap">
-                                    <div class="product-img">
-                                        <a href="shop-product-right.html">
-                                            <img src="{{ asset('new_frontend\assets\imgs\banner\banner-7.png" alt="') }}">
-                                        </a>
-                                    </div>
-                                </div>
-                                <div class="product-content-wrap">
-                                    <div class="deals-countdown-wrap">
-                                        <div class="deals-countdown" data-countdown="2027/03/25 00:00:00"></div>
-                                    </div>
-                                    <div class="deals-content">
-                                        <h2><a href="shop-product-right.html">Signature Wood-Fired Mushroom and Caramelized</a></h2>
-                                        <div class="product-rate-cover">
-                                            <div class="product-rate d-inline-block">
-                                                <div class="product-rating" style="width: 80%"></div>
-                                            </div>
-                                            <span class="font-small ml-5 text-muted"> (3.0)</span>
-                                        </div>
-                                        <div>
-                                            <span class="font-small text-muted">By <a href="vendor-details-1.html">Progresso</a></span>
-                                        </div>
-                                        <div class="product-card-bottom">
-                                            <div class="product-price">
-                                                <span>$12.85</span>
-                                                <span class="old-price">$13.8</span>
-                                            </div>
-                                            <div class="add-cart">
-                                                <a class="add" href="shop-cart.html"><i class="fi-rs-shopping-cart mr-5"></i>Add </a>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-xl-3 col-lg-4 col-md-6 d-none d-xl-block">
-                            <div class="product-cart-wrap style-2 wow animate__animated animate__fadeInUp" data-wow-delay=".3s">
-                                <div class="product-img-action-wrap">
-                                    <div class="product-img">
-                                        <a href="shop-product-right.html">
-                                            <img src="{{ asset('new_frontend\assets\imgs\banner\banner-8.png" alt="') }}">
-                                        </a>
-                                    </div>
-                                </div>
-                                <div class="product-content-wrap">
-                                    <div class="deals-countdown-wrap">
-                                        <div class="deals-countdown" data-countdown="2025/02/25 00:00:00"></div>
-                                    </div>
-                                    <div class="deals-content">
-                                        <h2><a href="shop-product-right.html">Simply Lemonade with Raspberry Juice</a></h2>
-                                        <div class="product-rate-cover">
-                                            <div class="product-rate d-inline-block">
-                                                <div class="product-rating" style="width: 80%"></div>
-                                            </div>
-                                            <span class="font-small ml-5 text-muted"> (3.0)</span>
-                                        </div>
-                                        <div>
-                                            <span class="font-small text-muted">By <a href="vendor-details-1.html">Yoplait</a></span>
-                                        </div>
-                                        <div class="product-card-bottom">
-                                            <div class="product-price">
-                                                <span>$15.85</span>
-                                                <span class="old-price">$16.8</span>
-                                            </div>
-                                            <div class="add-cart">
-                                                <a class="add" href="shop-cart.html"><i class="fi-rs-shopping-cart mr-5"></i>Add </a>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div> -->
+                    
+                </div>
             </div>
-        </div>
+        @endif
     </section>
     <!--End Deals-->
     <section class="section-padding mb-30">

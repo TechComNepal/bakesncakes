@@ -35,6 +35,8 @@ class ProductStoreRequest extends FormRequest
             'is_featured' => 'sometimes',
             'is_trending' => 'sometimes',
             'is_sellable' => 'sometimes',
+              'best_selling' => 'sometimes',
+              'is_deal' => 'sometimes',
             'order_custom_msg' => 'sometimes',
             'image' => 'required',
             'gallery_image_url' => 'required',
@@ -47,6 +49,7 @@ class ProductStoreRequest extends FormRequest
             'discount_type' => 'required',
             'quantity' => 'required',
             'description' => 'nullable',
+            'deal_date'=>'nullable',
         ];
     }
 }

@@ -331,8 +331,25 @@ class ProductController extends Controller
                     />
                 ';
             })
+                  ->editColumn('best_selling', function ($data) {
+                      $checked = $data->best_selling == true ? 'checked' : '';
+
+                      return '
+                    <label for="best-selling-switch-' . $data->id . '"></label>
+                    <input
+                        type="checkbox"
+                        id="best-selling-switch-' . $data->id . '"
+                        data-id="' . $data->id . '"
+                        name="best_selling"
+                        class="js-switch"
+                        ' . $checked . '
+                        autocomplete="off"
+                        onchange="toggleBestSelling(' . $data->id . ')"
+                    />
+                ';
+                  })
             ->addIndexColumn()
-            ->rawColumns(['actions', 'name', 'info', 'is_featured', 'is_taxable', 'is_refundable', 'is_trending', 'is_sellable'])
+            ->rawColumns(['actions', 'name', 'info', 'is_featured', 'is_taxable', 'is_refundable', 'is_trending', 'is_sellable','best_selling'])
             ->make(true);
     }
 
@@ -384,6 +401,12 @@ class ProductController extends Controller
     {
         return $this->productRepository->updateProductSellable($request->all())
             ? response()->json(['message' => 'Product Sellable Updated Successfully.', 'status' => 'success'])
+            : response()->json(['message' => 'Error occurred while updating product sellable status.', 'status' => 'error']);
+    }
+    public function toggleBestSelling(Request $request): JsonResponse
+    {
+        return $this->productRepository->updateProductBestSelling($request->all())
+            ? response()->json(['message' => 'Product Best Selling Updated Successfully.', 'status' => 'success'])
             : response()->json(['message' => 'Error occurred while updating product sellable status.', 'status' => 'error']);
     }
 }

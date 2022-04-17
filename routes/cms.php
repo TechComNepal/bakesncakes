@@ -138,6 +138,8 @@ Route::group(['middleware' => 'auth'], function () {
         Route::get('/products/refundable/toggle', [ProductController::class, 'toggleIsRefundable'])->name('products.toggle.refundable');
         Route::get('/products/trending/toggle', [ProductController::class, 'toggleIsTrending'])->name('products.toggle.trending');
         Route::get('/products/sellable/toggle', [ProductController::class, 'toggleIsSellable'])->name('products.toggle.sellable');
+        Route::get('/products/bestselling/toggle', [ProductController::class, 'toggleBestSelling'])->name('products.toggle.bestselling');
+
 
         Route::delete('/products-gallery/{gallery}', [ProductController::class, 'galleryDestroy'])->name('products.gallery.destroy');
         Route::put('/products-gallery/{product}', [ProductController::class, 'galleryUpdate'])->name('products.gallery.update');

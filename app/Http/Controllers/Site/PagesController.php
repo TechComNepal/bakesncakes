@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Site;
 
+use Carbon\Carbon;
 use App\Models\Blog;
 use App\Models\Cart;
 use App\Models\User;
@@ -37,6 +38,10 @@ class PagesController extends Controller
 {
     public function index()
     {
+        $now = Carbon::now();
+        $date = Carbon::parse($now)->toDateTimeString();
+        // $time = Carbon::create($now, request()->user()->timezone)->toTimeString();
+   
         $productCategories = Category::with('products')->where('status', 1)->orderBy('id', 'desc')->limit(7)->get();
         return view('site.new_index', [
         'categories'=> Category::withCount('products')->where('featured', 1)->orderBy('id', 'desc')->paginate(16),
@@ -54,6 +59,9 @@ class PagesController extends Controller
                  ->OrderByDesc('ratings_avg_rating')
                  ->limit(3)
                  ->get(),
+        'deal_products'=>Product::where('is_deal', 1)-> where('deal_date', '>', $date)->orderBy('id', 'desc')->get(),
+       
+    
         'services'=> Service::all(),
         'testimonials'=>Testimonial::all(),
         'blogs'=> Blog::limit(3)->orderBy('id', 'desc')->get(),
