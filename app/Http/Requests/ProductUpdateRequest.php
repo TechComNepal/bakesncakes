@@ -35,6 +35,7 @@ class ProductUpdateRequest extends FormRequest
             'min_purchase_unit'=>'required|numeric|gte:1',
             'tags' => 'nullable',
             'order_custom_msg' => 'sometimes',
+            'is_deal'=>'sometimes',
             'image' => 'nullable',
             'gallery_image_url' => 'nullable',
             'is_taxable' => 'sometimes',
@@ -46,6 +47,7 @@ class ProductUpdateRequest extends FormRequest
             'discount_type' => 'required',
             'quantity' => 'required',
             'description' => 'nullable',
+            'deal_date'=>'sometimes',
         ];
     }
 }

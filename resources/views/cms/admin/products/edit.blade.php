@@ -29,8 +29,8 @@
 
     <div class="tab-content">
         <div class="tab-pane  @if (!$errors->has('gallery_image_url')) active @endif" id="details" role="tabpanel">
-            <x-form-base :route="'admin.products.update'" :requiredParam="$product" :title="$pageTitle"
-                :subTitle="$subTitle" class="bg-soft-light" :method="'PUT'">
+            <x-form-base :route="'admin.products.update'" :requiredParam="$product" :title="$pageTitle" :subTitle="$subTitle" class="bg-soft-light"
+                :method="'PUT'">
 
                 <!-- Product Info -->
                 <div class="row">
@@ -42,9 +42,8 @@
                             <div class="card-body">
 
                                 <!-- Name -->
-                                <x-input-field :label="'Name'" :name="'name'"
-                                    :placeholder="'Please enter product name here.'" :required="true" :autofocus="true"
-                                    :value="$product->name" />
+                                <x-input-field :label="'Name'" :name="'name'" :placeholder="'Please enter product name here.'"
+                                    :required="true" :autofocus="true" :value="$product->name" />
 
                                 <!-- SKU -->
                                 <x-input-field :label="'SKU'" :name="'sku'" :placeholder="'Please enter sku here.'"
@@ -52,8 +51,7 @@
                                     :value="$product->sku" />
 
                                 <!-- Category -->
-                                <x-select-field-name :label="'Categories'" :name="'category_id'"
-                                    :placeholder="'Select Category.'">
+                                <x-select-field-name :label="'Categories'" :name="'category_id'" :placeholder="'Select Category.'">
                                     @foreach ($categories as $category)
                                         <option value="{{ $category->id }}"
                                             @if ($category->id == $product->category->id) selected @endif>{{ $category->name }}
@@ -76,14 +74,13 @@
                                     :required="true" :autofocus="true" :step="1" :value="$product->units" />
 
                                 <!-- Minimum Purchase Unit -->
-                                <x-input-field :type="'number'" :label="'Minimum Purchase Unit'"
-                                    :name="'min_purchase_unit'"
-                                    :placeholder="'Please enter Minimum Purchase Unit here.'" :required="true"
-                                    :autofocus="true" :step="1" :value="$product->min_purchase_unit" />
+                                <x-input-field :type="'number'" :label="'Minimum Purchase Unit'" :name="'min_purchase_unit'"
+                                    :placeholder="'Please enter Minimum Purchase Unit here.'" :required="true" :autofocus="true" :step="1"
+                                    :value="$product->min_purchase_unit" />
 
                                 <!-- Tags -->
-                                <x-input-field :label="'Tags'" :name="'tags'" :id="'tags'" :placeholder="'Tags'"
-                                    :autofocus="TRUE" :dataRole="'tagsinput'" :value="$product->tags" />
+                                <x-input-field :label="'Tags'" :name="'tags'" :id="'tags'"
+                                    :placeholder="'Tags'" :autofocus="true" :dataRole="'tagsinput'" :value="$product->tags" />
 
                             </div>
                         </div>
@@ -99,8 +96,8 @@
                                 </div>
                                 <div class="card-body">
                                     <!-- Enable Custom Message -->
-                                    <x-switch :label="'Enable Custom Message'" :name="'order_custom_msg'"
-                                        :id="'switch6'" :checked="true" />
+                                    <x-switch :label="'Enable Custom Message'" :name="'order_custom_msg'" :id="'switch6'"
+                                        :checked="true" />
                                 </div>
                             </div>
                         </div>
@@ -117,8 +114,7 @@
                             </div>
                             <div class="card-body">
                                 <!-- Product Main Image -->
-                                <x-file-browser-image :label="'Product Main Image'" :name="'image'"
-                                    :defaultFile="$product->getFirstOrDefaultMediaUrl('image')" />
+                                <x-file-browser-image :label="'Product Main Image'" :name="'image'" :defaultFile="$product->getFirstOrDefaultMediaUrl('image')" />
                             </div>
                         </div>
                     </div>
@@ -129,8 +125,7 @@
                             </div>
                             <div class="card-body">
                                 <!-- Is Taxable -->
-                                <x-switch :label="'Is Taxable'" :name="'is_taxable'"
-                                    :checked="$product->is_taxable ?? FALSE" />
+                                <x-switch :label="'Is Taxable'" :name="'is_taxable'" :checked="$product->is_taxable ?? false" />
 
 
                                 <div id="tax-form"
@@ -167,6 +162,30 @@
 
                             </div>
                         </div>
+
+                        <div class="card">
+                            <div class="card-header">
+                                <h4>Deals Of The Day</h4>
+                            </div>
+                            <div class="card-body">
+                                <!-- Deal Of The Day -->
+
+                                <x-switch :label="'Is Deal Of The Day'" :name="'is_deal'" :checked="$product->is_deal ?? false" :id="'switch7'" />
+
+
+                                <div class="row">
+                                    <div class="col-md-12">
+                                        <div class="mb-3">
+                                            <x-input-field :type="'date'" :label="'Deal Date'" :name="'deal_date'" :value="$product->deal_date"
+                                                :placeholder="'enter a deal date'"  :col="6"
+                                                :autofocus="true" />
+                                        </div>
+                                    </div>
+
+                                </div>
+
+                            </div>
+                        </div>
                     </div>
                 </div>
 
@@ -181,22 +200,21 @@
                                 <div class="row">
                                     <!-- Cost Price -->
                                     <x-input-field :type="'number'" :label="'Cost Price'" :name="'cost_price'"
-                                        :placeholder="'Please enter Cost Price here.'" :required="true"
-                                        :autofocus="true" :step="0.01" :col="'6'" :value="$product->cost_price" />
+                                        :placeholder="'Please enter Cost Price here.'" :required="true" :autofocus="true" :step="0.01"
+                                        :col="'6'" :value="$product->cost_price" />
 
                                     <!-- Selling Price -->
                                     <x-input-field :type="'number'" :label="'Selling Price'" :name="'selling_price'"
-                                        :placeholder="'Please enter Selling Price here.'" :required="true"
-                                        :autofocus="true" :step="0.01" :col="'6'" :value="$product->selling_price" />
+                                        :placeholder="'Please enter Selling Price here.'" :required="true" :autofocus="true" :step="0.01"
+                                        :col="'6'" :value="$product->selling_price" />
 
                                     <!-- Discount -->
                                     <x-input-field :type="'number'" :label="'Discount'" :name="'discount'"
-                                        :placeholder="'Please enter Discount Amount here.'" :step="0.01" :col="'6'"
-                                        :value="$product->discount" />
+                                        :placeholder="'Please enter Discount Amount here.'" :step="0.01" :col="'6'" :value="$product->discount" />
 
                                     <!-- Discount Type -->
-                                    <x-select-field-name :label="'Discount Type'" :name="'discount_type'"
-                                        :placeholder="'Select Discount Type.'" :col="'6'">
+                                    <x-select-field-name :label="'Discount Type'" :name="'discount_type'" :placeholder="'Select Discount Type.'"
+                                        :col="'6'">
                                         <option @if (old('discount_type', $product->discount_type) == 'flat') selected @endif value="flat">Flat
                                         </option>
                                         <option @if (old('discount_type', $product->discount_type) == 'percent') selected @endif value="percent">
@@ -205,8 +223,8 @@
 
                                     <!-- Quantity -->
                                     <x-input-field :type="'number'" :label="'Quantity'" :name="'quantity'"
-                                        :placeholder="'Please enter Quantity here.'" :required="true" :autofocus="true"
-                                        :step="1" :col="'6'" :value="$product->quantity" />
+                                        :placeholder="'Please enter Quantity here.'" :required="true" :autofocus="true" :step="1"
+                                        :col="'6'" :value="$product->quantity" />
                                 </div>
                             </div>
                         </div>
@@ -222,9 +240,8 @@
                             </div>
                             <div class="card-body">
                                 <!-- Description -->
-                                <x-text-area-field :label="'Description'" :name="'description'"
-                                    :placeholder="'Please enter description here.'" :rows="4"
-                                    :value="$product->description" />
+                                <x-text-area-field :label="'Description'" :name="'description'" :placeholder="'Please enter description here.'"
+                                    :rows="4" :value="$product->description" />
                             </div>
                         </div>
                     </div>
@@ -239,10 +256,10 @@
 
         <div class="tab-pane @if ($errors->has('gallery_image_url')) active @endif" id="gallery" role="tabpanel">
 
-            <x-form-base :route="'admin.products.gallery.update'" :requiredParam="$product" :method="'PUT'"
-                :title="$pageTitle" :subTitle="$subTitle">
+            <x-form-base :route="'admin.products.gallery.update'" :requiredParam="$product" :method="'PUT'" :title="$pageTitle"
+                :subTitle="$subTitle">
                 <!-- Gallery Image -->
-                <x-file-gallery-image :label="'Gallery Image'" :name="'gallery_image_url'" :required="FALSE" />
+                <x-file-gallery-image :label="'Gallery Image'" :name="'gallery_image_url'" :required="false" />
 
                 <div>
                     <button type="submit" class="btn btn-success">Add Images </button>
@@ -291,6 +308,9 @@
     @push('scripts')
         <script>
             $(document).ready(function() {
+                flatpickr("#deal_date", {
+                    "enableTime": true,
+                });
 
                 //Toogling Tax Form
                 const el = document.getElementById("switch3");

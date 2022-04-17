@@ -27,8 +27,13 @@ class Product extends Model implements HasMedia, Searchable
         'is_refundable'=>'boolean',
         'is_trending'=>'boolean',
          'is_sellable'=>'boolean',
+         'best_selling'=>'boolean',
+          'is_deal'=>'boolean',
+          
 
     ];
+
+    protected $dates=['deal_date'];
    
     protected static $defaultImage = '/common/default-image/defaultCategoryImage.jpg';
 
@@ -72,6 +77,15 @@ class Product extends Model implements HasMedia, Searchable
     {
         $this->attributes['is_sellable'] = $value==='on' ? 1 : 0 ;
     }
+    public function setBestSellingAttribute($value)
+    {
+        $this->attributes['best_selling'] = $value==='on' ? 1 : 0 ;
+    }
+    public function setIsDealAttribute($value)
+    {
+        $this->attributes['is_deal'] = $value==='on' ? 1 : 0 ;
+    }
+
 
     public function registerMediaCollections(): void
     {

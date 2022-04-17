@@ -106,7 +106,16 @@
                                         <div class="product-rate d-inline-block">
                                             <div class="product-rating" style="width: 90%"></div>
                                         </div>
-                                        <span class="font-small ml-5 text-muted"> (4.0)</span>
+                                        @php
+                                            $total_rating = 0;
+                                        @endphp
+                                        @foreach ($vendor->products as $product)
+                                            @php
+                                                $total_rating += number_format($product->averageRating);
+                                            @endphp
+                                        @endforeach
+                                        <span class="font-small ml-5 text-muted"> {{ $total_rating }}</span>
+                                        {{-- <span class="font-small ml-5 text-muted"> (4.0)</span> --}}
                                     </div>
                                     <div class="vendor-info d-flex justify-content-between align-items-end mt-30">
                                         <ul class="contact-infor text-muted">

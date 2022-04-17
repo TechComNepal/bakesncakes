@@ -1,11 +1,12 @@
 <x-cms-master-layout :pageTitle="$pageTitle">
-@push('styles')
+    @push('styles')
         <style type="text/css">
             .bootstrap-tagsinput {
                 width: 100%;
             }
+
         </style>
-@endpush
+    @endpush
     <x-breadcrumb :title="$pageTitle" :item="3" :method="'Create'" />
 
     <x-error />
@@ -22,32 +23,41 @@
                     <div class="card-body">
 
                         <!-- Name -->
-                        <x-input-field :label="'Name'" :name="'name'" :placeholder="'Please enter product name here.'" :required="true" :autofocus="true" />
+                        <x-input-field :label="'Name'" :name="'name'" :placeholder="'Please enter product name here.'" :required="true"
+                            :autofocus="true" />
 
                         <!-- SKU -->
-                        <x-input-field :label="'SKU'" :name="'sku'" :placeholder="'Please enter sku here.'" :required="true" :autofocus="true" :required="true" :autofocus="true"/>
+                        <x-input-field :label="'SKU'" :name="'sku'" :placeholder="'Please enter sku here.'" :required="true"
+                            :autofocus="true" :required="true" :autofocus="true" />
 
                         <!-- Category -->
                         <x-select-field-name :label="'Categories'" :name="'category_id'" :placeholder="'Select Category.'">
                             @foreach ($categories as $category)
                                 <option value="{{ $category->id }}">{{ $category->name }}</option>
                                 @foreach ($category->children as $childCategory)
-                                    @include('cms.admin.categories.child_category', ['child_category' => $childCategory])
+                                    @include(
+                                        'cms.admin.categories.child_category',
+                                        ['child_category' => $childCategory]
+                                    )
                                 @endforeach
                             @endforeach
                         </x-select-field-name>
 
                         <!-- Brands -->
-                        <x-select-field-name :label="'Brands'" :name="'brand_id'" :placeholder="'Select Brand.'" :values="$brands" />
+                        <x-select-field-name :label="'Brands'" :name="'brand_id'" :placeholder="'Select Brand.'"
+                            :values="$brands" />
 
                         <!-- Unit -->
-                        <x-input-field :label="'Unit'" :name="'units'" :placeholder="'Unit (e.g. KG, Pcs ets)'" :required="true" :autofocus="true" :step="1"/>
+                        <x-input-field :label="'Unit'" :name="'units'" :placeholder="'Unit (e.g. KG, Pcs ets)'" :required="true"
+                            :autofocus="true" :step="1" />
 
                         <!-- Minimum Purchase Unit -->
-                        <x-input-field :type="'number'" :label="'Minimum Purchase Unit'" :name="'min_purchase_unit'" :placeholder="'Please enter Minimum Purchase Unit here.'" :required="true" :autofocus="true" :step="1"/>
+                        <x-input-field :type="'number'" :label="'Minimum Purchase Unit'" :name="'min_purchase_unit'" :placeholder="'Please enter Minimum Purchase Unit here.'"
+                            :required="true" :autofocus="true" :step="1" />
 
                         <!-- Tags -->
-                        <x-input-field :label="'Tags'" :name="'tags'" :id="'tags'" :placeholder="'Tags'" :autofocus="TRUE" :dataRole="'tagsinput'" />
+                        <x-input-field :label="'Tags'" :name="'tags'" :id="'tags'" :placeholder="'Tags'"
+                            :autofocus="true" :dataRole="'tagsinput'" />
 
                     </div>
                 </div>
@@ -68,7 +78,9 @@
                         <x-switch :label="'Is Trending'" :name="'is_trending'" :id="'switch5'" :checked="true" />
 
                         <!-- In Sellable -->
-                        <x-switch :label="'Is Sellable'" :name="'is_sellable'" :id="'switch4'" :checked="true"  />
+                        <x-switch :label="'Is Sellable'" :name="'is_sellable'" :id="'switch4'" :checked="true" />
+                        <!-- Daily Best Sales -->
+                        <x-switch :label="'Best Selling'" :name="'best_selling'" :id="'switch6'" :checked="false" />
 
                     </div>
                 </div>
@@ -95,7 +107,7 @@
                         <!-- Product Main Image -->
                         <x-file-browser-image :label="'Product Main Image'" :name="'image'" />
                         <!-- Gallery Image -->
-                        <x-file-gallery-image :label="'Gallery Image'" :name="'gallery_image_url'" :required="FALSE" />
+                        <x-file-gallery-image :label="'Gallery Image'" :name="'gallery_image_url'" :required="false" />
                     </div>
                 </div>
             </div>
@@ -106,36 +118,57 @@
                     </div>
                     <div class="card-body">
                         <!-- Is Taxable -->
-                        <x-switch :label="'Is Taxable'" :name="'is_taxable'" :checked="true" :col="4"/>
+                        <x-switch :label="'Is Taxable'" :name="'is_taxable'" :checked="true" :col="4" />
 
 
                         <div id="tax-form" style="display:block;">
+                            <div class="row">
+                                <p>Tax</p>
+                                <div class="col-md-6">
+                                    <div class="mb-3">
+                                        <label class="form-label visually-hidden" for="formrow-tax-input">Tax</label>
+                                        <input type="number" class="form-control" id="formrow-tax-input"
+                                            name="tax_amount" step="0.01" min="0" value="{{ old('tax_amount') }}">
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="mb-3">
+                                        <label class="form-label visually-hidden" for="formrow-tax-type-input">Tax
+                                            Type</label>
+                                        <select class="form-control js-choice @error('tax_type') is-invalid @enderror"
+                                            data-trigger name="tax_type" id="tax_type"
+                                            data-placeholder="Select Tax Type" required>
+                                            <option value="flat" @if (old('tax_type') == 'flat') selected @endif>Flat
+                                            </option>
+                                            <option value="percent" @if (old('tax_type') == 'percent') selected @endif>
+                                                Percent</option>
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+
+                <div class="card">
+                    <div class="card-header">
+                        <h4>Deals Of The Day</h4>
+                    </div>
+                    <div class="card-body">
+                        <!-- Deal Of The Day -->
+                        <x-switch :label="'Is Deal Of The Day'" :name="'is_deal'" :checked="false" :id="'switch7'" />
+
                         <div class="row">
-                            <p>Tax</p>
-                            <div class="col-md-6">
+                            <div class="col-md-12">
                                 <div class="mb-3">
-                                    <label class="form-label visually-hidden" for="formrow-tax-input">Tax</label>
-                                    <input type="number" class="form-control" id="formrow-tax-input" name="tax_amount" step="0.01" min="0" value="{{ old('tax_amount') }}">
+                                    <x-input-field :type="'date'" :label="'Deal Date'" :name="'deal_date'"
+                                        :placeholder="'enter a deal date'" :col="6" :autofocus="true" />
                                 </div>
                             </div>
-                            <div class="col-md-6">
-                                <div class="mb-3">
-                                    <label class="form-label visually-hidden" for="formrow-tax-type-input">Tax Type</label>
-                                    <select
-                                        class="form-control js-choice @error('tax_type') is-invalid @enderror"
-                                        data-trigger
-                                        name="tax_type"
-                                        id="tax_type"
-                                        data-placeholder="Select Tax Type"
-                                        required
-                                    >
-                                        <option value="flat" @if(old('tax_type') == 'flat') selected @endif>Flat</option>
-                                        <option value="percent" @if(old('tax_type') == 'percent') selected @endif>Percent</option>
-                                    </select>
-                                </div>
-                            </div>
+
                         </div>
-                        </div>
+
 
                     </div>
                 </div>
@@ -151,23 +184,29 @@
                     </div>
                     <div class="card-body">
                         <div class="row">
-                        <!-- Cost Price -->
-                        <x-input-field :type="'number'" :label="'Cost Price'" :name="'cost_price'" :placeholder="'Please enter Cost Price here.'" :required="true" :autofocus="true" :step="0.01" :col="'6'"/>
+                            <!-- Cost Price -->
+                            <x-input-field :type="'number'" :label="'Cost Price'" :name="'cost_price'" :placeholder="'Please enter Cost Price here.'"
+                                :required="true" :autofocus="true" :step="0.01" :col="'6'" />
 
-                        <!-- Selling Price -->
-                        <x-input-field :type="'number'" :label="'Selling Price'" :name="'selling_price'" :placeholder="'Please enter Selling Price here.'" :required="true" :autofocus="true" :step="0.01" :col="'6'"/>
+                            <!-- Selling Price -->
+                            <x-input-field :type="'number'" :label="'Selling Price'" :name="'selling_price'" :placeholder="'Please enter Selling Price here.'"
+                                :required="true" :autofocus="true" :step="0.01" :col="'6'" />
 
-                        <!-- Discount -->
-                        <x-input-field :type="'number'" :label="'Discount'" :name="'discount'" :placeholder="'Please enter Discount Amount here.'" :step="0.01" :col="'6'"/>
+                            <!-- Discount -->
+                            <x-input-field :type="'number'" :label="'Discount'" :name="'discount'"
+                                :placeholder="'Please enter Discount Amount here.'" :step="0.01" :col="'6'" />
 
-                        <!-- Discount Type -->
-                        <x-select-field-name :label="'Discount Type'" :name="'discount_type'" :placeholder="'Select Discount Type.'" :col="'6'">
-                            <option value="flat">Flat</option>
-                            <option value="percent">Percent</option>
-                        </x-select-field-name>
+                            <!-- Discount Type -->
+                            <x-select-field-name :label="'Discount Type'" :name="'discount_type'" :placeholder="'Select Discount Type.'"
+                                :col="'6'">
+                                <option value="flat">Flat</option>
+                                <option value="percent">Percent</option>
+                            </x-select-field-name>
 
-                        <!-- Quantity -->
-                        <x-input-field :type="'number'" :label="'Quantity'" :name="'quantity'" :placeholder="'Please enter Quantity here.'" :required="true" :autofocus="true" :step="1" :col="'6'"/>
+                            <!-- Quantity -->
+                            <x-input-field :type="'number'" :label="'Quantity'" :name="'quantity'"
+                                :placeholder="'Please enter Quantity here.'" :required="true" :autofocus="true" :step="1"
+                                :col="'6'" />
                         </div>
                     </div>
                 </div>
@@ -183,7 +222,8 @@
                     </div>
                     <div class="card-body">
                         <!-- Description -->
-                        <x-text-area-field :label="'Description'" :name="'description'" :placeholder="'Please enter description here.'" :rows="4" />
+                        <x-text-area-field :label="'Description'" :name="'description'" :placeholder="'Please enter description here.'"
+                            :rows="4" />
                     </div>
                 </div>
             </div>
@@ -194,15 +234,17 @@
     </x-form-base>
 
     @push('scripts')
-
         <script>
-            $(document).ready(function () {
+            $(document).ready(function() {
+                flatpickr("#deal_date", {
+                    "enableTime": true,
+                });
 
                 //Toogling Tax Form
                 const el = document.getElementById("switch3");
                 el.addEventListener("click", toggleTaxForm, false);
 
-                function toggleTaxForm(){
+                function toggleTaxForm() {
                     var x = document.getElementById("tax-form");
                     if (x.style.display === "none") {
                         x.style.display = "block";

@@ -25,6 +25,10 @@ class Vendor extends Component
     public function render()
     {
         $vendor_users=User::with('media')->role('vendor');
+        // $vendor_users=User::with('media')->role('vendor')->whereHas('products', function ($query) {
+        //     $query->withAvg('ratings', 'rating');
+        // })->get()->dd();
+     
         $filter = $this->filter;
         if ($filter == 1) {
             $vendors = $vendor_users;
