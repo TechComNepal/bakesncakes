@@ -4,10 +4,10 @@
             <div class="archive-header">
                 <div class="row align-items-center">
                     <div class="col-xl-3">
-                        <h1 class="mb-15">Snack</h1>
-                        <div class="breadcrumb">
-                            <a href="index.html" rel="nofollow"><i class="fi-rs-home mr-5"></i>Home</a>
-                            <span></span> Shop <span></span> Snack
+                        <h1 class="mb-15 text-white">Snack</h1>
+                        <div class="breadcrumb breadcrumb-new-header">
+                            <a href="index.html" class="text-white" rel="nofollow"><i class="fi-rs-home mr-5 text-white"></i>Home</a>
+                            <span class="text-white"></span> Shop <span class="text-white"></span> Snack
                         </div>
                     </div>
 
@@ -175,7 +175,7 @@
 
                 </div>
                 <!--product grid-->
-                <div class="">
+                <div class="pagination-links">
                     {{ $products->links() }}
                 </div>
                 <!-- end pagination -->

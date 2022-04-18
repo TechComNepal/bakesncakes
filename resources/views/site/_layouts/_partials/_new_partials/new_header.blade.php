@@ -159,7 +159,7 @@
             <div class="container">
                 <div class="header-wrap header-space-between position-relative">
                     <div class="logo logo-width-1 d-block d-lg-none">
-                        <a href="index.html"><img src="{{ asset('new_frontend\assets\imgs\theme\logo.svg') }}"
+                        <a href="index.html"><img src="{{ asset('new_frontend\assets\imgs\theme\bakes-img-assets\mini-pasal.png') }}"
                                 alt="logo"></a>
                     </div>
                     <div class=" header-nav d-none d-lg-flex">
@@ -337,7 +337,6 @@
                                     <li>
                                         <a href="{{ route('site.page.blog') }}">Blog</a>
                                     </li>
-
                                      <li>
                                          <a href="{{ route('site.page.contact') }}">Contact</a>
                                      </li>
@@ -419,7 +418,7 @@
              <div class="mobile-header-wrapper-inner">
                  <div class="mobile-header-top">
                      <div class="mobile-header-logo">
-                         <a href="{{ route('site.page') }}"><img src="{{ asset('new_frontend\assets\imgs\theme\logo.svg') }}" alt="logo"></a>
+                         <a href="{{ route('site.page') }}"><img src="{{ asset('new_frontend\assets\imgs\theme\bakes-img-assets\mini-pasal.png') }}" alt="logo"></a>
                      </div>
                      <div class=" mobile-menu-close close-style-wrap close-style-position-inherit">
                          <button class="close-style search-close">
@@ -429,18 +428,18 @@
                      </div>
                  </div>
                  <div class="mobile-header-content-area">
-                     <div class="mobile-search search-style-3 mobile-header-border">
+                    <!--  <div class="mobile-search search-style-3 mobile-header-border">
                          <form action="#">
                              <input type="text" placeholder="Search for items…">
                              <button type="submit"><i class="fi-rs-search"></i></button>
                          </form>
-                     </div>
+                     </div> -->
                      <div class="mobile-menu-wrap mobile-header-border">
                          <!-- mobile menu start -->
                          <nav>
                              <ul class="mobile-menu font-heading">
                                  <li class="menu-item-has-children">
-                                     <a href="">Home</a>
+                                     <a href="{{route('site.page')}}">Home</a>
 
 
                                 </li>
@@ -450,13 +449,13 @@
                                 </li>
                                 <li class="menu-item-has-children">
                                     <a href="{{ route('site.page.vendor') }}">Vendors</a>
-                                    <ul class="dropdown">
-                                        <li><a href="{{ route('site.page.vendor') }}">Vendors List</a></li>
-                                        <li><a href="{{ route('site.page.vendor_guide') }}">Vendor Guide</a></li>
-                                        <li><a href="{{ route('site.page.vendor_guide') }}">Hello</a></li>
+                                    <li><a href="{{ route('site.page.vendor') }}">Vendors List</a></li>
+                                    <!-- <ul class="dropdown"> -->
+                                        <!-- <li><a href="{{ route('site.page.vendor_guide') }}">Vendor Guide</a></li>
+                                        <li><a href="{{ route('site.page.vendor_guide') }}">Hello</a></li> -->
                                     </ul>
                                 </li>
-                                <li class="menu-item-has-children">
+                                <!-- <li class="menu-item-has-children">
                                     <a href="#">Mega menu</a>
                                     <ul class="dropdown">
                                         <li class="menu-item-has-children">
@@ -488,7 +487,7 @@
                                         </li>
                                     </ul>
                                 </li>
-
+ -->
                                 <li class="menu-item-has-children">
                                     <a href="{{ route('site.page.blog') }}">Blog</a>
 
@@ -507,15 +506,7 @@
                                          <li><a href="page-404.html">404 Page</a></li>
                                      </ul>
                                  </li> -->
-                                <li class="menu-item-has-children">
-                                    <a href="#">Language</a>
-                                    <ul class="dropdown">
-                                        <li><a href="#">English</a></li>
-                                        <li><a href="#">French</a></li>
-                                        <li><a href="#">German</a></li>
-                                        <li><a href="#">Spanish</a></li>
-                                    </ul>
-                                </li>
+
                             </ul>
                         </nav>
                         <!-- mobile menu end -->
@@ -529,7 +520,7 @@
                                 Up </a>
                         </div>
                         <div class="single-mobile-header-info">
-                            <a href="#"><i class="fi-rs-headphones"></i>(+01) - 2345 - 6789 </a>
+                            <a href="#"><i class="fi-rs-headphones"></i>(+977) 9801075755 </a>
                         </div>
                     </div>
                     <div class="mobile-social-icon mb-50">
@@ -550,8 +541,8 @@
                                 src="{{ asset('new_frontend\assets\imgs\theme\icons\icon-youtube-white.svg') }}"
                                 alt=""></a>
                     </div>
-                    <div class="site-copyright">Copyright 2021 © Nest. All rights reserved. Powered by AliThemes.
-                    </div>
+                    <!-- <div class="site-copyright">Copyright 2021 © Nest. All rights reserved. Powered by AliThemes.
+                    </div> -->
                 </div>
             </div>
         </div>

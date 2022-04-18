@@ -107,13 +107,13 @@
                             <p class=" font-lg text-heading">Awesome Multipurpose store website </p>
                         </div>
                         <ul class="contact-infor">
-                            <li><img src="{{ asset('new_frontend\assets\imgs\theme\icons\icon-location.svg') }}" alt=""><strong>Address: </strong> <span> Durbarmarg, Kathmandu, Nepal</span></li>
+                            <li><img src="{{ asset('new_frontend\assets\imgs\theme\bakes-img-assets\location@4x.png') }}" alt=""><strong>Address: </strong> <span> Durbarmarg, Kathmandu, Nepal</span></li>
                             <li><img src="
-                                    {{ asset('new_frontend\assets\imgs\theme\icons\icon-contact.svg') }}" alt=""><strong>Call Us:</strong><span> (+977) - 9801075755</span></li>
-                            <li><img src="{{ asset('new_frontend\assets\imgs\theme\icons\icon-email-2.svg') }}" alt=""><strong>Email:</strong><span><a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="493a28252c09072c3a3d672a2624">avi.pradhan1987@gmail.com</a></span>
+                                    {{ asset('new_frontend\assets\imgs\theme\bakes-img-assets\headphone@4x.png') }}" alt=""><strong>Call Us:</strong><span> (+977) - 9801075755</span></li>
+                            <li><img src="{{ asset('new_frontend\assets\imgs\theme\bakes-img-assets\share@4x.png') }}" alt=""><strong>Email:</strong><span><a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="493a28252c09072c3a3d672a2624">avi.pradhan1987@gmail.com</a></span>
                             </li>
                             <li><img src="
-                                        {{ asset('new_frontend\assets\imgs\theme\icons\icon-clock.svg') }}" alt=""><strong>Hours:</strong><span> 09:00 - 20:00, Sun - Sat</span></li>
+                                        {{ asset('new_frontend\assets\imgs\theme\bakes-img-assets\Time@4x.png') }}" alt=""><strong>Hours:</strong><span> 09:00 - 20:00, Sun - Sat</span></li>
                         </ul>
                     </div>
                 </div>
@@ -182,7 +182,7 @@
                     <img src="{{ asset('new_frontend\assets\imgs\theme\icons\phone-call.svg') }}" alt="hotline">
                     <p>9801075755<span>Working 9:00 - 20:00</span></p>
                 </div>
-                <!-- 
+                <!--
                 <div class="hotline d-lg-inline-flex">
                     <img src="{{ asset('new_frontend\assets\imgs\theme\icons\phone-call.svg') }}" alt="hotline">
                     <p>014226354<span>24/7 Support Center</span></p>
