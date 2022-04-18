@@ -12,9 +12,9 @@
             <div class="container">
                 <div class="row">
                     <div class="col-xl-10 col-lg-12 m-auto">
-                        <section class="row align-items-end mb-50">
+                        <section class="row align-items-end mb-50 help-section">
                             <div class="col-lg-4 mb-lg-0 mb-md-5 mb-sm-5">
-                                <h4 class="mb-20 text-brand">How can help you ?</h4>
+                                <h4 class="mb-20 text-brand contact-heading">How can help you ?</h4>
                                 <h1 class="mb-30">Let us know how we can help you</h1>
 
                             </div>
@@ -38,7 +38,7 @@
                                         class="__cf_email__"
                                         data-cfemail="2a4945445e4b495e6a6f5c4b584b04494547">{{ $setting->company_email }}</a><br>
                                     <a
-                                        class="btn btn-sm font-weight-bold text-white mt-20 border-radius-5 btn-shadow-brand hover-up"><i
+                                        class="btn btn-sm map-btn font-weight-bold text-white mt-20 border-radius-5 btn-shadow-brand hover-up"><i
                                             class="fi-rs-marker mr-5"></i>View map</a>
                                 </div>
 

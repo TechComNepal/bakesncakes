@@ -2,18 +2,18 @@
 
 namespace App\Http\Livewire;
 
-use Livewire\Component;
 use App\Models\Product;
+use Livewire\Component;
 use Livewire\WithPagination;
 
 class UserPagination extends Component
 {
-    use WithPagination; 
+    use WithPagination;
 
     public function render()
     {
         return view('livewire.user-pagination', [
-            'products' => Product::paginate(12), 
+            'products' => Product::paginate(12),
         ]);
-    } 
+    }
 }
