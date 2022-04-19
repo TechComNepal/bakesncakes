@@ -9846,6 +9846,11 @@ textarea.form-control {
     font-weight: 600;
 }
 
+/* product popup */
+.ps-quickview .ps-product__quantity .number-input input[type="number"] {
+    max-width: 5vw !important;
+}
+
 @media (min-width: 1280px) {
     .ps-category--dark .ps-nextpage {
         font-size: 30px;

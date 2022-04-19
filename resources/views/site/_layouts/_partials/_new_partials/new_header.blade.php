@@ -64,7 +64,7 @@
                          <div class="header-action-right">
                              <div class="header-action-2">
                                  <!-- <div class="search-location">
-                       <form action="#">
+                                 <form action="#">
                                          <select class="select-active">
                                              <option>Your Location
                                              </option>
@@ -237,17 +237,18 @@
                                         <a href="{{ route('site.page.aboutus') }}">About</a>
                                     </li>
 
-                                    <li>
+                                    <li><!-- 
                                         <a href="{{ route('site.page.vendor') }}">Vendors <i
-                                                class="fi-rs-angle-down"></i></a>
-                                        <ul class="sub-menu">
-                                            <li><a href="{{ route('site.page.vendor') }}">Vendors List</a>
+                                                class="fi-rs-angle-down"></i></a> -->
+                                                <a href="{{ route('site.page.vendor') }}">Vendors List</a>
+                                        <!-- <ul class="sub-menu">
+                                            <li>
                                             </li>
                                             <li><a href="{{ route('site.page.vendor_guide') }}">Vendor Guide</a>
                                             </li>
-                                        </ul>
+                                        </ul> -->
                                     </li>
-                                    <li class="position-static">
+                                    <!-- <li class="position-static">
                                         <a href="#">Mega menu <i class="fi-rs-angle-down"></i></a>
                                         <ul class="mega-menu">
                                             <li class="sub-mega-menu sub-mega-menu-width-22">
@@ -333,7 +334,7 @@
                                                 </div>
                                             </li>
                                         </ul>
-                                    </li>
+                                    </li> -->
                                     <li>
                                         <a href="{{ route('site.page.blog') }}">Blog</a>
                                     </li>
@@ -363,48 +364,25 @@
                              </div>
                              <div class="header-action-icon-2">
                                  <a class="mini-cart-icon" href="#">
-                                     <img alt="Nest" src="{{ asset('new_frontend\assets\imgs\theme\icons\icon-cart.svg') }}">
-                                     <span class="pro-count white">2</span>
+                                 <span id="refresh_cart">
+                                        @include(
+                                        'site._layouts._partials._new_partials.new_cart'
+                                        )
+                                </span>
                                  </a>
-                                 <div class="cart-dropdown-wrap cart-dropdown-hm2">
+                               <!--   <div class="cart-dropdown-wrap cart-dropdown-hm2">
                                      <ul>
-                                         <li>
-                                             <div class="shopping-cart-img">
-                                                 <a href="shop-product-right.html"><img alt="Nest" src="{{ asset('new_frontend\assets\imgs\shop\thumbnail-3.jpg') }}"></a>
-                                             </div>
-                                             <div class=" shopping-cart-title">
-                                                 <h4><a href="shop-product-right.html">Plain Striola
-                                                         Shirts</a></h4>
-                                                 <h3><span>1 × </span>$800.00</h3>
-                                             </div>
-                                             <div class="shopping-cart-delete">
-                                                 <a href="#"><i class="fi-rs-cross-small"></i></a>
-                                             </div>
-                                         </li>
-                                         <li>
-                                             <div class="shopping-cart-img">
-                                                 <a href="shop-product-right.html"><img alt="Nest" src="{{ asset('new_frontend\assets\imgs\shop\thumbnail-4.jpg') }}"></a>
-                                             </div>
-                                             <div class=" shopping-cart-title">
-                                                 <h4><a href="shop-product-right.html">Macbook Pro
-                                                         2022</a></h4>
-                                                 <h3><span>1 × </span>$3500.00</h3>
-                                             </div>
-                                             <div class="shopping-cart-delete">
-                                                 <a href="#"><i class="fi-rs-cross-small"></i></a>
-                                             </div>
+                                         <li class="refresh-cart">
+                                            
                                          </li>
                                      </ul>
                                      <div class="shopping-cart-footer">
-                                         <div class="shopping-cart-total">
-                                             <h4>Total <span>$383.00</span></h4>
-                                         </div>
                                          <div class="shopping-cart-button">
                                              <a href="shop-cart.html">View cart</a>
                                              <a href="shop-checkout.html">Checkout</a>
                                          </div>
                                      </div>
-                                 </div>
+                                 </div> -->
                              </div>
                          </div>
                      </div>
