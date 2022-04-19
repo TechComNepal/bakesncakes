@@ -11283,6 +11283,13 @@ ul.pagination .page-link {
   border: 2px solid #af3039;
 }
 
+/* index */
+.header-style-1 .select2-container--default .select2-selection--single .select2-selection__rendered {
+  height: 50px;
+  line-height: 30px;
+  position: relative;
+}
+
 
 /* #### End Single Product #### */
 
