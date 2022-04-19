@@ -15,7 +15,7 @@
                         <section class="row align-items-end mb-50 help-section">
                             <div class="col-lg-4 mb-lg-0 mb-md-5 mb-sm-5">
                                 <h4 class="mb-20 text-brand contact-heading">How can help you ?</h4>
-                                <h1 class="mb-30">Let us know how we can help you</h1>
+                                <h1 class="mb-30 contact-top-heading">Let us know how we can help you</h1>
 
                             </div>
 

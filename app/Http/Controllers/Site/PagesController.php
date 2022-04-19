@@ -113,10 +113,7 @@ class PagesController extends Controller
 
     public function blog()
     {
-        return view('site.pages.new_blog', [
-        'blogs'=> Blog::orderBy('id', 'desc')->paginate(9)
-            ,
-            ]);
+        return view('site.pages.new_blog');
     }
 
     /* vendors */
