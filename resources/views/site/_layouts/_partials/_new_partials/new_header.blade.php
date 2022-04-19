@@ -43,7 +43,7 @@
              <div class="container">
                  <div class="header-wrap">
                      <div class="logo logo-width-1">
-                         <a href="{{ route('site.page') }}"><img src="{{ asset('new_frontend\assets\imgs\theme\MINIPASAL@4X-8(1).png') }}" alt="logo"></a>
+                         <a href="{{ route('site.page') }}"><img src="{{ asset('new_frontend\assets\imgs\theme\bakes-img-assets\mini-pasal.png') }}" alt="logo"></a>
                      </div>
                      <div class=" header-right">
                          <div class="search-style-2">
